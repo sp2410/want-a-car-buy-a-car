@@ -84,7 +84,10 @@
      <!-- <button type="button">reply</button> -->
      <h1>USER INFO</h1>     
      <br>      
+     <% if @listing.user.email != nil %>  
       <p style="font-size: 30px; margin-top: -10px;"><%= "Contact Person:  #{@listing.user.email}" %></p>
+      <% end %>
+      
       <% if @listing.user.role != nil %>
         <p style="font-size: 30px; margin-top: -10px;"><%= "User Type:  #{@listing.user.role}" %></p>
         <% else %>
@@ -93,7 +96,7 @@
 
 
         <% if @listing.user.website != nil %>               
-          <p style="font-size: 30px; margin-top: -10px;"><a href = <%= @listing.user.website %> > Visit Their Website</a></p>        
+          <p style="font-size: 30px; margin-top: -10px;"><a href = <%= "https://#{@listing.user.website}" %> > Visit Their Website</a></p>        
         <% end %>
       
 
