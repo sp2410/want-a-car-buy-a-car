@@ -1,0 +1,39 @@
+<div class="container">
+ <div class="center-column" id="right-center-column2">
+   <div class="row">
+       <div class="newest"><%= link_to 'Newest', :sort => 'created_at', :direction => 'desc' %></div>
+       <div class="oldest"><%= link_to 'oldest', :sort => 'created_at',:direction => 'asc'  %></div>
+       <div class="highest-price"><%= link_to 'highest-price', :sort => 'price', :direction => 'desc'  %></div>
+       <div class="lowest-price"><%= link_to 'lowest-price', :sort => 'price', :direction => 'asc' %></div>
+   </div>
+</div>
+
+  
+<div class="center-column" id="right-center-column2" >
+      <% if @mylistings.present? %>
+          <h1>MY LISTINGS</h1>
+          <% @mylistings.each do |mylisting| %>              
+              <div id = "listingsdescsmall">                
+                  <%= link_to mylisting do %>
+                      <p style="font-size: 30px; margin-top: -10px;">
+                          
+                          <% if mylisting.image_url.present? %> 
+                            <%= image_tag mylisting.image.to_s if mylisting.image_url.present? %> 
+                          <% else %>
+                            <%= image_tag("nopictures.png", :alt => "want a car buy a car") %>
+                          <% end %>
+                        
+                            <%= mylisting.title %> - (<%= mylisting.city %>, <%= mylisting.state %>, Price $ <%= mylisting.price %>,
+                    <%= mylisting.created_at.strftime('%B %d, %Y') %>  )                                   
+                      </p>
+                  <% end %>
+              </div>                   
+          <% end %>
+      <% end %>
+  
+</div>
+
+
+</div>
+
+

@@ -1,0 +1,86 @@
+<%= javascript_include_tag 'listings.js' %>
+
+<div class="container">
+  <div id="contact-area">
+  <%= form_for @listing, :html => {:multipart => true} do |f| %>
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+
+    <%= f.label :description %>
+    <%= f.text_area :description %>
+    
+    <%= f.label :price, "Estimated Price" %>
+    <%= f.text_area :price %>
+
+<p>
+    <% if current_user.role.eql? ("premium" || "dealer") %>
+        <%= f.label :wholesale %>
+        <%= f.select :wholesale, [true,false] %>
+    <%end%>
+</p>
+
+
+<p>
+    <%= f.label :category_id %>
+    <%= f.select :category_id, Category.all.map{ |f| [f.name, f.id]} %>
+</p>
+
+<p>
+    <%= f.label :subcategory_id %>
+    <%= f.select :subcategory_id, options_for_select([]) %>   
+</p>
+
+<p>
+    <%= f.file_field :image %>   
+</p>
+
+<p>
+    <%= f.label :year %>
+    <%= f.select :year, (Time.zone.now.year - 50)..(Time.zone.now.year + 1), :selected => '2016' %>
+</p>
+
+<p>
+    <%= f.label :miles %>
+    <%= f.text_field :miles %>
+</p>
+
+<p>
+    <%= f.label :transmission %>
+    <%= f.select :transmission, ['Automanual','Automatic','CVT','Manual'] %>
+</p>
+
+<p>
+    <%= f.label :color %>
+    <%= f.select :color, ['Beige','Black','Blue','Brown','Gold','Gray','Green','Orange','Pink','Purple','Red','Silver','White','Yellow'] %>
+</p>
+
+<p>
+    <%= f.label :cylinder %>
+    <%= f.select :cylinder, ['1-cylinder','2-cylinder','3-cylinder','4-cylinder','5-cylinder','6-cylinder','8-cylinder','10-cylinder','12-cylinder'] %>
+</p>
+
+<p>
+    <%= f.label :drive %>
+    <%= f.select :drive, ['4X2/2 wheel drive','4X4/4 wheel drive','AWD','FWD','RWD'] %>
+</p>
+
+<p>
+    <%= f.label :fuel %>
+    <%= f.select :fuel, ['CNG','Diesel','E-85/Gasoline','Electric','Gasoline','Gasoline Hybrid'] %>
+</p>
+    <%= f.label :address %>
+    <%= f.text_field :address %>
+
+    <%= f.label :city %>
+    <%= f.text_field :city %>
+
+    <%= f.label :state %>
+    <%= f.text_field :state %>
+
+    <%= f.label :zipcode %>
+    <%= f.text_field :zipcode, class: "zip-width",maxlength: "5" %>
+    <%= f.submit class: "create-button" %>
+
+  <% end %>
+  </div>
+</div>

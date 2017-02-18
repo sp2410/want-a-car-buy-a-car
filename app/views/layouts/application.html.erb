@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+       #map {
+        height: 430px;
+        width: 100%;  		
+       }       
+</style>
+
+<link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
+  <title>Want A Car Buy A Car</title>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'oms.min', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+
+</head>
+<body>
+
+<%= slide_down_alerts %>
+<% unless @hide_menu %>
+  <div id ="center2" >
+          
+          <%= link_to(image_tag("wacbac2.png", :alt => "rss feed", :size => "300x100"), root_path) %>
+          
+  </div>
+<% end %>
+<%= slide_down_alerts %>
+
+<%= yield %>
+
+<hr />
+<div class="rightbar">
+    <ul class="rightbar-top">
+
+      <li><%= link_to 'help and faq', help_path %></li>      
+      <li><%= link_to 'avoid scams & fraud', scams_path %></li>
+      <li><%= link_to 'personal safety tips', safety_path %></li>            
+
+      <li class="rightbar-top"><%= link_to 'terms of use', terms_path %></li>
+      <li><%= link_to 'privacy policy', policy_path %></li>                  
+      <li><%= link_to 'contact us', contact_path %></li>
+
+    </ul>
+  </div>
+
+
+</body>
+</html>

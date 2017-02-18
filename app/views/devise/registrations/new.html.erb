@@ -1,0 +1,46 @@
+<div class="topbar">
+  <h1>SIGN UP</h1>
+</div>
+
+<div class="container">
+  <div id="contact-area">   
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= devise_error_messages! %>
+
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true %>
+
+    <%= f.label :website %><br/>
+    <%= f.text_field :website, autofocus: true %>    
+
+  
+    <%= f.label :password %>
+    <% if @minimum_password_length %>
+    <em>(<%= @minimum_password_length %> minimum)</em>
+    <% end %><br />
+    <%= f.password_field :password, autocomplete: "off" %>
+
+    <%= f.label :password_confirmation %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "off" %><br />
+    
+
+  <div class="signin-button">    
+   <%= f.select :role, User.roles.keys, {}, class: 'user-roles-select' %>
+    <%= f.submit "Sign up", class: "submit-width" %>
+  </div>
+<% end %>
+
+<div class="signin-button">
+
+<p>
+  <%= render "devise/shared/links" %>
+</p>
+
+</div>
+
+
+  </div>
+</div>
+
+

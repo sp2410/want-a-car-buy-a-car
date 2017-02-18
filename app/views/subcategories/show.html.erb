@@ -1,0 +1,32 @@
+<div class="topbar">
+  <div class="container">
+    <div class="vertical-center">
+       <%=  link_to 'wacbac', root_path %> > <%= link_to @category.name, @category %> ><%=  @subcategory.name %>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="center-column" id="right-center-column2" >
+  <h1><%= @category.name.upcase %></h1>  
+   <div class="row">
+       <div class="newest"><%= link_to 'Newest', :sort => 'created_at', :direction => 'desc' %></div>
+       <div class="oldest"><%= link_to 'oldest', :sort => 'created_at',:direction => 'asc'  %></div>
+       <div class="highest-price"><%= link_to 'highest-price', :sort => 'price', :direction => 'desc'  %></div>
+       <div class="lowest-price"><%= link_to 'lowest-price', :sort => 'price', :direction => 'asc' %></div>
+   </div>
+</div>
+  <ul class="list-margin">
+  <% if @listings.present? %>
+    <% @listings.each do |listing| %>
+      <li>
+        <span>
+          <%= listing.created_at.strftime('%B %d, %Y') %>
+        </span> 
+          <%= link_to listing.title, listing %> - (<%= listing.city %>, <%= listing.state %>, <%= listing.price %>)
+      </li>
+  <% end %>
+  <% else %>
+  <p>No listings found</p>
+  <% end %>
+  </ul>
+</div>
