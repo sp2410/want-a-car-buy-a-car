@@ -4,15 +4,15 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
 
 
-protected
+# protected
 
-def sign_up_params
-    params.require(:user).permit(:email, :password, :website, :password_confirmation, :role)
-end
+# def sign_up_params
+#     params.require(:user).permit(:email, :password, :website, :password_confirmation, :role)
+# end
 
-def account_update_params
-    params.require(:user).permit(:email, :password, :website,  :password_confirmation, :role)
-end
+# def account_update_params
+#     params.require(:user).permit(:email, :password, :website,  :password_confirmation, :role)
+# end
 
   # GET /resource/sign_up
   # def new

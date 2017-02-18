@@ -13,6 +13,7 @@ class User < ActiveRecord::Base
 
   enum role: {user: 0, dealer: 1, premium: 2}
   
+  
 
   def set_default_role
     self.role ||= :user

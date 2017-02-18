@@ -14,7 +14,7 @@
     <%= f.text_field :price %>
 
 <p>
-<% if current_user.role.eql? ("premium" || "dealer") %>
+<% if (current_user.role.eql? "premium") %>
     <%= f.label :wholesale %>    
     <%= f.select :wholesale, [true,false] %>
 <%end%>
