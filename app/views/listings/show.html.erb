@@ -92,8 +92,8 @@
       <% end %>
 
 
-        <% if @listing.user.website != nil %>
-          <p style="font-size: 30px; margin-top: -10px;"><%=link_to 'Visit Their Website', @listing.user.website %></p>        
+        <% if @listing.user.website != nil %>               
+          <p style="font-size: 30px; margin-top: -10px;"><a href = <%= @listing.user.website %> > Visit Their Website</a></p>        
         <% end %>
       
 
