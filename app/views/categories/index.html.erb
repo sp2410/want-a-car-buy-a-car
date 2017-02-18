@@ -205,7 +205,7 @@
 
           // Attaching a click event to the current marker
           google.maps.event.addListener(marker, "click", function(e) {
-                var go_to = "http://localhost:3000/listings/" + data.id;
+                var go_to = "/listings/" + data.id;
               //window.location.href = go_to;
                 location.href = go_to;
           });
