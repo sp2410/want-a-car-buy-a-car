@@ -80,9 +80,7 @@ class ListingsController < ApplicationController
 	end
 
 	def mylistings
-		@mylistings = Listing.where(user: current_user).order(sort_column + " " + sort_direction)	
-
-		
+		@mylistings = Listing.where(user: current_user).order(sort_column + " " + sort_direction)		
 	end
 	
 

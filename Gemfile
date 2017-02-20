@@ -47,7 +47,8 @@ gem 'mini_magick', '~> 4.3'
 #beautiful alerts
 gem 'slide-down-alerts-rails'
 
-#page caching
+#new relic monitoring
+gem 'newrelic_rpm'
 
 
 # Use Capistrano for deployment
