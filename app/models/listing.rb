@@ -48,21 +48,6 @@ class Listing < ActiveRecord::Base
 		price.to_i + 10000
 	end
 
-	# def self.sortbynewest
-	# 	find(:all, :order => )
-	# end
-
-	# def self.sortbyoldest
-	# end
-
-	# def self.sortbyhightolowprice
-	# end
-
-	# def self.sortbylowtohighprice
-	# end
-
-
-
 
 	def self.search(params)
 		listings = Listing.where(category_id: params[:category].to_i)
@@ -71,7 +56,6 @@ class Listing < ActiveRecord::Base
 		listings = listings.near(params[:location],100) if params[:location].present?
 
 		listings
-
 
 	end
 
