@@ -78,4 +78,12 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  #AWS_access_key_id:     'AKIAI6HOKLO5NZPF3KTA'
+  #AWS_secret_access_key: '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'
+
+  #AWS_APP_SECRET = Rails.application.secrets.AWS_access_key_id
+  #AWS_APP_KEY = Rails.application.secrets.AWS_secret_access_key
+
+
 end

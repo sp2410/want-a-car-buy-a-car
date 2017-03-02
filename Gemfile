@@ -41,14 +41,18 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'carrierwave', '~> 0.10.0'
 gem 'mini_magick', '~> 4.3'
-#gem 'rmagick', '~> 2.16.0'
+
+#gem 'rmagick', '~> 2.3.0'
 
 
 #beautiful alerts
 gem 'slide-down-alerts-rails'
+#gem 'sprockets-rails', :require => 'sprockets/railtie'
+gem "fog"
 
-#new relic monitoring
-gem 'newrelic_rpm'
+
+
+
 
 
 # Use Capistrano for deployment
@@ -75,4 +79,7 @@ end
 group :production do 	
 	gem 'pg'
 	gem 'rails_12factor'
+	#new relic monitoring
+	gem 'newrelic_rpm'
+
 end
