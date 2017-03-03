@@ -50,9 +50,7 @@ gem 'slide-down-alerts-rails'
 #gem 'sprockets-rails', :require => 'sprockets/railtie'
 gem "fog"
 
-
-
-
+gem 'figaro'
 
 
 # Use Capistrano for deployment
