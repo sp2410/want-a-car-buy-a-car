@@ -8,6 +8,13 @@ class CategoriesController < ApplicationController
 	def index		
 		@hide_menu = true		
 		@categories = Category.all
+
+		# respond_to do |format|
+		# 	format.html
+		# 	format.json {render json: @categories }
+		# end
+
+
 		#authorize @categories
 		#@categories.index
 		@suv = @categories[0]

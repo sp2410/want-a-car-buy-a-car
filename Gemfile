@@ -69,9 +69,13 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
+
+
+
 group :development do 
 	# Use sqlite3 as the database for Active Record
 	gem 'sqlite3'
+	
 end
 
 group :production do 	
@@ -79,5 +83,6 @@ group :production do
 	gem 'rails_12factor'
 	#new relic monitoring
 	gem 'newrelic_rpm'
+	gem "skylight"
 
 end
