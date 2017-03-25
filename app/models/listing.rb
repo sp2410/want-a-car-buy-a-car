@@ -5,10 +5,10 @@ class Listing < ActiveRecord::Base
 
 	validates :user_id, presence: true
 	
-	validates_presence_of :title
-	validates_presence_of :city
-	validates_presence_of :state
-	validates_presence_of :description
+	# validates_presence_of :title
+	# validates_presence_of :city
+	# validates_presence_of :state
+	# validates_presence_of :description
 	
 	
 	
@@ -29,8 +29,8 @@ class Listing < ActiveRecord::Base
 
 	def self.import(file)		
 		CSV.foreach(file.path, headers: true) do |row|
-		 	# listing = find_by_id(row["id"]) || new
-		 	# listing.attributes = row.to_hash.slice()
+		 	listing = find_by_id(row["VIN"]) || new
+		 	listing.attributes = row.to_hash.slice()
 		 	Listing.create! row.to_hash
 		end
 
@@ -51,9 +51,10 @@ class Listing < ActiveRecord::Base
 
 	def self.search(params)
 		if params
-			listings = Listing.where(category_id: params[:category].to_i)
-			listings = listings.where("title LIKE ? or description LIKE ?", "%#{params[:search]}%", "%#{params[:search]}%") if params[:search].present? 
-			listings = listings.where("price <= ?", "#{params[:price]}") if params[:price].present?
+			listings = Listing.all
+			listings = listings.joins(:category).where("categories.name like '#{params[:category]}'") if params[:category].present?
+			listings = listings.where("listings.NewUsed = '#{params[:NewUsed]}'") if params[:NewUsed].present?
+			listings = listings.where("price <= ?", "#{params[:price]}") if params[:price].present?			
 			listings = listings.near(params[:location],100) if params[:location].present?
 
 			listings

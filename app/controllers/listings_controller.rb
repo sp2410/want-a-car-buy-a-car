@@ -2,6 +2,7 @@ class ListingsController < ApplicationController
 
 	before_filter :authenticate_user!, only: [:new, :create]
 	before_filter :is_user?, only: [:edit, :update, :delete]
+	
 
 	def new
 		@listing=Listing.new
@@ -56,11 +57,11 @@ class ListingsController < ApplicationController
 	def import
 		@imported = Listing.import(params[:file])
 
-		if @imported.errors.any?
-			flash[:alert] =  "Listings Not Imported, there were some errors, you can call out CSR Team for help"
-		else
+		# if @imported.errors.any?
+		# 	flash[:alert] =  "Listings Not Imported, there were some errors, you can call out CSR Team for help"
+		# else
 			redirect_to root_url, notice: "Listings imported"
-		end
+		# end
 
 
 		# clearancing_status = ClearancingService.new.process_file(params[:csv_batch_file].tempfile)
@@ -89,7 +90,7 @@ class ListingsController < ApplicationController
 
 
 	def listing_params
-		params.require(:listing).permit(:title, :description, :city, :state, :zipcode, :category_id, :subcategory_id, :image, :year, :miles, :transmission, :color, :cylinder, :fuel, :drive, :address,:wholesale,:price)
+		params.require(:listing).permit(:title, :description, :city, :state, :zipcode, :category_id, :subcategory_id, :image, :year, :miles, :transmission, :color, :cylinder, :fuel, :drive, :address,:wholesale,:price, :NewUsed, :VIN , :StockNumber, :Model, :Trim, :EngineDescription,:InteriorColor,:Options)
 
 	end
 

@@ -24,7 +24,7 @@
      <h2>
       <%=  @listing.description.to_s.upcase %>
       </h2>
-      <p style="font-size: 30px; margin-top: -10px;">
+      <p style="font-size: 20px; margin-top: -10px;">
       <br>        
         <%= " Year: #{@listing.year}" %>
         <br>   
@@ -38,12 +38,27 @@
         <br>        
         <%=  "Fuel Type: #{@listing.fuel}" %>
         <br>        
-        <%=  "Drive: #{@listing.drive}" %>   
+        <%=  "Drive: #{@listing.drive}" %>           
+        <br>        
+        <%= "Estimated Price $: #{ @listing.price}" %> 
+        <br>        
+        <%= "New Or Used: #{ @listing.NewUsed}" %>             
+        <br>        
+        <%= "Stock Number: #{ @listing.StockNumber}" %>             
+        <br>        
+        <%= "Model: #{ @listing.Model}" %>             
+        <br>        
+        <%= "Trim: #{ @listing.Trim}" %>             
+        <br>        
+        <%= "Enginer Description: #{ @listing.EnginerDescription}" %>        <br>        
+        <%= "Interior Color: #{ @listing.InteriorColor}" %>
+        <br>        
+        <%= "Options: #{ @listing.Options}" %>
         <br>        
         <%= "Car Location: #{ @listing.full_address}" %>       
-        <br>        
-        <%= "Estimated Price $: #{ @listing.price}" %>       
       </p>  
+
+
        <% if @listing.user.eql? current_user %>
         <p><%= link_to 'edit', edit_listing_path %></p>
         <p><%= link_to 'delete', @listing, data: {confirm: "Wait! Are you sure ?"}, method: :delete %></p>
@@ -84,21 +99,22 @@
      <!-- <button type="button">reply</button> -->
      <h1>USER INFO</h1>     
      <br>      
-     <% if @listing.user.email != nil %>  
-      <p style="font-size: 30px; margin-top: -10px;"><%= "Contact Person:  #{@listing.user.email}" %></p>
-      <% end %>
-
-      <% if @listing.user.role != nil %>
-        <p style="font-size: 30px; margin-top: -10px;"><%= "User Type:  #{@listing.user.role}" %></p>
-        <% else %>
-        <p style="font-size: 30px; margin-top: -10px;">User Type: Private Owner</p>
-      <% end %>
-
-
-        <% if @listing.user.website != nil %>               
-          <p style="font-size: 30px; margin-top: -10px;"><a href = <%= "http://#{@listing.user.website}" %> > Visit Their Website</a></p>        
+     <% if @listing.user != nil %>  
+       <% if @listing.user.email != nil %>  
+        <p style="font-size: 30px; margin-top: -10px;"><%= "Contact Person:  #{@listing.user.email}" %></p>
         <% end %>
-      
+
+        <% if @listing.user.role != nil %>
+          <p style="font-size: 30px; margin-top: -10px;"><%= "User Type:  #{@listing.user.role}" %></p>
+          <% else %>
+          <p style="font-size: 30px; margin-top: -10px;">User Type: Private Owner</p>
+        <% end %>
+
+
+          <% if @listing.user.website != nil %>               
+            <p style="font-size: 30px; margin-top: -10px;"><a href = <%= "http://#{@listing.user.website}" %> > Visit Their Website</a></p>        
+          <% end %>
+      <% end %>
 
       <p style="font-size: 30px; margin-top: -10px;">posted <%=  "#{time_ago_in_words(@listing.created_at)} ago" %></p>    
       <p style="font-size: 30px; margin-top: -10px;">updated <%=  "#{time_ago_in_words(@listing.updated_at)} ago" %></p>        
