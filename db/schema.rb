@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170325192502) do
+ActiveRecord::Schema.define(version: 20170325215020) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -90,16 +90,16 @@ ActiveRecord::Schema.define(version: 20170325192502) do
     t.string   "fuel"
     t.string   "drive"
     t.string   "address"
-    t.boolean  "wholesale",          default: false
-    t.integer  "price",              default: 0
-    t.string   "NewUsed"
-    t.string   "VIN"
-    t.string   "StockNumber"
-    t.string   "Model"
-    t.string   "Trim"
-    t.string   "EnginerDescription"
-    t.string   "InteriorColor"
-    t.string   "Options"
+    t.boolean  "wholesale",         default: false
+    t.integer  "price",             default: 0
+    t.string   "newused"
+    t.string   "vin"
+    t.string   "stocknumber"
+    t.string   "model"
+    t.string   "trim"
+    t.string   "enginedescription"
+    t.string   "interiorcolor"
+    t.string   "options"
   end
 
   add_index "listings", ["user_id"], name: "index_listings_on_user_id"

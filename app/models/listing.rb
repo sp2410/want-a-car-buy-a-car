@@ -3,7 +3,7 @@ class Listing < ActiveRecord::Base
 	belongs_to :subcategory
 	belongs_to :user
 
-	validates :user_id, presence: true
+	#validates :user_id, presence: true
 	
 	# validates_presence_of :title
 	# validates_presence_of :city
