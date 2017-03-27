@@ -40,7 +40,7 @@ class Listing < ActiveRecord::Base
 
 	def self.import(file, current_user)		
 		count = 0
-		CSV.foreach(file.path, headers: true) do |row|
+		CSV.foreach(file.path, headers: true, encoding:'iso-8859-1:utf-8') do |row|
 			#Use create when you dont need customization with the listing			
 			listing =  Listing.new
 
