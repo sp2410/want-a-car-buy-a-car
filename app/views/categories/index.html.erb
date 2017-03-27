@@ -8,7 +8,6 @@
              <li><%= link_to 'ABOUT US', about_path %></li>                                                     
              <li><a href="#" class= "disabled">/</a></li>
 
-
                           
               <% if user_signed_in? %>
                 <li><%= link_to 'MY ACCOUNT', edit_user_registration_path %></li>
@@ -36,18 +35,7 @@
 
   </div>
 
-  <div class="searchbox">   
-    <section class="formclass">
-        <%= form_tag search_listings_path, method: :get do |f| %>
-        <p>search for cars</p>        
-        <%= text_field_tag :category, nil, placeholder: 'Category' %>
-        <%= text_field_tag :price, nil, placeholder: 'Price' %> 
-        <%= text_field_tag :location, nil, placeholder: 'Near' %>        
-        <%= text_field_tag :NewUsed, nil, placeholder: 'New or Used' %>              
-        <%= submit_tag 'Search' %>
-      <% end %>    
-    </section>
-  </div>
+  <%=render 'categories/search'%>
 
 </div>
 
@@ -241,35 +229,10 @@
 
   </div>
 
-  <hr />
+<hr />
 
-  <% if user_signed_in? %> 
-    <% if (current_user.role.eql? "premium") or (current_user.role.eql? "dealer") %>
-      <div class="center-column" id="right-center-column2" >
-      <h1>WHOLESALE LISTINGS</h1>
-          <% if @wholesalelistings.present? %>        
-              <% @wholesalelistings.each do |wlisting| %>              
-                  <div id = "listingsdescsmall">                
-                      <%= link_to wlisting do %>
-                          <p style="font-size: 30px; margin-top: -10px;">
-                              
-                              <% if wlisting.image_url.present? %> 
-                                <%= image_tag wlisting.image.to_s if wlisting.image_url.present? %> 
-                              <% else %>
-                                <%= image_tag("nopictures.png", :alt => "want a car buy a car") %>
-                              <% end %>
-                            
-                                <%= wlisting.title %> - (<%= wlisting.city %>, <%= wlisting.state %>, Price: <%= wlisting.price %>, 
-                                <%= wlisting.created_at.strftime('%B %d, %Y') %>  )                                   
-                          </p>
-                      <% end %>
-                  </div>                   
-              <% end %>
-      <% end %>    
-    <% end %>   
-  </div>
-
-<% end %>
-
+<%= render 'categories/premiumlisting'%>
+<hr />
+<%= render 'categories/wholesalelistings'%>
 
 </div>

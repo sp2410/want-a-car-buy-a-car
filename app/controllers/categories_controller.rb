@@ -39,6 +39,8 @@ class CategoriesController < ApplicationController
 
 		@wholesalelistings = Listing.where(:wholesale => true)
 
+		@premiumlistings = Listing.where(:wholesale => false).joins(:user).where("users.role = '2'")
+
 		respond_to do |format|
 			format.html
 			format.csv {send_data @listings.to_csv }

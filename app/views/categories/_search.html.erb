@@ -1,0 +1,12 @@
+<div class="searchbox">   
+    <section class="formclass">
+        <%= form_tag search_listings_path, method: :get do |f| %>
+        <p>search for cars</p>        
+        <%= text_field_tag :category, nil, placeholder: 'Category' %>
+        <%= text_field_tag :price, nil, placeholder: 'Price' %> 
+        <%= text_field_tag :location, nil, placeholder: 'Near' %>        
+        <%= text_field_tag :NewUsed, nil, placeholder: 'New or Used' %>              
+        <%= submit_tag 'Search' %>
+      <% end %>    
+    </section>
+  </div>
