@@ -10,12 +10,10 @@ class ListingsController < ApplicationController
 
 	def create
 		@listing = Listing.new(listing_params)
-		@listing.user = current_user
-		@listing.save
 		
 
 		if @listing.save	
-			@listing.user = current_user		
+			
 			redirect_to @listing
 		else
 			flash[:alert] =  @listing.errors.full_messages.to_sentence
@@ -55,13 +53,16 @@ class ListingsController < ApplicationController
 	end
 
 	def import
-		@imported = Listing.import(params[:file])
 
-		# if @imported.errors.any?
-		# 	flash[:alert] =  "Listings Not Imported, there were some errors, you can call out CSR Team for help"
-		# else
-			redirect_to root_url, notice: "Listings imported"
-		# end
+		@imported = Listing.import(params[:file], current_user)	
+		
+
+		if @imported
+		    redirect_to root_url, notice: "#{@imported} Listings imported successfully"
+	  	else 
+	    	flash[:alert] =  "All Listings Not Imported! There were either some errors, or the VIN was duplicate"
+	    	redirect_to root_url
+	  	end 
 
 
 		# clearancing_status = ClearancingService.new.process_file(params[:csv_batch_file].tempfile)
@@ -81,7 +82,7 @@ class ListingsController < ApplicationController
 	end
 
 	def mylistings
-		@mylistings = Listing.where(user: current_user).order(sort_column + " " + sort_direction)		
+		
 	end
 	
 
@@ -90,7 +91,7 @@ class ListingsController < ApplicationController
 
 
 	def listing_params
-		params.require(:listing).permit(:title, :description, :city, :state, :zipcode, :category_id, :subcategory_id, :image, :year, :miles, :transmission, :color, :cylinder, :fuel, :drive, :address,:wholesale,:price, :NewUsed, :VIN , :StockNumber, :Model, :Trim, :EngineDescription,:InteriorColor,:Options)
+		params.require(:listing).permit(:title, :description, :city, :state, :zipcode, :category_id, :subcategory_id, :image, :year, :miles, :transmission, :color, :cylinder, :fuel, :drive, :address,:wholesale,:price, :newused, :vin , :stocknumber, :model, :trim, :enginedescription,:interiorcolor,:options)
 
 	end
 

@@ -6,140 +6,28 @@
     ENTER INDIVIDUAL CAR DETAILS
     </h1>
 
-<%= form_for @listing, :html => {:multipart => true} do |f| %>
-    <%= f.label :title %>
-    <%= f.text_field :title %>
-
-    <%= f.label :description %>
-    <%= f.text_area :description %>
-
-     <p>
-        <%= f.label :image %>
-        <%= f.file_field :image %>   
-    </p>
-
-
-    <%= f.label :price, "Estimated Price" %>
-    <%= f.text_field :price %>
-
-    <p>
-        <% if (current_user.role.eql? "premium") %>
-            <%= f.label :wholesale %>    
-            <%= f.select :wholesale, [true,false] %>
-        <%end%>
-    </p>
-
-    <p>
-        <%= f.label :category_id %>
-        <%= f.select :category_id, Category.all.map{ |f| [f.name, f.id]} %>
-    </p>
-
-    <p>
-        <%= f.label :subcategory_id %>
-        <%= f.select :subcategory_id, options_for_select([]) %>   
-    </p>
-
-   
-    <p>
-        <%= f.label :year %>
-        <%= f.select :year, (Time.zone.now.year - 50)..(Time.zone.now.year + 1), :selected => '2017' %>
-    </p>
-
-    <p>
-        <%= f.label :transmission %>
-        <%= f.select :transmission, ['Automanual','Automatic','Automatic 4 Speed','Automatic 5 Speed','Automatic 6 Speed','CVT','Manual'] %>
-    </p>
-
-    <p>
-        <%= f.label :color, 'Exterior Color' %>
-        <%= f.select :color, ['Unspecified','Beige','Black','Charcoal','Blue','Brown','Gold','Gray','Green','Orange','Pink','Purple','Red','Silver','Tan','Teal','White','Yellow', 'Other'] %>
-    </p>
-
-   <p>
-        <%= f.label :InteriorColor, 'Interior Color' %>
-        <%= f.select :InteriorColor, ['Unspecified','Beige','Black','Charcoal','Blue','Brown','Gold','Gray','Green','Orange','Pink','Purple','Red','Silver','Tan','Teal','White','Yellow', 'Other'] %>
-    </p>
-    <p>
-        <%= f.label :cylinder %>
-        <%= f.select :cylinder, ['1-cylinder','2-cylinder','3-cylinder','4-cylinder','5-cylinder','6-cylinder','8-cylinder','10-cylinder','12-cylinder','V6','I4'] %>
-    </p>
-
-    <p>
-        <%= f.label :drive %>
-        <%= f.select :drive, ['4X2/2 wheel drive','4X4/4 wheel drive','AWD','FWD','RWD'] %>
-    </p>
-
-    <p>
-        <%= f.label :fuel %>
-        <%= f.select :fuel, ['CNG','Diesel','E-85/Gasoline','Electric','Flex Fuel','Gasoline','Gasoline Hybrid','Not Applicable'] %>
-    </p>
-
-    <p>
-        <%= f.label :NewUsed,"New Or Used" %>
-       <%= f.select :NewUsed, ['U','N'] %>
-    </p>
-
+    <%= render "listings/form" %>
     
-    <p>
-        <%= f.label :miles %>
-        <%= f.text_field :miles %>
-    </p>
-
-
-    <p>
-        <%= f.label :StockNumber,"Stock Number" %>
-        <%= f.text_field :StockNumber %>
-    </p>
-
-    <p>
-        <%= f.label :Model %>
-        <%= f.text_field :Model %>
-    </p>
-
-    <p>
-        <%= f.label :Trim %>
-        <%= f.text_field :Trim %>        
-    </p>
-
-    <p>
-        <%= f.label :EnginerDescription,"Engine Description" %>
-        <%= f.text_field :EnginerDescription %>        
-    </p>
-
-    <p>
-        <%= f.label :Options %>
-        <%= f.text_field :Options %>        
-    </p> 
-
-    <p>
-        <%= f.label :address %>
-        <%= f.text_field :address %>
-    </p>
-
-    <p>
-        <%= f.label :city %>
-        <%= f.text_field :city %>
-    </p>
-
-    <p>
-        <%= f.label :state %>
-        <%= f.text_field :state %>
-    </p>
-    
-        <%= f.label :zipcode %>
-        <%= f.text_field :zipcode, class: "zip-width",maxlength: "5" %>
-
-        <%= f.submit class: "create-button" %>    
-
-  <% end %>
     <p>
        <% if current_user.role.eql? "premium" %>
+            <hr />
             <h1 style = "text-align: center; margin: 5px 5px">
-              OR USE OUR BULK UPLOAD SERVICE BELOW
+              OR 
+            </h1>                        
+            <br>
+
+            <h1 style = "text-align: center; margin: 5px 5px">
+              USE OUR BULK UPLOAD SERVICE BELOW
             </h1>            
-                <%= form_tag import_listings_path, multipart: true do %>  
+            <hr />
+            <br>
+              <%= render "listings/csvdirection" %>
+
+            <hr />
+            <br>
+                <%= form_tag import_listings_path, multipart: true do %>               
                     <%= label_tag("Upload You File") %>
-                    <%= file_field_tag :file  %>
+                    <%= file_field_tag :file  %>                
                     <%= submit_tag "Import", class: "create-button2" %>
                 <% end %>
         <% end %>
