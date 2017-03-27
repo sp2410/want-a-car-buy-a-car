@@ -4,7 +4,9 @@ class Listing < ActiveRecord::Base
 	belongs_to :category
 	belongs_to :subcategory
 	belongs_to :user
+	validates_presence_of :vin
 	validates_uniqueness_of :vin
+
 
 
 
@@ -40,7 +42,7 @@ class Listing < ActiveRecord::Base
 
 	def self.import(file, current_user)		
 		count = 0
-		CSV.foreach(file.path, headers: true, encoding:'iso-8859-1:utf-8') do |row|
+		CSV.foreach(file.path, headers: true) do |row|
 			#Use create when you dont need customization with the listing			
 			listing =  Listing.new
 

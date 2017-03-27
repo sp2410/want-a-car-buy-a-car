@@ -13,4 +13,6 @@ ActiveAdmin.register Listing do
 #   permitted
 # end
 
+
+
 end
