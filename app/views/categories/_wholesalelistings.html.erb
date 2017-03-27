@@ -1,8 +1,8 @@
 <% if user_signed_in? %> 
     <% if (current_user.role.eql? "premium") or (current_user.role.eql? "dealer") %>
-      <div class="center-column" id="right-center-column2" >
-        <h1>WHOLESALE LISTINGS</h1>
-          <% if @wholesalelistings.present? %>        
+      <div class="center-column" id="right-center-column2" >        
+          <% if @wholesalelistings.present? %> 
+            <h1>WHOLESALE LISTINGS</h1>       
               <% @wholesalelistings.each do |wlisting| %>              
                   <div id = "listingsdescsmall">                
                       <%= link_to wlisting do %>

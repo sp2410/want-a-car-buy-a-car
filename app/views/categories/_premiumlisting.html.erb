@@ -1,19 +1,20 @@
-<div class="center-column" id="right-center-column2" >
-  <h1>PREMIUM LISTINGS</h1>
-    <% if @premiumlistings.present? %>        
-      <% @premiumlistings.each do |wlisting| %>              
-        <div id = "listingsdescsmall">                
-          <%= link_to wlisting do %>
-            <p style="font-size: 30px; margin-top: -10px;">
-              <% if wlisting.image_url.present? %> 
-                  <%= image_tag wlisting.image.to_s if wlisting.image_url.present? %> 
-              <% else %>
-                  <%= image_tag("nopictures.png", :alt => "want a car buy a car") %>
-              <% end %>                            
-                <%= wlisting.title %> - (<%= wlisting.city %>, <%= wlisting.state %>, Price: <%= wlisting.price %>, <%= wlisting.created_at.strftime('%B %d, %Y') %>  )                                   
-            </p>
-          <% end %>
-        </div>                   
-      <% end %>
-    <% end %>
-</div>    
+<% if @premiumlistings.present? %>    
+  <div class="center-column" id="right-center-column2" >
+    <h1>PREMIUM LISTINGS</h1>
+          
+        <% @premiumlistings.each do |wlisting| %>              
+          <div id = "listingsdescsmall">                
+            <%= link_to wlisting do %>
+              <p style="font-size: 30px; margin-top: -10px;">
+                <% if wlisting.image_url.present? %> 
+                    <%= image_tag wlisting.image.to_s if wlisting.image_url.present? %> 
+                <% else %>
+                    <%= image_tag("nopictures.png", :alt => "want a car buy a car") %>
+                <% end %>                            
+                  <%= wlisting.title %> - (<%= wlisting.city %>, <%= wlisting.state %>, Price: <%= wlisting.price %>, <%= wlisting.created_at.strftime('%B %d, %Y') %>  )                                   
+              </p>
+            <% end %>
+          </div>                   
+        <% end %>    
+  </div>    
+<% end %>
