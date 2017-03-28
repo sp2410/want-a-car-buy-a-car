@@ -1,7 +1,8 @@
 <% if user_signed_in? %> 
     <% if (current_user.role.eql? "premium") or (current_user.role.eql? "dealer") %>
-      <div class="center-column" id="right-center-column2" >        
-          <% if @wholesalelistings.present? %> 
+          <% if @wholesalelistings.present? %>
+            <hr />
+            <div class="center-column" id="right-center-column2" >         
             <h1>WHOLESALE LISTINGS</h1>       
               <% @wholesalelistings.each do |wlisting| %>              
                   <div id = "listingsdescsmall">                
@@ -14,13 +15,12 @@
                                 <%= image_tag("nopictures.png", :alt => "want a car buy a car") %>
                               <% end %>
                             
-                                <%= wlisting.title %> - (<%= wlisting.city %>, <%= wlisting.state %>, Price: <%= wlisting.price %>, 
-                                <%= wlisting.created_at.strftime('%B %d, %Y') %>  )                                   
+                                <%= wlisting.title %> - (<%= wlisting.city %>, <%= wlisting.state %>, Price: <%= wlisting.price %>, <%= wlisting.created_at.strftime('%B %d, %Y') %>                                    
                           </p>
                       <% end %>
                   </div>                   
               <% end %>
-          <% end %>  
-      </div>  
+              </div> 
+          <% end %>       
     <% end %>  
 <% end %>
