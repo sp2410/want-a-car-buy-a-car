@@ -47,7 +47,9 @@ class Listing < ActiveRecord::Base
 
 			#listing.attributes = (row.to_hash).merge(image: URI.parse(row['image'])) #
 			#listing.attributes = (row.to_hash.except("image")).merge(user_id: current_user.id) #
-			listing.attributes = (row.to_hash).merge(user_id: current_user.id) #
+			#listing.attributes = (row.to_hash).merge(user_id: current_user.id) #
+
+			listing.attributes = (row.to_hash.except("category").except("subcategory")).merge(user_id: current_user.id).merge(category_id: row["category"]).merge(subcategory_id: row["subcategory"])
 			
 			return false unless listing.valid?
 
@@ -107,10 +109,11 @@ class Listing < ActiveRecord::Base
 	def self.search(params)
 		if params
 			listings = Listing.all
-			listings = listings.joins(:category).where("categories.name like '#{params[:category]}'") if params[:category].present?
-			listings = listings.where("listings.NewUsed = '#{params[:NewUsed]}'") if params[:NewUsed].present?
-			listings = listings.where("price <= ?", "#{params[:price]}") if params[:price].present?			
-			listings = listings.near(params[:location],100) if params[:location].present?
+			listings = listings.joins(:category).where("categories.name like '#{params[:category].downcase}'") if params[:category].present?
+			listings = listings.where("listings.NewUsed = '#{params[:NewUsed][0].upcase}'") if params[:NewUsed].present?
+			listings = listings.where("price >= ?", "#{params[:minprice]}") if params[:minprice].present?			
+			listings = listings.where("price <= ?", "#{params[:maxprice]}") if params[:maxprice].present?			
+			listings = listings.near(params[:location],00) if params[:location].present?
 
 			listings
 		else
