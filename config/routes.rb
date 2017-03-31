@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   #devise_for :users
@@ -68,6 +69,12 @@ Rails.application.routes.draw do
       get 'search'      
     end    
     collection { post :import }
+  end
+
+  resources :repairshops do 
+    collection do 
+      get 'search'
+    end
   end
 
 

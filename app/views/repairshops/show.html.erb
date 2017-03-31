@@ -1,0 +1,151 @@
+<div class="parent" >
+ 
+  <div class="center-column" id ="whitebackground">   
+    <h1 style ="margin: 10px auto; color: #ffc000"><%= @repairshop.title.to_s.upcase %> </h1>     
+ <div id = "listingsdesc">
+ 
+    <p>       
+      <% if @repairshop.image_url.present? %> 
+        <%= image_tag @repairshop.image.to_s if @repairshop.image_url.present? %>
+      <% else %>
+        <%= image_tag("https://s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/repairbig.png", :alt => "want a car buy a car") %>
+      <% end %>
+        
+    </p>
+  </div>
+
+    
+    
+  </div>
+
+  <div class="center-column" id="right-center-column" >
+      
+      <h1>SHOP SPECIALITY</h1>
+        <div class="center-image">     
+
+            <% @desc.each do |i| %> 
+              <table class="tg">
+                <tr>
+                  <td class="tg-yw4l"><%= i.upcase %></td>                  
+                </tr>
+              </table>
+            <% end %>
+        </div>
+
+      
+</div>
+
+<div class="center-column" id="right-center-column" >
+    <h1>REPAIR SHOP LOCATION</h1>
+    
+    <div id="map"></div>
+    <script>
+      function initMap() {     
+        //   converting instance variable to json data
+        var json = <%= raw @repairshop.to_json %>;  
+
+        //initialising map with center Washington DC  
+        
+        var mycenter = {lat: json.latitude, lng: json.longitude};
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 7,
+          center: mycenter,
+
+          //adding style to the map
+          styles: [{"featureType":"water","elementType":"all","stylers":[{"hue":"#7fc8ed"},{"saturation":55},{"lightness":-6},{"visibility":"on"}]},{"featureType":"water","elementType":"labels","stylers":[{"hue":"#7fc8ed"},{"saturation":55},{"lightness":-6},{"visibility":"off"}]},{"featureType":"poi.park","elementType":"geometry","stylers":[{"hue":"#83cead"},{"saturation":1},{"lightness":-15},{"visibility":"on"}]},{"featureType":"landscape","elementType":"geometry","stylers":[{"hue":"#f3f4f4"},{"saturation":-84},{"lightness":59},{"visibility":"on"}]},{"featureType":"landscape","elementType":"labels","stylers":[{"hue":"#ffffff"},{"saturation":-100},{"lightness":100},{"visibility":"off"}]},{"featureType":"road","elementType":"geometry","stylers":[{"hue":"#ffffff"},{"saturation":-100},{"lightness":100},{"visibility":"on"}]},{"featureType":"road","elementType":"labels","stylers":[{"hue":"#bbbbbb"},{"saturation":-100},{"lightness":26},{"visibility":"on"}]},{"featureType":"road.arterial","elementType":"geometry","stylers":[{"hue":"#ffcc00"},{"saturation":100},{"lightness":-35},{"visibility":"simplified"}]},{"featureType":"road.highway","elementType":"geometry","stylers":[{"hue":"#ffcc00"},{"saturation":100},{"lightness":-22},{"visibility":"on"}]},{"featureType":"poi.school","elementType":"all","stylers":[{"hue":"#d7e4e4"},{"saturation":-60},{"lightness":23},{"visibility":"on"}]}]
+        });
+
+        //
+        
+
+        //adding markers from json data
+        //for (var i=0; i<json.length; i++){
+          var data =  json;
+          // var a = 360.0 / json.length;
+          // var newLat = data.latitude + -.00004 * Math.cos((+a*i) / 180 * Math.PI);
+          // var newLng = data.longitude + -.00004 * Math.sin((+a*i) / 180 * Math.PI);
+
+          latLng = new google.maps.LatLng(data.latitude, data.longitude);
+
+          var marker = new google.maps.Marker({
+            position: latLng,
+            map: map,
+            icon:"https://s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/repair.png",
+            //icon: "https://s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/car32.png",
+            title: data.title          
+          });
+
+       
+        (function(marker, data) {
+
+          // Attaching a click event to the current marker
+          google.maps.event.addListener(marker, "click", function(e) {
+                var go_to = "/repairshops/" + data.id;
+              //window.location.href = go_to;
+                location.href = go_to;
+          });
+
+        })(marker, data);
+
+
+        //}
+      }
+
+
+    </script>
+
+   <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD2alMtLSazyRllBkXIJfitgKwvc9zxYTo&callback=initMap">
+  </script>
+
+</div>
+
+<div class="center-column" id ="whitebackground">
+  <h1 style ="margin: 30px auto; color: #ffc000">DESCRIPTION</h1> 
+
+      <style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0; text-align: right;}
+.tg td{font-family:Arial, sans-serif;font-size:24px;  text-align:center; padding:2px 2px; border-width:1px;overflow:hidden;word-break:normal;}
+.tg th{font-family:Arial, sans-serif;font-size:24px;text-align:center;  font-weight:normal;padding:2px 2px;border-width:1px;overflow:hidden;word-break:normal;}
+.tg .tg-yw4l{vertical-align:top}
+</style>
+
+
+<table class="tg">
+  <tr>
+    <td class="tg-yw4l">City:</td>
+    <td class="tg-yw4l"><%= "#{ @repairshop.city}" %></td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l">Zipcode:</td>
+    <td class="tg-yw4l"><%= "#{ @repairshop.zipcode}" %></td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l">State:</td>
+    <td class="tg-yw4l"><%= "#{ @repairshop.state}" %></td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l">Phone:</td>
+    <td class="tg-yw4l"><%= "#{ @repairshop.phone}" %></td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l">Website:</td>
+    <td class="tg-yw4l"><%= link_to @repairshop.user.website, "#{@repairshop.user.website}" if@repairshop.user.present? %></td>
+  </tr>
+</table> 
+  <% if @repairshop.user.present? %>
+       <% if @repairshop.user.eql? current_user %>
+          <p><%= link_to 'Edit', edit_repairshop_path(@repairshop) %></p>
+          <p><%= link_to 'Back', repairshops_path %></p>
+          <p><%= link_to 'Delete', @repairshop, data: {confirm: "Wait! Are you sure ?"}, method: :delete %></p>
+      <% end %>
+  <% end %>
+
+  </div>
+
+
+
+
+</div>
+
+

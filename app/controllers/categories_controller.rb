@@ -34,6 +34,8 @@ class CategoriesController < ApplicationController
 
 		@listings = Listing.all	
 		#@listings = Listing.order(params[:sort])	
+
+		@repairshops = Repairshop.all	
 		
 
 

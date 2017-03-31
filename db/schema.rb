@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170325215020) do
+ActiveRecord::Schema.define(version: 20170330235530) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -103,6 +103,25 @@ ActiveRecord::Schema.define(version: 20170325215020) do
   end
 
   add_index "listings", ["user_id"], name: "index_listings_on_user_id"
+
+  create_table "repairshops", force: :cascade do |t|
+    t.string   "title"
+    t.text     "description"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zipcode"
+    t.string   "phone"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.float    "latitude"
+    t.float    "longitude"
+    t.integer  "user_id"
+    t.string   "image"
+    t.integer  "category_id"
+  end
+
+  add_index "repairshops", ["category_id"], name: "index_repairshops_on_category_id"
+  add_index "repairshops", ["user_id"], name: "index_repairshops_on_user_id"
 
   create_table "subcategories", force: :cascade do |t|
     t.string  "name"

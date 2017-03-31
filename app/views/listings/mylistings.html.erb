@@ -20,11 +20,10 @@
                           <% if mylisting.image_url.present? %> 
                             <%= image_tag mylisting.image.to_s if mylisting.image_url.present? %> 
                           <% else %>
-                            <%= image_tag("nopictures.png", :alt => "want a car buy a car") %>
+                            <%= image_tag("https://s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/nopictures.png", :alt => "want a car buy a car") %>
                           <% end %>
                         
-                            <%= mylisting.title %> - (<%= mylisting.city %>, <%= mylisting.state %>, Price $ <%= mylisting.price %>,
-                    <%= mylisting.created_at.strftime('%B %d, %Y') %>  )                                   
+                            <%= mylisting.title %> - (<%= mylisting.city %>, <%= mylisting.state %>, Price $ <%= mylisting.price %> )                                   
                       </p>
                   <% end %>
               </div>                   

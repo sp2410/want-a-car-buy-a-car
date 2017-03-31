@@ -1,0 +1,22 @@
+<div class="container" style = "text-align: center; margin-bottom: -40px">    
+      
+<h1 style = "color: #ffcc00; font-size: 40px; margin-top: 20px;">SEARCH REPAIR SHOPS</h1>
+<div class="searchbox", id = "solidsearch", style = "vertical-align: middle;">   
+
+    <section class="formclass">
+        <%= form_tag search_repairshops_path, method: :get do |f| %>
+        <p>search for Repair shops and service centers</p>                        
+        <%= text_field_tag :location, nil, placeholder: 'Near' %>
+        <%= text_field_tag :radius, nil, placeholder: 'Radius' %>
+        <%= submit_tag 'Search' %>
+      <% end %>    
+    </section>
+  </div>
+</div>
+
+<hr>
+
+<br>
+<br>
+<br>
+<br>

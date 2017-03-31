@@ -1,0 +1,26 @@
+<%= render 'repairshops/searchshops'%>    
+  <h1 style = "font-size: 40px; text-align: center; color: #ffcc00; margin-bottom: 100px;">YOUR SEARCH RESULTS</h1>  
+
+<div class="center-column" id="right-center-column2" >
+  <% if @repairshop.present? %>
+    <% @repairshop.each do |listing| %>
+
+      <div id = "listingsdescsmall">
+          <%= link_to listing do %>
+               <p>                  
+                  <% if listing.image_url.present? %> 
+                    <%= image_tag listing.image.to_s if listing.image_url.present? %> 
+                  <% else %>
+                    <%= image_tag("https://s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/repairbig.png", :alt => "want a car buy a car") %>
+                  <% end %>
+                                  
+                   <%= listing.title %> - (<%= listing.city %>, <%= listing.state %>, Phone: <%= listing.phone %>)                                   
+              </p>
+          <% end %>
+        </div> 
+  <% end %>
+  <% else %>
+  <h1> NO SHOPS FOUND</h1>
+  <% end %>  
+</div>
+

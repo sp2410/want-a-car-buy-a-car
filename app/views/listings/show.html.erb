@@ -8,57 +8,100 @@
       <% if @listing.image_url.present? %> 
         <%= image_tag @listing.image.to_s if @listing.image_url.present? %>
       <% else %>
-        <%= image_tag("nopictures.png", :alt => "want a car buy a car") %>
+        <%= image_tag("https://s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/nopictures.png", :alt => "want a car buy a car") %>
       <% end %>
         
     </p>
-
   </div>
 
     
     
   </div>
 
-  <div class="center-column" id ="whitebackground">
+<div class="center-column" id ="whitebackground">
   <h1 style ="margin: 10px auto; color: #ffc000">DESCRIPTION</h1> 
      <h2>
       <%=  @listing.description.to_s.upcase %>
       </h2>
-      <p style="font-size: 20px; margin-top: -10px;">
-      <br>        
-        <%= " Year: #{@listing.year}" %>
-        <br>   
-        <%=  "Miles: #{@listing.miles}" %>
-        <br>        
-        <%=  "Transmission: #{@listing.transmission}" %>
-        <br>        
-        <%=  "Color: #{@listing.color}" %>
-        <br>        
-        <%=  "Cylinder: #{@listing.cylinder}" %>
-        <br>        
-        <%=  "Fuel Type: #{@listing.fuel}" %>
-        <br>        
-        <%=  "Drive: #{@listing.drive}" %>           
-        <br>        
-        <%= "Estimated Price $: #{ @listing.price}" %> 
-        <br>        
-        <%= "New Or Used: #{ @listing.newused}" %>             
-        <br>        
-        <%= "Stock Number: #{ @listing.stocknumber}" %>             
-        <br>        
-        <%= "Model: #{ @listing.model}" %>             
-        <br>        
-        <%= "Trim: #{ @listing.trim}" %>             
-        <br>        
-        <%= "VIN: #{ @listing.vin}" %>             
-        <br>        
-        <%= "Enginer Description: #{ @listing.enginedescription}" %>        <br>        
-        <%= "Interior Color: #{ @listing.interiorcolor}" %>
-        <br>        
-        <%= "Options: #{ @listing.options}" %>
-        <br>        
-        <%= "Car Location: #{ @listing.full_address}" %>       
-      </p>  
+
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0; text-align: right;}
+.tg td{font-family:Arial, sans-serif;font-size:14px;  text-align:center; padding:2px 2px; border-width:1px;overflow:hidden;word-break:normal;}
+.tg th{font-family:Arial, sans-serif;font-size:14px;text-align:center;  font-weight:normal;padding:2px 2px;border-width:1px;overflow:hidden;word-break:normal;}
+.tg .tg-yw4l{vertical-align:top}
+</style>
+
+
+<table class="tg">
+  <tr>
+    <th class="tg-yw4l">Year:</th>
+    <th class="tg-yw4l"><%= " #{@listing.year}" %></th>
+  </tr>
+  <tr>
+    <td class="tg-yw4l">Miles:</td>
+    <td class="tg-yw4l"><%= "#{@listing.miles}" %></td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l">Transmission:</td>
+    <td class="tg-yw4l"><%= "#{@listing.transmission}" %></td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l">Color:</td>
+    <td class="tg-yw4l"><%= "#{@listing.color}" %></td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l">Cylinder:</td>
+    <td class="tg-yw4l"><%= "#{@listing.cylinder}" %></td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l">Fuel Type:</td>
+    <td class="tg-yw4l"><%=  "#{@listing.fuel}" %></td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l">Drive:</td>
+    <td class="tg-yw4l"><%=  "#{@listing.drive}" %></td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l">Estimated Price $:</td>
+    <td class="tg-yw4l"><%= "#{ @listing.price}" %> </td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l">New Or Used:</td>
+    <td class="tg-yw4l"><%= "#{ @listing.newused}" %></td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l">Stock Number:</td>
+    <td class="tg-yw4l"><%= "#{ @listing.stocknumber}" %></td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l">Model:</td>
+    <td class="tg-yw4l"><%= "#{ @listing.model}" %></td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l">Trim:</td>
+    <td class="tg-yw4l"><%= "#{ @listing.trim}" %></td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l">VIN:</td>
+    <td class="tg-yw4l"><%= "#{ @listing.vin}" %></td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l">Enginer Description:</td>
+    <td class="tg-yw4l"><%= "#{ @listing.enginedescription}" %></td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l">Interior Color:</td>
+    <td class="tg-yw4l"><%= "#{ @listing.interiorcolor}" %></td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l">Options:</td>
+    <td class="tg-yw4l"><%= "#{ @listing.options}" %></td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l">Car Location:</td>
+    <td class="tg-yw4l"><%= "#{ @listing.full_address}" %></td>
+  </tr>
+</table>
 
 
        <% if @listing.user.eql? current_user %>
@@ -86,8 +129,7 @@
                           <% end %>
                         
                           
-                            <%= mylisting.title %> - (<%= mylisting.city %>, <%= mylisting.state %>, Price $: <%= mylisting.price %>,
-                    <%= mylisting.created_at.strftime('%B %d, %Y') %>  )                                   
+                            <%= mylisting.title %> - (<%= mylisting.city %>, <%= mylisting.state %>, Price $: <%= mylisting.price %>)                                   
                       </p>
                   <% end %>
                 </div>

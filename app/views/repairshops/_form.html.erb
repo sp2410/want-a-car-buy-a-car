@@ -1,0 +1,56 @@
+<div class="container">
+
+
+<%= form_for(@repairshop) do |f| %>
+  <% if @repairshop.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@repairshop.errors.count, "error") %> prohibited this repairshop from being saved:</h2>
+
+      <ul>
+      <% @repairshop.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <p>
+    <%= f.label :title %><br>
+    <%= f.text_field :title %>
+  </p>
+  <p>
+        <%= f.label :image, "Banner/logo" %>
+        <%= f.file_field :image %>   
+  </p>
+
+  <p>
+    <%= f.label :description, "Your Speciality (Comma Seperated)" %><br>
+    <%= f.text_area :description %>
+  </p>
+  <p>
+    <%= f.label :city %><br>
+    <%= f.text_field :city %>
+  </p>
+  <p>
+    <%= f.label :state %><br>
+    <%= f.text_field :state %>
+  </p>
+  <p>
+    <%= f.label :phone %><br>
+    <%= f.text_field :phone %>
+  </p>
+<br>
+
+<br>
+<br>
+
+  
+    <%= f.label :zipcode %><br>
+    <%= f.text_field :zipcode, class: "zip-width", maxlength: "5" %>
+  
+    <%= f.submit "Create", class: "create-button" %>
+  
+  
+<% end %>
+
+</div>

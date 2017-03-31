@@ -113,9 +113,16 @@ class Listing < ActiveRecord::Base
 			listings = listings.where("listings.NewUsed = '#{params[:NewUsed][0].upcase}'") if params[:NewUsed].present?
 			listings = listings.where("price >= ?", "#{params[:minprice]}") if params[:minprice].present?			
 			listings = listings.where("price <= ?", "#{params[:maxprice]}") if params[:maxprice].present?			
-			listings = listings.near(params[:location],00) if params[:location].present?
+			
 
 			listings
+
+			if params[:radius].present?
+				listings = listings.near(params[:location],params[:radius]) if params[:location].present?
+			else
+				listings = listings.near(params[:location],200) if params[:location].present?
+			end
+
 		else
 			all
 		end

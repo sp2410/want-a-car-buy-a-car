@@ -10,6 +10,7 @@ class ListingsController < ApplicationController
 
 	def create
 		@listing = Listing.new(listing_params)
+		@listing.user = current_user
 		
 
 		if @listing.save	
@@ -98,7 +99,9 @@ class ListingsController < ApplicationController
 
 	def is_user?
 		@listing = Listing.find(params[:id])
-		redirect_to root_path, alert: "Sorry, You are not the author"
+		if @listing.user != current_user 
+			redirect_to root_path, alert: "Sorry, You are not the author"
+		end
 	end
 
 	def sort_column

@@ -1,0 +1,1 @@
+json.array! @repairshops, partial: 'repairshops/repairshop', as: :repairshop

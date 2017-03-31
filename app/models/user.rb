@@ -10,8 +10,9 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :listings, dependent: :destroy
+  has_one :repairshop, dependent: :destroy
 
-  enum role: {user: 0, dealer: 1, premium: 2}
+  enum role: {user: 0, dealer: 1, premium: 2, repairshop: 3}
   
   
 
