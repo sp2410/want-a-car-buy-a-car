@@ -31,8 +31,8 @@ class CategoriesController < ApplicationController
 		@hatchback = @categories[11]	
 		@other = @categories[12]	
 			
-
-		@listings = Listing.all	
+		#@listings = Listing.all
+		@listings = Listing.where(:wholesale => false)
 		#@listings = Listing.order(params[:sort])	
 
 		@repairshops = Repairshop.all	
