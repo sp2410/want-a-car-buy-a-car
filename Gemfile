@@ -31,7 +31,7 @@ gem 'devise'
 gem 'cancancan', '~> 1.9'
 
 
-gem 'sdoc', '~> 0.4.0', group: :doc
+gem 'sdoc', '~> 0.4.0'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
@@ -86,7 +86,7 @@ group :production do
 	gem 'pg'
 	gem 'rails_12factor'
 	#new relic monitoring
-	gem 'newrelic_rpm'
+	# gem 'newrelic_rpm'
 	gem "skylight"
 
 end
