@@ -82,11 +82,17 @@ class ListingsController < ApplicationController
 
 	end
 
+
 	def mylistings
-		
+		@mylistings  = Listing.where('user_id=?',current_user.id)	
+
+		 respond_to do |format|
+	      format.html
+	      format.xml { render :xml => @mylistings.to_xml }
+    	end
+
 	end
 	
-
 
 	private
 

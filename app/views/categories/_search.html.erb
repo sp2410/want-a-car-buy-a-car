@@ -1,6 +1,6 @@
 <div class="searchbox">   
     <section class="formclass">
-        <%= form_tag search_listings_path, method: :get do |f| %>
+        <%= form_tag search_listings_path, method: :get, class: 'navbar-form navbar-right' do |f| %>
         <p>search for cars</p>        
         <%= text_field_tag :category, nil, placeholder: 'Category' %>
         <%= text_field_tag :minprice, nil, placeholder: 'Min Price' %> 
@@ -11,4 +11,5 @@
         <%= submit_tag 'Search' %>
       <% end %>    
     </section>
-  </div>
+</div>
+
