@@ -1,6 +1,6 @@
 class ListingsController < ApplicationController
 
-	before_filter :authenticate_user!, only: [:new, :create]
+	before_filter :authenticate_user!, only: [:new, :create, :mylistings]
 	before_filter :is_user?, only: [:edit, :update, :delete]
 	
 
@@ -82,14 +82,18 @@ class ListingsController < ApplicationController
 
 	end
 
-
 	def mylistings
-		@mylistings  = Listing.where('user_id=?',current_user.id)	
+		if current_user		
+			@mylistings = Listing.where('user_id=?', current_user.id)	
 
-		 respond_to do |format|
-	      format.html
-	      format.xml { render :xml => @mylistings.to_xml }
-    	end
+			respond_to do |format|
+	      		format.html
+	      		format.xml { render :xml => @mylistings.to_xml }
+    		end
+    		
+		else
+			redirect_to new_user_session
+		end
 
 	end
 	
