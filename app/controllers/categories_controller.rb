@@ -31,21 +31,23 @@ class CategoriesController < ApplicationController
 		@hatchback = @categories[11]	
 		@other = @categories[12]	
 			
-		#@listings = Listing.all
+		@alllistings = Listing.joins(:user).select('users.email, listings.*')
 		@listings = Listing.where(:wholesale => false)
 		#@listings = Listing.order(params[:sort])	
 
 		@repairshops = Repairshop.all	
 		
-
-
 		@wholesalelistings = Listing.where(:wholesale => true)
 
 		@premiumlistings = Listing.where(:wholesale => false).joins(:user).where("users.role = '2'")
+		
 
 		respond_to do |format|
 			format.html
-			format.csv {send_data @listings.to_csv }
+			format.csv {send_data @listings.to_csv }			
+			format.xml { render :xml => @alllistings}					
+			format.json { render :json => @alllistings}					
+
 		end
 	
 

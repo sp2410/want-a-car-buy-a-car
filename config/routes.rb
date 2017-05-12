@@ -66,7 +66,8 @@ Rails.application.routes.draw do
 
   resources :listings do
     collection do
-      get 'search'      
+      get 'search'
+      # get 'searchbyuser'       
     end    
     collection { post :import }
   end

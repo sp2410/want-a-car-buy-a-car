@@ -4,6 +4,7 @@ class ListingsController < ApplicationController
 	before_filter :is_user?, only: [:edit, :update, :delete]
 	
 
+	
 	def new
 		@listing=Listing.new
 	end	
@@ -45,6 +46,13 @@ class ListingsController < ApplicationController
 	def search		
 		@listings = Listing.search(params).order("#{sort_column}" + " " + "#{sort_direction}")
 	end
+
+	# def searchbyuser		
+	# 	@listings = Listing.searchbyuser(params)
+	# 	respond_to do |format|	      	
+	#       	format.json { render :json => @mylistings.to_json }
+ #    	end
+	# end
 
 	def destroy
 		@listing = Listing.find(params[:id])
@@ -90,7 +98,7 @@ class ListingsController < ApplicationController
 	      		format.html
 	      		format.xml { render :xml => @mylistings.to_xml }
     		end
-    		
+
 		else
 			redirect_to new_user_session
 		end
