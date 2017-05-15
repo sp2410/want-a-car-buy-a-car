@@ -7,15 +7,15 @@
               <% @wholesalelistings.each do |wlisting| %>              
                   <div id = "listingsdescsmall">                
                       <%= link_to wlisting do %>
-                          <p style="font-size: 30px; margin-top: -10px;">
+                          <p style="margin-top: -10px;">
                               
                               <% if wlisting.image_url.present? %> 
-                                <%= image_tag wlisting.image.to_s if wlisting.image_url.present? %> 
+                                <%= image_tag wlisting.image.url(:thumb) if wlisting.image_url.present? %> 
                               <% else %>
                                 <%= image_tag("https://s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/nopictures.png", :alt => "want a car buy a car") %>
                               <% end %>
                             
-                                <%= wlisting.title %> - (<%= wlisting.city %>, <%= wlisting.state %>, Price: <%= wlisting.price %>                                    
+                                <%= wlisting.city %><br> <%= wlisting.state %><br> Price: <%= wlisting.price %>                                    
                           </p>
                       <% end %>
                   </div>                   

@@ -1,0 +1,47 @@
+<nav class="navbar navbar-default" role="navigation" style = "margin-bottom: 0px;">
+  <div class="container-fluid">    
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+      <ul class="nav navbar-nav navbar-left" >
+        <li>
+          <%= image_tag("https://s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/TDC.png", :alt => "rss feed", :size => "40x40",:style => "display: block; max-width:100px; max-height:50px; width: auto; height: auto; margin-bottom: 2px;") %>          
+        </li>
+      </ul>
+
+
+
+      <ul class="nav navbar-nav navbar-right">        
+        <li>
+          <%= link_to "HOME", root_path %>
+        </li> 
+        <li>
+          <%= link_to "TEMPLATES", root_path %>
+        </li>
+        <li>
+          <%= link_to "WEBSITES", root_path %>
+        </li>        
+        <li>
+          <%= link_to "LOGO SERVICES", root_path %>
+        </li>        
+        
+         
+             
+        <% if current_user %>                     
+          <li>
+            <%= link_to "YOUR WEBSITES", root_path %>
+          </li>    
+          <li>
+            <%= link_to "PRICING", root_path %>
+          </li>    
+          <li>
+            <%= link_to "SIGN OUT", destroy_user_session_path, method: :delete %>
+          </li>          
+        <% else %>
+          <li>
+            <%= link_to "SIGN IN", new_user_session_path %>
+          </li>
+        <% end %>               
+      </ul>
+    </div>
+  </div>
+</nav>

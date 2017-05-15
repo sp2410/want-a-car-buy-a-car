@@ -15,15 +15,15 @@
           <% @mylistings.each do |mylisting| %>              
               <div id = "listingsdescsmall">                
                   <%= link_to mylisting do %>
-                      <p style="font-size: 30px; margin-top: -10px;">
+                      <p style="margin-top: -10px;">
                           
                           <% if mylisting.image_url.present? %> 
-                            <%= image_tag mylisting.image.to_s if mylisting.image_url.present? %> 
+                            <%= image_tag mylisting.image.url(:thumb) if mylisting.image_url.present? %> 
                           <% else %>
                             <%= image_tag("https://s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/nopictures.png", :alt => "want a car buy a car") %>
                           <% end %>
                         
-                            <%= mylisting.title %> - (<%= mylisting.city %>, <%= mylisting.state %>, Price $ <%= mylisting.price %> )                                   
+                            <%= mylisting.city %><br> <%= mylisting.state %><br> Price $ <%= mylisting.price %>                                   
                       </p>
                   <% end %>
               </div>                   

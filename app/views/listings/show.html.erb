@@ -6,7 +6,7 @@
  
     <p>       
       <% if @listing.image_url.present? %> 
-        <%= image_tag @listing.image.to_s if @listing.image_url.present? %>
+        <%= image_tag @listing.image.url(:thumb) if @listing.image_url.present? %>
       <% else %>
         <%= image_tag("https://s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/nopictures.png", :alt => "want a car buy a car") %>
       <% end %>
@@ -120,16 +120,16 @@
               <% if  mylisting.id != @listing.id %>
                 <div id = "listingsdescsmall">                
                   <%= link_to mylisting do %>
-                      <p style="font-size: 30px; margin-top: -10px;">
+                      <p style=" margin-top: -10px;">
                           
                           <% if mylisting.image_url.present? %> 
-                            <%= image_tag mylisting.image.to_s if mylisting.image_url.present? %> 
+                            <%= image_tag mylisting.image.url(:thumb) if mylisting.image_url.present? %> 
                           <% else %>
                             <%= image_tag("nopictures.png", :alt => "want a car buy a car") %>
                           <% end %>
                         
                           
-                            <%= mylisting.title %> - (<%= mylisting.city %>, <%= mylisting.state %>, Price $: <%= mylisting.price %>)                                   
+                            <%= mylisting.city %><br><%= mylisting.state %><br>Price $: <%= mylisting.price %>                                   
                       </p>
                   <% end %>
                 </div>
@@ -145,23 +145,23 @@
      <br>      
      <% if @listing.user != nil %>  
        <% if @listing.user.email != nil %>  
-        <p style="font-size: 30px; margin-top: -10px;"><%= "Contact Person:  #{@listing.user.email}" %></p>
+        <p style="font-size: 20px; margin-top: -10px;"><%= "Contact Person:  #{@listing.user.email}" %></p>
         <% end %>
 
         <% if @listing.user.role != nil %>
-          <p style="font-size: 30px; margin-top: -10px;"><%= "User Type:  #{@listing.user.role}" %></p>
+          <p style="font-size: 20px; margin-top: -10px;"><%= "User Type:  #{@listing.user.role}" %></p>
           <% else %>
-          <p style="font-size: 30px; margin-top: -10px;">User Type: Private Owner</p>
+          <p style="font-size: 20px; margin-top: -10px;">User Type: Private Owner</p>
         <% end %>
 
 
           <% if @listing.user.website != nil %>               
-            <p style="font-size: 30px; margin-top: -10px;"><a href = <%= "#{@listing.user.website}" %> > Visit Their Website</a></p>        
+            <p style="font-size: 20px; margin-top: -10px;"><a href = <%= "#{@listing.user.website}" %> > Visit Their Website</a></p>        
           <% end %>
       <% end %>
 
-      <p style="font-size: 30px; margin-top: -10px;">posted <%=  "#{time_ago_in_words(@listing.created_at)} ago" %></p>    
-      <p style="font-size: 30px; margin-top: -10px;">updated <%=  "#{time_ago_in_words(@listing.updated_at)} ago" %></p>        
+      <p style="font-size: 20px; margin-top: -10px;">posted <%=  "#{time_ago_in_words(@listing.created_at)} ago" %></p>    
+      <p style="font-size: 0px; margin-top: -10px;">updated <%=  "#{time_ago_in_words(@listing.updated_at)} ago" %></p>        
     
 </div>
 

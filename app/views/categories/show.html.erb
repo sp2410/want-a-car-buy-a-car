@@ -19,7 +19,7 @@
                <p>
                   
                   <% if listing.image_url.present? %> 
-                    <%= image_tag listing.image.to_s if listing.image_url.present? %> 
+                    <%= image_tag listing.image.url(:thumb) if listing.image_url.present? %> 
                   <% else %>
                     <%= image_tag("https://s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/nopictures.png", :alt => "want a car buy a car") %>
                   <% end %>

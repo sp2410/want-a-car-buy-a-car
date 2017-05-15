@@ -440,42 +440,36 @@
 
 
  #listingsdescsmall {
-    background-color: #ffcc00;    
+    background-color: #fff;    
+    outline: 2px solid #ffcc00 ;
     margin:  4px 2px;
-    padding: 40px 10px;
-    
-    display: inline-flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.8);
-    transition: 0.3s;    
-    width: 31%;
-    border-radius: 10px 0 0 10px;
-
-    
-        
+    padding: 40px 10px;    
+    display: inline-flex;    
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.8);    
+    width: 20%;
+    text-align: center;
+          
   }
 
   #listingsdescsmall:hover{
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.8);
   }
 
- 
 
 #listingsdescsmall > a > p{
-    color: #ffffff;
+    color: #000;
     margin: 10px 10px;
     display: inline-block;
     text-align: center;
-    size: 20px;
+    font-size: 15px;
 
   }
 
 #listingsdescsmall > a > p > a{
-    color: #fff;
+    color: #ffcc00;
     margin: auto auto;
     text-decoration: none;
-    font-size: 30px;
+    font-size: 10px;
     
 
   }
@@ -521,7 +515,6 @@
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.8);
   }
 
- 
 
 
   #listingsdescsmall2 > a > p{
