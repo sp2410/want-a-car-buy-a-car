@@ -3,9 +3,8 @@
 class ImageUploader < CarrierWave::Uploader::Base
 
   # Include RMagick or MiniMagick support:
-  #include CarrierWave::MiniMagick
-  #include CarrierWave::MiniMagick
-
+  #include CarrierWave::MiniMagick  
+  include CarrierWave::MiniMagick
    storage :fog
 
    #include CarrierWave::MimeTypes
