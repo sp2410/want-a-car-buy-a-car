@@ -4,14 +4,15 @@
     <h1 style ="margin: 10px auto; color: #ffc000"><%= @repairshop.title.to_s.upcase %> </h1>     
  <div id = "listingsdesc">
  
-    <p>       
+    <p>    
       <% if @repairshop.image_url.present? %> 
-        <%= image_tag @repairshop.image.to_s if @repairshop.image_url.present? %>
+        <%= image_tag @repairshop.url(:thumb) if @repairshop.image_url.present? %>
       <% else %>
         <%= image_tag("https://s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/repairbig.png", :alt => "want a car buy a car") %>
       <% end %>
         
     </p>
+
   </div>
 
     
@@ -31,6 +32,9 @@
               </table>
             <% end %>
         </div>
+
+        
+     <%= social_share_button_tag( @repairshop.title , :url => @repairshop_path, :image => @repairshop.image_url ) %>
 
       
 </div>
