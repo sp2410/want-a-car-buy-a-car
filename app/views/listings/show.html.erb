@@ -6,12 +6,14 @@
  
     <p>       
       <% if @listing.image_url.present? %> 
-        <%= image_tag @listing.image.url(:thumb) if @listing.image_url.present? %>
+        <%= image_tag @listing.image.url(:thumb) %>
       <% else %>
         <%= image_tag("https://s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/nopictures.png", :alt => "want a car buy a car") %>
       <% end %>
         
     </p>
+
+     <%= social_share_button_tag( @listing.title , :url => @listing_path, :image => @listing.image_url , desc: "#{@listing.description} : $ #{@listing.price}" ) %>
   </div>
 
     
@@ -104,10 +106,11 @@
 </table>
 
 
-       <% if @listing.user.eql? current_user %>
+      <% if @listing.user.eql? current_user %>
         <p><%= link_to 'edit', edit_listing_path %></p>
         <p><%= link_to 'delete', @listing, data: {confirm: "Wait! Are you sure ?"}, method: :delete %></p>
       <% end %>
+     
   </div>
 
 

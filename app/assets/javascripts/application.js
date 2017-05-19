@@ -16,5 +16,6 @@
 //= require bootstrap-sprockets
 //= require jquery.bar.custom
 //= require helpers
+//= require social-share-button
 
 

@@ -476,11 +476,10 @@
 
  #listingsdescsmall > a > p >img{    
     margin: auto auto;
-    max-width: 90%;
-    max-height: 80%;
-    min-width: 50%;
-    min-height: 40%;
+    width: 100%;
+    height: 100%;    
     padding: 10px 0px;
+    text-align: center;
     
     
   }
@@ -492,6 +491,8 @@
     min-width: 50%;
     min-height: 40%;
     padding: 10px 0px;
+    padding-left: 10px;
+
     
     
   }

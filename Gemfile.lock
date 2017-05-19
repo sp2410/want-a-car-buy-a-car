@@ -17,6 +17,13 @@ GIT
       sass-rails
       sprockets (< 4.1)
 
+GIT
+  remote: git://github.com/huacnlee/social-share-button.git
+  revision: 276066578ecdeb75993d5fbe58bfd4e4ed6e0e0a
+  specs:
+    social-share-button (0.10.0)
+      coffee-rails
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -398,6 +405,7 @@ DEPENDENCIES
   sdoc (~> 0.4.0)
   skylight
   slide-down-alerts-rails
+  social-share-button!
   sqlite3
   turbolinks
   tzinfo-data
@@ -405,4 +413,4 @@ DEPENDENCIES
   web-console (~> 2.0)
 
 BUNDLED WITH
-   1.14.3
+   1.14.6

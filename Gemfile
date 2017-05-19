@@ -52,6 +52,8 @@ gem "fog"
 
 gem 'figaro'
 
+gem 'social-share-button', github: "huacnlee/social-share-button"
+
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
