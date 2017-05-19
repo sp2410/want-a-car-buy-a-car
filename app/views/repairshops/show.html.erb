@@ -6,7 +6,7 @@
  
     <p>    
       <% if @repairshop.image_url.present? %> 
-        <%= image_tag @repairshop.url(:thumb) if @repairshop.image_url.present? %>
+        <%= image_tag @repairshop.image.url(:thumb) if @repairshop.image_url.present? %>
       <% else %>
         <%= image_tag("https://s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/repairbig.png", :alt => "want a car buy a car") %>
       <% end %>
@@ -33,7 +33,7 @@
             <% end %>
         </div>
 
-        
+
      <%= social_share_button_tag( @repairshop.title , :url => @repairshop_path, :image => @repairshop.image_url ) %>
 
       
