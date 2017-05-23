@@ -4,10 +4,12 @@
 <%= favicon_link_tag 'logo.ico' %>
 
 
-<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"  lazyload>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"  lazyload>
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet"  lazyload>  
 
-<link href="https://www.w3schools.com/w3css/4/w3.css" rel="stylesheet"  lazyload> -->
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous"> -->
+
+<link href="https://www.w3schools.com/w3css/4/w3.css" rel="stylesheet"  lazyload>
 
 
 
@@ -39,32 +41,12 @@
 
 
 <%= slide_down_alerts %>
-<% unless @hide_menu %>
-  <div id ="center2" >
                     
-          <%= link_to(image_tag("wacbac2.png", :alt => "rss feed", :size => "300x100"), root_path) %>
+<%= render 'layouts/navbar'%>
           
-  </div>
-<% end %>
-<%= slide_down_alerts %>
-
 <%= yield %>
 
-<hr />
-<div class="rightbar">
-    <ul class="rightbar-top">
-
-      <li><%= link_to 'help and faq', help_path %></li>      
-      <li><%= link_to 'avoid scams & fraud', scams_path %></li>
-      <li><%= link_to 'personal safety tips', safety_path %></li>            
-
-      <li class="rightbar-top"><%= link_to 'terms of use', terms_path %></li>
-      <li><%= link_to 'privacy policy', policy_path %></li>                  
-      <li><%= link_to 'contact us', contact_path %></li>
-
-    </ul>
-  </div>
-
-
+<%= render 'layouts/footer'%>
+  
 </body>
 </html>

@@ -1,14 +1,14 @@
 <div class="parent" >
  
   <div class="center-column" id ="whitebackground">   
-    <h1 style ="margin: 10px auto; color: #ffc000"><%= @listing.title.to_s.upcase %> </h1>     
+  <h1 style ="margin: 10px auto; color: #FF3232"><%= @listing.title.to_s.upcase %> </h1>     
  <div id = "listingsdesc">
  
     <p>       
       <% if @listing.image_url.present? %> 
         <%= image_tag @listing.image.url(:thumb) %>
       <% else %>
-        <%= image_tag("https://s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/nopictures.png", :alt => "want a car buy a car") %>
+        <%= image_tag("https://s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/nopictures1.png", :alt => "want a car buy a car", :size => "50x600") %>
       <% end %>
         
     </p>
@@ -21,8 +21,8 @@
   </div>
 
 <div class="center-column" id ="whitebackground">
-  <h1 style ="margin: 10px auto; color: #ffc000">DESCRIPTION</h1> 
-     <h2>
+  <h1 style ="margin: 10px auto; color: #FF3232">DESCRIPTION</h1> 
+     <h2 style ="color: #FF3232">
       <%=  @listing.description.to_s.upcase %>
       </h2>
 
@@ -119,21 +119,34 @@
       
       <% if @listings.present? %>
           <h1>OTHER LISTINGS BY SAME USER</h1>
-          <% @listings.each do |mylisting| %>                      
-              <% if  mylisting.id != @listing.id %>
+          <% @listings.each do |wlisting| %>                      
+              <% if  wlisting.id != @listing.id %>
                 <div id = "listingsdescsmall">                
-                  <%= link_to mylisting do %>
-                      <p style=" margin-top: -10px;">
-                          
-                          <% if mylisting.image_url.present? %> 
-                            <%= image_tag mylisting.image.url(:thumb) if mylisting.image_url.present? %> 
-                          <% else %>
-                            <%= image_tag("nopictures.png", :alt => "want a car buy a car") %>
-                          <% end %>
-                        
-                          
-                            <%= mylisting.city %><br><%= mylisting.state %><br>Price $: <%= mylisting.price %>                                   
-                      </p>
+                  <%= link_to wlisting do %>
+                      <p style="margin-top: -10px;">
+                <% if wlisting.image_url.present? %> 
+                    <%= image_tag wlisting.image.url(:thumb) if wlisting.image_url.present? %> 
+                    <br>
+                <% else %>
+                    <%= image_tag("https://s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/nopictures1.png", :alt => "want a car buy a car") %>
+                <% end %>                            
+                  Price $: <%= wlisting.price %>                                  
+              </p>
+              
+
+              <br> 
+
+              <p style = "margin-top: 1px; color: #A9A9A9; font-size: 13px;"><%= wlisting.city %> - <%= wlisting.state %>  
+              </p>
+
+               <div id ="ribbon">
+                    <div id="txt">
+                      <%= distance_of_time_in_words(wlisting.updated_at, Time.now).split(' ')[-2] %>
+                       <%= distance_of_time_in_words(wlisting.updated_at, Time.now).split(' ')[-1] %>
+
+                    </div>
+                </div>          
+
                   <% end %>
                 </div>
               <% end %>      

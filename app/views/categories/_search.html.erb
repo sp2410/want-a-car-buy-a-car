@@ -1,6 +1,6 @@
 <div class="searchbox">   
     <section class="formclass">
-        <%= form_tag search_listings_path, method: :get, class: 'navbar-form navbar-right' do |f| %>
+        <%= form_tag search_listings_path, method: :get, class: 'navbar-form navbar-center' do |f| %>
         <p>search for cars</p>        
         <%= text_field_tag :category, nil, placeholder: 'Category' %>
         <%= text_field_tag :minprice, nil, placeholder: 'Min Price' %> 
@@ -8,7 +8,7 @@
         <%= text_field_tag :location, nil, placeholder: 'Near' %>        
         <%= text_field_tag :radius, nil, placeholder: 'Radius' %> 
         <%= text_field_tag :NewUsed, nil, placeholder: 'New / Used' %>              
-        <%= submit_tag 'Search' %>
+        <%= submit_tag 'Search', class: 'btn btn-danger' %>
       <% end %>    
     </section>
 </div>

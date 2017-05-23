@@ -1,47 +1,46 @@
-<nav class="navbar navbar-default" role="navigation" style = "margin-bottom: 0px;">
+<div class = "container2" >
+<nav class="navbar navbar-default navbar-static-top" role="navigation" style = "margin-bottom: 0px;padding-right: 10px;">
+
   <div class="container-fluid">    
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
       <ul class="nav navbar-nav navbar-left" >
-        <li>
-          <%= image_tag("https://s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/TDC.png", :alt => "rss feed", :size => "40x40",:style => "display: block; max-width:100px; max-height:50px; width: auto; height: auto; margin-bottom: 2px;") %>          
+        <li>          
+          <%= link_to image_tag("wacbac2.png", :alt => "rss feed", :size => "45x45",:style => "display: block; max-width:140px; max-height:70px; width: auto; height: auto; margin-bottom: 2px;margin-top: -2px;float:left"), root_path, class: "logolink" %>
+
         </li>
       </ul>
 
 
 
-      <ul class="nav navbar-nav navbar-right">        
+      <ul class="nav navbar-nav navbar-right" id = "navcontents">        
         <li>
-          <%= link_to "HOME", root_path %>
-        </li> 
-        <li>
-          <%= link_to "TEMPLATES", root_path %>
+          <%=link_to 'FIND OR ADD REPAIR SHOP', repairshops_path %>
         </li>
         <li>
-          <%= link_to "WEBSITES", root_path %>
+          <a href="https://tranquil-shore-25457.herokuapp.com">CREATE YOUR WEBSITE</a>
         </li>        
         <li>
-          <%= link_to "LOGO SERVICES", root_path %>
-        </li>        
+          <a href="https://evening-beach-65902.herokuapp.com/">AUCTION YOUR VEHICLE</a>
+        </li>   
+        <li>
+            <%= link_to "PRICING", root_path %>
+        </li>         
         
          
              
         <% if current_user %>                     
-          <li>
-            <%= link_to "YOUR WEBSITES", root_path %>
-          </li>    
-          <li>
-            <%= link_to "PRICING", root_path %>
-          </li>    
+          <li><%= link_to 'YOUR LISTINGS', mylistings_path %></li>           
           <li>
             <%= link_to "SIGN OUT", destroy_user_session_path, method: :delete %>
           </li>          
         <% else %>
           <li>
             <%= link_to "SIGN IN", new_user_session_path %>
-          </li>
-        <% end %>               
+          </li>          
+        <% end %>                         
       </ul>
     </div>
   </div>
 </nav>
+</div>

@@ -22,7 +22,7 @@
                 <% if wlisting.image_url.present? %> 
                     <%= image_tag wlisting.image.url(:thumb) if wlisting.image_url.present? %> 
                 <% else %>
-                    <%= image_tag("https://s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/repairbig.png") %>
+                    <%= image_tag("https://s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/repairbigsmall.png") %>
                 <% end %>                            
                   <%= wlisting.title %><br> <%= wlisting.city %>, <%= wlisting.state %>
                    <br> Phone: <%= wlisting.phone %>                                   

@@ -1,173 +1,106 @@
-<div class="container">
+<div class="container2">
 
-<div class="footer">
-<div class="navbar">        
-        <ul>           
-            <li><%=link_to 'POST A NEW LISTING', new_listing_path %></li>
-            <li><a href="#" class= "disabled">/</a></li>   
-            <li><%=link_to 'FIND OR ADD REPAIR SHOP', repairshops_path %></li>              
-             <li><a href="#" class= "disabled">/</a></li>    
-             <li><%= link_to 'ABOUT US', about_path %></li>                                                     
-             <li><a href="#" class= "disabled">/</a></li>
+<div class="footer2">
 
-                          
-              <% if user_signed_in? %>
-                <li><%= link_to 'MY ACCOUNT', edit_user_registration_path %></li>
-                <li><a href="#" class= "disabled">/</a></li>             
-
-                <li><%= link_to 'MY LISTINGS', mylistings_path %></li> 
-                <li><a href="#" class= "disabled">/</a></li>
-
-                
-                
-                <li><%= link_to 'LOG OUT', destroy_user_session_path, method: :delete %></li>                                                                                       
-               
-              <% else %>
-                
-               <li><%= link_to 'SIGN IN', new_user_session_path %></li>
-                <li><a href="#" class= "disabled">/</a></li>             
-                <li><%= link_to 'SIGN UP', new_user_registration_path %></li>                
-
-               
-              <% end %>
-        </ul>
-  </div>
  <div class ="center">
-    <a href="#"><%= image_tag("wacbac2.png", :alt => "rss feed", :size => "300x100") %></a>
-
+    <%= image_tag("wacbac2.png", :alt => "rss feed", :size => "300x100") %>
+    <%= link_to 'POST A NEW VEHICLE', new_listing_path, class: "btn btn-danger" %>      
   </div>
 
-  <%=render 'categories/search'%>
+  <%= render 'categories/search'%>
 
 </div>
-
-<hr />
-
-<div class="parent">
-  <div class="center-column" id="right-center-column-full" >
-    <h1> SEARCH BY TYPE </h1>
-    
-    <div class = centering>
-    <div class="center-one">    
-      <table>
-        <tr>
-          <th class="table-header"><%= link_to image_tag("sedanscoupes.svg", size: "150x150"), category_path(@sedan) %></th>
-        </tr>         
-      </table>
-      <table>
-        <tr>
-          <th class="table-header"><%= link_to image_tag("minivans.svg", size: "200x200"), category_path(@van)  %></th>            
-        </tr>         
-      </table>
-    </div> 
-
-    <div class="center-two">
-      <table>
-        <tr>
-          <th class="table-header"><%= link_to image_tag("coupe.svg", size: "200x200") , category_path(@coupe) %></th>
-        </tr>       
-      </table>
-      <table>
-        <tr>
-          <th class="table-header"><%= link_to image_tag("wagons.svg", size: "150x150"), category_path(@wagon)  %></th>          
-        </tr>       
-      </table>
-    </div>
-    <div class="center-one">
-      <table>
-        <tr>
-          <th class="table-header"><%= link_to image_tag("convertible.svg", size: "150x150") , category_path(@convertible) %></th>
-        </tr>        
-      </table>
-      
-        <table>
-          <tr>
-            <th class="table-header"><%= link_to image_tag("sportutilities.svg", size: "200x200"), category_path(@suv) %></th>
-          </tr>        
-        </table>                    
-    </div>
-
-
-    
-     <div class="center-two">
-      <table>
-        <tr>
-          <th class="table-header"><%= link_to image_tag("sportscars.svg", size: "200x200") , category_path(@sports) %></th>
-        </tr>        
-      </table>
-      
-        <table>
-          <tr>
-            <th class="table-header"><%= link_to image_tag("diesel.svg", size: "150x150"), category_path(@diesel) %></th>
-          </tr>        
-        </table>                    
-    </div>
-
-     <div class="center-one">
-      <table>
-        <tr>
-          <th class="table-header"><%= link_to image_tag("crossover.svg", size: "150x150") , category_path(@crossover) %></th>
-        </tr>        
-      </table>
-      
-        <table>
-          <tr>
-            <th class="table-header"><%= link_to image_tag("luxury.svg", size: "200x200"), category_path(@luxury) %></th>
-          </tr>        
-        </table>                    
-    </div>
-
-     <div class="center-two">
-      <table>
-        <tr>
-          <th class="table-header"><%= link_to image_tag("hatchback.svg", size: "200x200") , category_path(@hatchback) %></th>
-        </tr>        
-      </table>
-      
-        <table>
-          <tr>
-            <th class="table-header"><%= link_to image_tag("other.svg", size: "150x150"), category_path(@other) %></th>
-          </tr>        
-        </table>                    
-    </div>
-    </div>
-
-
-
-   
-
-  </div>
-
-  </div>
-
-
-<hr>
-
-
-<div class = parent>
-
-  
-  <%= render "categories/listingmap"%>
-
-<div class="vr"></div>
-
-  <div class="center-column" >
-        
-        <h1>CAR REVIEWS</h1>
-          <div class="center-image">      
-              <%= image_tag("car5.jpg", size: "400x200", :class => "style_image" ) %>
-              <h1>Mercedes E350 2016</h1>
-              <p>Leaving sportiness to its rivals, the E-class caters to those who’d rather waft along in the lap of luxury. The quiet and supremely comfortable cabin features a 12.3-inch infotainment screen with both Apple CarPlay and Android Auto. The 241-hp 2.0-liter turbo four-cylinder provides adequate power and pairs with a nine-speed automatic with either rear- or all-wheel drive. 
-              </p>
-          </div>
-  </div>
-
-</div>
-
-<hr />
 
 <%= render 'categories/premiumlisting'%>
-
+<hr>
 <%= render 'categories/wholesalelistings'%>
+
+  <div class="parent">
+    <div class="col-sm-12" id="right-center-column-full" >
+      <h1> SEARCH BY TYPE </h1>
+      
+      <div class = "centering">
+
+        <div class= "col-md-2 col-sm-6" >    
+          <table>
+            <tr>
+              <th class="table-header" style="text-align: center;" ><%= link_to image_tag("sedanscoupes.svg", size: "150x150"), category_path(@sedan) %></th>
+            </tr>            
+            <tr>
+              <th class="table-header" style="text-align: center;"><%= link_to image_tag("minivans.svg", size: "200x200"), category_path(@van)  %></th>            
+            </tr>         
+          </table>
+        </div> 
+
+        <div class="col-md-2 col-sm-6" >
+          <table>
+            <tr>
+              <th class="table-header" style="text-align: center;"><%= link_to image_tag("coupe.svg", size: "200x200") , category_path(@coupe) %></th>
+            </tr>       
+          </table>
+          <table>
+            <tr>
+              <th class="table-header" style="text-align: center;"><%= link_to image_tag("wagons.svg", size: "150x150", style: "margin-left: 15%; " ), category_path(@wagon)  %></th>          
+            </tr>       
+          </table>
+        </div>
+        <div class="col-md-2 col-sm-6">
+          <table>
+            <tr>
+              <th class="table-header" style="text-align: center;"><%= link_to image_tag("convertible.svg", size: "150x150" ) , category_path(@convertible) %></th>
+            </tr>                  
+              <tr>
+                <th class="table-header" style="text-align: center;"><%= link_to image_tag("sportutilities.svg", size: "200x200"), category_path(@suv) %></th>
+              </tr>        
+            </table>                    
+        </div>
+
+        
+         <div class="col-md-2 col-sm-6">
+          <table>
+            <tr>
+              <th class="table-header" style="text-align: center;"><%= link_to image_tag("sportscars.svg", size: "200x200") , category_path(@sports) %></th>
+            </tr>                  
+              <tr>
+                <th class="table-header" style="text-align: center;"><%= link_to image_tag("diesel.svg", size: "150x150" ), category_path(@diesel) %></th>
+              </tr>        
+            </table>                    
+        </div>
+
+         <div class="col-md-2 col-sm-6" >
+          <table>
+            <tr>
+              <th class="table-header" style="text-align: center;"><%= link_to image_tag("crossover.svg", size: "150x150" ) , category_path(@crossover) %></th>
+            </tr>                  
+              <tr>
+                <th class="table-header" style="text-align: center;"><%= link_to image_tag("luxury.svg", size: "200x200"), category_path(@luxury) %></th>
+              </tr>        
+            </table>                    
+        </div>
+
+         <div class="col-md-2 col-sm-6" >
+          <table>
+            <tr>
+              <th class="table-header" style="text-align: center;"><%= link_to image_tag("hatchback.svg", size: "200x200") , category_path(@hatchback) %></th>
+            </tr>                 
+              <tr>
+                <th class="table-header" style="text-align: center;"><%= link_to image_tag("other.svg", size: "150x150" ), category_path(@other) %></th>
+              </tr>        
+            </table>                    
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div class = "parent">
+    
+    <%= render "categories/listingmap" %>
+    
+
+  </div>
+
 
 </div>

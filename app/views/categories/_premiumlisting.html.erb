@@ -4,18 +4,39 @@
           
         <% @premiumlistings.each do |wlisting| %>              
           <div id = "listingsdescsmall">                
+          <!-- <div class "card"> -->
             <%= link_to wlisting do %>
               <p style="margin-top: -10px;">
                 <% if wlisting.image_url.present? %> 
                     <%= image_tag wlisting.image.url(:thumb) if wlisting.image_url.present? %> 
                     <br>
                 <% else %>
-                    <%= image_tag("https://s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/nopictures.png", :alt => "want a car buy a car") %>
+                    <%= image_tag("https://s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/nopictures1.png", :alt => "want a car buy a car") %>
                 <% end %>                            
-                  <%= wlisting.city %> <br><%= wlisting.state %> <br>Price: <%= wlisting.price %>                                   
+                  Price $: <%= wlisting.price %>                                  
               </p>
+              
+
+              <br> 
+
+              <p style = "margin-top: 1px; color: #A9A9A9; font-size: 13px;"><%= wlisting.city %> - <%= wlisting.state %>  
+              </p>
+
+               <div id ="ribbon">
+                    <div id="txt">
+                      <%= distance_of_time_in_words(wlisting.updated_at, Time.now).split(' ')[-2] %>
+                       <%= distance_of_time_in_words(wlisting.updated_at, Time.now).split(' ')[-1] %>
+
+                    </div>
+                </div>          
+
+
             <% end %>
+
+
           </div>                   
         <% end %>    
   </div>    
 <% end %>
+
+
