@@ -90,5 +90,6 @@ group :production do
 	#new relic monitoring
 	# gem 'newrelic_rpm'
 	gem "skylight"
+	gem 'heroku-deflater'
 
 end

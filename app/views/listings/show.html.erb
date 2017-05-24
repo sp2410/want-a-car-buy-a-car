@@ -8,7 +8,7 @@
       <% if @listing.image_url.present? %> 
         <%= image_tag @listing.image.url(:thumb) %>
       <% else %>
-        <%= image_tag("https://s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/nopictures1.png", :alt => "want a car buy a car", :size => "50x600") %>
+        <%= image_tag("https://s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/nopictures1.png", :alt => "Buy Used Car", :size => "50x600") %>
       <% end %>
         
     </p>
@@ -128,7 +128,7 @@
                     <%= image_tag wlisting.image.url(:thumb) if wlisting.image_url.present? %> 
                     <br>
                 <% else %>
-                    <%= image_tag("https://s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/nopictures1.png", :alt => "want a car buy a car") %>
+                    <%= image_tag("https://s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/nopictures1.png", :alt => "want a car buy a car: Buy Used Cars") %>
                 <% end %>                            
                   Price $: <%= wlisting.price %>                                  
               </p>

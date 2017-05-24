@@ -1,6 +1,6 @@
 <% if @premiumlistings.present? %>    
   <div class="center-column" id="right-center-column2" >
-    <h1>PREMIUM LISTINGS</h1>
+    <h1>PREMIUM CARS FOR SALE</h1>
           
         <% @premiumlistings.each do |wlisting| %>              
           <div id = "listingsdescsmall">                
@@ -11,9 +11,9 @@
                     <%= image_tag wlisting.image.url(:thumb) if wlisting.image_url.present? %> 
                     <br>
                 <% else %>
-                    <%= image_tag("https://s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/nopictures1.png", :alt => "want a car buy a car") %>
+                    <%= image_tag("https://s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/nopictures1.png", :alt => "Used car near me") %>
                 <% end %>                            
-                  Price $: <%= wlisting.price %>                                  
+                  Car Price $: <%= wlisting.price %>                                  
               </p>
               
 

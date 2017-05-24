@@ -3,7 +3,7 @@
           <% if @wholesalelistings.present? %>
             <hr />
             <div class="center-column" id="right-center-column2" >         
-            <h1 style = "color: #FFc200;">WHOLESALE LISTINGS</h1>       
+            <h1 style = "color: #FFc200;">WHOLESALE DEALER CARS</h1>       
               <% @wholesalelistings.each do |wlisting| %>              
                   <div id = "listingsdescsmall">                
                       <%= link_to wlisting do %>
@@ -13,7 +13,7 @@
                                 <%= image_tag wlisting.image.url(:thumb) if wlisting.image_url.present? %> 
                                 <br>
                               <% else %>
-                                <%= image_tag("https://s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/nopictures1.png", :alt => "want a car buy a car") %>
+                                <%= image_tag("https://s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/nopictures1.png", :alt => "Used Car dealerships") %>
                               <% end %>
                                Price $: <%= wlisting.price %>                                                                                        
                           </p>

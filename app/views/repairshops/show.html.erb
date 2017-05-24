@@ -8,7 +8,7 @@
       <% if @repairshop.image_url.present? %> 
         <%= image_tag @repairshop.image.url(:thumb) if @repairshop.image_url.present? %>
       <% else %>
-        <%= image_tag("https://s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/repairbigsmall.png", :alt => "want a car buy a car") %>
+        <%= image_tag("https://s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/repairbigsmall.png", :alt => "Car Repairs around me") %>
       <% end %>
         
     </p>

@@ -4,7 +4,8 @@
 
  <div class ="center">
     <%= image_tag("wacbac2.png", :alt => "rss feed", :size => "300x100") %>
-    <%= link_to 'POST A NEW VEHICLE', new_listing_path, class: "btn btn-danger" %>      
+    <%= link_to 'SELL YOUR CAR', new_listing_path, class: "btn btn-danger" %> 
+    <h2 style = "text-align: center; color: #fff">SEARCH FOR A VEHCILE</h2>
   </div>
 
   <%= render 'categories/search'%>
@@ -24,10 +25,10 @@
         <div class= "col-md-2 col-sm-6" >    
           <table>
             <tr>
-              <th class="table-header" style="text-align: center;" ><%= link_to image_tag("sedanscoupes.svg", size: "150x150"), category_path(@sedan) %></th>
+              <th class="table-header" style="text-align: center;" ><%= link_to image_tag("sedanscoupes.svg", size: "150x150", :alt => "Sedan Car for sale"), category_path(@sedan) %></th>
             </tr>            
             <tr>
-              <th class="table-header" style="text-align: center;"><%= link_to image_tag("minivans.svg", size: "200x200"), category_path(@van)  %></th>            
+              <th class="table-header" style="text-align: center;"><%= link_to image_tag("minivans.svg", size: "200x200", :alt => "Vans for sale"), category_path(@van)  %></th>            
             </tr>         
           </table>
         </div> 
@@ -35,22 +36,22 @@
         <div class="col-md-2 col-sm-6" >
           <table>
             <tr>
-              <th class="table-header" style="text-align: center;"><%= link_to image_tag("coupe.svg", size: "200x200") , category_path(@coupe) %></th>
+              <th class="table-header" style="text-align: center;"><%= link_to image_tag("coupe.svg", size: "200x200", :alt => "Coupe Car for sale") , category_path(@coupe) %></th>
             </tr>       
           </table>
           <table>
             <tr>
-              <th class="table-header" style="text-align: center;"><%= link_to image_tag("wagons.svg", size: "150x150", style: "margin-left: 15%; " ), category_path(@wagon)  %></th>          
+              <th class="table-header" style="text-align: center;"><%= link_to image_tag("wagons.svg", size: "150x150", style: "margin-left: 15%;", :alt => "Used Wagons for sale" ), category_path(@wagon)  %></th>          
             </tr>       
           </table>
         </div>
         <div class="col-md-2 col-sm-6">
           <table>
             <tr>
-              <th class="table-header" style="text-align: center;"><%= link_to image_tag("convertible.svg", size: "150x150" ) , category_path(@convertible) %></th>
+              <th class="table-header" style="text-align: center;"><%= link_to image_tag("convertible.svg", size: "150x150", :alt => "Buy Used Convertible Car" ) , category_path(@convertible) %></th>
             </tr>                  
               <tr>
-                <th class="table-header" style="text-align: center;"><%= link_to image_tag("sportutilities.svg", size: "200x200"), category_path(@suv) %></th>
+                <th class="table-header" style="text-align: center;"><%= link_to image_tag("sportutilities.svg", size: "200x200", :alt => "Sell and Buy sports utilities Car"), category_path(@suv) %></th>
               </tr>        
             </table>                    
         </div>
@@ -59,10 +60,10 @@
          <div class="col-md-2 col-sm-6">
           <table>
             <tr>
-              <th class="table-header" style="text-align: center;"><%= link_to image_tag("sportscars.svg", size: "200x200") , category_path(@sports) %></th>
+              <th class="table-header" style="text-align: center;"><%= link_to image_tag("sportscars.svg", size: "200x200", :alt => "Sell and Buy Car sportscar") , category_path(@sports) %></th>
             </tr>                  
               <tr>
-                <th class="table-header" style="text-align: center;"><%= link_to image_tag("diesel.svg", size: "150x150" ), category_path(@diesel) %></th>
+                <th class="table-header" style="text-align: center;"><%= link_to image_tag("diesel.svg", size: "150x150", :alt => "Sell Used Diesel cars" ), category_path(@diesel) %></th>
               </tr>        
             </table>                    
         </div>
@@ -70,10 +71,10 @@
          <div class="col-md-2 col-sm-6" >
           <table>
             <tr>
-              <th class="table-header" style="text-align: center;"><%= link_to image_tag("crossover.svg", size: "150x150" ) , category_path(@crossover) %></th>
+              <th class="table-header" style="text-align: center;"><%= link_to image_tag("crossover.svg", size: "150x150", :alt => "Buy Used Crossover cars" ) , category_path(@crossover) %></th>
             </tr>                  
               <tr>
-                <th class="table-header" style="text-align: center;"><%= link_to image_tag("luxury.svg", size: "200x200"), category_path(@luxury) %></th>
+                <th class="table-header" style="text-align: center;"><%= link_to image_tag("luxury.svg", size: "200x200", :alt => "Sell and Buy Luxury Cars"), category_path(@luxury) %></th>
               </tr>        
             </table>                    
         </div>
@@ -81,10 +82,10 @@
          <div class="col-md-2 col-sm-6" >
           <table>
             <tr>
-              <th class="table-header" style="text-align: center;"><%= link_to image_tag("hatchback.svg", size: "200x200") , category_path(@hatchback) %></th>
+              <th class="table-header" style="text-align: center;"><%= link_to image_tag("hatchback.svg", size: "200x200", :alt => "Sell and Buy HatchBack Car") , category_path(@hatchback) %></th>
             </tr>                 
               <tr>
-                <th class="table-header" style="text-align: center;"><%= link_to image_tag("other.svg", size: "150x150" ), category_path(@other) %></th>
+                <th class="table-header" style="text-align: center;"><%= link_to image_tag("other.svg", size: "150x150", :alt => "All Cars for sale" ), category_path(@other) %></th>
               </tr>        
             </table>                    
         </div>
