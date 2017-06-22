@@ -2,7 +2,7 @@
     <section class="formclass">
         <%= form_tag search_listings_path, method: :get, class: 'navbar-form navbar-center' do |f| %>
         <p>search for cars</p>        
-        <%= text_field_tag :category, nil, placeholder: 'Category' %>
+        <%= text_field_tag :category, nil, placeholder: 'Car Type' %>
         <%= text_field_tag :minprice, nil, placeholder: 'Min Price' %> 
         <%= text_field_tag :maxprice, nil, placeholder: 'Max Price' %>
         <%= text_field_tag :location, nil, placeholder: 'Near' %>        

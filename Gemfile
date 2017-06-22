@@ -53,7 +53,7 @@ gem "fog"
 gem 'figaro'
 
 gem 'social-share-button', github: "huacnlee/social-share-button"
-
+gem 'filterrific'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
@@ -80,8 +80,7 @@ gem 'active_admin_importable'
 
 group :development do 
 	# Use sqlite3 as the database for Active Record
-	gem 'sqlite3'
-	
+	gem 'sqlite3'	
 end
 
 group :production do 	

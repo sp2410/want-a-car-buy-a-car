@@ -104,6 +104,15 @@ class ListingsController < ApplicationController
 		end
 
 	end
+
+	def usedcars
+		@usedcars = Listing.where('newused=?', "U")	
+	end
+
+	def newcars
+		@newcars = Listing.where('newused=?', "N")	
+	end
+
 	
 
 	private

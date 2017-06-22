@@ -23,6 +23,17 @@ class Listing < ActiveRecord::Base
 	geocoded_by :full_address
 	after_validation :geocode
 
+	filterrific(
+		default_filter_params: { sorted_by: 'created_at_desc' },
+		available_filters: [
+	    :sorted_by,
+	    :search_query,
+	    :with_category_id,
+	    :with_subcategory_id,
+	    :with_created_at_gte
+	  ]
+	)
+
 
 	# def save_with_a_user
 	#  set_user!(listing_user)
@@ -80,6 +91,8 @@ class Listing < ActiveRecord::Base
 	def returnthecount(count)
 		return count
 	end
+
+
 
 
 	# def self.import(file)		

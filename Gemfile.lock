@@ -106,6 +106,7 @@ GEM
     execjs (2.7.0)
     figaro (1.1.1)
       thor (~> 0.14)
+    filterrific (2.1.2)
     fission (0.5.0)
       CFPropertyList (~> 2.2)
     fog (1.38.0)
@@ -395,6 +396,7 @@ DEPENDENCIES
   coffee-rails (~> 4.1.0)
   devise
   figaro
+  filterrific
   fog
   geocoder
   heroku-deflater

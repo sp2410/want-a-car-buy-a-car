@@ -1,185 +1,198 @@
 <div class="parent" >
- 
-  <div class="center-column" id ="whitebackground">   
-  <h1 style ="margin: 10px auto; color: #FF3232"><%= @listing.title.to_s.upcase %> </h1>     
- <div id = "listingsdesc">
- 
-    <p>       
-      <% if @listing.image_url.present? %> 
-        <%= image_tag @listing.image.url(:thumb) %>
-      <% else %>
-        <%= image_tag("https://s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/nopictures1.png", :alt => "Buy Used Car", :size => "50x600") %>
-      <% end %>
+
+
+ <div class ="col-lg-6  col-sm-12 text-center ">
+    <div class ="w3-panel w3-card-2 ">
         
-    </p>
+          <h1 style ="margin: 0px auto; color: #FF3232"><%= @listing.title.to_s.upcase %> </h1>  
+                  
+            <p>       
+              <% if @listing.image_url.present? %> 
+                <%= image_tag (@listing.image.url)%>
+              <% else %>
+                <%= image_tag("https://s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/nopictures1.png", :alt => "Buy Used Car", :size => "50x600") %>
+              <% end %>
+                
+            </p>
 
-     <%= social_share_button_tag( @listing.title , :url => @listing_path, :image => @listing.image_url , desc: "#{@listing.description} : $ #{@listing.price}" ) %>
-  </div>
+            <p style="font-size: 15px; color:#FF3232;margin-top: -15px;margin-bottom: 2px;"><strong>Posted <%=  "#{time_ago_in_words(@listing.created_at)} ago" %></strong></p>    
 
-    
-    
-  </div>
+             <%= social_share_button_tag( @listing.title , :url => @listing_path, :image => @listing.image_url , desc: "#{@listing.description} : $ #{@listing.price}" ) %>          
 
-<div class="center-column" id ="whitebackground">
-  <h1 style ="margin: 10px auto; color: #FF3232">DESCRIPTION</h1> 
-     <h2 style ="color: #FF3232">
-      <%=  @listing.description.to_s.upcase %>
-      </h2>
-
-<style type="text/css">
-.tg  {border-collapse:collapse;border-spacing:0; text-align: right;}
-.tg td{font-family:Arial, sans-serif;font-size:14px;  text-align:center; padding:2px 2px; border-width:1px;overflow:hidden;word-break:normal;}
-.tg th{font-family:Arial, sans-serif;font-size:14px;text-align:center;  font-weight:normal;padding:2px 2px;border-width:1px;overflow:hidden;word-break:normal;}
-.tg .tg-yw4l{vertical-align:top}
-</style>
+    </div>
 
 
-<table class="tg">
-  <tr>
-    <th class="tg-yw4l">Year:</th>
-    <th class="tg-yw4l"><%= " #{@listing.year}" %></th>
-  </tr>
-  <tr>
-    <td class="tg-yw4l">Miles:</td>
-    <td class="tg-yw4l"><%= "#{@listing.miles}" %></td>
-  </tr>
-  <tr>
-    <td class="tg-yw4l">Transmission:</td>
-    <td class="tg-yw4l"><%= "#{@listing.transmission}" %></td>
-  </tr>
-  <tr>
-    <td class="tg-yw4l">Color:</td>
-    <td class="tg-yw4l"><%= "#{@listing.color}" %></td>
-  </tr>
-  <tr>
-    <td class="tg-yw4l">Cylinder:</td>
-    <td class="tg-yw4l"><%= "#{@listing.cylinder}" %></td>
-  </tr>
-  <tr>
-    <td class="tg-yw4l">Fuel Type:</td>
-    <td class="tg-yw4l"><%=  "#{@listing.fuel}" %></td>
-  </tr>
-  <tr>
-    <td class="tg-yw4l">Drive:</td>
-    <td class="tg-yw4l"><%=  "#{@listing.drive}" %></td>
-  </tr>
-  <tr>
-    <td class="tg-yw4l">Estimated Price $:</td>
-    <td class="tg-yw4l"><%= "#{ @listing.price}" %> </td>
-  </tr>
-  <tr>
-    <td class="tg-yw4l">New Or Used:</td>
-    <td class="tg-yw4l"><%= "#{ @listing.newused}" %></td>
-  </tr>
-  <tr>
-    <td class="tg-yw4l">Stock Number:</td>
-    <td class="tg-yw4l"><%= "#{ @listing.stocknumber}" %></td>
-  </tr>
-  <tr>
-    <td class="tg-yw4l">Model:</td>
-    <td class="tg-yw4l"><%= "#{ @listing.model}" %></td>
-  </tr>
-  <tr>
-    <td class="tg-yw4l">Trim:</td>
-    <td class="tg-yw4l"><%= "#{ @listing.trim}" %></td>
-  </tr>
-  <tr>
-    <td class="tg-yw4l">VIN:</td>
-    <td class="tg-yw4l"><%= "#{ @listing.vin}" %></td>
-  </tr>
-  <tr>
-    <td class="tg-yw4l">Enginer Description:</td>
-    <td class="tg-yw4l"><%= "#{ @listing.enginedescription}" %></td>
-  </tr>
-  <tr>
-    <td class="tg-yw4l">Interior Color:</td>
-    <td class="tg-yw4l"><%= "#{ @listing.interiorcolor}" %></td>
-  </tr>
-  <tr>
-    <td class="tg-yw4l">Options:</td>
-    <td class="tg-yw4l"><%= "#{ @listing.options}" %></td>
-  </tr>
-  <tr>
-    <td class="tg-yw4l">Car Location:</td>
-    <td class="tg-yw4l"><%= "#{ @listing.full_address}" %></td>
-  </tr>
-</table>
-
-
-      <% if @listing.user.eql? current_user %>
-        <p><%= link_to 'edit', edit_listing_path %></p>
-        <p><%= link_to 'delete', @listing, data: {confirm: "Wait! Are you sure ?"}, method: :delete %></p>
-      <% end %>
-     
-  </div>
-
-
-<div class="center-column" id="right-center-column2" >
-       
-      
-      <% if @listings.present? %>
-          <h1>OTHER LISTINGS BY SAME USER</h1>
-          <% @listings.each do |wlisting| %>                      
-              <% if  wlisting.id != @listing.id %>
-                <div id = "listingsdescsmall">                
-                  <%= link_to wlisting do %>
-                      <p style="margin-top: -10px;">
-                <% if wlisting.image_url.present? %> 
-                    <%= image_tag wlisting.image.url(:thumb) if wlisting.image_url.present? %> 
-                    <br>
-                <% else %>
-                    <%= image_tag("https://s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/nopictures1.png", :alt => "want a car buy a car: Buy Used Cars") %>
-                <% end %>                            
-                  Price $: <%= wlisting.price %>                                  
-              </p>
-              
-
-              <br> 
-
-              <p style = "margin-top: 1px; color: #A9A9A9; font-size: 13px;"><%= wlisting.city %> - <%= wlisting.state %>  
-              </p>
-
-               <div id ="ribbon">
-                    <div id="txt">
-                      <%= distance_of_time_in_words(wlisting.updated_at, Time.now).split(' ')[-2] %>
-                       <%= distance_of_time_in_words(wlisting.updated_at, Time.now).split(' ')[-1] %>
-
-                    </div>
-                </div>          
-
-                  <% end %>
-                </div>
-              <% end %>      
+    <div class ="w3-panel w3-card-2 ">
+       <!-- <button type="button">reply</button> -->
+       <h1 style ="margin: 0px auto; color: #FF3232">USER INFO</h1>     
+       <br>      
+       <% if @listing.user != nil %>  
+         <% if @listing.user.email != nil %>  
+          <p style="font-size: 13px; margin-top: -20px;"><strong><%= "Contact Person:  #{@listing.user.email}" %></strong></p>
           <% end %>
-      <% end %>
-  
-</div>
 
-<div class="center-column" id="right-center-column2" >
-     <!-- <button type="button">reply</button> -->
-     <h1>USER INFO</h1>     
-     <br>      
-     <% if @listing.user != nil %>  
-       <% if @listing.user.email != nil %>  
-        <p style="font-size: 20px; margin-top: -10px;"><%= "Contact Person:  #{@listing.user.email}" %></p>
-        <% end %>
-
-        <% if @listing.user.role != nil %>
-          <p style="font-size: 20px; margin-top: -10px;"><%= "User Type:  #{@listing.user.role}" %></p>
-          <% else %>
-          <p style="font-size: 20px; margin-top: -10px;">User Type: Private Owner</p>
-        <% end %>
-
+          <% if @listing.user.role != nil %>
+            <p style="font-size: 13px; margin-top: -20px;"><strong><%= "User Type:  #{@listing.user.role}" %></strong></p>
+            <% else %>
+            <p style="font-size: 13px; margin-top: -20px;"><strong>User Type: Private Owner</strong></p>
+          <% end %>
 
           <% if @listing.user.website != nil %>               
-            <p style="font-size: 20px; margin-top: -10px;"><a href = <%= "#{@listing.user.website}" %> > Visit Their Website</a></p>        
+            <p style="font-size: 13px; margin-top: -20px;"><strong><a href = <%= "#{@listing.user.website}" %> > Visit Their Website</a></strong></p>        
           <% end %>
-      <% end %>
+        <% end %>
 
-      <p style="font-size: 20px; margin-top: -10px;">posted <%=  "#{time_ago_in_words(@listing.created_at)} ago" %></p>    
-      <p style="font-size: 0px; margin-top: -10px;">updated <%=  "#{time_ago_in_words(@listing.updated_at)} ago" %></p>        
-    
+        
+    </div>
+
+
+
+
+  </div>
+
+
+<div class ="col-lg-6  col-sm-12 text-center ">
+  <div class ="w3-panel w3-card-2 ">
+      
+        <h1 style ="margin: 0px auto; color: #FF3232">DESCRIPTION</h1> 
+           <h2 style ="color: #FF3232">
+            <%=  @listing.description.to_s.upcase %>
+            </h2>
+        
+          <table class="tg">
+          <tr>
+              <td class="tg-yw4l" style ="color: #FF3232"><strong>Estimated Price $:</strong></td>
+              <td class="tg-yw4l" style ="color: #FF3232"><strong><%= "#{ @listing.price}" %></strong> </td>
+            </tr>
+            <tr>
+              <td class="tg-yw4l" ><strong>Year:</strong></td>
+              <th class="tg-yw4l"><strong><%= " #{@listing.year}" %></strong></th>
+            </tr>
+            <tr>
+              <td class="tg-yw4l"><strong>Miles:</strong></td>
+              <td class="tg-yw4l"><strong><%= "#{@listing.miles}" %></strong></td>
+            </tr>
+            <tr>
+              <td class="tg-yw4l"><strong>Transmission:</strong></td>
+              <td class="tg-yw4l"><strong><%= "#{@listing.transmission}" %></strong></td>
+            </tr>
+            <tr>
+              <td class="tg-yw4l"><strong>Color:</strong></td>
+              <td class="tg-yw4l"><strong><%= "#{@listing.color}" %></strong></td>
+            </tr>
+            <tr>
+              <td class="tg-yw4l"><strong>Cylinder:</strong></td>
+              <td class="tg-yw4l"><strong><%= "#{@listing.cylinder}" %></strong></td>
+            </tr>
+            <tr>
+              <td class="tg-yw4l"><strong>Fuel Type:</strong></td>
+              <td class="tg-yw4l"><strong><%=  "#{@listing.fuel}" %></strong></td>
+            </tr>
+            <tr>
+              <td class="tg-yw4l"><strong>Drive:</strong></td>
+              <td class="tg-yw4l"><strong><%=  "#{@listing.drive}" %></strong></td>
+            </tr>            
+            <tr>
+              <td class="tg-yw4l"><strong>New Or Used:</strong></td>
+              <td class="tg-yw4l"><strong><%= "#{ @listing.newused}" %></strong></td>
+            </tr>
+            <tr>
+              <td class="tg-yw4l"><strong>Stock Number:</strong></td>
+              <td class="tg-yw4l"><strong><%= "#{ @listing.stocknumber}" %></strong></td>
+            </tr>
+            <tr>
+              <td class="tg-yw4l"><strong>Model:</strong></td>
+              <td class="tg-yw4l"><strong><%= "#{ @listing.model}" %></strong></td>
+            </tr>
+            <tr>
+              <td class="tg-yw4l"><strong>Trim:</strong></td>
+              <td class="tg-yw4l"><strong><%= "#{ @listing.trim}" %></strong></td>
+            </tr>
+            <tr>
+              <td class="tg-yw4l"><strong>VIN:</strong></td>
+              <td class="tg-yw4l"><strong><%= "#{ @listing.vin}" %></strong></td>
+            </tr>
+            <tr>
+              <td class="tg-yw4l"><strong>Enginer Description:</strong></td>
+              <td class="tg-yw4l"><strong><%= "#{ @listing.enginedescription}" %></strong></td>
+            </tr>
+            <tr>
+              <td class="tg-yw4l"><strong>Interior Color:</strong></td>
+              <td class="tg-yw4l"><strong><%= "#{ @listing.interiorcolor}" %></strong></td>
+            </tr>
+            <tr>
+              <td class="tg-yw4l"><strong>Options:</strong></td>
+              <td class="tg-yw4l"><strong><%= "#{ @listing.options}" %></strong></td>
+            </tr>
+            <tr>
+              <td class="tg-yw4l"><strong>Car Location:</strong></td>
+              <td class="tg-yw4l"><strong><%= "#{ @listing.full_address}" %></strong></td>
+            </tr>
+          </table>
+
+
+            <% if @listing.user.eql? current_user %>
+              <p><%= link_to 'edit', edit_listing_path %></p>
+              <p><%= link_to 'delete', @listing, data: {confirm: "Wait! Are you sure ?"}, method: :delete %></p>
+            <% end %>
+           
+        
+  </div>
 </div>
+ 
+<div class ="col-lg-6  col-sm-12 text-center ">
+  <div class ="w3-panel w3-card-2 ">
+       <!-- <button type="button">reply</button> -->
+       <h1 style ="margin: 0px auto; color: #FF3232">VEHICLE IMAGES</h1>     
+       <br>      
+            
+
+  </div>
+</div>
+
+<div class ="col-lg-6  col-sm-12 text-center ">
+  <div class ="w3-panel w3-card-2 ">
+         
+        
+        <% if @listings.present? %>
+            <h1 style ="margin: 0px auto; color: #FF3232">OTHER LISTINGS BY SAME USER</h1>
+            <% @listings.each do |wlisting| %>                      
+                <% if  wlisting.id != @listing.id %>
+                  <div id = "listingsdescsmall">                
+                    <%= link_to wlisting do %>
+                        <p style="margin-top: -10px;">
+                  <% if wlisting.image_url.present? %> 
+                      <%= image_tag wlisting.image.url(:thumb) if wlisting.image_url.present? %> 
+                      <br>
+                  <% else %>
+                      <%= image_tag("https://s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/nopictures1.png", :alt => "want a car buy a car: Buy Used Cars") %>
+                  <% end %>                            
+                    Price $: <%= wlisting.price %>                                  
+                </p>
+                
+
+                <br> 
+
+                <p style = "margin-top: 1px; color: #A9A9A9; font-size: 13px;"><%= wlisting.city %> - <%= wlisting.state %>  
+                </p>
+
+                 <div id ="ribbon">
+                      <div id="txt">
+                        <%= distance_of_time_in_words(wlisting.updated_at, Time.now).split(' ')[-2] %>
+                         <%= distance_of_time_in_words(wlisting.updated_at, Time.now).split(' ')[-1] %>
+
+                      </div>
+                  </div>          
+
+                    <% end %>
+                  </div>
+                <% end %>      
+            <% end %>
+        <% end %>
+    
+  </div>
+</div>
+
 
 
 </div>

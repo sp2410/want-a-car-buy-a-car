@@ -1,0 +1,54 @@
+<div class="container2">
+ <div class="center-column" id="right-center-column2">
+  <h1>USED CARS</h1>
+   <div class="row">
+       <div class="newest"><%= link_to 'NEWEST', :sort => 'created_at', :direction => 'desc' %>        
+        
+       </div>
+       <div class="oldest"><%= link_to 'OLDEST', :sort => 'created_at',:direction => 'asc'  %></div>
+       <div class="highest-price"><%= link_to 'HIGHEST PRICE', :sort => 'price', :direction => 'desc'  %></div>
+       <div class="lowest-price"><%= link_to 'LOWEST PRICE', :sort => 'price', :direction => 'asc' %></div>
+   </div>
+</div>
+
+<div class="center-column" id="right-center-column2" >
+      <% if @newcars.present? %>
+          
+          <% @newcars.each do |wlisting| %>              
+              <div id = "listingsdescsmall">                
+                  <%= link_to wlisting do %>
+                      <p style="margin-top: -10px;">
+                <% if wlisting.image_url.present? %> 
+                    <%= image_tag wlisting.image.url(:thumb) if wlisting.image_url.present? %> 
+                    <br>
+                <% else %>
+                    <%= image_tag("https://s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/nopictures1.png", :alt => "My Cars") %>
+                <% end %>                            
+                  Price $: <%= wlisting.price %>                                  
+              </p>
+              
+
+              <br> 
+
+              <p style = "margin-top: 1px; color: #A9A9A9; font-size: 13px;"><%= wlisting.city %> - <%= wlisting.state %>  
+              </p>
+
+               <div id ="ribbon">
+                    <div id="txt">
+                      <%= distance_of_time_in_words(wlisting.updated_at, Time.now).split(' ')[-2] %>
+                       <%= distance_of_time_in_words(wlisting.updated_at, Time.now).split(' ')[-1] %>
+
+                    </div>
+                </div>          
+
+                  <% end %>
+              </div>                   
+          <% end %>
+      <% end %>
+  
+</div>
+
+
+</div>
+
+

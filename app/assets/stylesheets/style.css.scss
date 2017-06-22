@@ -1073,17 +1073,28 @@
             width: 100%;
             margin: 0 auto;
             text-align: center; 
-            /*background-image: image-url("bgpattern2.png") ;*/
-            /*background-image: image-url("car20.jpg") ;*/
-            background-color: #FF3232;
-
+            /*background-image: url("//s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/carbg.jpg") ;*/
             background-size:     cover;                    
             background-repeat:   no-repeat;
             background-position: center center; 
             min-height: 500px;  
+            background-color: #FF3232;  
 
-          
+
+            /* &:before {
+              content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background-image: linear-gradient(to bottom right,#FF3232,#FF3232);
+            opacity: .3; 
+            }
+*/
           } 
+
+                      
          
 
 a.btn.btn-danger{
@@ -1205,7 +1216,7 @@ a.btn.btn-danger:hover{
 }
 .social li a i {
   font-size: 16px;
-  margin: 0 0 0 5px;  
+  margin: 0 0 0 0px;  
   color: #EDEFF1 !important;
 }
 
@@ -1267,3 +1278,28 @@ th.table-header > img {
       margin: auto;      
       
 }
+
+
+
+
+
+
+/*new CSS*/
+
+
+
+
+
+.tg  {border-collapse:collapse;border-spacing:0; text-align: right;}
+.tg td{font-family:Arial, sans-serif;font-size:14px;  text-align:center; padding:2px 2px; border-width:1px;overflow:hidden;word-break:normal;}
+.tg th{font-family:Arial, sans-serif;font-size:14px;text-align:center;  font-weight:normal;padding:2px 2px;border-width:1px;overflow:hidden;word-break:normal;}
+.tg .tg-yw4l{vertical-align:top}
+
+.w3-panel.w3-card-2{
+  width: 100%;
+  margin-top: 1%;
+}
+
+
+
+

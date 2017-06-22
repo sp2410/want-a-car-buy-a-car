@@ -89,6 +89,8 @@ Rails.application.routes.draw do
   match '/about', to: 'pages#about', via: :get
   match '/contact', to: 'pages#contact', via: :get
   match '/mylistings', to: 'listings#mylistings', via: :get
+  match '/usedcars', to: 'listings#usedcars', via: :get
+  match '/newcars', to: 'listings#newcars', via: :get
   match '/subcategories/find_by_category', to: 'subcategories#find_by_category', via: :post
 
 end
