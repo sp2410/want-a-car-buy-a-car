@@ -10,7 +10,7 @@
               <% if @listing.image_url.present? %> 
                 <%= image_tag (@listing.image.url)%>
               <% else %>
-                <%= image_tag("https://s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/nopictures1.png", :alt => "Buy Used Car", :size => "50x600") %>
+                <%= image_tag("https://s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/nopictures1.png", :alt => "Buy Used Car") %>
               <% end %>
                 
             </p>
