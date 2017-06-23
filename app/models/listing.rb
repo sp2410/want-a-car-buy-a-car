@@ -16,8 +16,18 @@ class Listing < ActiveRecord::Base
 	# validates_presence_of :state
 	# validates_presence_of :description
 
+
 		
 	mount_uploader :image, ImageUploader
+	
+	mount_uploader :imagefront, ImageUploader
+	mount_uploader :imageback, ImageUploader
+	mount_uploader :imageleft, ImageUploader
+	mount_uploader :imageright, ImageUploader
+	mount_uploader :frontinterior, ImageUploader
+	mount_uploader :rearinterior, ImageUploader
+
+	
 
 
 	geocoded_by :full_address

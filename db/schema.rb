@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170330235530) do
+ActiveRecord::Schema.define(version: 20170623015634) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -100,6 +100,12 @@ ActiveRecord::Schema.define(version: 20170330235530) do
     t.string   "enginedescription"
     t.string   "interiorcolor"
     t.string   "options"
+    t.string   "imagefront"
+    t.string   "imageback"
+    t.string   "imageleft"
+    t.string   "imageright"
+    t.string   "frontinterior"
+    t.string   "rearinterior"
   end
 
   add_index "listings", ["user_id"], name: "index_listings_on_user_id"

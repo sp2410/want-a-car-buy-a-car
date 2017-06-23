@@ -28,17 +28,17 @@
        <br>      
        <% if @listing.user != nil %>  
          <% if @listing.user.email != nil %>  
-          <p style="font-size: 13px; margin-top: -20px;"><strong><%= "Contact Person:  #{@listing.user.email}" %></strong></p>
+          <p style="font-size: 15px; margin-top: -10px;"><strong><%= "Contact Person:  #{@listing.user.email}" %></strong></p>
           <% end %>
 
           <% if @listing.user.role != nil %>
-            <p style="font-size: 13px; margin-top: -20px;"><strong><%= "User Type:  #{@listing.user.role}" %></strong></p>
+            <p style="font-size: 15px; margin-top: -20px;"><strong><%= "User Type:  #{@listing.user.role}" %></strong></p>
             <% else %>
-            <p style="font-size: 13px; margin-top: -20px;"><strong>User Type: Private Owner</strong></p>
+            <p style="font-size: 15px; margin-top: -20px;"><strong>User Type: Private Owner</strong></p>
           <% end %>
 
           <% if @listing.user.website != nil %>               
-            <p style="font-size: 13px; margin-top: -20px;"><strong><a href = <%= "#{@listing.user.website}" %> > Visit Their Website</a></strong></p>        
+            <p style="font-size: 15px; margin-top: -20px;"><strong><a href = <%= "#{@listing.user.website}" %> > Visit Their Website</a></strong></p>        
           <% end %>
         <% end %>
 
@@ -61,8 +61,8 @@
         
           <table class="tg">
           <tr>
-              <td class="tg-yw4l" style ="color: #FF3232"><strong>Estimated Price $:</strong></td>
-              <td class="tg-yw4l" style ="color: #FF3232"><strong><%= "#{ @listing.price}" %></strong> </td>
+              <td class="tg-yw4l" style ="color: #FF3232"><strong>Estimated Price:</strong></td>
+              <td class="tg-yw4l" style ="color: #FF3232"><strong>$<%= "#{ @listing.price}" %></strong> </td>
             </tr>
             <tr>
               <td class="tg-yw4l" ><strong>Year:</strong></td>
@@ -132,8 +132,8 @@
 
 
             <% if @listing.user.eql? current_user %>
-              <p><%= link_to 'edit', edit_listing_path %></p>
-              <p><%= link_to 'delete', @listing, data: {confirm: "Wait! Are you sure ?"}, method: :delete %></p>
+              <p><%= link_to 'EDIT', edit_listing_path, class: "btn btn-default", style: "text-decoration: none;" %></p>
+              <p><%= link_to 'DELETE', @listing, data: {confirm: "Wait! Are you sure ?"}, method: :delete, class: "btn btn-default", style: "text-decoration: none;" %></p>
             <% end %>
            
         
@@ -143,7 +143,71 @@
 <div class ="col-lg-6  col-sm-12 text-center ">
   <div class ="w3-panel w3-card-2 ">
        <!-- <button type="button">reply</button> -->
-       <h1 style ="margin: 0px auto; color: #FF3232">VEHICLE IMAGES</h1>     
+       <h1 style ="margin: 0px auto; color: #FF3232">VEHICLE IMAGES</h1>   
+
+       <h2 style ="margin: 5% auto;">FRONT </h2>  
+                  
+            <p>       
+              <% if @listing.imagefront.present? %> 
+                <%= image_tag (@listing.imagefront.url)%>
+              <% else %>
+                <%= image_tag("https://s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/nopictures1.png", :alt => "Buy Used Car") %>
+              <% end %>
+                
+            </p>
+
+        <h2 style ="margin: 5% auto;">BACK</h2>  
+                  
+            <p>       
+              <% if @listing.imageback.present? %> 
+                <%= image_tag (@listing.imageback.url)%>
+              <% else %>
+                <%= image_tag("https://s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/nopictures1.png", :alt => "Buy Used Car") %>
+              <% end %>
+                
+            </p>
+            
+         <h2 style ="margin: 5% auto;">LEFT</h2>  
+                  
+            <p>       
+              <% if @listing.imageleft.present? %> 
+                <%= image_tag (@listing.imageleft.url)%>
+              <% else %>
+                <%= image_tag("https://s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/nopictures1.png", :alt => "Buy Used Car") %>
+              <% end %>
+                
+            </p>
+            
+         <h2 style ="margin: 5% auto;">RIGHT</h2>  
+                  
+            <p>       
+              <% if @listing.imageright.present? %> 
+                <%= image_tag (@listing.imageright.url)%>
+              <% else %>
+                <%= image_tag("https://s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/nopictures1.png", :alt => "Buy Used Car") %>
+              <% end %>
+                
+            </p>            
+          <h2 style ="margin: 5% auto;">FRONT INTERIOR</h2>  
+                  
+            <p>       
+              <% if @listing.frontinterior.present? %> 
+                <%= image_tag (@listing.frontinterior.url)%>
+              <% else %>
+                <%= image_tag("https://s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/nopictures1.png", :alt => "Buy Used Car") %>
+              <% end %>
+                
+            </p> 
+         <h2 style ="margin: 5% auto;">REAR INTERIOR</h2>  
+                  
+            <p>       
+              <% if @listing.rearinterior.present? %> 
+                <%= image_tag (@listing.rearinterior.url)%>
+              <% else %>
+                <%= image_tag("https://s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/nopictures1.png", :alt => "Buy Used Car") %>
+              <% end %>
+                
+            </p>      
        <br>      
             
 
