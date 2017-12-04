@@ -1,42 +1,161 @@
-<%= render 'repairshops/searchshops'%>    
-<% if user_signed_in? %>
-  <% if (current_user.role.eql? "premium") or (current_user.role.eql? "repairshop") %>  
-    <h1 style ="text-align: center; text-decoration: none; font-size: 20px;">
-      <%= link_to 'ADD YOUR REPAIR SHOP FOR FREE', new_repairshop_path %>
-    </h1>  
+<div class = "col-xs-12 col-sm-12 text-center" id = "herodiv">
+        
+    <%= image_tag("wacbac2.png", :alt => "rss feed", :size => "400x134", :style => "margin: 5em auto;") %>
+  
+  <h3 style = "margin-top: 0.1em; color: #fff;">Find Repair Shops Near You</h3>      
 
-    <h1 style ="text-align: center; font-size: 20px; margin-top: 20px;">
-      OR
-    </h1>  
-  <% end %>
-<% end %>
+    <div class= "col-xs-12 col-sm-12 col-lg-12 col-md-12" id = "searchboxcontainer">
 
-<% if @repairshops.present? %>    
-  <div class="center-column" id="right-center-column2" >
-    <h1>VIEW ALL REPAIR SHOPS</h1>
-          
-        <% @repairshops.each do |wlisting| %>              
-          <div id = "listingsdescsmall">                
-            <%= link_to wlisting do %>
-              <p style="margin-top: -10px;">
-                <% if wlisting.image_url.present? %> 
-                    <%= image_tag wlisting.image.url(:thumb) if wlisting.image_url.present? %> 
-                <% else %>
-                    <%= image_tag("https://s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/repairbigsmall.png", :alt => "Car Repairs around me") %>
-                <% end %>                            
-                  <%= wlisting.title %><br> <%= wlisting.city %>, <%= wlisting.state %>
-                   <br> Phone: <%= wlisting.phone %>                                   
-              </p>
-            <% end %>
-          </div>                   
-        <% end %>    
-  </div>    
-<% end %>
+        <div class = "col-xs-2 col-sm-2 col-md-2 col-lg-2">
+        </div>
 
+        <div class= "col-xs-8 col-sm-8 col-md-8 col-lg-8" style = "background: white; box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 5px 5px rgba(0,0,0,0.22); padding: 20px;border-radius: 5px;" >             
+          <%= render "categories/repairshopsearch" %>   
+        </div>
 
-<div class="parent">
-  <div class="center-column" id="right-center-column-full2" >
-  <%= render "repairshops/repairshopmap"%>
-  </div>
+        <div class = "col-xs-2 col-sm-2 col-md-2 col-lg-2">
+        </div>
+    </div>
+
 </div>
 
+
+
+
+<div class= "col-xs-12 col-sm-12 col-lg-12 col-md-12" style = "background-color: #fff;">
+
+  <div class= "col-xs-12 col-sm-12 col-lg-8 col-md-12" >
+ 
+      <div class="tab">
+        <button class="tablinks" onclick="openCity(event, 'Boats')" id="defaultOpen" >Recommended Repair Shops Near You</button>       
+      </div>
+
+
+      <div id="Boats" class="tabcontent">
+             <%= render 'repairshops/repairshops'%>
+      </div>
+
+
+  </div>
+
+  
+
+  <div class= "col-xs-12 col-sm-12 col-lg-4 col-md-12" id = "mapdiv" >
+      <%= render "repairshops/repairshopmap"%>
+  </div>
+
+</div>
+
+
+<script>
+
+// document.addEventListener("DOMContentLoaded", function(event) {
+//     console.log("DOM fully loaded and parsed");
+//   });
+
+(function() {
+
+  init(); //on page load - call the function show first slide, hide the rest
+
+  function init() {
+
+    // This is to intialize with active slides and dot
+    // document.getElementById("sharedsort").scrollIntoView();
+    document.getElementById("defaultOpen").click(); //this is for divs in tab to show boats first
+    document.getElementById("defaultOpen1").click(); //this is for divs in search
+
+
+
+    parents = document.getElementsByClassName('slideshow-container'); //get all the div slideshowcontainer and store as parent array
+    
+//    console.log(parents.length); //total number of slideshow containers
+
+    for (j = 0; j < parents.length; j++) { //Go in a loop for all the divs slideshow-container      
+      var slides = parents[j].getElementsByClassName("mySlides"); //
+      //console.log(slides);
+
+      var dots = parents[j].getElementsByClassName("dot");      
+      slides[0].classList.add('active-slide');
+      dots[0].classList.add('active');
+      // console.log(slides[0]);
+    }
+  }
+
+
+
+
+
+    dots = document.getElementsByClassName('dot'); //dots functionality
+
+    for (i = 0; i < dots.length; i++) {
+
+      dots[i].onclick = function() {
+
+        slides = this.parentNode.parentNode.getElementsByClassName("mySlides");
+
+        for (j = 0; j < this.parentNode.children.length; j++) {
+          this.parentNode.children[j].classList.remove('active');
+          slides[j].classList.remove('active-slide');
+          if (this.parentNode.children[j] == this) {
+            index = j;
+          }
+        }
+        this.classList.add('active');
+        slides[index].classList.add('active-slide');
+
+      }
+    }
+
+//prev/next functionality
+  links = document.querySelectorAll('.slideshow-container a');
+
+  for (i = 0; i < links.length; i++) {
+    // console.log("here1");
+
+    links[i].onclick = function() {
+      current = this.parentNode;
+      // console.log("here2");
+
+      var slides = current.getElementsByClassName("mySlides");
+      var dots = current.getElementsByClassName("dot");
+      curr_slide = current.getElementsByClassName('active-slide')[0];
+      curr_dot = current.getElementsByClassName('active')[0];
+      curr_slide.classList.remove('active-slide');
+      curr_dot.classList.remove('active');
+
+      if (this.className == 'next') {
+
+        console.log("here3");
+
+        // console.log(curr_slide.nextElementSibling);
+
+        if (curr_slide.nextElementSibling) {
+          curr_slide.nextElementSibling.classList.add('active-slide');
+          curr_dot.nextElementSibling.classList.add('active');
+          console.log("here4");
+        } else {
+          slides[0].classList.add('active-slide');
+          dots[0].classList.add('active');
+          console.log("here5");
+        }
+
+      }
+
+      if (this.className == 'prev') {
+
+        if (curr_slide.previousElementSibling) {
+          curr_slide.previousElementSibling.classList.add('active-slide');
+          curr_dot.previousElementSibling.classList.add('active');
+        } else {
+          slides[slides.length - 1].classList.add('active-slide');
+          dots[slides.length - 1].classList.add('active');
+        }
+
+      }
+
+    }
+
+  }
+})(jQuery);
+
+</script>

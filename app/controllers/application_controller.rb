@@ -14,10 +14,10 @@ class ApplicationController < ActionController::Base
   		#devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:email, :password, :website, :password_confirmation, :role) }
 
 
-    	devise_parameter_sanitizer.permit(:sign_up, keys: [:email, :password, :website, :password_confirmation, :role])
+    	devise_parameter_sanitizer.permit(:sign_up, keys: [:email, :password, :website, :password_confirmation, :role, :city, :state, :zipcode, :street_address, :phone_number])
     	#devise_parameter_sanitizer.permit(:sign_up, :website)
 
-    	devise_parameter_sanitizer.permit(:account_update, keys: [:email, :password, :website, :password_confirmation, :role])
+    	devise_parameter_sanitizer.permit(:account_update, keys: [:email, :password, :website, :password_confirmation, :role, :city, :state, :zipcode, :street_address, :phone_number])
     	#devise_parameter_sanitizer.permit(:account_update, :website)
   	end
   	  

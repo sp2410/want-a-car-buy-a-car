@@ -40,6 +40,9 @@ class CategoriesController < ApplicationController
 		@wholesalelistings = Listing.where(:wholesale => true)
 
 		@premiumlistings = Listing.where(:wholesale => false).joins(:user).where("users.role = '2'")
+
+		@newcars = Listing.where(:newused => "N")
+		@usedcars = Listing.where(:newused => "U")
 		
 
 		respond_to do |format|

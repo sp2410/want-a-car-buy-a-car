@@ -1,0 +1,18 @@
+<%= bootstrap_form_for [@owner, @review] do |f| %>
+  <% if @review.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@review.errors.count, "error") %> prohibited this review from being saved:</h2>
+
+      <ul>
+      <% @review.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= f.select :rating, [1,2,3,4,5], :label => "CHOOSE YOUR RATING (1 is poor, 5 is great)" %>
+  <%= f.text_area :comment, :label => "YOUR COMMENTS" %>    
+  <%= f.submit "SUBMIT", class: "btn btn-danger" %>    
+  
+<% end %>

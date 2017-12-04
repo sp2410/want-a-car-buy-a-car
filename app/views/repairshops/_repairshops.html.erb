@@ -1,0 +1,68 @@
+<h3 style = "color:#7C064D; text-align: center;"><strong>REPAIR SHOPS</strong></h3>
+
+<div id = "boatlist">
+
+  <% if @repairshops.empty? %>
+      <div class = "col-sm-12 col-md-12 col-lg-12" style = "text-align: center;">
+        <p style ="margin: 10px;font-size: 20px; color: #e20049;">NO REPAIR SHOPS ADDED YET</p>
+      </div>
+  <% end %>
+
+
+    <%- @repairshops.each do |i| -%>          
+            <div class = "col-xs-12 col-sm-6 col-md-4 col-lg-4" id = "cardiv">
+              <div class="wrap">              
+                <div class="card1"> 
+                      <%= link_to i do %>
+
+                      <!-- , target: :_blank  -->
+                          <div class="slideshow-container" >
+
+                            <%- if i.image.present? -%>
+                              <div class="mySlides" id = "otherpage">                                                            
+                                <img src=<%= i.image if i.image.present? %> style="width:100%; height: 180px;">
+                              </div>                                                                                    
+                            <% else %>
+                                <div class="mySlides" id = "otherpage">                                                            
+                                  <%= image_tag("https://s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/nopictures1.png", :alt => "Want a Car buy A Car| Cars For Sale | Used Cars | Repair Shops", :style=> "width:100%; height: 180px;") %>
+                                </div>
+                            <% end %>
+                           
+
+                            <a class="prev">&#10094;</a>
+                            <a class="next">&#10095;</a>
+                              
+
+                            <div style="text-align:center; ">                              
+
+                                <span class="dot"></span>                                                                    
+                               
+                            </div>
+
+                          </div> 
+
+                      <% end  %>
+                      <div class="description">
+                            <div class= "col-xs-12 col-sm-12 col-lg-12 col-md-12"> 
+                              <div class="row">
+                                <div class= "col-xs-12 col-sm-12 col-lg-12 col-md-12">                                 
+
+                                <div class= "col-xs-12 col-sm-12 col-lg-12 col-md-12"> 
+                                  <p style ="margin: 1px;font-size: 20px; color: #7C064D;"><span class="glyphicon glyphicon-fire"></span> <%= i.title.upcase if i.title %></p> 
+                                </div>                             
+
+                                  <div class= "col-xs-12 col-sm-12 col-lg-12 col-md-12">
+                                    
+                                    <p style ="margin: 1px; font-size: 12px; color: #F00000;">Location: <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> <%= i.city.capitalize if i.city %> <%= i.state.capitalize if i.state %></p>
+                                  </div>                                                               
+                                </div>                  
+                              </div>
+                            </div>
+                        </div>                                            
+                </div>                            
+              </div>
+            </div>
+    <% end %> 
+</div>
+
+

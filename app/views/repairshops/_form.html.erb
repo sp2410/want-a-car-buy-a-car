@@ -1,7 +1,5 @@
-<div class="container2">
-
-
-<%= form_for(@repairshop) do |f| %>
+<%= bootstrap_form_for @repairshop, :html => {:multipart => true} do |f| %>
+        
   <% if @repairshop.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@repairshop.errors.count, "error") %> prohibited this repairshop from being saved:</h2>
@@ -14,43 +12,52 @@
     </div>
   <% end %>
 
-  <p>
-    <%= f.label :title %><br>
-    <%= f.text_field :title %>
-  </p>
-  <p>
-        <%= f.label :image, "Banner/logo" %>
-        <%= f.file_field :image %>   
-  </p>
+ 
 
-  <p>
-    <%= f.label :description, "Your Speciality (Comma Seperated)" %><br>
-    <%= f.text_area :description %>
-  </p>
-  <p>
-    <%= f.label :city %><br>
-    <%= f.text_field :city %>
-  </p>
-  <p>
-    <%= f.label :state %><br>
-    <%= f.text_field :state %>
-  </p>
-  <p>
-    <%= f.label :phone %><br>
-    <%= f.text_field :phone %>
-  </p>
-<br>
+    <%= f.text_field :title, :label => "ENTER A TITLE" , :style => "color: #7C064D;" %>
+    
+    <br>
+    <br>
 
-<br>
-<br>
+    <div class="col-md-12 text-center" style = "margin-top: 1em;">
+      <input class="btn btn-danger" id="hideshow" style="margin-top: 10px; margin-bottom: 10px;" type="button" value="WANT A NEW LOGO/WEBSITE FOR YOUR SHOP ?"></input>
+    </div>
+
+    <div class = "togglediv">    
+        <div class = "w3-panel w3-card-2">    
+            <div class = "col-sm-12 col-md-12 col-lg-12">
+                <div class = " col-xs-12 col-sm-12 col-md-12 col-lg-12" style = "text-align: left;">
+                    <strong><p style = "font-size: 16px; color: #7C064D; margin-bottom: 20px; ">WACBAC is a product of TDC Digital Media. At TDC DIGITAL MEDIA, we have a highly experienced team of developers and designers. Check out few of our works at: <a href = "http://www.tdcdigitalmedia.com/" style = "color: blue;">TDC DIGTAL MEDIA WEBSITE</a> or raise a new work request and our sales team will contact you back with respect to your requirements asap: <a href= "http://www.tdcdigitalmedia.com/requests/new" style = "color: blue;"> CLICK HERE FOR REQUEST FORM </a></p> </strong>                                    
+                </div>
+
+            </div>  
+        </div>                  
+    </div>
+
+     <br>
+    <hr>
+    <br>
+
+
+
+    <%= f.file_field :image, :label => "YOUR BANNER/LOGO", :style => "color: #7C064D;" %>
+
+    <br>
+
+    <br>
+
+
+    
 
   
-    <%= f.label :zipcode %><br>
-    <%= f.text_field :zipcode, class: "zip-width", maxlength: "5" %>
-  
-    <%= f.submit "Create", class: "create-button" %>
-  
-  
-<% end %>
 
-</div>
+    <strong><p style = "font-size: 16px; color: #7C064D; margin-bottom: 20px; ">DESCRIBE YOUR SPECIALITY </p></strong>
+    <strong><p style = "font-size: 16px; color: #7C064D; margin-bottom: 20px; ">
+    (Be Creative. Describe what cars your repair, what models are your speciality, what services you provide. You can add images as well.)</p></strong>                
+
+    <%= f.cktext_area :description, :label => "DESCRIBE YOUR SPECIALITY", :as => :ckeditor, input_html: {:ckeditor => {:toolbar => 'FULL'}}, class: "form-control" %>    
+   
+    <%= f.submit "SUBMIT", class: "btn btn-danger" %>    
+
+  <% end %>
+

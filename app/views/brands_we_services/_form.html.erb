@@ -1,0 +1,43 @@
+<%= bootstrap_form_for [@repairshop, @brand_we_service] do |f| %>
+  <% if @brand_we_service.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@brand_we_service.errors.count, "error") %> prohibited this coupon from being saved:</h2>
+
+      <ul>
+      <% @brand_we_service.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class = "col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <%= label_tag '','CHOOSE THE BRAND YOU SERVICE FROM THE LIST'  %>
+  </div>
+
+  
+  
+  <div class = "col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+    <% ['Acura', 'Geo', 'Mini', 'Alfa Romeo', 'GMC', 'Mitsubishi', 'Am General','Honda','Nissan','American Motors', 'Hummer','Oldsmobile','Aston Martin','Hyundai', 'Opel','Audi','Infiniti','Panoz','Austin','International','Passport','Avanti','Isuzu','Peugeot','Bentley',  'Jaguar','Plymouth','Bertone','Jeep','Pontiac','BMW','Jensen','Porsche','Buick','Kia','Renault','Cadillac','Laforza','Rolls Royce','Checker','Lamborghini','Rover','Chevrolet','Lancia','Saab','Chrysler'  ,'Land Rover','Saturn','Citroen','Lexus','Shelby','Daewoo','Lincoln','Sterling','Daihatsu','Lotus','Subaru','Delorean','Maserati','Suzuki','Dodge','Mazda','Toyota','Eagle','Mercedes-Benz','Triumph','Ferrari','Mercury','Volkswagen','Fiat','Merkur','Volvo','Ford','MG','Yugo','General Motors'].each do |specialization| %>
+
+      <div class = "col-xs-6 col-sm-6 col-md-6 col-lg-6 text-left">
+
+        <%= check_box_tag 'specializations[]', specialization -%>
+        <%= specialization -%>
+      </div>  
+    <% end %>
+  
+  </div>
+
+  
+
+<div class = "col-xs-12 col-sm-12 col-md-12 col-lg-12" style = "margin-top: 20px;">
+
+  <%= f.text_field :title, :label => "IF NOT IN THE LIST ABOVE, ENTER THE BRAND" %>
+  
+    <%= f.submit "SUBMIT", class: "btn btn-danger" %>    
+  </div>
+  
+<% end %>
+

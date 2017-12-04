@@ -1,46 +1,62 @@
-<div class="topbar">
-  <h1>SIGN UP</h1>
-</div>
+<div class = "col-sm-12 col-md-12 col-lg-12" style = "background-color: #fff;min-height: 700px;">
 
-<div class="container2">
-  <div id="contact-area">   
-
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
-
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
-
-    <%= f.label :website %><br/>
-    <%= f.text_field :website, autofocus: true %>    
-
-  
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %><br />
+  <div class = "col-sm-3 col-md-3 col-lg-3">
+  </div>
     
 
-  <div class="signin-button">    
-   <%= f.select :role, User.roles.keys, {}, class: 'user-roles-select' %>
-    <%= f.submit "Sign up", class: "submit-width" %>
-  </div>
-<% end %>
+  <div class = "col-sm-6 col-md-6 col-lg-6" style = "text-align: center; ">
+    <strong><h1 style = "font-size: 110px; color: #7C064D; margin-bottom: 20px; ">SIGN UP</h1></strong>
+    <hr>
 
-<div class="signin-button">
 
-<p>
-  <%= render "devise/shared/links" %>
-</p>
+    <%= bootstrap_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <%= devise_error_messages! %>
+      
+        <%= f.email_field :email, autofocus: true, :label => "EMAIL" %>
+        
+        <%= f.text_field :website, autofocus: true, :label => "WEBSITE" %>
+
+
+      
+        <%= f.text_field :street_address, autofocus: true, :label => "YOUR STREET ADDRESS" %>
+      
+
+      
+        <%= f.text_field :city, autofocus: true, :label => "YOUR CITY" %>
+      
+
+      
+        <%= f.text_field :state, autofocus: true, :label => "YOUR STATE" %>
+      
+
+      
+        <%= f.text_field :zipcode, autofocus: true, :label => "YOUR ZIPCODE" %>
+
+        <%= f.text_field :phone_number, autofocus: true, :label => "YOUR PHONE NUMBER" %>
+              
+        <% if @minimum_password_length %>
+        <em>(<%= @minimum_password_length %> characters minimum)</em>
+        <% end %><br />
+        <%= f.password_field :password, autocomplete: "off", :label => "PASSWORD" %>
+        
+        <%= f.password_field :password_confirmation, autocomplete: "off", :label => "PASSWORD CONFIRMATION" %>
+        
+
+      
+       <%= f.select :role, User.roles.keys, {:label => "CHOOSE ROLE THAT DESCRIBES YOU BEST"} %>
+
+      <%= f.submit "Sign up", class: "btn btn-danger" %>
+      
+    <% end %>
+
+    <div class="signin-button">
+
+    <p>
+      <%= render "devise/shared/links" %>
+    </p>
+
+    </div>
 
 </div>
 
-
-  </div>
 </div>
-
-

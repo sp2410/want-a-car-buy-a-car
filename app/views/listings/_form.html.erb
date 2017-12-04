@@ -1,157 +1,133 @@
-<%= form_for @listing, :html => {:multipart => true} do |f| %>
-    <%= f.label :title %>
-    <%= f.text_field :title %>
+<%= bootstrap_form_for @listing, :html => {:multipart => true} do |f| %>
+        
 
-    <%= f.label :description %>
-    <%= f.text_area :description %>
-
-     <p>
-        <%= f.label :image %>
-        <%= f.file_field :image %>   
-    </p>
-    <p>
-        <%= f.label :imagefront %>
-        <%= f.file_field :imagefront %>   
-    </p>
-    <p>
-        <%= f.label :imageback %>
-        <%= f.file_field :imageback %>   
-    </p>
-    <p>
-        <%= f.label :imageleft %>
-        <%= f.file_field :imageleft %>   
-    </p>
-    <p>
-        <%= f.label :imageright %>
-        <%= f.file_field :imageright %>   
-    </p>
-    <p>
-        <%= f.label :frontinterior %>
-        <%= f.file_field :frontinterior %>   
-    </p>
-
-     <p>
-        <%= f.label :rearinterior %>
-        <%= f.file_field :rearinterior %>   
-    </p>
+    <%= f.text_field :vin, :label => "* VIN (Fill your vehicle VIN and click anywhere else to autofill)", :placeholder => "Use our VIN Decoder to autofill fields. Please confirm afterwards", :style => "color: #7C064D;" %>
+    
+    <div class="col-md-12 text-center" style = "margin-top: 1em;">
+      <input class="btn btn-danger" id="hideshow" style="margin-top: 10px; margin-bottom: 10px;" type="button" value="WHERE TO FIND THE VIN ?"></input>
+    </div>
 
 
 
-    <%= f.label :price, "Estimated Price" %>
-    <%= f.text_field :price %>
+    <div class = "togglediv">    
+        <div class = "w3-panel w3-card-2">    
+            <div class = "col-sm-12 col-md-12 col-lg-12">
+                <div class = " col-xs-12 col-sm-12 col-md-12 col-lg-12" style = "text-align: left;">
+                    <strong><p style = "font-size: 16px; color: #7C064D; margin-bottom: 20px; ">The VIN of your car can be found at:</p></strong>                
+                    <ul>                    
+                        <li>The dashboard on the driver's side of the vehicle.</li>
+                        <li>The driver's side door post (where the door latches when it is closed).</li>
+                        <li>The larger sticker the dealer has placed in vehicle window (It may be labeled Vehicle Identification Number)</li>
+                        <li>Insurance card / Insurance policy</li>
+                        <li>Vehicle title and registration</li>
+                    </ul>
+                </div>
 
-    <p>
-        <% if (current_user.role.eql? "premium") %>
-            <%= f.label :wholesale %>    
-            <%= f.select :wholesale, [true,false] %>
-        <%end%>
-    </p>
+                
 
-    <p>
-        <%= f.label :category_id %>
-        <%= f.select :category_id, Category.all.map{ |f| [f.name, f.id]} %>
-    </p>
+                <div class = " col-xs-12 col-sm-12 col-md-12 col-lg-12" style = "overflow: hidden; ">
+                    <hr>
+                    
+                        <img src="https://s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/VIN_Graphic.jpg" class="img-rounded" alt="Cinque Terre" width="90%" height="90%"> 
+                    
+                </div>
 
-    <p>
-        <%= f.label :subcategory_id %>
-        <%= f.select :subcategory_id, options_for_select([]) %>   
-    </p>
+            </div>  
+        </div>                  
+    </div>
+
+
+    
+    <br>
+    <hr>
+    <br>
+                
+    
+    <%= f.text_field :make , :style => "color: #7C064D;", :label => "MAKE" %>
+
+    <%= f.text_field :model , :style => "color: #7C064D;" , :label => "MODEL"%>
+
+    <%= f.select :year, (Time.zone.now.year - 50)..(Time.zone.now.year + 1), :selected => '2017' , :style => "color: #7C064D;", :label => "YEAR" %>
+
+    <%= f.text_field :trim , :style => "color: #7C064D;", :label => "TRIM" %>
+
+    <%= f.text_field :transmission , :style => "color: #7C064D;", :label => "TRANSMISSION" %>
+
+    <%= f.text_field :enginedescription, :style => "color: #7C064D;", :label => "ENGINE DESCRIPTION" %>
+
+    <%= f.text_field :miles , :style => "color: #7C064D;", :label => "MILES" %>
+
+
+    <%= f.text_field :cylinder , :style => "color: #7C064D;", :label => "CYLINDER" %>
+
+    
+        
+    <%= f.text_field :drive , :style => "color: #7C064D;", :label => "DRIVE" %>
+
+    
+        
+    <%= f.text_field :fuel , :style => "color: #7C064D;", :label => "FUEL" %>
+
+    <hr>    
+
+
+    <%= f.select :category_id, ['4dr Hatchback', '2dr Hatchback', '2dr SUV', '4dr SUV', 'Cargo Minivan','Cargo Van','Convertible','Convertible SUV','Coup','Crew Cab Pickup','Extended Cab Pickup','Passenger Minivan', 'Passenger Van','Regular Cab Pickup','Sedan','Wagon'], :label => "BODY" , :style => "color: #7C064D;" %>
+
+    <strong><p style = "font-size: 16px; color: #7C064D; margin-bottom: 20px; ">ENTER DESCRIPTION</p></strong>                
+
+    <%= f.cktext_area :description, :label => "DESCRIBE YOUR CAR CONDITIONS", :as => :ckeditor, input_html: {:ckeditor => {:toolbar => 'FULL'}}, class: "form-control" %>    
+
+    
+    
+    <%= f.file_field :image, :label => "PRIMARY IMAGE", :style => "color: #7C064D;" %>            
+        
+    <%= f.file_field :imagefront, :label => "FRONT IMAGE" , :style => "color: #7C064D;" %>
+        
+    <%= f.file_field :imageback, :label => "BACK IMAGE" , :style => "color: #7C064D;" %>
+        
+    <%= f.file_field :imageleft, :label => "LEFT IMAGE" , :style => "color: #7C064D;" %>
+        
+    <%= f.file_field :imageright, :label => "RIGHT IMAGE" , :style => "color: #7C064D;" %>
+        
+    <%= f.file_field :frontinterior, :label => "INTERIOR FRONT IMAGE" , :style => "color: #7C064D;" %>
+    
+    <%= f.file_field :rearinterior, :label => "INTERIOR BACK IMAGE", :style => "color: #7C064D;" %>
+    
+
+    <hr>
+
+    <%= f.text_field :price, :label => "ENTER SUITABLE PRICE" , :style => "color: #7C064D;" %>
+
+    
+    
+    <% if (current_user.role.eql? "premium") %>            
+        <%= f.select :wholesale, [true,false], :label => "IS IT FOR WHOLESALE ONLY ?" , :style => "color: #7C064D;" %>
+    <%end%>
+
+            
+    <%= f.select :color, ['Unspecified','Beige','Black','Charcoal','Blue','Brown','Gold','Gray','Green','Orange','Pink','Purple','Red','Silver','Tan','Teal','White','Yellow', 'Other'], :label => "EXTERIOR COLOR" , :style => "color: #7C064D;" %>
 
    
-    <p>
-        <%= f.label :year %>
-        <%= f.select :year, (Time.zone.now.year - 50)..(Time.zone.now.year + 1), :selected => '2017' %>
-    </p>
+        
+    <%= f.select :interiorcolor, ['Unspecified','Beige','Black','Charcoal','Blue','Brown','Gold','Gray','Green','Orange','Pink','Purple','Red','Silver','Tan','Teal','White','Yellow', 'Other'], :label => "INTERIOR COLOR" , :style => "color: #7C064D;" %>
+    
+            
+            
+    <%= f.select :newused, ['U','N'] , :style => "color: #7C064D;", :label => "NEW OR USED" %>
 
-    <p>
-        <%= f.label :transmission %>
-        <%= f.select :transmission, ['Automanual','Automatic','Automatic 4 Speed','Automatic 5 Speed','Automatic 6 Speed','CVT','Manual'] %>
-    </p>
+                     
+   
+    <%= f.text_field :stocknumber , :style => "color: #7C064D;", :label => "STOCK NUMBER" %>
 
-    <p>
-        <%= f.label :color, 'Exterior Color' %>
-        <%= f.select :color, ['Unspecified','Beige','Black','Charcoal','Blue','Brown','Gold','Gray','Green','Orange','Pink','Purple','Red','Silver','Tan','Teal','White','Yellow', 'Other'] %>
-    </p>
+        
+    <strong><p style = "font-size: 16px; color: #7C064D; margin-bottom: 20px; ">DESCRIBE SELLER OPTIONS</p></strong>                
 
-   <p>
-        <%= f.label :interiorcolor, 'Interior Color' %>
-        <%= f.select :interiorcolor, ['Unspecified','Beige','Black','Charcoal','Blue','Brown','Gold','Gray','Green','Orange','Pink','Purple','Red','Silver','Tan','Teal','White','Yellow', 'Other'] %>
-    </p>
-    <p>
-        <%= f.label :cylinder %>
-        <%= f.select :cylinder, ['1-cylinder','2-cylinder','3-cylinder','4-cylinder','5-cylinder','6-cylinder','8-cylinder','10-cylinder','12-cylinder','V6','I4'] %>
-    </p>
-
-    <p>
-        <%= f.label :drive %>
-        <%= f.select :drive, ['4X2/2 wheel drive','4X4/4 wheel drive','AWD','FWD','RWD'] %>
-    </p>
-
-    <p>
-        <%= f.label :fuel %>
-        <%= f.select :fuel, ['CNG','Diesel','E-85/Gasoline','Electric','Flex Fuel','Gasoline','Gasoline Hybrid','Not Applicable'] %>
-    </p>
-
-    <p>
-        <%= f.label :newused,"New Or Used" %>
-       <%= f.select :newused, ['U','N'] %>
-    </p>
+    <%= f.cktext_area :options, :as => :ckeditor, input_html: {:ckeditor => {:toolbar => 'FULL'}}, class: "form-control" %>    
 
     
-    <p>
-        <%= f.label :miles %>
-        <%= f.text_field :miles %>
-    </p>
-
-
-    <p>
-        <%= f.label :stocknumber,"Stock Number" %>
-        <%= f.text_field :stocknumber %>
-    </p>
-
-    <p>
-        <%= f.label :model %>
-        <%= f.text_field :model %>
-    </p>
-
-    <p>
-        <%= f.label :trim %>
-        <%= f.text_field :trim %>        
-    </p>
-
-    <p>
-        <%= f.label :vin %>
-        <%= f.text_field :vin %>        
-    </p>
-
-    <p>
-        <%= f.label :enginedescription,"Engine Desc." %>
-        <%= f.text_field :enginedescription %>        
-    </p>
-
-    <p>
-        <%= f.label :options %>
-        <%= f.text_field :options %>        
-    </p> 
-
-    <p>
-        <%= f.label :address %>
-        <%= f.text_field :address %>
-    </p>
-
-    <p>
-        <%= f.label :city %>
-        <%= f.text_field :city %>
-    </p>
-
-    <p>
-        <%= f.label :state %>
-        <%= f.text_field :state %>
-    </p>
     
-        <%= f.label :zipcode %>
-        <%= f.text_field :zipcode, class: "zip-width",maxlength: "5" %>
 
-        <%= f.submit class: "create-button" %>    
+    <%= f.submit "SUBMIT", class: "btn btn-danger" %>    
 
   <% end %>
+

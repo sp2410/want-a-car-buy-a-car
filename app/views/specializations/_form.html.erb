@@ -1,0 +1,43 @@
+<%= bootstrap_form_for [@repairshop, @specialization] do |f| %>
+  <% if @specialization.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@specialization.errors.count, "error") %> prohibited this coupon from being saved:</h2>
+
+      <ul>
+      <% @specialization.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class = "col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <%= label_tag '','CHOOSE YOUR SPECIALIZATIONS FROM THE LIST'  %>
+  </div>
+
+  
+  
+  <div class = "col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+    <% ['Air Filter Replacement', 'Air Conditioning Service','Axle Replacement', 'Brakes System', 'Replacement Car Battery','Clutch Repair','Computer Diagnostics Testing','Electrical','Exhaust System','Fuel Injection Service','Belt and Hose Replacement','Oil Change & Lube','Power Steering','Radiator Service','Replace Lights','Suspension Work','Front End / Rear Repair','Aftermarket Service','Fleet Service','Smog & Emissions Testing','Towing Service','Transmission Service','Free Loaner Car & Shuttle Service', 'General Auto Repair & Maintenance', 'Transmission Repair & Replacement', 'Manufacturer Recommended Service', 'Brake Repair and Replacement', 'Air Conditioning A/C Repair', 'Tire Repair and Replacement', 'Fuel System Repair', 'Exhaust System Repair', 'Engine Cooling System Maintenance', 'Electrical Diagnostics', 'Steering and Suspension Work', 'Starting and Charging Repair', 'Wheel Alignment', 'CV Axles', 'Computer Diagnostic Testing', 'Vehicle Preventative Maintenance', 'State Emissions Inspection', 'Emission Repair Facility', 'Tune Up', 'Brake Job / Brake Service', 'Engine Cooling System Flush & Repair' ].each do |specialization| %>
+
+      <div class = "col-xs-6 col-sm-6 col-md-6 col-lg-6 text-left">
+
+        <%= check_box_tag 'specializations[]', specialization -%>
+        <%= h specialization -%>
+      </div>  
+    <% end %>
+  
+  </div>
+
+  
+
+<div class = "col-xs-12 col-sm-12 col-md-12 col-lg-12" style = "margin-top: 20px;">
+
+  <%= f.text_field :title, :label => "IF NOT IN THE LIST ABOVE, ENTER YOUR SPECIALITY MANUALLY" %>
+  
+    <%= f.submit "SUBMIT", class: "btn btn-danger" %>    
+  </div>
+  
+<% end %>
+

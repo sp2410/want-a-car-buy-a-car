@@ -1,7 +1,91 @@
 <%= javascript_include_tag 'listings.js' %>
 
-<div class="container2">
-  <div id="contact-area">
-    <%= render "listings/form" %>
+<div class = "col-sm-12 col-md-12 col-lg-12" style = "background-color: #fff;">
+
+  <div class = "col-sm-3 col-md-3 col-lg-3">
   </div>
+    
+
+  <div class = "col-sm-6 col-md-6 col-lg-6" style = "text-align: center; ">
+    <p style = "font-size: 110px; color: #7C064D; margin-bottom: 20px; text-align: center; ">EDIT LISTING</p>
+    <hr>
+    <%= render "listings/form" %>         
+  </div>
+
+
+  <div class = "col-sm-3 col-md-3 col-lg-3">
+  </div>
+    
+
 </div>
+
+
+
+<script>
+
+ $(document).ready(function(){
+
+    $('#hideshow').on('click', function(event) {        
+         $('.togglediv').toggle('show');
+    });
+    // With JQuery
+
+    $(document).on("change", "input#listing_vin", function(e){
+      var vin = $('input#listing_vin').val();
+      var vin = $.trim(vin)    
+      var url = String(vin);
+      var prev ="https://api.edmunds.com/api/vehicle/v2/vins/";
+      var rest ="?fmt=json&api_key=";
+      var key = "<%= ENV['EDMUNDS_API_KEY'] %>";
+      var net = prev+url+rest+key;
+      
+      var div = '<div class="alert" ' +'style="top:0px;">'+'</div>';
+    
+            
+
+
+       $.ajax({
+
+          url: net,
+          dataType: "json",
+          type: "get", 
+          data: $(this).serialize(),        
+          success: function(response){
+            
+            
+            $('input#listing_make').val(response["make"]["name"]);
+            $('input#listing_model').val(response["model"]["name"]);
+            $('select#listing_year').val(response["years"][0]["year"]);
+            $('input#listing_fuel').val(response["engine"]["fuelType"]);
+            $('input#listing_cylinder').val(response["engine"]["cylinder"]);
+            $('input#listing_transmission').val(response["transmission"]["numberOfSpeeds"] + " Speed " + response["transmission"]["transmissionType"]);
+
+            $('input#listing_transmission').css('textTransform', 'capitalize');
+
+            $('input#listing_enginedescription').val(response["engine"]["size"] + "L "+ response["engine"]["rpm"]["horsepower"] + " hp "+ response["engine"]["cylinder"] + " Cylinder");
+
+            $('select#listing_category_id').val(response["years"][0]["year"]);
+
+
+            // $('input#trim').val(response["years"]["styles"][0]["trim"]);
+                      
+            // console.log("jiouza!");   
+            $("#notification").empty();
+                  
+            $("#notification").fadeIn("slow").append('Great! We Found Your Vehicle and Autofilled Make, Year, Model, Cylinder and Fuel. Please Check For Correctness and Fill Out The Rest Of The Fields');
+          },
+
+          error: function(){
+          $("#notification").empty();
+           $("#notification").fadeIn("slow").append('Oops! Right Now We Were Unable To AutoFill the fields, Please Check the VIN for Correctness or Fill Up the Fields Manually');
+          },
+
+       });     
+    });
+
+    $('.togglediv').toggle('hide');
+
+  });
+
+
+</script>

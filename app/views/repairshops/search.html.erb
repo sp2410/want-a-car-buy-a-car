@@ -1,26 +1,226 @@
-<%= render 'repairshops/searchshops'%>    
-  <h1 style = "font-size: 40px; text-align: center; color: #ffcc00; margin-bottom: 100px;">YOUR SEARCH RESULTS</h1>  
+<div class = "col-xs-12 col-sm-12 col-lg-12 col-md-12" style = "padding: 0px; margin: 0px; background-color: white;">
 
-<div class="center-column" id="right-center-column2" >
-  <% if @repairshop.present? %>
-    <% @repairshop.each do |listing| %>
+  <div class= "col-xs-12 col-sm-12 col-lg-12 col-md-12" style = "background: #F00000; padding: 20px;">
+    <h3 style = "color:#fff; text-align: center;"><strong>KEYWORDS: <%= params[:keywords].upcase %> - NEAR: <%= params[:location].upcase %> - RADIUS: <%= params[:radius]%> MILES</strong></h3>
+  </div>
 
-      <div id = "listingsdescsmall">
-          <%= link_to listing do %>
-               <p>                  
-                  <% if listing.image_url.present? %> 
-                    <%= image_tag listing.image.url(:thumb) if listing.image_url.present? %> 
-                  <% else %>
-                    <%= image_tag("https://s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/repairbigsmall.png", :alt => "Car Repairs around me") %>
-                  <% end %>
-                                  
-                   <%= listing.title %><br> <%= listing.city %><br> <%= listing.state %><br> Phone: <%= listing.phone %>                               
-              </p>
-          <% end %>
-        </div> 
-  <% end %>
-  <% else %>
-  <h1> NO SHOPS FOUND</h1>
-  <% end %>  
+  <div class= "col-xs-12 col-sm-12 col-lg-12 col-md-12" style = "background: #fff; color: white; box-shadow: 0 3px 7px rgba(0,0,0,0.15), 0 2px 2px rgba(0,0,0,0.22); padding: 2px;">
+      
+  </div>
+
+
+  <div id = "container2">
+
+    <div class= "col-xs-4 col-sm-4 col-md-4 col-lg-4" id = "leftdiv" style = "background: white; padding: 20px; max-height: 80vh; overflow-y: scroll; overflow-x: hidden;" > 
+
+      <h3 style = "color:#7C064D; text-align: center;"><strong>FILTERS</strong></h3>
+
+      <div class = "col-xs-12 col-sm-12 col-md-12 col-lg-12" id = "searchboxcontainer"  style = "-webkit-box-shadow: 1px 1px 2px 2px #ccc; -moz-box-shadow: 1px 1px 2px 2px #ccc; box-shadow: 1px 1px 2px 2px #ccc;  padding: 5px;">
+        <%= render "categories/repairshopsearch" %>       
+        <hr> 
+      </div>
+        
+       <div class = "col-xs-12 col-sm-12 col-md-12 col-lg-12" id = "searchboxcontainer2" style = " margin-top: 2em; -webkit-box-shadow: 1px 1px 2px 2px #ccc; -moz-box-shadow: 1px 1px 2px 2px #ccc; box-shadow: 1px 1px 2px 2px #ccc;  padding: 5px;">   
+
+          <h3 style = "color:#7C064D; text-align: center;"><strong>TRANSMISSION</strong></h3>
+          
+                          
+      </div>  
+    </div>  
+
+    <div class= "col-xs-8 col-sm-8 col-md-8 col-lg-8" id = "rightdiv" style = "background: white; padding: 20px; max-height: 80vh; overflow-y: scroll; overflow-x: hidden; " >
+
+      <h3 style = "color:#7C064D; text-align: center;"><strong>SEARCH RESULTS</strong></h3>
+
+      <div id = "boatlist">
+
+       <% if @repairshops.empty? %>
+        <div class = "col-sm-12 col-md-12 col-lg-12" style = "text-align: center;">
+          <p style ="margin: 10px;font-size: 20px; color: #e20049;">NO REPAIR SHOPS ADDED YET</p>
+        </div>
+      <% end %>
+
+
+      <%- @repairshops.each do |i| -%>          
+              <div class = "col-xs-12 col-sm-6 col-md-4 col-lg-4" id = "cardiv">
+                <div class="wrap">              
+                  <div class="card1"> 
+                        <%= link_to i do %>
+
+                        <!-- , target: :_blank  -->
+                            <div class="slideshow-container" >
+
+                              <%- if i.image.present? -%>
+                                <div class="mySlides" id = "otherpage">                                                            
+                                  <img src=<%= i.image if i.image.present? %> style="width:100%; height: 180px;">
+                                </div>                                                                                    
+                              <% else %>
+                                  <div class="mySlides" id = "otherpage">                                                            
+                                    <%= image_tag("https://s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/nopictures1.png", :alt => "Want a Car buy A Car| Cars For Sale | Used Cars | Repair Shops", :style=> "width:100%; height: 180px;") %>
+                                  </div>
+                              <% end %>
+                             
+
+                              <a class="prev">&#10094;</a>
+                              <a class="next">&#10095;</a>
+                                
+
+                              <div style="text-align:center; ">                              
+
+                                  <span class="dot"></span>                                                                    
+                                 
+                              </div>
+
+                            </div> 
+
+                        <% end  %>
+                        <div class="description">
+                            <div class= "col-xs-12 col-sm-12 col-lg-12 col-md-12"> 
+                              <div class="row">
+                                <div class= "col-xs-12 col-sm-12 col-lg-12 col-md-12">                                 
+
+                                <div class= "col-xs-12 col-sm-12 col-lg-12 col-md-12"> 
+                                  <p style ="margin: 1px;font-size: 20px; color: #7C064D;"><span class="glyphicon glyphicon-fire"></span> <%= i.title.upcase if i.title %></p> 
+                                </div>                             
+
+                                  <div class= "col-xs-12 col-sm-12 col-lg-12 col-md-12">                                    
+
+                                    <p style ="margin: 1px; font-size: 12px; color: #F00000;">Location: <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> <%= i.city.capitalize if i.city %> <%= i.state.capitalize if i.state %></p>
+                                  </div>                                                               
+                                </div>                  
+                              </div>
+                            </div>
+                        </div>                                            
+                  </div>                            
+                </div>
+              </div>
+      <% end %> 
+      </div>
+
+    </div>
+
+  </div>
 </div>
+<script>
+
+// document.addEventListener("DOMContentLoaded", function(event) {
+//     console.log("DOM fully loaded and parsed");
+//   });
+
+$(function() {
+
+
+  
+  init(); //on page load - call the function show first slide, hide the rest
+
+  function init() {
+
+    document.getElementById("defaultOpen1").click(); //this is for divs in tab to show boats first
+    
+
+    parents = document.getElementsByClassName('slideshow-container'); //get all the div slideshowcontainer and store as parent array
+    
+//    console.log(parents.length); //total number of slideshow containers
+
+    for (j = 0; j < parents.length; j++) { //Go in a loop for all the divs slideshow-container      
+      var slides = parents[j].getElementsByClassName("mySlides"); //
+      //console.log(slides);
+
+      var dots = parents[j].getElementsByClassName("dot");      
+      slides[0].classList.add('active-slide');
+      dots[0].classList.add('active');
+      // console.log(slides[0]);
+    }
+  }
+
+
+
+
+
+    dots = document.getElementsByClassName('dot'); //dots functionality
+
+    for (i = 0; i < dots.length; i++) {
+
+      dots[i].onclick = function() {
+
+        slides = this.parentNode.parentNode.getElementsByClassName("mySlides");
+
+        for (j = 0; j < this.parentNode.children.length; j++) {
+          this.parentNode.children[j].classList.remove('active');
+          slides[j].classList.remove('active-slide');
+          if (this.parentNode.children[j] == this) {
+            index = j;
+          }
+        }
+        this.classList.add('active');
+        slides[index].classList.add('active-slide');
+
+      }
+    }
+
+//prev/next functionality
+  links = document.querySelectorAll('.slideshow-container a');
+
+  for (i = 0; i < links.length; i++) {
+    // console.log("here1");
+
+    links[i].onclick = function() {
+      current = this.parentNode;
+      // console.log("here2");
+
+      var slides = current.getElementsByClassName("mySlides");
+      var dots = current.getElementsByClassName("dot");
+      curr_slide = current.getElementsByClassName('active-slide')[0];
+      curr_dot = current.getElementsByClassName('active')[0];
+      curr_slide.classList.remove('active-slide');
+      curr_dot.classList.remove('active');
+
+      if (this.className == 'next') {
+
+        console.log("here3");
+
+        // console.log(curr_slide.nextElementSibling);
+
+        if (curr_slide.nextElementSibling) {
+          curr_slide.nextElementSibling.classList.add('active-slide');
+          curr_dot.nextElementSibling.classList.add('active');
+          console.log("here4");
+        } else {
+          slides[0].classList.add('active-slide');
+          dots[0].classList.add('active');
+          console.log("here5");
+        }
+
+      }
+
+      if (this.className == 'prev') {
+
+        if (curr_slide.previousElementSibling) {
+          curr_slide.previousElementSibling.classList.add('active-slide');
+          curr_dot.previousElementSibling.classList.add('active');
+        } else {
+          slides[slides.length - 1].classList.add('active-slide');
+          dots[slides.length - 1].classList.add('active');
+        }
+
+      }
+
+    }
+
+  }
+  var slider = document.getElementById("myRange");
+  var output = document.getElementById("demo");
+  output.innerHTML = slider.value;
+
+  slider.oninput = function() {
+    output.innerHTML = this.value;
+  }  
+
+});
+
+
+
+
+
+</script>
 

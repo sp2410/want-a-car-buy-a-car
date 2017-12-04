@@ -1,15 +1,263 @@
 <div class="searchbox">   
-    <section class="formclass">
-        <%= form_tag search_listings_path, method: :get, class: 'navbar-form navbar-center' do |f| %>
-        <p>search for cars</p>        
-        <%= text_field_tag :category, nil, placeholder: 'Car Type' %>
-        <%= text_field_tag :minprice, nil, placeholder: 'Min Price' %> 
-        <%= text_field_tag :maxprice, nil, placeholder: 'Max Price' %>
-        <%= text_field_tag :location, nil, placeholder: 'Near' %>        
-        <%= text_field_tag :radius, nil, placeholder: 'Radius' %> 
-        <%= text_field_tag :NewUsed, nil, placeholder: 'New / Used' %>              
-        <%= submit_tag 'Search', class: 'btn btn-danger' %>
-      <% end %>    
-    </section>
+
+    <div class= "col-xs-12 col-sm-12 col-lg-12 col-md-12" >
+
+      <div class="tab">
+        <button class="tablinks1" onclick="openCity1(event, 'Make')" id="defaultOpen1" >Search Cars By Make</button>
+        <button class="tablinks1" onclick="openCity1(event, 'Type')">Search Cars By Type</button>  
+        <button class="tablinks1" onclick="openCity1(event, 'ServiceCenter')">Find Repairshops and Service Centers</button>  
+        
+      </div>
+
+      <hr>
+
+
+      <div id="Make" class="tabcontent1">
+            <section class="formclass">
+
+              <!-- f.select :transmission, ['Automanual','Automatic','Automatic 4 Speed','Automatic 5 Speed','Automatic 6 Speed','CVT','Manual'] -->
+                <h3 style = "color:#F00000; text-align: center;"><strong><%= @carcount %> CARS LISTED!</strong></h3>
+
+                <hr>
+
+                <h3 style = "color:#7C064D;"><span class="glyphicon glyphicon-search"></span> <strong>SEARCH CARS FOR SALE BY MAKE</strong></h3>
+                <%= form_tag search_listings_path, method: :get, class: 'navbar-form navbar-center' do |f| %>
+
+                <div class= "col-xs-12 col-sm-12 col-lg-12 col-md-12"> 
+                    <%= select_tag :NewUsed, "<option>New</option><option>Used</option>".html_safe, style: "width: 100%; margin: 1% 0;" %>
+                </div>
+
+                <div class= "col-xs-6 col-sm-6 col-lg-6 col-md-6"> 
+                    <%= select_tag :category, include_blank: true, style: "width: 100%; margin: 1% 0;" %>
+                </div>
+
+                <div class= "col-xs-6 col-sm-6 col-lg-6 col-md-6"> 
+                    <%= select_tag :subcategory, include_blank: true, style: "width: 100%; margin: 1% 0;" %>
+                </div>
+                <!-- <div class= "col-xs-12 col-sm-12 col-lg-12 col-md-12">  -->
+                    <div class= "col-xs-6 col-sm-6 col-lg-6 col-md-6"> 
+                        <%= text_field_tag :minprice, nil, placeholder: 'Min Price', style: "width: 100%; margin: 1% 0;" %>
+                    </div>
+                    <div class= "col-xs-6 col-sm-6 col-lg-6 col-md-6"> 
+                        <%= text_field_tag :maxprice, nil, placeholder: 'Max Price', style: "width: 100%; margin: 1% 0;" %>
+                    </div>
+                <!-- </div> -->
+                <div class= "col-xs-6 col-sm-6 col-lg-6 col-md-6"> 
+                    <%= text_field_tag :location, nil, placeholder: 'Near', style: "width: 100%; margin: 1% 0;" %>
+                </div>
+                <div class= "col-xs-6 col-sm-6 col-lg-6 col-md-6"> 
+                    <%= text_field_tag :radius, nil, placeholder: 'Radius', style: "width: 100%; margin: 1% 0;" %>
+                </div>
+                
+
+                <div class= "col-xs-12 col-sm-12 col-lg-12 col-md-12">              
+                    <%= submit_tag 'Search', class: 'btn btn-danger', style: "width: 100%;" %>
+                    <h3 style = "color:#F00000;"><strong>OR</strong></h3>
+                    <%= link_to 'Sell Your Car', new_listing_path , class: 'btn btn-danger another', style: "width: 100%;" %>
+                </div>
+
+                <div class= "col-xs-12 col-sm-12 col-lg-12 col-md-12">  
+                    
+                </div>
+
+
+                
+              <% end %>    
+            </section>
+      </div>
+
+      <div id="Type" class="tabcontent1">
+        <section class="formclass">
+
+                <h3 style = "color:#F00000; text-align: center;"><strong><%= @carcount %> CARS LISTED!</strong></h3>
+
+                <hr>
+
+                <h3 style = "color:#7C064D;"><span class="glyphicon glyphicon-search"></span> <strong>SEARCH CARS FOR SALE BY BODY TYPE</strong></h3>
+
+                <%= form_tag bodysearch_listings_path, method: :get, class: 'navbar-form navbar-center' do |f| %>
+
+                <div class= "col-xs-12 col-sm-12 col-lg-12 col-md-12"> 
+                    <%= select_tag :NewUsed, "<option>New</option><option>Used</option>".html_safe, style: "width: 100%; margin: 1% 0;" %>
+                </div>
+
+                <div class= "col-xs-12 col-sm-12 col-lg-12 col-md-12"> 
+                    <%= select_tag :bodytype, "<option>4dr Hatchback</option><option>2dr SUV </option><option>4dr SUV </option><option>Cargo Minivan </option><option>Cargo Van </option><option>Convertible </option><option>Convertible SUV </option><option>Coup </option><option>Crew Cab Pickup </option><option>Extended Cab Pickup </option><option>Passenger Minivan </option><option>Passenger Van </option><option>Regular Cab Pickup </option><option>Sedan </option><option>Wagon</option>".html_safe, style: "width: 100%; margin: 1% 0;" %>
+                </div>                
+
+                <div class= "col-xs-6 col-sm-6 col-lg-6 col-md-6"> 
+                    <%= text_field_tag :minprice, nil, placeholder: 'Min Price', style: "width: 100%; margin: 1% 0;" %>
+                </div>
+                <div class= "col-xs-6 col-sm-6 col-lg-6 col-md-6"> 
+                    <%= text_field_tag :maxprice, nil, placeholder: 'Max Price', style: "width: 100%; margin: 1% 0;" %>
+                </div>
+                <div class= "col-xs-6 col-sm-6 col-lg-6 col-md-6"> 
+                    <%= text_field_tag :location, nil, placeholder: 'Near', style: "width: 100%; margin: 1% 0;" %>
+                </div>
+                <div class= "col-xs-6 col-sm-6 col-lg-6 col-md-6"> 
+                    <%= text_field_tag :radius, nil, placeholder: 'Radius', style: "width: 100%; margin: 1% 0;" %>
+                </div>                
+
+                <div class= "col-xs-12 col-sm-12 col-lg-12 col-md-12">              
+                    <%= submit_tag 'Search', class: 'btn btn-danger', style: "width: 100%;" %>
+                    <h3 style = "color:#F00000;"><strong>OR</strong></h3>
+                    <%= link_to 'Sell Your Car', new_listing_path , class: 'btn btn-danger another', style: "width: 100%;" %>
+                </div>
+              <% end %>    
+        </section>
+      </div>    
+
+
+    <div id="ServiceCenter" class="tabcontent1">
+        <section class="formclass">
+
+                    <h3 style = "color:#F00000; text-align: center;"><strong><%= @repairshopscount %> REPAIR SHOPS TRUST US!</strong></h3>
+
+                    <hr>
+
+                    <h3 style = "color:#7C064D;"><span class="glyphicon glyphicon-search"></span> <strong>SEARCH REPAIR SHOPS & SERVICE CENTERS NEAR YOU</strong></h3>
+
+                    <%= form_tag search_repairshops_path, method: :get do |f| %>
+
+                     <div class= "col-xs-12 col-sm-12 col-lg-12 col-md-12">                        
+                        <%= text_field_tag :keywords, nil, placeholder: 'Keywords (e.g. enter services you are looking for like: "oil change" or the make of your car, like: "Ford)', style: "width: 100%; margin: 1% 0;" %>
+                    </div>
+
+                    <div class= "col-xs-6 col-sm-6 col-lg-6 col-md-6">                        
+                        <%= text_field_tag :location, nil, placeholder: 'Near', style: "width: 100%; margin: 1% 0;" %>
+                    </div>
+                    <div class= "col-xs-6 col-sm-6 col-lg-6 col-md-6"> 
+                        <%= text_field_tag :radius, nil, placeholder: 'Radius', style: "width: 100%; margin: 1% 0;" %>
+                    </div>
+                    <div class= "col-xs-12 col-sm-12 col-lg-12 col-md-12"> 
+                        <%= submit_tag 'Search', class: 'btn btn-danger', style: "width: 100%;" %>
+                        
+                        <% if user_is_premium_or_repairshop %>
+                            <h3 style = "color:#F00000;"><strong>OR</strong></h3>
+                            <%= link_to 'Add Your Shop', new_repairshop_path , class: 'btn btn-danger another', style: "width: 100%;" %>
+                        <% end %>
+                        
+                    </div>
+                  <% end %>    
+        </section>
+    </div>    
+
+  </div>
+
 </div>
 
+
+<script>
+
+$( document ).ready(function() {
+
+
+    var prev ="https://api.edmunds.com/api/vehicle/v2/makes";
+    var rest ="?fmt=json&api_key=";
+    var key = "<%= ENV['EDMUNDS_API_KEY'] %>";
+    var net = prev+rest+key;
+
+    var options = [];
+    var dictionary = {};
+    
+    console.log("hello");
+
+         $.ajax({
+
+            url: net,
+            dataType: "json",
+            type: "get", 
+            data: $(this).serialize()
+         }).done(function(data){
+            change_make(data);
+            change_model();
+         });
+
+    
+
+
+    function change_make(data) {
+        
+        // options.empty();
+        // dictionary.empty();
+    
+        
+        
+        for (var key in data["makes"]){
+            if (data["makes"].hasOwnProperty(key)){
+
+                var make = data["makes"][key];
+
+                options.push(make.name);
+
+                buffer = [];
+
+                // console.log(make.models);
+
+                for (var key2 in make.models){
+
+                    // console.log(make.models[key2].name);
+
+                    if (make.models.hasOwnProperty(key2)){
+
+                        // console.log(make.models[key2].name);
+
+                        buffer.push(make.models[key2].name);
+                    }
+
+                }
+
+
+                dictionary[make.name] = buffer;
+
+            }
+        }
+
+        // console.log(options);
+
+        $.each(options, function(key, value) {   
+             $('#category')
+                 .append($("<option></option>")                            
+                    .attr("value", value.html_safe)
+                    .text(value));  
+        });
+
+        
+    };
+
+
+
+    $('#category').on('change', function(){
+
+
+        console.log("change success");
+        
+        change_model();
+
+
+
+    });
+
+    
+    function change_model(){
+
+        var make = $('#category').find(":selected").text();
+        var models = dictionary[make];
+
+        $('#subcategory').empty();
+
+        $.each(models, function(key, value) {   
+             $('#subcategory')                
+                 .append($("<option></option>")                            
+                    .attr("value",value.html_safe)
+                    .text(value));  
+        });
+    }    
+
+    $("#searchboxcontainer").delay(100).fadeIn(200);   
+    
+
+});
+
+
+</script>

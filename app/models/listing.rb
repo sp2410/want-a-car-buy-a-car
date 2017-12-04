@@ -33,23 +33,39 @@ class Listing < ActiveRecord::Base
 	geocoded_by :full_address
 	after_validation :geocode
 
-	filterrific(
-		default_filter_params: { sorted_by: 'created_at_desc' },
-		available_filters: [
-	    :sorted_by,
-	    :search_query,
-	    :with_category_id,
-	    :with_subcategory_id,
-	    :with_created_at_gte
-	  ]
-	)
+
+	# include Elasticsearch::Model 
+	# include Elasticsearch::Model::Callbacks 
+
+	# index_name Rails.application.class.parent_name.underscore 
+	# document_type self.name.downcase
 
 
-	# def save_with_a_user
-	#  set_user!(listing_user)
-	#  user_id = listing_user.id
-	#  save!
+	# settings index: { number_of_shards: 2 } do 
+	# 	mapping dynamic: false do 
+	# 		indexes :year, analyzer: 'keyword'
+	#         indexes :miles, analyzer: 'keyword'
+	#         indexes :transmission, analyzer: 'english'
+	#         indexes :color, analyzer: 'english'  
+	#         indexes :cylinder, analyzer: 'english'
+	#         indexes :fuel, analyzer: 'english'
+	#         indexes :drive, analyzer: 'english'
+	#         indexes :model, analyzer: 'english'
+	#         indexes :make, analyzer: 'english'
+	#         indexes :trim, analyzer: 'english'
+	#         indexes :enginedescription, analyzer: 'english'
+	#         indexes :interiorcolor, analyzer: 'english'
+	#         indexes :bodytype, analyzer: 'english'
+	#         indexes :NewUsed, analyzer: 'english'
+	        
+	# 	end 
 	# end
+
+
+	# def as_indexed_json(options = nil) 
+	# 	self.as_json( only: [ :year, :miles, :transmission, :color, :cylinder, :fuel, :drive, :model, :make, :trim, :enginedescription, :interiorcolor, :bodytype, :NewUsed] ) 
+	# end
+
 
 	def self.to_csv
 		CSV.generate do |csv|
@@ -103,19 +119,6 @@ class Listing < ActiveRecord::Base
 	end
 
 
-
-
-	# def self.import(file)		
-	# 	CSV.foreach(file.path, headers: true) do |row|
-	# 	 	listing = find_by_id(row["vin"]) || new
-	# 	 	#return false unless listing.valid?
-	# 	 	#listing.user = current_user
-	# 	 	listing.save		 	
-	# 	end
-	# end
-
-
-
 	def full_address
 		[city, state, zipcode].join(', ')
 	end
@@ -132,7 +135,63 @@ class Listing < ActiveRecord::Base
 	def self.search(params)
 		if params
 			listings = Listing.all
-			listings = listings.joins(:category).where("categories.name like '#{params[:category].downcase}'") if params[:category].present?
+			listings = listings.where('LOWER(listings.make) like ?', "#{params[:category].downcase}") if params[:category].present?
+			listings = listings.where('LOWER(listings.model) like ?',"#{params[:subcategory].downcase}") if params[:subcategory].present?
+			listings = listings.where("listings.NewUsed = '#{params[:NewUsed][0].upcase}'") if params[:NewUsed].present?
+			listings = listings.where("price >= ?", "#{params[:minprice]}") if params[:minprice].present?			
+			listings = listings.where("price <= ?", "#{params[:maxprice]}") if params[:maxprice].present?			
+					
+
+			if params[:radius].present?
+				listings = listings.near(params[:location],params[:radius]) if params[:location].present?
+			else
+				listings = listings.near(params[:location],200) if params[:location].present?
+			end
+
+			p "I am here"
+
+			listings.uniq
+
+
+
+		else
+
+			p "I am here"
+			all
+		end
+
+	end
+
+
+	# def self.search(params) 
+	# 	__elasticsearch__.search( 
+	# 	{ 
+	# 		query: { 
+	# 			multi_match: { 
+	# 				query: "#{params[:category].downcase if params[:category].present}", 
+	# 				fields: ['make'] 
+	# 				} 
+	# 			}, 
+	# 			multi_match: { 
+	# 				query: "#{params[:subcategory].downcase}", 
+	# 				fields: ['model'] 
+	# 				} 
+	# 			},
+	# 			multi_match: { 
+	# 				query: "#{params[:NewUsed.downcase}", 
+	# 				fields: ['model'] 
+	# 				} 
+	# 			},
+	# 	} 
+	# 	end 
+	# end
+
+
+
+	def self.bodysearch(params)
+		if params
+			listings = Listing.all
+			listings = listings.where("bodytype like '#{params[:bodytype].downcase}'") if params[:bodytype].present?			
 			listings = listings.where("listings.NewUsed = '#{params[:NewUsed][0].upcase}'") if params[:NewUsed].present?
 			listings = listings.where("price >= ?", "#{params[:minprice]}") if params[:minprice].present?			
 			listings = listings.where("price <= ?", "#{params[:maxprice]}") if params[:maxprice].present?			

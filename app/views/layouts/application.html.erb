@@ -4,35 +4,22 @@
 <%= favicon_link_tag 'logo.ico' %>
 <title>Buy and Sell Cars, Trade Vehicles in Wholesale Market, Build Your Free Dealer/Repair Shop Website</title>
 
+<link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
 
-<link href="https://fonts.googleapis.com/css?family=Alfa+Slab+One|Great+Vibes|Baloo+Chettan|Damion|Heebo|Kaushan+Script|Lobster|Playfair+Display+SC" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"  lazyload>
-
-
-
-
-<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet"  lazyload>  
-<link href="https://www.w3schools.com/w3css/4/w3.css" rel="stylesheet"  lazyload>
-
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" async></script>
 
 <link href="https://www.w3schools.com/w3css/4/w3.css" rel="stylesheet"  lazyload>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"  lazyload>
 
-    
-<link href="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js" >
-    
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" async></script>
-      
-  
-  
-<!-- font -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OverlappingMarkerSpiderfier/1.0.3/oms.min.js" async></script>
+        
     
 <link href="https://cdnjs.cloudflare.com/ajax/libs/card/1.3.1/js/card.min.js" lazyload>
-
 
 
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
@@ -48,32 +35,43 @@
  <meta name="description" content="Sell & Buy New and Used Cars, Bulk Post Across classified Websites, Real Time Auction, Build Automobile Dealer or RepairShop Website with want a car buy a car CMS, Best Price">
  <meta content="Want A Car Buy A Car" property="og:title" />
 
+
 <style>
-       #map {
-        height: 430px;
-        width: 100%;  		
-       }       
-</style>
+    #map {
+      height: 800px;  
+      width: 100%;  
+      overflow: hidden;    
+    }       
+  </style>
+
+<%= csrf_meta_tags %>
+<%= stylesheet_link_tag  'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+<%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 
 
-<link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
-
-
-  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'oms.min', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
 </head>
+
+
+
 <body>
 
 
 <%= slide_down_alerts %>
+
+ <div class = "container3">
+      <%= content_tag :div, alert, class: "flash bg-danger" if alert %>
+      <%= content_tag :div, notice, class: "flash bg-success" if notice %>
+      <div id="notification" class = "flash bg-success"> </div>    
+  </div>
                     
 <%= render 'layouts/navbar'%>
-          
+
+
+
 <%= yield %>
 
 <%= render 'layouts/footer'%>
-  
+
+
 </body>
 </html>

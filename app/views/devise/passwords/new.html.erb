@@ -1,26 +1,22 @@
-<div class="topbar">
-  <h1>FORGOT PASSWORD</h1>
+<div class = "col-sm-12 col-md-12 col-lg-12" style = "background-color: #fff;min-height: 700px;">
+
+  <div class = "col-sm-3 col-md-3 col-lg-3">
+  </div>
+    
+
+  <div class = "col-sm-6 col-md-6 col-lg-6" style = "text-align: center; ">
+    <strong><h1 style = "font-size: 110px; color: #7C064D; margin-bottom: 20px; ">FORGOT PASSWORD ?</h1></strong>
+    <hr>
+
+		<%= bootstrap_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+		  <%= devise_error_messages! %>			
+		    <%= f.email_field :email, autofocus: true, :label => "EMAIL" %>		  
+			<%= f.submit "Send me reset password instructions", class: "btn btn-danger" %>		  
+		<% end %>
+
+
+	<%= render "devise/shared/links" %>
+   
 </div>
 
-<div class="container2">
-  <div id="contact-area">
-
-
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  <%= devise_error_messages! %>
-
-  
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
-  
-
-  <div class="signin-button">
-    <%= f.submit "Send me reset password instructions", class: "submit-width" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
-
-  </div>
 </div>
-

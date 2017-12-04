@@ -1,0 +1,19 @@
+<%= bootstrap_form_for [@repairshop, @coupon] do |f| %>
+  <% if @coupon.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@coupon.errors.count, "error") %> prohibited this coupon from being saved:</h2>
+
+      <ul>
+      <% @coupon.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= f.text_field :title, :label => "ENTER A COOL TITLE" %>
+  <%= f.file_field :image, :label => "ADD YOUR COUPON" %>
+
+  <%= f.submit "SUBMIT", class: "btn btn-danger" %>    
+  
+<% end %>

@@ -1,263 +1,456 @@
-<div class="parent" >
+<div class = "col-xs-12 col-sm-12 text-center" id = "herodiv2">
+
+    <div class ="w3-panel w3-card-2" >
+          
+            <div class="slideshow-container">
+
+                              <%- if @listing.image.present? -%>
+                                <div class="mySlides" id = "showpage">                                                            
+                                  <img src=<%= @listing.image if @listing.image.present? %> style=" max-height: 100%; max-width: 100%; margin: auto;">
+                                </div>                                                                                    
+                              <% else %>
+                                  <div class="mySlides" id = "showpage">                                                            
+                                    <%= image_tag("https://s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/nopictures1.png", :alt => "Want a Car buy A Car| Cars For Sale | Used Cars | Repair Shops", :style=> " max-height: 100%; max-width: 100%; margin: auto;") %>
+                                  </div>
+                              <% end %>
+
+                              <%- if @listing.imagefront.present? -%>
+                                <div class="mySlides" id = "showpage">
+                                  <img src=<%= @listing.imagefront if @listing.imagefront.present? %> style=" max-height: 100%; max-width: 100%; margin: auto;">
+                                </div>
+                              <% else %>
+                                  <div class="mySlides" id = "showpage">                                                            
+                                    <%= image_tag("https://s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/nopictures1.png", :alt => "Want a Car buy A Car| Cars For Sale | Used Cars | Repair Shops", :style=> " max-height: 100%; max-width: 100%; margin: auto;") %>
+                                  </div>
+                              <% end %>
 
 
- <div class ="col-lg-6  col-sm-12 text-center ">
-    <div class ="w3-panel w3-card-2 ">
-        
-          <h1 style ="margin: 0px auto; color: #FF3232"><%= @listing.title.to_s.upcase %> </h1>  
-                  
-            <p>       
-              <% if @listing.image_url.present? %> 
-                <%= image_tag (@listing.image.url)%>
-              <% else %>
-                <%= image_tag("https://s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/nopictures1.png", :alt => "Buy Used Car") %>
-              <% end %>
-                
-            </p>
 
-            <p style="font-size: 15px; color:#FF3232;margin-top: -15px;margin-bottom: 2px;"><strong>Posted <%=  "#{time_ago_in_words(@listing.created_at)} ago" %></strong></p>    
+                              <%- if @listing.imageback.present? -%>
+                                <div class="mySlides" id = "showpage">
+                                  <img src=<%= @listing.imageback if @listing.imageback.present? %> style=" max-height: 100%; max-width: 100%; margin: auto;">
+                                </div>
+                              <% else %>
+                                  <div class="mySlides" id = "showpage">                                                            
+                                    <%= image_tag("https://s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/nopictures1.png", :alt => "Want a Car buy A Car| Cars For Sale | Used Cars | Repair Shops", :style=> " max-height: 100%; max-width: 100%; margin: auto;") %>
+                                  </div>
+                              <% end %>
 
-             <%= social_share_button_tag( @listing.title , :url => @listing_path, :image => @listing.image_url , desc: "#{@listing.description} : $ #{@listing.price}" ) %>          
+
+                              <%- if @listing.imageleft.present? -%>  
+                                <div class="mySlides" id = "showpage">
+                                  <img src=<%= @listing.imageleft  if @listing.imageleft.present? %> style=" max-height: 100%; max-width: 100%; margin: auto;">
+                                </div>
+                              <% else %>
+                                  <div class="mySlides" id = "showpage">                                                            
+                                    <%= image_tag("https://s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/nopictures1.png", :alt => "Want a Car buy A Car| Cars For Sale | Used Cars | Repair Shops", :style=> " max-height: 100%; max-width: 100%; margin: auto;") %>
+                                  </div>
+                              <% end %>
+
+
+                              <%- if @listing.imageright.present? -%>  
+                                <div class="mySlides" id = "showpage">
+                                  <img src=<%= @listing.imageright if @listing.imageright.present? %> style=" max-height: 100%; max-width: 100%; margin: auto;">
+                                </div>
+                              <% else %>
+                                  <div class="mySlides" id = "showpage">                                                            
+                                    <%= image_tag("https://s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/nopictures1.png", :alt => "Want a Car buy A Car| Cars For Sale | Used Cars | Repair Shops", :style=> "width: max-height: 100%; max-width: 100%; margin: auto;") %>
+                                  </div>
+                              <% end %>
+
+
+
+                              <%- if @listing.frontinterior.present? -%>  
+                                <div class="mySlides" id = "showpage">
+                                  <img src=<%= @listing.frontinterior  if @listing.frontinterior.present? %> style=" max-height: 100%; max-width: 100%; margin: auto;">
+                                </div>
+                              <% else %>
+                                  <div class="mySlides" id = "showpage">                                                            
+                                    <%= image_tag("https://s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/nopictures1.png", :alt => "Want a Car buy A Car| Cars For Sale | Used Cars | Repair Shops", :style=> " max-height: 100%; max-width: 100%; margin: auto;") %>
+                                  </div>
+                              <% end %>
+
+
+                              <%- if @listing.rearinterior.present? -%>  
+                                <div class="mySlides" id = "showpage">
+                                  <img src=<%= @listing.rearinterior.url(:thumb)  if @listing.rearinterior.present? %> style=" max-height: 100%; max-width: 100%; margin: auto;">
+                                </div>
+                              <% else %>
+                                  <div class="mySlides" id = "showpage">                                                            
+                                    <%= image_tag("https://s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/nopictures1.png", :alt => "Want a Car buy A Car| Cars For Sale | Used Cars | Repair Shops", :style=> " max-height: 100%; max-width: 100%; margin: auto;") %>
+                                  </div>
+                              <% end %>
+                                                       
+
+
+                              <a class="prev">&#10094;</a>
+                              <a class="next">&#10095;</a>
+                                
+
+                              <div style="text-align:center; ">                              
+
+                                  <span class="dot"></span>                                    
+                                  <span class="dot"></span>                               
+                                  <span class="dot"></span>                               
+                                  <span class="dot"></span>                               
+                                  <span class="dot"></span>                               
+                                  <span class="dot"></span>                               
+                                  <span class="dot"></span>
+                                 
+                              </div>
+            </div> 
 
     </div>
 
-
-    <div class ="w3-panel w3-card-2 ">
-       <!-- <button type="button">reply</button> -->
-       <h1 style ="margin: 0px auto; color: #FF3232">USER INFO</h1>     
-       <br>      
-       <% if @listing.user != nil %>  
-         <% if @listing.user.email != nil %>  
-          <p style="font-size: 15px; margin-top: -10px;"><strong><%= "Contact Person:  #{@listing.user.email}" %></strong></p>
-          <% end %>
-
-          <% if @listing.user.role != nil %>
-            <p style="font-size: 15px; margin-top: -20px;"><strong><%= "User Type:  #{@listing.user.role}" %></strong></p>
-            <% else %>
-            <p style="font-size: 15px; margin-top: -20px;"><strong>User Type: Private Owner</strong></p>
-          <% end %>
-
-          <% if @listing.user.website != nil %>               
-            <p style="font-size: 15px; margin-top: -20px;"><strong><a href = <%= "#{@listing.user.website}" %> > Visit Their Website</a></strong></p>        
-          <% end %>
-        <% end %>
-
-        
-    </div>
-
-
-
-
-  </div>
-
-
-<div class ="col-lg-6  col-sm-12 text-center ">
-  <div class ="w3-panel w3-card-2 ">
-      
-        <h1 style ="margin: 0px auto; color: #FF3232">DESCRIPTION</h1> 
-           <h2 style ="color: #FF3232">
-            <%=  @listing.description.to_s.upcase %>
-            </h2>
-        
-          <table class="tg">
-          <tr>
-              <td class="tg-yw4l" style ="color: #FF3232"><strong>Estimated Price:</strong></td>
-              <td class="tg-yw4l" style ="color: #FF3232"><strong>$<%= "#{ @listing.price}" %></strong> </td>
-            </tr>
-            <tr>
-              <td class="tg-yw4l" ><strong>Year:</strong></td>
-              <th class="tg-yw4l"><strong><%= " #{@listing.year}" %></strong></th>
-            </tr>
-            <tr>
-              <td class="tg-yw4l"><strong>Miles:</strong></td>
-              <td class="tg-yw4l"><strong><%= "#{@listing.miles}" %></strong></td>
-            </tr>
-            <tr>
-              <td class="tg-yw4l"><strong>Transmission:</strong></td>
-              <td class="tg-yw4l"><strong><%= "#{@listing.transmission}" %></strong></td>
-            </tr>
-            <tr>
-              <td class="tg-yw4l"><strong>Color:</strong></td>
-              <td class="tg-yw4l"><strong><%= "#{@listing.color}" %></strong></td>
-            </tr>
-            <tr>
-              <td class="tg-yw4l"><strong>Cylinder:</strong></td>
-              <td class="tg-yw4l"><strong><%= "#{@listing.cylinder}" %></strong></td>
-            </tr>
-            <tr>
-              <td class="tg-yw4l"><strong>Fuel Type:</strong></td>
-              <td class="tg-yw4l"><strong><%=  "#{@listing.fuel}" %></strong></td>
-            </tr>
-            <tr>
-              <td class="tg-yw4l"><strong>Drive:</strong></td>
-              <td class="tg-yw4l"><strong><%=  "#{@listing.drive}" %></strong></td>
-            </tr>            
-            <tr>
-              <td class="tg-yw4l"><strong>New Or Used:</strong></td>
-              <td class="tg-yw4l"><strong><%= "#{ @listing.newused}" %></strong></td>
-            </tr>
-            <tr>
-              <td class="tg-yw4l"><strong>Stock Number:</strong></td>
-              <td class="tg-yw4l"><strong><%= "#{ @listing.stocknumber}" %></strong></td>
-            </tr>
-            <tr>
-              <td class="tg-yw4l"><strong>Model:</strong></td>
-              <td class="tg-yw4l"><strong><%= "#{ @listing.model}" %></strong></td>
-            </tr>
-            <tr>
-              <td class="tg-yw4l"><strong>Trim:</strong></td>
-              <td class="tg-yw4l"><strong><%= "#{ @listing.trim}" %></strong></td>
-            </tr>
-            <tr>
-              <td class="tg-yw4l"><strong>VIN:</strong></td>
-              <td class="tg-yw4l"><strong><%= "#{ @listing.vin}" %></strong></td>
-            </tr>
-            <tr>
-              <td class="tg-yw4l"><strong>Enginer Description:</strong></td>
-              <td class="tg-yw4l"><strong><%= "#{ @listing.enginedescription}" %></strong></td>
-            </tr>
-            <tr>
-              <td class="tg-yw4l"><strong>Interior Color:</strong></td>
-              <td class="tg-yw4l"><strong><%= "#{ @listing.interiorcolor}" %></strong></td>
-            </tr>
-            <tr>
-              <td class="tg-yw4l"><strong>Options:</strong></td>
-              <td class="tg-yw4l"><strong><%= "#{ @listing.options}" %></strong></td>
-            </tr>
-            <tr>
-              <td class="tg-yw4l"><strong>Car Location:</strong></td>
-              <td class="tg-yw4l"><strong><%= "#{ @listing.full_address}" %></strong></td>
-            </tr>
-          </table>
-
-
-            <% if @listing.user.eql? current_user %>
-              <p><%= link_to 'EDIT', edit_listing_path, class: "btn btn-default", style: "text-decoration: none;" %></p>
-              <p><%= link_to 'DELETE', @listing, data: {confirm: "Wait! Are you sure ?"}, method: :delete, class: "btn btn-default", style: "text-decoration: none;" %></p>
-            <% end %>
-           
-        
-  </div>
-</div>
- 
-<div class ="col-lg-6  col-sm-12 text-center ">
-  <div class ="w3-panel w3-card-2 ">
-       <!-- <button type="button">reply</button> -->
-       <h1 style ="margin: 0px auto; color: #FF3232">VEHICLE IMAGES</h1>   
-
-       <h2 style ="margin: 5% auto;">FRONT </h2>  
-                  
-            <p>       
-              <% if @listing.imagefront.present? %> 
-                <%= image_tag (@listing.imagefront.url)%>
-              <% else %>
-                <%= image_tag("https://s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/nopictures1.png", :alt => "Buy Used Car") %>
-              <% end %>
-                
-            </p>
-
-        <h2 style ="margin: 5% auto;">BACK</h2>  
-                  
-            <p>       
-              <% if @listing.imageback.present? %> 
-                <%= image_tag (@listing.imageback.url)%>
-              <% else %>
-                <%= image_tag("https://s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/nopictures1.png", :alt => "Buy Used Car") %>
-              <% end %>
-                
-            </p>
-            
-         <h2 style ="margin: 5% auto;">LEFT</h2>  
-                  
-            <p>       
-              <% if @listing.imageleft.present? %> 
-                <%= image_tag (@listing.imageleft.url)%>
-              <% else %>
-                <%= image_tag("https://s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/nopictures1.png", :alt => "Buy Used Car") %>
-              <% end %>
-                
-            </p>
-            
-         <h2 style ="margin: 5% auto;">RIGHT</h2>  
-                  
-            <p>       
-              <% if @listing.imageright.present? %> 
-                <%= image_tag (@listing.imageright.url)%>
-              <% else %>
-                <%= image_tag("https://s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/nopictures1.png", :alt => "Buy Used Car") %>
-              <% end %>
-                
-            </p>            
-          <h2 style ="margin: 5% auto;">FRONT INTERIOR</h2>  
-                  
-            <p>       
-              <% if @listing.frontinterior.present? %> 
-                <%= image_tag (@listing.frontinterior.url)%>
-              <% else %>
-                <%= image_tag("https://s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/nopictures1.png", :alt => "Buy Used Car") %>
-              <% end %>
-                
-            </p> 
-         <h2 style ="margin: 5% auto;">REAR INTERIOR</h2>  
-                  
-            <p>       
-              <% if @listing.rearinterior.present? %> 
-                <%= image_tag (@listing.rearinterior.url)%>
-              <% else %>
-                <%= image_tag("https://s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/nopictures1.png", :alt => "Buy Used Car") %>
-              <% end %>
-                
-            </p>      
-       <br>      
-            
-
-  </div>
 </div>
 
-<div class ="col-lg-6  col-sm-12 text-center ">
-  <div class ="w3-panel w3-card-2 ">
-         
-        
-        <% if @listings.present? %>
-            <h1 style ="margin: 0px auto; color: #FF3232">OTHER LISTINGS BY SAME USER</h1>
-            <% @listings.each do |wlisting| %>                      
-                <% if  wlisting.id != @listing.id %>
-                  <div id = "listingsdescsmall">                
-                    <%= link_to wlisting do %>
-                        <p style="margin-top: -10px;">
-                  <% if wlisting.image_url.present? %> 
-                      <%= image_tag wlisting.image.url(:thumb) if wlisting.image_url.present? %> 
-                      <br>
-                  <% else %>
-                      <%= image_tag("https://s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/nopictures1.png", :alt => "want a car buy a car: Buy Used Cars") %>
-                  <% end %>                            
-                    Price $: <%= wlisting.price %>                                  
-                </p>
-                
+   <div class = "col-sm-12 col-md-12 col-lg-12" style = "background-color: white;">
+    
+    
+      <div class = "col-sm-12 col-md-12 col-lg-12" style = "text-align: center; margin-top: 20px;">
 
-                <br> 
+        <strong><p style ="font-size: 15px; color: #e20049; overflow-x:hidden; text-align: center;"> SHARE WITH YOUR FRIENDS! </p></strong>
 
-                <p style = "margin-top: 1px; color: #A9A9A9; font-size: 13px;"><%= wlisting.city %> - <%= wlisting.state %>  
-                </p>
+           <%= social_share_button_tag(@listing.title, :url => "https://fierce-sea-43472.herokuapp.com/listings/#{@listing.id}", :image => "#{@listing.image if @listing.image }") %>
 
-                 <div id ="ribbon">
-                      <div id="txt">
-                        <%= distance_of_time_in_words(wlisting.updated_at, Time.now).split(' ')[-2] %>
-                         <%= distance_of_time_in_words(wlisting.updated_at, Time.now).split(' ')[-1] %>
+            <hr>
+      </div>
+
+    
+      <div class = "col-sm-12 col-md-12 col-lg-12">
+          <div class="description">
+
+              <div class = "col-sm-12 col-md-6 col-lg-6">
+                            <div class="row">
+                              <div class = "col-sm-12 col-md-12 col-lg-12 col-xs-12">
+                                  <div class="col-sm-10 col-lg-10" >   
+                                          <h6 class="row text-center" style = "color:  #e20049; padding: 12px; font-size: 2em; text-align: left;"><strong><%= @listing.title.upcase if @listing.title%></strong></h6>
+
+                                          <div class = "col-sm-12 col-md-12 col-lg-12 col-xs-12">
+                                                  <p><span class="glyphicon glyphicon-map-marker"></span> Location: <%= @listing.city if  @listing.city %> <%= @listing.state if  @listing.state %>
+
+                                                  </p>
+                                          </div>
+                                         
+                                                 
+                                            <!-- https://www.google.com/maps/?q=-15.623037,18.388672 -->
+                                                  
+
+                                          <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12">
+                                                  <%if user_is_listing_owner(@listing) %>
+                                                      <div class="col-sm-12 text-center">
+                                                          <%= link_to 'Edit', edit_listing_path(@listing), class: "btn btn-info btn-xs", style: "background-color: #E20049; border: #e20049;"  %>
+                                                          <%= link_to 'Destroy', @listing, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-info btn-xs", style: "background-color: #E20049; border: #e20049;"  %>
+                                                      </div>
+                                                    <% end %>           
+                                          </div>
+                                                                                       
+
+                                          <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12 text-center">
+                                                <hr>
+                                          </div>
+
+             
+                                          <div class="col-sm-12 " style = "background-color: #fff; padding: 0px;">
+
+                                                  <h6 class="row text-center" style = "font-size: 2em;text-align: left;color: #e20049;"><strong>SPECIFICATIONS</strong></h6>
+
+                                                  <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6">
+                                                    <p><strong><span class="glyphicon glyphicon-fire"></span> Year: <%= @listing.year if @listing.year %><strong></p>
+                                                  </div>
+
+                                                  <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6">
+                                                    <p><strong><span class="glyphicon glyphicon-stop"></span> Estimated Price: $ <%=  @listing.price %><strong></p>
+                                                  </div> 
+                                                  <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6">
+                                                    <p ><strong><span class="glyphicon glyphicon-wrench"></span> Make: <%= @listing.make %></strong></p>
+                                                  </div>
+                                                  <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6">
+                                                    <p ><strong><span class="glyphicon glyphicon-wrench"></span> Model: <%= @listing.model %></strong></p>
+                                                  </div>                                                 
+
+                                                  <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6">
+                                                    <p ><strong><span class="glyphicon glyphicon-road"></span> Miles: <%= @listing.miles if @listing.miles %></strong></p>
+                                                  </div>
+
+                                                  <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6">
+                                                    <p ><strong><span class="glyphicon glyphicon-modal-window"></span> Transmission: <%= @listing.transmission if @listing.transmission %></strong></p>
+                                                  </div>
+
+                                                  <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6">
+                                                    <p ><strong><span class="glyphicon glyphicon-cd"></span> Cylinder: <%= @listing.cylinder if @listing.cylinder %></strong></p>
+                                                  </div>
+
+                                                  <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6">
+                                                    <p ><strong><span class="glyphicon glyphicon-record"></span> Drive: <%=  @listing.drive %></strong></p>
+                                                  </div>
+
+                                                  <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6">
+                                                    <p ><strong><span class="glyphicon glyphicon-tint"></span> Fuel Type: <%= @listing.fuel if @listing.fuel %></strong></p>
+                                                  </div>
+                                                  <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6">
+                                                    <p ><strong><span class="glyphicon glyphicon-comment"></span> New Or Used: <%= @listing.newused %></strong></p>
+                                                  </div>
+                                                  <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6">
+                                                    <p ><strong><span class="glyphicon glyphicon-barcode"></span> Stock Number: <%= @listing.stocknumber %></strong></p>
+                                                  </div>                                                  
+                                                  <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6">
+                                                    <p ><strong><span class="glyphicon glyphicon-qrcode"></span> Trim: <%= @listing.trim %></strong></p>
+                                                  </div>
+                                                  <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6">
+                                                    <p ><strong><span class="glyphicon glyphicon-barcode"></span> VIN: <%= @listing.vin %></strong></p>
+                                                  </div>
+                                                  <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6">
+                                                    <p ><strong><span class="glyphicon glyphicon-folder-open"></span> Engine Description: <%= @listing.enginedescription %></strong></p>
+                                                  </div>
+                                                  <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6">
+                                                    <p ><strong><span class="glyphicon glyphicon-flash"></span> Interior Color: <%= @listing.interiorcolor %></strong></p>
+                                                  </div>                                                 
+                                          </div>
+
+                                          <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12 text-center">
+                                              <hr>
+                                          </div>
+
+                                  </div>                                                    
+                                          <div class="col-sm-12" style = " padding: 12px; overflow-y: scroll; height: 500px;">
+                                              <h6 style = "color:  #e20049; padding: 0px; font-size: 2em; text-align: left;"><strong>ABOUT THE CAR</strong></h6>
+                                              <p style ="margin: 0px;font-size: 15px; color: #e20049; overflow-x:hidden;"> (Click Here and Scroll Down to Read More) </p>
+                                              <br>
+                                              <p style ="margin: 0px; font-size: 15px; overflow-x:hidden;"><%= raw @listing.description.to_s %></p>
+                                          </div>
+
+                                                <br>
+                                          
+                                
+  
+                                        
+                                          <div class="col-sm-12 col-md-12 col-lg-12" style = " padding: 12px; overflow-y: scroll; height: 500px;">
+                                                  <hr>
+                                                    <h6 class="row text-center" style = "color:  #e20049; padding: 12px; font-size: 2em; text-align: left;"><strong>OPTIONS</strong></h6>
+
+                                                    <div class="col-sm-12 text-center" style = " padding: 0px;  overflow-y: scroll; height: 300px; text-align: left;">
+                                                      <p style = "padding: 15px 0px;"><strong><%= raw @listing.options %>  </strong></p>
+                                                      <br>
+                                                    </div>
+                                                
+                                                <br>
+                                          </div>
+
+                                                                        
+                                    </div> 
+                                </div>
+                            </div>                
+              </div>
+
+              <div class = "col-sm-12 col-md-6 col-lg-6">                
+                <div class="col-sm-12 " style = "background-color: #fff; padding: 12px;">                      
+                    <hr>  
+                      <h6 class="row text-center" style = "color:  #e20049; padding: 12px; font-size: 2em; text-align: left;"><strong>ABOUT SELLER</strong></h6>
+                      <div class="col-sm-12 text-center" style = " padding: 0px; overflow-y: scroll; height: 200px; text-align: left;">
+                      <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6">
+                        <p ><strong><span class="glyphicon glyphicon-envelope"></span><strong> Email: <%= @user.email %>  </strong></p>
+                      </div>
+                      <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6">
+                        <p style = "display: inline;"><strong><span class="glyphicon glyphicon-certificate"></span><strong> WACBAC Rating: <%= get_rating_in_star(Review.get_average_rating(@user.id)) %>  </strong></p>
 
                       </div>
-                  </div>          
+                      <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6">
+                        <p ><strong><span class="glyphicon glyphicon-pushpin"></span><strong> Street Address: <%= @user.full_address %>  </strong></p>
+                      </div>
+                      <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6">
+                        <p ><strong><span class="glyphicon glyphicon-phone"></span><strong> Contact Details: <%= @user.phone_number %>  </strong></p>
+                      </div>
+                      <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12">                      
 
-                    <% end %>
-                  </div>
-                <% end %>      
-            <% end %>
-        <% end %>
-    
+                        <p ><strong><span class="glyphicon glyphicon-paperclip"></span><strong> Website: <a href =<%= "//#{@user.website}" %> rel="noopener noreferrer" style= "text-decoration: underline;" target="_blank"><%= @user.website %></a> </strong></p>
+                      </div>
+
+                       <div class = "col-sm-12 col-md-12 col-lg-12 col-xs-12 text-center">
+                          <p><a href = <%= "https://www.google.com/maps/?q=#{@user.latitude},#{@user.longitude}" %> class = "btn btn-danger btn" rel="noopener noreferrer" target="_blank">View Dealer Location In Google Maps</a></p>
+                        </div>
+
+
+                        <br>
+                      </div>
+                  
+                  <br>
+                </div>
+
+
+              <div class="col-sm-12 " style = "background-color: #fff; padding: 12px;">                      
+                <hr>
+                      <h6 class="row text-center" style = "color:  #e20049; padding: 12px; font-size: 2em; text-align: left;"><strong>OWNER REVIEWS</strong></h6>                
+
+                      <div class="col-sm-12 text-center" style = " padding: 0px; overflow-y: scroll; height: 500px;">                     
+                      <% unless user_is_listing_owner(@listing) %>         
+                        <%= link_to 'Add A Review', new_user_review_path(@user, :parent_id => @listing.id, :parent_type => 'listing'), class: "btn btn-danger btn-xs", style: "border: #e20049" %>
+                      <% end %>
+                          <% @reviews.each do |review| %>
+                                  <hr>         
+                                  <p style = "display: inline;">Rating:</p> <%= get_rating_in_star(review.rating) %>
+                                  <br>
+                                  <p style = "text-align: center;"><%= review.comment if  review.comment %></p>
+
+                                  <p style = "text-align: center;"><span class="glyphicon glyphicon-user"></span> <%= User.find_by_id(review.user_id).email if review.user_id %></p>
+
+                                    <% if user_is_review_owner(review)%>
+
+                                      <%= link_to 'Edit', edit_user_review_path(User.find_by_id(review.owner_id), review, :parent_id => @listing.id, :parent_type => 'listing'), class: "btn btn-danger btn-xs", style: " border: #e20049; margin: 1.5px 0;"  %>
+
+                                      <%= link_to 'Destroy', user_review_path(User.find_by_id(review.owner_id), review, :parent_id => @listing.id, :parent_type => 'listing'), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-xs", style: " border: #e20049; margin: 1.5px 0;"  %>
+
+                          <% end %>
+
+                                  <hr>      
+
+                        <% end %>
+
+                      </div>
+                      
+                  
+                  <br>
+                </div>
+
+                 <div class="col-sm-12 " style = "background-color: #fff; padding: 12px;">                      
+                  <hr>
+                      <h6 class="row text-center" style = "color:  #e20049; padding: 12px; font-size: 2em; text-align: left;"><strong>NEW INQUIRY</strong></h6>                
+
+                      <div class="col-sm-12 text-center" style = " padding: 0px; overflow-y: scroll; height: 500px;">                              
+                        <%= render 'inquiries/form' %>
+                      </div>
+                      
+                  
+                  <br>
+                </div>
+
+                
+              </div>
+
+
+
+               <div class="col-sm-12 text-center">
+                  <hr>
+              </div>
+              
+
+                
+              </div>
+
+          </div>
+      </div>
+
+
   </div>
-</div>
 
 
 
-</div>
+<script>
+  (function() {
 
+    init(); //on page load - show first slide, hidethe rest
+
+    function init() {
+
+      set_subject_in_inquiry();
+
+      // document.getElementById("defaultOpen").click();
+
+      parents = document.getElementsByClassName('slideshow-container');
+
+      for (j = 0; j < parents.length; j++) {
+        var slides = parents[j].getElementsByClassName("mySlides");
+        var dots = parents[j].getElementsByClassName("dot");
+        slides[0].classList.add('active-slide');
+        dots[0].classList.add('active');
+      }
+    }
+
+     function set_subject_in_inquiry(){
+
+        var vin = "<%= @listing.vin %>";
+        var title = "<%= @listing.title %>";
+        var price = "<%= @listing.price %>";
+        var to_email = "<%= @user.email %>";
+
+        var subject = "Inquiry About Your Vehicle VIN "+vin + " Title " + title + " Price $" + price;
+        var inquiry = "Hi! I'd like to know if the " + title +", VIN: " + vin +", you have listed on Want A Car Buy A Car for " + "$"+price +" is still available."
+
+        $('input#inquiry_subject').val(subject);
+        $('textarea#inquiry_comment').val(inquiry);
+        $('#inquiry_to_email').val(to_email);
+
+         <% if current_user %>           
+            var user_signed_in = "<%= current_user.email %>";
+            $('input#inquiry_from_email').val(user_signed_in);          
+        <% end %>
+        
+
+
+    }
+
+
+
+
+    dots = document.getElementsByClassName('dot'); //dots functionality
+
+    for (i = 0; i < dots.length; i++) {
+
+      dots[i].onclick = function() {
+
+        slides = this.parentNode.parentNode.getElementsByClassName("mySlides");
+
+        for (j = 0; j < this.parentNode.children.length; j++) {
+          this.parentNode.children[j].classList.remove('active');
+          slides[j].classList.remove('active-slide');
+          if (this.parentNode.children[j] == this) {
+            index = j;
+          }
+        }
+        this.classList.add('active');
+        slides[index].classList.add('active-slide');
+
+      }
+    }
+  //prev/next functionality
+    links = document.querySelectorAll('.slideshow-container a');
+
+    for (i = 0; i < links.length; i++) {
+      links[i].onclick = function() {
+        current = this.parentNode;
+
+        var slides = current.getElementsByClassName("mySlides");
+        var dots = current.getElementsByClassName("dot");
+        curr_slide = current.getElementsByClassName('active-slide')[0];
+        curr_dot = current.getElementsByClassName('active')[0];
+        curr_slide.classList.remove('active-slide');
+        curr_dot.classList.remove('active');
+        if (this.className == 'next') {
+
+          if (curr_slide.nextElementSibling.classList.contains('mySlides')) {
+            curr_slide.nextElementSibling.classList.add('active-slide');
+            curr_dot.nextElementSibling.classList.add('active');
+          } else {
+            slides[0].classList.add('active-slide');
+            dots[0].classList.add('active');
+          }
+
+        }
+
+        if (this.className == 'prev') {
+
+          if (curr_slide.previousElementSibling) {
+            curr_slide.previousElementSibling.classList.add('active-slide');
+            curr_dot.previousElementSibling.classList.add('active');
+          } else {
+            slides[slides.length - 1].classList.add('active-slide');
+            dots[slides.length - 1].classList.add('active');
+          }
+
+        }
+
+      }
+
+    }
+  })();
+</script>

@@ -1,12 +1,14 @@
 class Repairshop < ActiveRecord::Base
 	belongs_to :user
-	has_many :categories
+	has_many :coupons, :dependent => :destroy
+	has_many :specializations, :dependent => :destroy
+	has_many :brands_we_services, :dependent => :destroy
 	validates_presence_of :title
-	validates_presence_of :zipcode
+	# validates_presence_of :zipcode
 
 
 	mount_uploader :image, ImageUploader
-
+	
 	geocoded_by :full_address
 	after_validation :geocode
 
@@ -17,20 +19,25 @@ class Repairshop < ActiveRecord::Base
 	def self.search(params)
 		if params
 			repairshop = Repairshop.all
-			#repairshop = repairshop.where("description like '#{params[:specialisation]}'") if params[:specialisation].present?
-			#listings = listings.where("carcompany  like '#{params[:NewUsed][0].upcase}'") if params[:NewUsed].present?			
+			
 			if params[:radius].present?
 				repairshop = repairshop.near(params[:location], params[:radius]) if params[:location].present?
 			else
 				repairshop = repairshop.near(params[:location], 200) if params[:location].present?				
 			end
 
+			if params[:keywords].present?
+				repairshop = repairshop.joins(:specializations).joins(:brands_we_services).where("LOWER(specializations.title) LIKE ? OR LOWER(brands_we_services.title) LIKE ?", "%#{params[:keywords].downcase}%", "%#{params[:keywords].downcase}%")
+			end
 
-			repairshop
+			repairshop.uniq
 		else
 			all
 		end
 
 	end
 
+	
+
 end
+

@@ -1,60 +1,75 @@
-<div class="topbar">
-  <h1>EDIT USER</h1>
-</div>
+<div class = "col-sm-12 col-md-12 col-lg-12" style = "background-color: #fff;min-height: 700px;">
 
-<div class="container2">
-  <div id="contact-area">
+  <div class = "col-sm-3 col-md-3 col-lg-3">
+  </div>
     
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= devise_error_messages! %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
-  </div>
-  
-  <div class="field">
-    <%= f.label :website %><br />
-    <%= f.text_field :website, autofocus: true %>    
-  </div>
+  <div class = "col-sm-6 col-md-6 col-lg-6" style = "text-align: center; ">
+    <strong><h1 style = "font-size: 110px; color: #7C064D; margin-bottom: 20px; ">EDIT USER</h1></strong>
+    <hr>
 
 
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
+    <%= bootstrap_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+      <%= devise_error_messages! %>
 
-  <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "off" %>    
-  </div>
+              
+        <%= f.email_field :email, autofocus: true, :label => "EMAIL" %>
+      
+      
+              
+        <%= f.text_field :website, autofocus: true, :label => "YOUR WEBSITE" %>
+      
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
+              
+        <%= f.text_field :street_address, autofocus: true, :label => "YOUR STREET ADDRESS" %>
+      
 
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "off" %>
-  </div>
+              
+        <%= f.text_field :city, autofocus: true, :label => "YOUR CITY" %>
+      
 
-  <div class="signin-button">
-  <%= f.select :role, User.roles.keys, {}, class: 'user-roles-select' %>
-    <%= f.submit "Update", class: "submit-width" %>
-  </div>
-<% end %>
+              
+        <%= f.text_field :state, autofocus: true, :label => "YOUR STATE" %>
+      
 
+              
+        <%= f.text_field :zipcode, autofocus: true, :label => "YOUR ZIPCODE" %>
 
-<div class="signin-button">
-    <h2>Cancel my account</h2>
+        <%= f.text_field :phone_number, autofocus: true, :label => "YOUR PHONE NUMBER" %>
 
-
-
-<p>UNHAPPY? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete , class: "submit-width" %></p>
-
-</div>
-<%= link_to "Back", :back %>
+        
+      
 
 
- </div>
+      <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+        <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+      <% end %>
+
+              
+        <%= f.password_field :password, autocomplete: "off", :label => "PASSWORD (leave blank if you don't want to change it)" %>    
+      
+
+              
+        <%= f.password_field :password_confirmation, autocomplete: "off", :label => "PASSWORD CONFIRMATION" %>
+    
+
+              
+        <%= f.password_field :current_password, autocomplete: "off", :label => "CURRENT PASSWORD (we need your current password to confirm your changes)" %>
+      
+
+      <div class="signin-button">
+      <%= f.select :role, User.roles.keys, {}, :label => "ROLE", class: 'user-roles-select' %>
+        <%= f.submit "Update", class: "btn btn-danger" %>
+      </div>
+    <% end %>
+
+  <br>
+  <br>
+
+    <p style = "display: inline;">UNHAPPY? <%= button_to "YES! CANCEL MY ACCOUNT", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete , class: "btn btn-danger" %></p>
+
+    
+    
+    </div>
+
 </div>

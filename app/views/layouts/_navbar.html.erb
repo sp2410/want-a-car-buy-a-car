@@ -1,45 +1,55 @@
-<div class = "container2" >
-<nav class="navbar navbar-default navbar-static-top" role="navigation" style = "margin-bottom: 0px;padding-right: 10px;">
+<nav class="navbar">
+  <div class="container-fluid">
 
-  <div class="container-fluid">    
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar" style="background: #e53c35;">
+        <span class="icon-bar" ></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
 
-      <ul class="nav navbar-nav navbar-left" >
-        <li>          
-          <%= link_to image_tag("wacbac2.png", :alt => "rss feed", :size => "45x45",:style => "display: block; max-width:140px; max-height:70px; width: auto; height: auto; margin-bottom: 2px;margin-top: -2px;float:left"), root_path, class: "logolink" %>
-
+      <ul class="nav navbar-nav navbar-left">
+        <li>
+          <%= image_tag("https://s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/TDC.png", :alt => "Want A Car Buy A Car", :size => "40x40") %>          
         </li>
       </ul>
+    </div>
 
-
-
-      <ul class="nav navbar-nav navbar-right" id = "navcontents">        
-        <li>
-          <%=link_to 'USED CARS', usedcars_path %>
+    <div class="collapse navbar-collapse" id="myNavbar">      
+         <ul class="nav navbar-nav navbar-right">        
+         <li>
+          <%= link_to 'HOME', root_path %>     
+         </li>
+         <li>
+          <%= link_to 'SELL YOUR CAR', new_listing_path %>     
+         </li>
+         <li>
+          <%=link_to 'REPAIR SHOPS', repairshops_path %>
         </li>
         <li>
-          <%=link_to 'NEW CARS', newcars_path %>
-        </li>
+          <%=link_to 'ALL COUPONS', repairshops_path %>
+        </li>        
         <li>
           <%=link_to 'DEALER CORNER', repairshops_path %>
-        </li>
-        <li>
-          <%=link_to 'FIND OR ADD REPAIR SHOP', repairshops_path %>
-        </li>
+        </li>                
         <!-- <li>
           <a href="https://tranquil-shore-25457.herokuapp.com">CREATE YOUR WEBSITE</a>
         </li>         -->
-        <li>
-          <a href="https://evening-beach-65902.herokuapp.com/">AUCTION YOUR VEHICLE</a>
-        </li>   
+       <!--  <li>
+          <a href="//tdcautoauction.com/">AUCTION YOUR VEHICLE</a>
+        </li> -->   
         <li>
             <%= link_to "PREMIUM PLAN", root_path %>
-        </li>                
-        
-         
+        </li>                                 
              
-        <% if current_user %>                     
-          <li><%= link_to 'YOUR LISTINGS', mylistings_path %></li>           
+        <% if current_user %>                    
+        <% unless (current_user.role == 'repairshop') %>
+          <li><%= link_to 'YOUR LISTINGS', mylistings_path %></li>
+        <% else %>
+          <li><%= link_to 'YOUR REPAIRSHOP', mylistings_path %></li>
+        <% end %>
+          
+          <li><%= link_to 'YOUR PROFILE', edit_user_registration_path %></li>           
           <li>
             <%= link_to "SIGN OUT", destroy_user_session_path, method: :delete %>
           </li>          
@@ -47,9 +57,8 @@
           <li>
             <%= link_to "SIGN IN", new_user_session_path %>
           </li>          
-        <% end %>                         
-      </ul>
+        <% end %>                      
+      </ul>      
     </div>
   </div>
 </nav>
-</div>

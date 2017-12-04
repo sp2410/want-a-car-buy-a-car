@@ -1,21 +1,30 @@
 class ListingsController < ApplicationController
 
-	before_filter :authenticate_user!, only: [:new, :create, :mylistings]
+	before_action :authenticate_user!, only: [:new, :create, :mylistings]
 	before_filter :is_user?, only: [:edit, :update, :delete]
-	
 
+	before_action :get_number_of_cars, only: [:search,:bodysearch,:index ]
+	before_action :get_number_of_repairshops, only: [:search,:bodysearch,:index]
+
+
+	def index
+	end
 	
 	def new
-		@listing=Listing.new
+		@listing = Listing.new
 	end	
 
 	def create
 		@listing = Listing.new(listing_params)
 		@listing.user = current_user
+
+		@listing.city = current_user.city		
+		@listing.state = current_user.state
+		@listing.zipcode = current_user.zipcode
+		@listing.title = "#{@listing.year} #{@listing.make} #{@listing.model}"
 		
 
-		if @listing.save	
-			
+		if @listing.save				
 			redirect_to @listing
 		else
 			flash[:alert] =  @listing.errors.full_messages.to_sentence
@@ -25,7 +34,11 @@ class ListingsController < ApplicationController
 
 	def show
 		@listing = Listing.find(params[:id])
+		@parent = @listing
+		@user = User.find_by_id(@listing.user_id)
 		@listings = Listing.where(user: @listing.user)
+		@reviews = Review.where('owner_id = ?', @user.id)
+		
 	end
 
 	def edit
@@ -44,7 +57,22 @@ class ListingsController < ApplicationController
 	end
 
 	def search		
-		@listings = Listing.search(params).order("#{sort_column}" + " " + "#{sort_direction}")
+		# @listings = Listing.search(params).order("#{sort_column}" + " " + "#{sort_direction}")
+		@listings = Listing.search(params)		
+
+		# @listings = apply_filters(@listings)
+
+		# @search = CarSearch.new(params)
+		# @listings = @search.result
+
+
+
+	
+	end
+
+	def bodysearch		
+		# @listings = Listing.bodysearch(params).order("#{sort_column}" + " " + "#{sort_direction}")
+		@listings = Listing.all
 	end
 
 	# def searchbyuser		
@@ -119,9 +147,17 @@ class ListingsController < ApplicationController
 
 
 	def listing_params
-		params.require(:listing).permit(:title, :description, :city, :state, :zipcode, :category_id, :subcategory_id, :image, :year, :miles, :transmission, :color, :cylinder, :fuel, :drive, :address,:wholesale,:price, :newused, :vin , :stocknumber, :model, :trim, :enginedescription,:interiorcolor,:options, :imagefront, :imageback, :imageleft, :imageright, :frontinterior, :rearinterior)
+		params.require(:listing).permit(:description, :city, :state, :zipcode, :category_id, :subcategory_id, :image, :year, :miles, :transmission, :color, :cylinder, :fuel, :drive, :address,:wholesale,:price, :newused, :vin , :stocknumber, :model, :trim, :enginedescription,:interiorcolor,:options, :imagefront, :imageback, :imageleft, :imageright, :frontinterior, :rearinterior, :make)
 		
 
+	end
+
+	def get_number_of_cars
+		@carcount = Listing.all.count
+	end
+
+	def get_number_of_repairshops
+		@repairshopscount = Repairshop.all.count
 	end
 
 
@@ -143,5 +179,15 @@ class ListingsController < ApplicationController
 	def myparams
 		params
 	end
+
+	def apply_filters(relation)
+		case params[:filter]
+		when "year"
+			relation.with_year
+		else
+			relation
+		end
+	end
+
 	
 end
