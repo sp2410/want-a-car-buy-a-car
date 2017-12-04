@@ -135,11 +135,14 @@ class Listing < ActiveRecord::Base
 	def self.search(params)
 		if params
 			listings = Listing.all
-			listings = listings.where('LOWER(listings.make) like ?', "#{params[:category].downcase}") if params[:category].present?
-			listings = listings.where('LOWER(listings.model) like ?',"#{params[:subcategory].downcase}") if params[:subcategory].present?
+			listings = listings.where('LOWER(listings.make) like ?', "%#{params[:category].downcase}%") if params[:category].present?
+			listings = listings.where('LOWER(listings.model) like ?',"%#{params[:subcategory].downcase}%") if params[:subcategory].present?
 			listings = listings.where("listings.NewUsed = '#{params[:NewUsed][0].upcase}'") if params[:NewUsed].present?
 			listings = listings.where("price >= ?", "#{params[:minprice]}") if params[:minprice].present?			
 			listings = listings.where("price <= ?", "#{params[:maxprice]}") if params[:maxprice].present?			
+
+
+			listings = listings.where('LOWER(listings.bodytype) like ?', "%#{params[:bodytype].downcase}%") if params[:bodytype].present?
 					
 
 			if params[:radius].present?
