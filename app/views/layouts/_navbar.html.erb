@@ -28,10 +28,7 @@
         </li>
         <li>
           <%=link_to 'ALL COUPONS', repairshops_path %>
-        </li>        
-        <li>
-          <%=link_to 'DEALER CORNER', repairshops_path %>
-        </li>                
+        </li>                          
         <!-- <li>
           <a href="https://tranquil-shore-25457.herokuapp.com">CREATE YOUR WEBSITE</a>
         </li>         -->
@@ -39,8 +36,11 @@
           <a href="//tdcautoauction.com/">AUCTION YOUR VEHICLE</a>
         </li> -->   
         <li>
-            <%= link_to "PREMIUM PLAN", root_path %>
-        </li>                                 
+            <%= link_to "ALL OFFERS", root_path %>
+        </li> 
+         <li>
+          <%=link_to 'DEALER CORNER', repairshops_path %>
+        </li>                                   
              
         <% if current_user %>                    
         <% unless (current_user.role == 'repairshop') %>

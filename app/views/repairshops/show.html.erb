@@ -361,9 +361,12 @@
 
                                           <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12" style = "text-align: center;">
 
+                                          <% if user_is_listing_owner(@repairshop) %>
+
                                             <%= link_to 'Edit', edit_repairshop_coupon_path(@repairshop, coupon), class: "btn btn-danger btn-xs", style: " border: #e20049; margin: 1.5px 0;"  %>
                                             <%= link_to 'Destroy', repairshop_coupon_path(@repairshop, coupon), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-xs", style: " border: #e20049; margin: 1.5px 0;"  %>
 
+                                            <% end %>
                                           </div>
                                       </div>                                      
                                     </div>

@@ -19,12 +19,16 @@
                           <div class="slideshow-container" >
 
                             <%- if i.image.present? -%>
-                              <div class="mySlides" id = "otherpage">                                                            
-                                <img src=<%= i.image if i.image.present? %> style="width:100%; height: 180px;">
+                              <div class="mySlides" id = "otherpage">
+                                <div class = "w3-panel w3-card-2" style = "padding: 10px;">                     
+                                  <img src=<%= i.image if i.image.present? %> style="width:100%; height: 180px;">
+                                </div>
                               </div>                                                                                    
                             <% else %>
-                                <div class="mySlides" id = "otherpage">                                                            
-                                  <%= image_tag("https://s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/nopictures1.png", :alt => "Want a Car buy A Car| Cars For Sale | Used Cars | Repair Shops", :style=> "width:100%; height: 180px;") %>
+                                <div class="mySlides" id = "otherpage">
+                                  <div class = "w3-panel w3-card-2" style = "padding: 10px;">
+                                    <%= image_tag("https://s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/nopictures1.png", :alt => "Want a Car buy A Car| Cars For Sale | Used Cars | Repair Shops", :style=> "width:100%; height: 180px;") %>
+                                  </div>
                                 </div>
                             <% end %>
                            
@@ -48,12 +52,12 @@
                                 <div class= "col-xs-12 col-sm-12 col-lg-12 col-md-12">                                 
 
                                 <div class= "col-xs-12 col-sm-12 col-lg-12 col-md-12"> 
-                                  <p style ="margin: 1px;font-size: 20px; color: #7C064D;"><span class="glyphicon glyphicon-fire"></span> <%= i.title.upcase if i.title %></p> 
+                                  <p style ="margin: 1px;font-size: 0.9em; color: #7C064D;"><span class="glyphicon glyphicon-fire"></span> <%= i.title.upcase if i.title %></p> 
                                 </div>                             
 
                                   <div class= "col-xs-12 col-sm-12 col-lg-12 col-md-12">
                                     
-                                    <p style ="margin: 1px; font-size: 12px; color: #F00000;">Location: <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> <%= i.city.capitalize if i.city %> <%= i.state.capitalize if i.state %></p>
+                                    <p style ="margin: 1px; font-size: 0.8em; color: #F00000;">Location: <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> <%= i.city.capitalize if i.city %> <%= i.state.capitalize if i.state %></p>
                                   </div>                                                               
                                 </div>                  
                               </div>
@@ -64,5 +68,7 @@
             </div>
     <% end %> 
 </div>
+
+
 
 
