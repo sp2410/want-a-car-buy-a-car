@@ -45,31 +45,22 @@
         <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
       <% end %>
 
+        <%= f.password_field :current_password, autocomplete: "off", :label => "CURRENT PASSWORD (we need your current password to confirm your changes)" %>
               
-        <%= f.password_field :password, autocomplete: "off", :label => "PASSWORD (leave blank if you don't want to change it)" %>    
+        <%= f.password_field :password, autocomplete: "off", :label => "NEW PASSWORD (leave blank if you don't want to change it)" %>    
       
-
-              
         <%= f.password_field :password_confirmation, autocomplete: "off", :label => "PASSWORD CONFIRMATION" %>
     
-
-              
-        <%= f.password_field :current_password, autocomplete: "off", :label => "CURRENT PASSWORD (we need your current password to confirm your changes)" %>
-      
-
       <div class="signin-button">
-      <%= f.select :role, User.roles.keys, {}, :label => "ROLE", class: 'user-roles-select' %>
+
+      <%= f.select :role, User.roles.keys.map{|x| x.upcase}, {:label => "EDIT PACKAGE"} %>
+
         <%= f.submit "Update", class: "btn btn-danger" %>
       </div>
     <% end %>
 
   <br>
   <br>
-
-    <p style = "display: inline;">UNHAPPY? <%= button_to "YES! CANCEL MY ACCOUNT", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete , class: "btn btn-danger" %></p>
-
-    
-    
     </div>
 
 </div>

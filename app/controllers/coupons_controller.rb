@@ -7,6 +7,10 @@ class CouponsController < ApplicationController
 	before_action :set_child_and_parents, only:  [:destroy, :update, :update, :edit]
 
 
+	def index
+		@coupons = Coupon.all.order('created_at DESC')
+	end 
+
 	def new
 		@coupon = Coupon.new
 	end

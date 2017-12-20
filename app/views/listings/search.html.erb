@@ -78,18 +78,18 @@
                             <%= link_to i do %>
 
                             <!-- , target: :_blank  -->
-                                <div class="slideshow-container" >
+                        <div class="slideshow-container" >
 
                             <%- if i.image.present? -%>                            
                               <div class="mySlides" id = "otherpage">
-                                <div class = "w3-panel w3-card-2" style = "padding: 10px;">
-                                <img src=<%= i.image if i.image.present? %> style="width:100%; height: 100%;">
+                                <div class = "w3-panel w3-card-2" style = "padding: 10px; height: 180px;">
+                                <img src=<%= i.image if i.image.present? %> style="max-width:100%; max-height: 100%;">
                               </div>
                             </div>                                                                                    
                             <% else %>                              
                                 <div class="mySlides" id = "otherpage">
-                                  <div class = "w3-panel w3-card-2" style = "padding: 10px;">
-                                    <%= image_tag("https://s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/nopictures1.png", :alt => "Want a Car buy A Car| Cars For Sale | Used Cars | Repair Shops", :style=> "width:100%; height: 100%;") %>
+                                  <div class = "w3-panel w3-card-2" style = "padding: 10px; height: 180px;">
+                                    <%= image_tag("https://s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/nopictures1.png", :alt => "Want a Car buy A Car| Cars For Sale | Used Cars | Repair Shops", :style=> "width:auto; height: 100%;") %>
                                   </div>
                               </div>
                             <% end %>
@@ -98,14 +98,14 @@
 
                             <%- if i.imagefront.present? -%>                            
                               <div class="mySlides" id = "otherpage">
-                                <div class = "w3-panel w3-card-2" style = "padding: 10px;">
-                                  <img src=<%= i.imagefront if i.imagefront.present? %> style="width:100%; height: 100%;">
+                                <div class = "w3-panel w3-card-2" style = "padding: 10px; height: 180px;">
+                                  <img src=<%= i.imagefront if i.imagefront.present? %> style="max-width:100%; max-height: 100%;">
                                 </div>
                             </div>
                             <% else %>                              
                                 <div class="mySlides" id = "otherpage">
-                                  <div class = "w3-panel w3-card-2" style = "padding: 10px;">
-                                    <%= image_tag("https://s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/nopictures1.png", :alt => "Want a Car buy A Car| Cars For Sale | Used Cars | Repair Shops", :style=> "width:100%; height: 100%;") %>
+                                  <div class = "w3-panel w3-card-2" style = "padding: 10px; height: 180px;">
+                                    <%= image_tag("https://s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/nopictures1.png", :alt => "Want a Car buy A Car| Cars For Sale | Used Cars | Repair Shops", :style=> "width:auto; height: 100%;") %>
                                   </div>
                               </div>
                             <% end %>
@@ -114,14 +114,14 @@
 
                             <%- if i.imageback.present? -%>
                               <div class="mySlides" id = "otherpage">
-                                <div class = "w3-panel w3-card-2" style = "padding: 10px;">
-                                  <img src=<%= i.imageback if i.imageback.present? %> style="width:100%; height: 180 px;">
+                                <div class = "w3-panel w3-card-2" style = "padding: 10px; height: 180px;">
+                                  <img src=<%= i.imageback if i.imageback.present? %> style="max-width:100%; max-height: 100%;">
                                 </div>
                               </div>
                             <% else %>
                                 <div class="mySlides" id = "otherpage">
-                                  <div class = "w3-panel w3-card-2" style = "padding: 10px;">
-                                    <%= image_tag("https://s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/nopictures1.png", :alt => "Want a Car buy A Car| Cars For Sale | Used Cars | Repair Shops", :style=> "width:100%; height: 100%;") %>
+                                  <div class = "w3-panel w3-card-2" style = "padding: 10px; height: 180px;">
+                                    <%= image_tag("https://s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/nopictures1.png", :alt => "Want a Car buy A Car| Cars For Sale | Used Cars | Repair Shops", :style=> "width:auto; height: 100%;") %>
                                   </div>
                                 </div>
                             <% end %>
@@ -129,14 +129,14 @@
 
                             <%- if i.imageleft.present? -%>  
                               <div class="mySlides" id = "otherpage">
-                                <div class = "w3-panel w3-card-2" style = "padding: 10px;">
-                                  <img src=<%= i.imageleft  if i.imageleft.present? %> style="width:100%; height: 100%;">
+                                <div class = "w3-panel w3-card-2" style = "padding: 10px; height: 180px;">
+                                  <img src=<%= i.imageleft  if i.imageleft.present? %> style="max-width:100%; max-height: 100%;">
                                 </div>
                               </div>
                             <% else %>
                               <div class="mySlides" id = "otherpage">
-                                <div class = "w3-panel w3-card-2" style = "padding: 10px;">
-                                  <%= image_tag("https://s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/nopictures1.png", :alt => "Want a Car buy A Car| Cars For Sale | Used Cars | Repair Shops", :style=> "width:100%; height: 100%;") %>
+                                <div class = "w3-panel w3-card-2" style = "padding: 10px; height: 180px;">
+                                  <%= image_tag("https://s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/nopictures1.png", :alt => "Want a Car buy A Car| Cars For Sale | Used Cars | Repair Shops", :style=> "width:auto; height: 100%;") %>
                                 </div>
                               </div>
                             <% end %>
@@ -144,14 +144,14 @@
 
                             <%- if i.imageright.present? -%>  
                               <div class="mySlides" id = "otherpage">
-                                <div class = "w3-panel w3-card-2" style = "padding: 10px;">
-                                  <img src=<%= i.imageright if i.imageright.present? %> style="width:100%; height: 100%;">
+                                <div class = "w3-panel w3-card-2" style = "padding: 10px; height: 180px;">
+                                  <img src=<%= i.imageright if i.imageright.present? %> style="max-width:100%; max-height: 100%;">
                                 </div>
                               </div>
                             <% else %>
                                 <div class="mySlides" id = "otherpage">
-                                  <div class = "w3-panel w3-card-2" style = "padding: 10px;">
-                                    <%= image_tag("https://s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/nopictures1.png", :alt => "Want a Car buy A Car| Cars For Sale | Used Cars | Repair Shops", :style=> "width:100%; height: 100%;") %>
+                                  <div class = "w3-panel w3-card-2" style = "padding: 10px; height: 180px;">
+                                    <%= image_tag("https://s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/nopictures1.png", :alt => "Want a Car buy A Car| Cars For Sale | Used Cars | Repair Shops", :style=> "width:auto; height: 100%;") %>
                                   </div>
                                 </div>
                             <% end %>
@@ -160,14 +160,14 @@
 
                             <%- if i.frontinterior.present? -%>  
                               <div class="mySlides" id = "otherpage">
-                                <div class = "w3-panel w3-card-2" style = "padding: 10px;">
-                                  <img src=<%= i.frontinterior  if i.frontinterior.present? %> style="width:100%; height: 100%;">
+                                <div class = "w3-panel w3-card-2" style = "padding: 10px; height: 180px;">
+                                  <img src=<%= i.frontinterior  if i.frontinterior.present? %> style="max-width:100%; max-height: 100%;">
                                   </div>
                               </div>
                             <% else %>
                                 <div class="mySlides" id = "otherpage">
-                                  <div class = "w3-panel w3-card-2" style = "padding: 10px;">
-                                    <%= image_tag("https://s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/nopictures1.png", :alt => "Want a Car buy A Car| Cars For Sale | Used Cars | Repair Shops", :style=> "width:100%; height: 100%;") %>
+                                  <div class = "w3-panel w3-card-2" style = "padding: 10px; height: 180px;">
+                                    <%= image_tag("https://s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/nopictures1.png", :alt => "Want a Car buy A Car| Cars For Sale | Used Cars | Repair Shops", :style=> "width:auto; height: 100%;") %>
                                   </div>
                                 </div>
                             <% end %>
@@ -175,14 +175,14 @@
 
                             <%- if i.rearinterior.present? -%>  
                               <div class="mySlides" id = "otherpage">
-                                <div class = "w3-panel w3-card-2" style = "padding: 10px;">
-                                  <img src=<%= i.rearinterior.url(:thumb)  if i.rearinterior.present? %> style="width:100%; height: 100%;">
+                                <div class = "w3-panel w3-card-2" style = "padding: 10px; height: 180px;">
+                                  <img src=<%= i.rearinterior.url(:thumb)  if i.rearinterior.present? %> style="max-width:100%; max-height: 100%;">
                                 </div>
                               </div>
                             <% else %>
                                 <div class="mySlides" id = "otherpage">
-                                  <div class = "w3-panel w3-card-2" style = "padding: 10px;">
-                                    <%= image_tag("https://s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/nopictures1.png", :alt => "Want a Car buy A Car| Cars For Sale | Used Cars | Repair Shops", :style=> "width:100%; height: 100%;") %>
+                                  <div class = "w3-panel w3-card-2" style = "padding: 10px; height: 180px;">
+                                    <%= image_tag("https://s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/nopictures1.png", :alt => "Want a Car buy A Car| Cars For Sale | Used Cars | Repair Shops", :style=> "width:auto; height: 100%;") %>
                                   </div>
                                 </div>
                             <% end %>

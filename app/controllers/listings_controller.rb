@@ -25,7 +25,7 @@ class ListingsController < ApplicationController
 		
 
 		if @listing.save				
-			redirect_to @listing
+			redirect_to @listing			
 		else
 			flash[:alert] =  @listing.errors.full_messages.to_sentence
 			render 'new'

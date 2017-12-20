@@ -1686,3 +1686,19 @@ font-family: 'Oswald', sans-serif;
   background: linear-gradient(to right, #ef473a, #cb2d3e); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
+#mapdiv{
+  padding: 0px;
+}
+
+
+.package{
+    /*display: flex;*/
+    /*align-items: center;*/    
+    margin: 10px;
+    text-align: center; 
+    padding: 20px;
+
+
+
+}
+

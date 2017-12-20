@@ -20,5 +20,8 @@ class PagesController < ApplicationController
 
 	def contact
 	end
+
+	def signup_thankyou
+	end
 	
 end

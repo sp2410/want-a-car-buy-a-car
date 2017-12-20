@@ -43,6 +43,7 @@ class CategoriesController < ApplicationController
 
 		@newcars = Listing.where(:newused => "N")
 		@usedcars = Listing.where(:newused => "U")
+		@wholesalecars = Listing.all.limit(5)
 		
 
 		respond_to do |format|

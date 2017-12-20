@@ -1,5 +1,9 @@
 module ApplicationHelper
 
+   def user_has_paid(listing)
+      listing_is_live(listing) ? true : false
+    end
+
   	def user_is_listing_owner(listing)
         if user_signed_in?
           if listing.user_id == current_user.id
@@ -10,6 +14,10 @@ module ApplicationHelper
         return false
     end
 
+    def listing_is_live(listing)
+      false
+    end
+
     def user_is_review_owner(review)
       if user_signed_in?
         return true if (review.user_id == current_user.id)
@@ -17,8 +25,63 @@ module ApplicationHelper
 
       return false
     end
-  
+
+    def get_paypal_button(user)
+      user_role = user.role 
+
+      if user_role == "BASIC USER"
+        render partial: "pages/paypal_basic_user" 
+        
+      elsif user_role == "BASIC DEALER"
+        render partial: "pages/paypal_basic_dealer" 
+        
+      elsif user_role == "BASIC REPAIRSHOP"
+        render partial: "pages/paypal_basic_repairshop" 
+        
+      elsif user_role == "SILVER DEALER"
+        render partial: "pages/paypal_silver_dealer" 
+        
+      elsif user_role == "SILVER REPAIRSHOP"
+        render partial: "pages/paypal_silver_repairshop" 
+        
+      elsif user_role == "GOLD DEALER"
+        render partial: "pages/paypal_gold_dealer" 
+        
+      elsif user_role == "DIAMOND DEALER"
+        render partial: "pages/paypal_diamond_dealer" 
+        
+      end     
+    end
+
+
+
+    def user_has_basic_dealer_access(user)
+      user.role == 'USER' ? true : false
+    end
+        
+    def user_has_silver_dealer_access(user)
+      user.role == 'SILVER' ? true : false
+    end
+
+    def user_has_gold_dealer_access(user)      
+      user.role == 'GOLD' ? true : false
+    end
+
+    def user_has_diamond_access(user)
+      user.role == 'DIAMOND' ? true : false    
+    end
     
+
+    def user_has_basic_repairshop_access(user)
+      user.role == 'REPAIRSHOP' ? true : false
+    end
+
+    def user_has_perl_repairshop_access(user)
+      user.role == 'PEARL' ? true : false
+    end
+
+
+
     def sortable(column, title = nil)
       title ||= column.titleize
       css_class = column == sort_column ? "current #{sort_direction}" : nil

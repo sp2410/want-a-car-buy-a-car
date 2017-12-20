@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
   has_one :repairshop, :dependent => :destroy
   has_many :reviews, :dependent => :destroy
 
-  enum role: {user: 0, dealer: 1, premium: 2, repairshop: 3}
+  enum role: {"BASIC USER": 0, "BASIC DEALER": 1, "BASIC REPAIRSHOP": 2, "SILVER DEALER": 3, "GOLD DEALER": 4, "SILVER REPAIRSHOP": 5, "DIAMOND DEALER": 6}
 
   geocoded_by :full_address
   after_validation :geocode
@@ -30,6 +30,28 @@ class User < ActiveRecord::Base
     self.role ||= :user
   end
 
+  def get_net_payment
+    user_role = self.role 
+
+    if user_role == "BASIC USER"
+      return "5 One time for 30 days"
+    elsif user_role == "BASIC DEALER"
+      return "10 one time for 30 days"
+    elsif user_role == "BASIC REPAIRSHOP"
+      return "5 one time for 30 days"
+    elsif user_role == "SILVER DEALER"
+      return "99 per month"
+    elsif user_role == "SILVER REPAIRSHOP"
+      return "99 per month"
+    elsif user_role == "GOLD DEALER"
+      return "199 per month"
+    elsif user_role == "DIAMOND DEALER"
+      return "299 per month"
+    else
+      return 0
+    end     
+  end
+ 
 
 end
 

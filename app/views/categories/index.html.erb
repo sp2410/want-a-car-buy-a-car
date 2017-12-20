@@ -24,13 +24,14 @@
 </div>
 
 
-<div class= "col-xs-12 col-sm-12 col-lg-12 col-md-12" style = "background-color: #fff;">
+<div class= "col-xs-12 col-sm-12 col-lg-12 col-md-12" style = "background-color: #fff; padding: 0px;">
 
   <div class= "col-xs-12 col-sm-12 col-lg-8 col-md-12" >
  
       <div class="tab">
         <button class="tablinks" onclick="openCity(event, 'Boats')" id="defaultOpen" >Premium Used Cars</button>
         <button class="tablinks" onclick="openCity(event, 'RVs')">Premium New Cars</button>  
+        <button class="tablinks" onclick="openCity(event, 'RVs')">Wholesale Cars</button>  
       </div>
 
 
@@ -38,8 +39,12 @@
              <%= render 'listings/usedcars'%>
       </div>
 
+      <div id="Boats" class="tabcontent">
+             <%= render 'listings/usedcars'%>
+      </div>
+
       <div id="RVs" class="tabcontent">
-        <%= render 'listings/newcars'%>
+        <%= render 'listings/wholesalecars'%>
       </div>    
 
   </div>
