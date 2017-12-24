@@ -54,34 +54,6 @@ module ApplicationHelper
     end
 
 
-
-    def user_has_basic_dealer_access(user)
-      user.role == 'USER' ? true : false
-    end
-        
-    def user_has_silver_dealer_access(user)
-      user.role == 'SILVER' ? true : false
-    end
-
-    def user_has_gold_dealer_access(user)      
-      user.role == 'GOLD' ? true : false
-    end
-
-    def user_has_diamond_access(user)
-      user.role == 'DIAMOND' ? true : false    
-    end
-    
-
-    def user_has_basic_repairshop_access(user)
-      user.role == 'REPAIRSHOP' ? true : false
-    end
-
-    def user_has_perl_repairshop_access(user)
-      user.role == 'PEARL' ? true : false
-    end
-
-
-
     def sortable(column, title = nil)
       title ||= column.titleize
       css_class = column == sort_column ? "current #{sort_direction}" : nil
@@ -96,15 +68,21 @@ module ApplicationHelper
     end
 
 
-    def user_is_premium_or_repairshop
-      if user_signed_in?
-        if (current_user.role.eql? "premium") or (current_user.role.eql? "repairshop") 
-          return true
-        end
+    def user_is_diamond_or_repairshop
+      unless current_user.nil?       
+        (current_user.user_can_create_repairshop == true) ? true : false
+      else
+        true
       end
-
-      return false
     end      
+
+    def user_is_basic_user
+      unless current_user.nil?       
+        (current_user.user_can_create_listing == true) ? true : false
+      else
+        true
+      end
+    end 
 
     def get_rating_in_star(rating)
       rating = case rating 
@@ -123,6 +101,23 @@ module ApplicationHelper
       return rating
 
     end
+
+    def can_view_wholesale
+      unless current_user.nil?       
+        (current_user.user_can_view_wholesale == true) ? true : false
+      else
+        false
+      end
+    end
+
+    def can_add_wholesale
+      unless current_user.nil?       
+        (current_user.user_can_add_wholesale == true) ? true : false
+      else
+        false
+      end
+    end
+
 
 
 end

@@ -24,4 +24,6 @@ class PagesController < ApplicationController
 	def signup_thankyou
 	end
 	
+	def dealercorner
+	end
 end

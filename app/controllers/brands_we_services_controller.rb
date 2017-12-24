@@ -3,6 +3,8 @@ class BrandsWeServicesController < InheritedResources::Base
 	before_action :authenticate_user!, only: [:new, :create, :destroy, :update]
 	before_action :is_user?, only: [:new, :create, :destroy, :update]
 
+	before_action :user_allowed_to_create_specalizations_and_brands, only: [:new, :create, :edit, :update, :destory]
+
 	before_action :set_parents, only:  [:new, :create] 
 	before_action :set_child_and_parents, only:  [:destroy, :update, :update, :edit]
 
@@ -96,5 +98,15 @@ class BrandsWeServicesController < InheritedResources::Base
 			redirect_to @repairshop, alert: "Sorry, You are not the author"
 		end
 	end
+
+	def user_allowed_to_create_specalizations_and_brands
+		if !current_user.nil?
+			set_parents 
+			unless current_user.user_can_create_specalizations_and_brands
+				redirect_to @repairshop, alert: "Sorry, You are not allowed for this action. Please change the user package or contat us."
+			end
+		end
+	end
+
 end
 

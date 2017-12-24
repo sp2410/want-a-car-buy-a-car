@@ -1,7 +1,10 @@
 class RepairshopsController < InheritedResources::Base
 
 	before_filter :authenticate_user!, only: [:new, :create, :destroy, :update, :edit]
-	#before_filter :is_user?, only: [:edit, :update, :delete]
+	before_filter :is_user?, only: [:edit, :update, :delete]
+
+	before_action :user_allowed_to_create_repairshops, only: [:new, :create, :edit, :update, :destory]
+	
 	before_action :get_number_of_cars, only: [:search,:bodysearch,:index ]
 	before_action :get_number_of_repairshops, only: [:search,:bodysearch,:index]
 	
@@ -50,7 +53,7 @@ class RepairshopsController < InheritedResources::Base
 		if @repairshop.update(repairshop_params)
 			redirect_to @repairshop
 		else 
-			flash[:alert] =  "Sorry Couldn't Update right now"
+			flash[:alert] =  "Sorry couldn't update right now"
 		end
 	end
 
@@ -71,6 +74,21 @@ class RepairshopsController < InheritedResources::Base
 
 
   private
+
+  	def user_allowed_to_create_repairshops
+  		if !current_user.nil?
+			unless current_user.user_can_create_repairshop
+				redirect_to root_path, alert: "Sorry, You can't create a repairshop. Please change the user package or contact us"
+			end
+		end
+	end
+
+	def is_user?
+		@repairshop = Repairshop.find(params[:id])
+		unless @repairshop.user == current_user 
+			redirect_to root_path, alert: "Sorry, You are not the owner"
+		end
+	end
 
   	def get_number_of_cars
 		@carcount = Listing.all.count

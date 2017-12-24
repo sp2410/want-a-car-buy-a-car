@@ -1,4 +1,7 @@
-<div class = "col-sm-12 col-md-12 col-lg-12" style = "background-color: #fff;min-height: 700px;">
+<div class = "togglediv">  
+ <%= render 'pages/packages'%>    
+</div>
+ 
 
   <div class = "col-sm-3 col-md-3 col-lg-3">
   </div>
@@ -14,7 +17,29 @@
 
               
         <%= f.email_field :email, autofocus: true, :label => "EMAIL" %>
+
+        <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+        <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+      <% end %>
+
+        <%= f.password_field :current_password, autocomplete: "off", :label => "CURRENT PASSWORD (we need your current password to confirm your changes)" %>
+              
+        <%= f.password_field :password, autocomplete: "off", :label => "NEW PASSWORD (leave blank if you don't want to change it)" %>    
       
+        <%= f.password_field :password_confirmation, autocomplete: "off", :label => "PASSWORD CONFIRMATION (leave blank if you don't want to change it)" %>
+    
+
+
+
+        <h1 style = "font-size: 50px; color: #7C064D; margin-bottom: 20px;"><strong>OUR PACKAGES</strong></h1>
+
+
+          <div class="col-md-12 text-center" style = "margin-top: 1em;">
+          <input class="btn btn-danger" id="hideshow" style="margin-top: 10px; margin-bottom: 10px;" type="button" value="VIEW OUR PACKAGES"></input>   
+          <hr>       
+        </div>
+      
+        <%= f.select :role, User.roles.keys.map{|x| x.upcase}, {:label => "EDIT PACKAGE"} %>
       
               
         <%= f.text_field :website, autofocus: true, :label => "YOUR WEBSITE" %>
@@ -37,23 +62,8 @@
 
         <%= f.text_field :phone_number, autofocus: true, :label => "YOUR PHONE NUMBER" %>
 
-        
       
-
-
-      <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-        <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-      <% end %>
-
-        <%= f.password_field :current_password, autocomplete: "off", :label => "CURRENT PASSWORD (we need your current password to confirm your changes)" %>
-              
-        <%= f.password_field :password, autocomplete: "off", :label => "NEW PASSWORD (leave blank if you don't want to change it)" %>    
-      
-        <%= f.password_field :password_confirmation, autocomplete: "off", :label => "PASSWORD CONFIRMATION" %>
-    
-      <div class="signin-button">
-
-      <%= f.select :role, User.roles.keys.map{|x| x.upcase}, {:label => "EDIT PACKAGE"} %>
+      <div class="signin-button">      
 
         <%= f.submit "Update", class: "btn btn-danger" %>
       </div>
@@ -63,4 +73,17 @@
   <br>
     </div>
 
-</div>
+
+<script>
+$(document).ready(function(){
+  $('#hideshow').on('click', function(event){
+    $('.togglediv').toggle('show');
+
+     $('html,body').animate({scrollTop: $(".togglediv").offset().top},'slow');
+  });
+
+  $('.togglediv').toggle('hide');
+  
+
+});
+</script>

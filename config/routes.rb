@@ -51,12 +51,17 @@ Rails.application.routes.draw do
   match '/about', to: 'pages#about', via: :get
   match '/contact', to: 'pages#contact', via: :get
   match '/mylistings', to: 'listings#mylistings', via: :get
+  match '/myrepairshops', to: 'repairshops#myrepairshops', via: :get
+
   match '/usedcars', to: 'listings#usedcars', via: :get
   match '/newcars', to: 'listings#newcars', via: :get  
   match '/signup_thankyou', to: 'pages#signup_thankyou', via: :get 
+  match '/dealercorner', to: 'pages#dealercorner', via: :get 
+  match '/pricing', to: 'pages#pricing', via: :get 
   match '/subcategories/find_by_category', to: 'subcategories#find_by_category', via: :post
 
   match '/allcoupons', to: 'coupons#index', via: :get  
 
 end
+
 

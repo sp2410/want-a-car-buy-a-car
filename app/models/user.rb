@@ -51,7 +51,56 @@ class User < ActiveRecord::Base
       return 0
     end     
   end
- 
+
+
+  def user_can_create_listing
+    user_role = self.role 
+    user_role == "BASIC USER" ? true : false        
+  end
+
+  def user_can_create_repairshop
+    user_role = self.role 
+    (user_role == "BASIC REPAIRSHOP" or user_role == "SILVER REPAIRSHOP" or user_role == "DIAMOND DEALER") ? true : false
+  end
+
+  def user_can_create_offer
+    user_role = self.role 
+    user_role == "DIAMOND DEALER" or user_role == "GOLD DEALER" ? true : false
+  end
+
+  def user_can_create_coupons
+    user_role = self.role 
+    user_role == "SILVER REPAIRSHOP" ? true : false
+  end
+
+  def user_can_create_specalizations_and_brands
+    user_role = self.role 
+    (user_role == "SILVER REPAIRSHOP" or user_role == "DIAMOND DEALER") ? true : false
+  end
+
+  def user_can_view_wholesale
+    user_role = self.role 
+    user_role == "BASIC DEALER" or user_role == "SILVER DEALER" or user_role == "DIAMOND DEALER" or user_role == "GOLD DEALER" ? true : false
+  end
+
+  def user_can_add_wholesale
+    user_role = self.role 
+    user_role == "DIAMOND DEALER" or user_role == "SILVER DEALER" or user_role == "GOLD DEALER" ? true : false
+  end
+  
+  def user_has_listings
+    user_role = self.role 
+    user_role == "BASIC USER" or user_role == "BASIC DEALER" or user_role == "SILVER DEALER" or user_role == "DIAMOND DEALER" or user_role == "GOLD DEALER" ? true : false    
+  end
+
+  def user_has_repairshops
+    user_can_create_repairshop
+  end
+
+  def user_has_both
+    user_role = self.role 
+    user_role == "DIAMOND DEALER" ? true : false    
+  end
 
 end
 

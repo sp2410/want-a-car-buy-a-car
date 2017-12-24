@@ -35,8 +35,8 @@
                     </div>
                     <div class= "col-xs-12 col-sm-12 col-lg-12 col-md-12"> 
                         <%= submit_tag 'Search', class: 'btn btn-danger', style: "width: 100%;" %>
-                        
-                        <% if user_is_premium_or_repairshop %>
+                                                
+                        <%- if user_is_diamond_or_repairshop -%>
                             <h3 style = "color:#F00000;"><strong>OR</strong></h3>
                             <%= link_to 'Add Your Shop', new_repairshop_path , class: 'btn btn-danger another', style: "width: 100%;" %>
                         <% end %>
@@ -84,10 +84,13 @@
                 </div>
                 
 
-                <div class= "col-xs-12 col-sm-12 col-lg-12 col-md-12">              
+                <div class= "col-xs-12 col-sm-12 col-lg-12 col-md-12"> 
+                               
                     <%= submit_tag 'Search', class: 'btn btn-danger', style: "width: 100%;" %>
-                    <h3 style = "color:#F00000;"><strong>OR</strong></h3>
-                    <%= link_to 'Sell Your Car', new_listing_path , class: 'btn btn-danger another', style: "width: 100%;" %>
+                    <%- if user_is_basic_user  -%>
+                        <h3 style = "color:#F00000;"><strong>OR</strong></h3>
+                        <%= link_to 'Sell Your Car', new_listing_path , class: 'btn btn-danger another', style: "width: 100%;" %>
+                    <% end %>
                 </div>
               <% end %>    
             </section>
@@ -127,8 +130,10 @@
 
                 <div class= "col-xs-12 col-sm-12 col-lg-12 col-md-12">              
                     <%= submit_tag 'Search', class: 'btn btn-danger', style: "width: 100%;" %>
-                    <h3 style = "color:#F00000;"><strong>OR</strong></h3>
-                    <%= link_to 'Sell Your Car', new_listing_path , class: 'btn btn-danger another', style: "width: 100%;" %>
+                    <%- if user_is_basic_user  -%>
+                        <h3 style = "color:#F00000;"><strong>OR</strong></h3>
+                        <%= link_to 'Sell Your Car', new_listing_path , class: 'btn btn-danger another', style: "width: 100%;" %>
+                    <% end %>
                 </div>
               <% end %>    
         </section>

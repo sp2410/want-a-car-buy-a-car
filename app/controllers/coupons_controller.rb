@@ -3,6 +3,8 @@ class CouponsController < ApplicationController
 	before_action :authenticate_user!, only: [:new, :create, :destroy, :update]
 	before_action :is_user?, only: [:new, :create, :destroy, :update]
 
+	before_action :user_allowed_to_create_coupons, only: [:new, :create, :edit, :update, :destory]
+
 	before_action :set_parents, only:  [:new, :create] 
 	before_action :set_child_and_parents, only:  [:destroy, :update, :update, :edit]
 
@@ -78,5 +80,15 @@ class CouponsController < ApplicationController
 			redirect_to @repairshop, alert: "Sorry, You are not the author"
 		end
 	end
+
+	def user_allowed_to_create_coupons
+		if !current_user.nil?
+			set_parents 
+			unless current_user.user_can_create_listing			
+				redirect_to @repairshop, alert: "Sorry, You are not allowed for this action. Please change the user package or contat us. If you are an automotive dealer, we will handle your bulk uploading."
+			end
+		end
+	end
+
 end
 

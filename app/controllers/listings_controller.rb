@@ -1,6 +1,7 @@
 class ListingsController < ApplicationController
 
 	before_action :authenticate_user!, only: [:new, :create, :mylistings]
+	before_action :user_allowed_to_create_listings, only: [:new, :create, :edit, :update, :destory]
 	before_filter :is_user?, only: [:edit, :update, :delete]
 
 	before_action :get_number_of_cars, only: [:search,:bodysearch,:index ]
@@ -89,34 +90,34 @@ class ListingsController < ApplicationController
 		flash[:alert] =  "Listing Deleted"
 	end
 
-	def import
+	# def import
 
-		@imported = Listing.import(params[:file], current_user)	
+	# 	@imported = Listing.import(params[:file], current_user)	
 		
 
-		if @imported
-		    redirect_to root_url, notice: "#{@imported} Listings imported successfully"
-	  	else 
-	    	flash[:alert] =  "All Listings Not Imported! There were either some errors, or the VIN was duplicate"
-	    	redirect_to root_url
-	  	end 
+	# 	if @imported
+	# 	    redirect_to root_url, notice: "#{@imported} Listings imported successfully"
+	#   	else 
+	#     	flash[:alert] =  "All Listings Not Imported! There were either some errors, or the VIN was duplicate"
+	#     	redirect_to root_url
+	#   	end 
 
 
-		# clearancing_status = ClearancingService.new.process_file(params[:csv_batch_file].tempfile)
-	    # clearance_batch    = clearancing_status.clearance_batch
-	    # alert_messages     = []
-	    # if clearance_batch.persisted?
-	    #   flash[:notice]  = "#{clearance_batch.items.count} items clearanced in batch #{clearance_batch.id}"
-	    # else
-	    #   alert_messages << "No new clearance batch was added"
-	    # end
-	    # if clearancing_status.errors.any?
-	    #   alert_messages << "#{clearancing_status.errors.count} item ids raised errors and were not clearanced"
-	    #   clearancing_status.errors.each {|error| alert_messages << error }
-	    # end
-	    # flash[:alert] = alert_messages.join("<br/>") if alert_messages.any?
+	# 	# clearancing_status = ClearancingService.new.process_file(params[:csv_batch_file].tempfile)
+	#     # clearance_batch    = clearancing_status.clearance_batch
+	#     # alert_messages     = []
+	#     # if clearance_batch.persisted?
+	#     #   flash[:notice]  = "#{clearance_batch.items.count} items clearanced in batch #{clearance_batch.id}"
+	#     # else
+	#     #   alert_messages << "No new clearance batch was added"
+	#     # end
+	#     # if clearancing_status.errors.any?
+	#     #   alert_messages << "#{clearancing_status.errors.count} item ids raised errors and were not clearanced"
+	#     #   clearancing_status.errors.each {|error| alert_messages << error }
+	#     # end
+	#     # flash[:alert] = alert_messages.join("<br/>") if alert_messages.any?
 
-	end
+	# end
 
 	def mylistings
 		if current_user		
@@ -163,8 +164,16 @@ class ListingsController < ApplicationController
 
 	def is_user?
 		@listing = Listing.find(params[:id])
-		if @listing.user != current_user 
-			redirect_to root_path, alert: "Sorry, You are not the author"
+		unless @listing.user == current_user 
+			redirect_to root_path, alert: "Sorry, You are not the owner"
+		end
+	end
+
+	def user_allowed_to_create_listings
+		if !current_user.nil?
+			unless current_user.user_can_create_listing
+				redirect_to root_path, alert: "Sorry, You are not allowed for this action. Please change the user package or contat us."
+			end
 		end
 	end
 

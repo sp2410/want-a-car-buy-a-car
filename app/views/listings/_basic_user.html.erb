@@ -1,0 +1,431 @@
+<% if user_is_listing_owner(@listing) %>
+  <% unless user_has_paid(@listing) %>
+
+    <div class = "col-md-12 col-xs-12 col-lg-12 col-sm-12" style = "background-color: #E0E0E0; min-height: 300px; padding-top: 5em;">
+
+      <div class = "col-md-3 col-xs-0 col-lg-3 col-sm-0">
+      </div>
+
+      <div class = "col-md-6 col-xs-12 col-lg-6 col-sm-12" style = "text-align: center;">     
+        <div class = "col-md-12 col-xs-12 col-lg-12 col-sm-12"> 
+        <p style = "font-size: 40px; color: #cc0000; "><strong>NOTICE</strong></p>
+
+          <div class = "col-md-6 col-xs-12 col-lg-6 col-sm-12"> 
+              <%= image_tag("https://s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/TDC.png", :alt => "Want A Car Buy A Car", :size => "250x250") %>
+          </div>
+
+          <div class = "col-md-6 col-xs-12 col-lg-6 col-sm-12"> 
+            <p>Great News! You have created this listing. But right now its on hold.</p> 
+            <hr>           
+            <p>Once we confirm your payments, this notice will dissappear and your listing will go live automatically</p>
+            <hr>        
+            <p>Just follow the link below to complete the payment of $ <%= @user.get_net_payment %></p>
+            <hr> 
+
+            <%= get_paypal_button(@user) %>                        
+            <hr>
+
+          </div> 
+
+          <div class = "col-md-12 col-xs-12 col-lg-12 col-sm-12" style = "margin-top: 1em;">
+            <p>If you need any assistance, please contact us: Phone: +1 866-338-7870 Line 5, Email:sales@tdcdigitalmedia.com</p>
+          </div>
+
+          
+        </div>
+
+      </div>
+
+      <div class = "col-md-3 col-xs-0 col-lg-3 col-sm-0">
+
+      </div>
+
+
+    </div>
+
+
+  <% end %>
+<% end %>
+
+<div class = "col-xs-12 col-sm-12 text-center" id = "herodiv2">
+
+    <div class ="w3-panel w3-card-2" >
+          
+            <div class="slideshow-container">
+
+                              <%- if @listing.image.present? -%>
+                                <div class="mySlides" id = "showpage">                                                            
+                                  <img src=<%= @listing.image if @listing.image.present? %> style=" max-height: 100%; max-width: 100%; margin: auto;">
+                                </div>                                                                                    
+                              <% else %>
+                                  <div class="mySlides" id = "showpage">                                                            
+                                    <%= image_tag("https://s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/nopictures1.png", :alt => "Want a Car buy A Car| Cars For Sale | Used Cars | Repair Shops", :style=> " max-height: 100%; max-width: 100%; margin: auto;") %>
+                                  </div>
+                              <% end %>
+
+                              <%- if @listing.imagefront.present? -%>
+                                <div class="mySlides" id = "showpage">
+                                  <img src=<%= @listing.imagefront if @listing.imagefront.present? %> style=" max-height: 100%; max-width: 100%; margin: auto;">
+                                </div>
+                              <% else %>
+                                  <div class="mySlides" id = "showpage">                                                            
+                                    <%= image_tag("https://s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/nopictures1.png", :alt => "Want a Car buy A Car| Cars For Sale | Used Cars | Repair Shops", :style=> " max-height: 100%; max-width: 100%; margin: auto;") %>
+                                  </div>
+                              <% end %>
+
+
+
+                              <%- if @listing.imageback.present? -%>
+                                <div class="mySlides" id = "showpage">
+                                  <img src=<%= @listing.imageback if @listing.imageback.present? %> style=" max-height: 100%; max-width: 100%; margin: auto;">
+                                </div>
+                              <% else %>
+                                  <div class="mySlides" id = "showpage">                                                            
+                                    <%= image_tag("https://s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/nopictures1.png", :alt => "Want a Car buy A Car| Cars For Sale | Used Cars | Repair Shops", :style=> " max-height: 100%; max-width: 100%; margin: auto;") %>
+                                  </div>
+                              <% end %>
+
+
+                              <%- if @listing.imageleft.present? -%>  
+                                <div class="mySlides" id = "showpage">
+                                  <img src=<%= @listing.imageleft  if @listing.imageleft.present? %> style=" max-height: 100%; max-width: 100%; margin: auto;">
+                                </div>
+                              <% else %>
+                                  <div class="mySlides" id = "showpage">                                                            
+                                    <%= image_tag("https://s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/nopictures1.png", :alt => "Want a Car buy A Car| Cars For Sale | Used Cars | Repair Shops", :style=> " max-height: 100%; max-width: 100%; margin: auto;") %>
+                                  </div>
+                              <% end %>
+
+
+                              <%- if @listing.imageright.present? -%>  
+                                <div class="mySlides" id = "showpage">
+                                  <img src=<%= @listing.imageright if @listing.imageright.present? %> style=" max-height: 100%; max-width: 100%; margin: auto;">
+                                </div>
+                              <% else %>
+                                  <div class="mySlides" id = "showpage">                                                            
+                                    <%= image_tag("https://s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/nopictures1.png", :alt => "Want a Car buy A Car| Cars For Sale | Used Cars | Repair Shops", :style=> "width: max-height: 100%; max-width: 100%; margin: auto;") %>
+                                  </div>
+                              <% end %>
+
+
+
+                              <%- if @listing.frontinterior.present? -%>  
+                                <div class="mySlides" id = "showpage">
+                                  <img src=<%= @listing.frontinterior  if @listing.frontinterior.present? %> style=" max-height: 100%; max-width: 100%; margin: auto;">
+                                </div>
+                              <% else %>
+                                  <div class="mySlides" id = "showpage">                                                            
+                                    <%= image_tag("https://s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/nopictures1.png", :alt => "Want a Car buy A Car| Cars For Sale | Used Cars | Repair Shops", :style=> " max-height: 100%; max-width: 100%; margin: auto;") %>
+                                  </div>
+                              <% end %>
+
+
+                              <%- if @listing.rearinterior.present? -%>  
+                                <div class="mySlides" id = "showpage">
+                                  <img src=<%= @listing.rearinterior.url(:thumb)  if @listing.rearinterior.present? %> style=" max-height: 100%; max-width: 100%; margin: auto;">
+                                </div>
+                              <% else %>
+                                  <div class="mySlides" id = "showpage">                                                            
+                                    <%= image_tag("https://s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/nopictures1.png", :alt => "Want a Car buy A Car| Cars For Sale | Used Cars | Repair Shops", :style=> " max-height: 100%; max-width: 100%; margin: auto;") %>
+                                  </div>
+                              <% end %>
+                                                       
+
+
+                              <a class="prev">&#10094;</a>
+                              <a class="next">&#10095;</a>
+                                
+
+                              <div style="text-align:center; ">                              
+
+                                  <span class="dot"></span>                                    
+                                  <span class="dot"></span>                               
+                                  <span class="dot"></span>                               
+                                  <span class="dot"></span>                               
+                                  <span class="dot"></span>                               
+                                  <span class="dot"></span>                               
+                                  <span class="dot"></span>
+                                 
+                              </div>
+            </div> 
+
+    </div>
+
+</div>
+
+   <div class = "col-sm-12 col-md-12 col-lg-12" style = "background-color: white;">
+    
+    
+      <div class = "col-sm-12 col-md-12 col-lg-12" style = "text-align: center; margin-top: 20px;">
+
+        <strong><p style ="font-size: 15px; color: #e20049; overflow-x:hidden; text-align: center;"> SHARE WITH YOUR FRIENDS! </p></strong>
+
+           <%= social_share_button_tag(@listing.title, :url => "https://fierce-sea-43472.herokuapp.com/listings/#{@listing.id}", :image => "#{@listing.image if @listing.image }") %>
+
+            <hr>
+      </div>
+
+    
+      <div class = "col-sm-12 col-md-12 col-lg-12">
+          <div class="description">
+
+              <div class = "col-sm-12 col-md-6 col-lg-6">
+                            <div class="row">
+                              <div class = "col-sm-12 col-md-12 col-lg-12 col-xs-12">
+                                  <div class="col-sm-10 col-lg-10" >   
+                                          <h6 class="row text-center" style = "color:  #e20049; padding: 12px; font-size: 2em; text-align: left;"><strong><%= @listing.title.upcase if @listing.title%></strong></h6>
+
+                                          <div class = "col-sm-12 col-md-12 col-lg-12 col-xs-12">
+                                                  <p><span class="glyphicon glyphicon-map-marker"></span> Location: <%= @listing.city if  @listing.city %> <%= @listing.state if  @listing.state %>
+
+                                                  </p>
+                                          </div>
+                                         
+                                                 
+                                            <!-- https://www.google.com/maps/?q=-15.623037,18.388672 -->
+                                                  
+
+                                          <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12">
+                                                  <%if user_is_listing_owner(@listing) %>
+                                                      <div class="col-sm-12 text-center">
+                                                          <%= link_to 'Edit', edit_listing_path(@listing), class: "btn btn-info btn-xs", style: "background-color: #E20049; border: #e20049;"  %>
+                                                          <%= link_to 'Destroy', @listing, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-info btn-xs", style: "background-color: #E20049; border: #e20049;"  %>
+                                                      </div>
+                                                    <% end %>           
+                                          </div>
+                                                                                       
+
+                                          <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12 text-center">
+                                                <hr>
+                                          </div>
+
+             
+                                          <div class="col-sm-12 " style = "background-color: #fff; padding: 0px;">
+
+                                                  <h6 class="row text-center" style = "font-size: 2em;text-align: left;color: #e20049;"><strong>SPECIFICATIONS</strong></h6>
+
+                                                  <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6">
+                                                    <p><strong><span class="glyphicon glyphicon-fire"></span> Year: <%= @listing.year if @listing.year %><strong></p>
+                                                  </div>
+
+                                                  <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6">
+                                                    <p><strong><span class="glyphicon glyphicon-stop"></span> Estimated Price: $ <%=  @listing.price %><strong></p>
+                                                  </div> 
+                                                  <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6">
+                                                    <p ><strong><span class="glyphicon glyphicon-wrench"></span> Make: <%= @listing.make %></strong></p>
+                                                  </div>
+                                                  <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6">
+                                                    <p ><strong><span class="glyphicon glyphicon-wrench"></span> Model: <%= @listing.model %></strong></p>
+                                                  </div>                                                 
+
+                                                  <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6">
+                                                    <p ><strong><span class="glyphicon glyphicon-road"></span> Miles: <%= @listing.miles if @listing.miles %></strong></p>
+                                                  </div>
+
+                                                  <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6">
+                                                    <p ><strong><span class="glyphicon glyphicon-modal-window"></span> Transmission: <%= @listing.transmission if @listing.transmission %></strong></p>
+                                                  </div>
+
+                                                  <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6">
+                                                    <p ><strong><span class="glyphicon glyphicon-cd"></span> Cylinder: <%= @listing.cylinder if @listing.cylinder %></strong></p>
+                                                  </div>
+
+                                                  <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6">
+                                                    <p ><strong><span class="glyphicon glyphicon-record"></span> Drive: <%=  @listing.drive %></strong></p>
+                                                  </div>
+
+                                                  <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6">
+                                                    <p ><strong><span class="glyphicon glyphicon-tint"></span> Fuel Type: <%= @listing.fuel if @listing.fuel %></strong></p>
+                                                  </div>
+                                                  <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6">
+                                                    <p ><strong><span class="glyphicon glyphicon-comment"></span> New Or Used: <%= @listing.newused %></strong></p>
+                                                  </div>
+                                                  <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6">
+                                                    <p ><strong><span class="glyphicon glyphicon-barcode"></span> Stock Number: <%= @listing.stocknumber %></strong></p>
+                                                  </div>                                                  
+                                                  <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6">
+                                                    <p ><strong><span class="glyphicon glyphicon-qrcode"></span> Trim: <%= @listing.trim %></strong></p>
+                                                  </div>
+                                                  <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6">
+                                                    <p ><strong><span class="glyphicon glyphicon-barcode"></span> VIN: <%= @listing.vin %></strong></p>
+                                                  </div>
+                                                  <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6">
+                                                    <p ><strong><span class="glyphicon glyphicon-folder-open"></span> Engine Description: <%= @listing.enginedescription %></strong></p>
+                                                  </div>
+                                                  <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6">
+                                                    <p ><strong><span class="glyphicon glyphicon-flash"></span> Interior Color: <%= @listing.interiorcolor %></strong></p>
+                                                  </div>                                                 
+                                          </div>
+
+                                          <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12 text-center">
+                                              <hr>
+                                          </div>
+
+                                  </div>                                                    
+                                          <div class="col-sm-12" style = " padding: 12px; overflow-y: scroll; height: 500px;">
+                                              <h6 style = "color:  #e20049; padding: 0px; font-size: 2em; text-align: left;"><strong>ABOUT THE CAR</strong></h6>
+                                              <p style ="margin: 0px;font-size: 15px; color: #e20049; overflow-x:hidden;"> (Click Here and Scroll Down to Read More) </p>
+                                              <br>
+                                              <p style ="margin: 0px; font-size: 15px; overflow-x:hidden;"><%= raw @listing.description.to_s %></p>
+                                          </div>
+
+                                                <br>
+                                          
+                                
+                                 
+                                    </div> 
+                                </div>
+                            </div>                
+              </div>
+
+              <div class = "col-sm-12 col-md-6 col-lg-6">                                
+
+                <div class="col-sm-12 " style = "background-color: #fff; padding: 12px;">                      
+                  <hr>
+                      <h6 class="row text-center" style = "color:  #e20049; padding: 12px; font-size: 2em; text-align: left;"><strong>OWNER REVIEWS</strong></h6>                
+                  
+                  <br>
+                </div>
+
+                 <div class="col-sm-12 " style = "background-color: #fff; padding: 12px;">                      
+                  <hr>
+                      <h6 class="row text-center" style = "color:  #e20049; padding: 12px; font-size: 2em; text-align: left;"><strong>NEW INQUIRY</strong></h6>                
+
+                      <div class="col-sm-12 text-center" style = " padding: 0px; overflow-y: scroll; height: 500px;">                              
+                        <%= render 'inquiries/form' %>
+                      </div>
+                      
+                  
+                  <br>
+                </div>
+
+                
+              </div>
+
+
+
+               <div class="col-sm-12 text-center">
+                  <hr>
+              </div>
+              
+
+                
+              </div>
+
+          </div>
+      </div>
+
+
+  </div>
+
+
+
+<script>
+  (function() {
+
+    init(); //on page load - show first slide, hidethe rest
+
+    function init() {
+
+      set_subject_in_inquiry();
+
+      // document.getElementById("defaultOpen").click();
+
+      parents = document.getElementsByClassName('slideshow-container');
+
+      for (j = 0; j < parents.length; j++) {
+        var slides = parents[j].getElementsByClassName("mySlides");
+        var dots = parents[j].getElementsByClassName("dot");
+        slides[0].classList.add('active-slide');
+        dots[0].classList.add('active');
+      }
+    }
+
+     function set_subject_in_inquiry(){
+
+        var vin = "<%= @listing.vin %>";
+        var title = "<%= @listing.title %>";
+        var price = "<%= @listing.price %>";
+        var to_email = "<%= @user.email %>";
+
+        var subject = "Inquiry About Your Vehicle VIN "+vin + " Title " + title + " Price $" + price;
+        var inquiry = "Hi! I'd like to know if the " + title +", VIN: " + vin +", you have listed on Want A Car Buy A Car for " + "$"+price +" is still available."
+
+        $('input#inquiry_subject').val(subject);
+        $('textarea#inquiry_comment').val(inquiry);
+        $('#inquiry_to_email').val(to_email);
+
+         <% if current_user %>           
+            var user_signed_in = "<%= current_user.email %>";
+            $('input#inquiry_from_email').val(user_signed_in);          
+        <% end %>
+        
+
+
+    }
+
+
+
+
+    dots = document.getElementsByClassName('dot'); //dots functionality
+
+    for (i = 0; i < dots.length; i++) {
+
+      dots[i].onclick = function() {
+
+        slides = this.parentNode.parentNode.getElementsByClassName("mySlides");
+
+        for (j = 0; j < this.parentNode.children.length; j++) {
+          this.parentNode.children[j].classList.remove('active');
+          slides[j].classList.remove('active-slide');
+          if (this.parentNode.children[j] == this) {
+            index = j;
+          }
+        }
+        this.classList.add('active');
+        slides[index].classList.add('active-slide');
+
+      }
+    }
+  //prev/next functionality
+    links = document.querySelectorAll('.slideshow-container a');
+
+    for (i = 0; i < links.length; i++) {
+      links[i].onclick = function() {
+        current = this.parentNode;
+
+        var slides = current.getElementsByClassName("mySlides");
+        var dots = current.getElementsByClassName("dot");
+        curr_slide = current.getElementsByClassName('active-slide')[0];
+        curr_dot = current.getElementsByClassName('active')[0];
+        curr_slide.classList.remove('active-slide');
+        curr_dot.classList.remove('active');
+        if (this.className == 'next') {
+
+          if (curr_slide.nextElementSibling.classList.contains('mySlides')) {
+            curr_slide.nextElementSibling.classList.add('active-slide');
+            curr_dot.nextElementSibling.classList.add('active');
+          } else {
+            slides[0].classList.add('active-slide');
+            dots[0].classList.add('active');
+          }
+
+        }
+
+        if (this.className == 'prev') {
+
+          if (curr_slide.previousElementSibling) {
+            curr_slide.previousElementSibling.classList.add('active-slide');
+            curr_dot.previousElementSibling.classList.add('active');
+          } else {
+            slides[slides.length - 1].classList.add('active-slide');
+            dots[slides.length - 1].classList.add('active');
+          }
+
+        }
+
+      }
+
+    }
+  })();
+</script>

@@ -1,0 +1,351 @@
+<% if user_is_listing_owner(@repairshop) %>
+  <% unless user_has_paid(@repairshop) %>
+
+    <div class = "col-md-12 col-xs-12 col-lg-12 col-sm-12" style = "background-color: #E0E0E0; min-height: 300px; padding-top: 5em;">
+
+
+      <div class = "col-md-3 col-xs-0 col-lg-3 col-sm-0">
+      </div>
+
+      <div class = "col-md-6 col-xs-12 col-lg-6 col-sm-12" style = "text-align: center;">     
+        <div class = "col-md-12 col-xs-12 col-lg-12 col-sm-12"> 
+        <p style = "font-size: 40px; color: #cc0000; "><strong>NOTICE</strong></p>
+
+          <div class = "col-md-6 col-xs-12 col-lg-6 col-sm-12"> 
+              <%= image_tag("https://s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/TDC.png", :alt => "Want A Car Buy A Car", :size => "250x250") %>
+          </div>
+
+          <div class = "col-md-6 col-xs-12 col-lg-6 col-sm-12"> 
+            <p>Great News! You have added your repairshop. But right now its on hold.</p> 
+            <hr>           
+            <p>Once we confirm your payments, this notice will dissappear and your repairshop will go live automatically</p>
+            <hr>        
+            <p>Just follow the link below to complete the payment of $ <%= @user.get_net_payment %></p>
+            <hr>               
+
+            <hr>
+          </div> 
+
+          <div class = "col-md-12 col-xs-12 col-lg-12 col-sm-12" style = "margin-top: 1em;">
+            <p>If you need any assistance, please contact us: Phone: +1 866-338-7870 Line 5, Email:sales@tdcdigitalmedia.com</p>
+          </div>
+
+          
+        </div>
+
+      </div>
+
+      <div class = "col-md-3 col-xs-0 col-lg-3 col-sm-0">
+
+      </div>
+
+
+    </div>
+
+
+  <% end %>
+<% end %>
+
+<div class = "col-xs-12 col-sm-12 text-center" id = "herodiv2">
+
+    <div class ="w3-panel w3-card-2" >
+          
+            <div class="slideshow-container">
+
+              <%- if @repairshop.image.present? -%>
+                <div class="mySlides" id = "showpage">                                                            
+                    <img src=<%= @repairshop.image if @repairshop.image.present? %> style=" max-height: 100%; max-width: 100%; margin: auto;">
+                </div>                                                                                    
+                <% else %>
+                <div class="mySlides" id = "showpage">
+                  <%= image_tag("https://s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/repairbigsmall.png", :alt => "Want a Car buy A Car| Cars For Sale | Used Cars | Repair Shops", :style=> " max-height: 100%; max-width: 100%; margin: auto;") %>
+                </div>
+              <% end %>                            
+
+            </div> 
+    </div>
+
+</div>
+
+   <div class = "col-sm-12 col-md-12 col-lg-12" style = "background-color: white;">    
+      <div class = "col-sm-12 col-md-12 col-lg-12" style = "text-align: center; margin-top: 20px;">
+
+        <strong><p style ="font-size: 15px; color: #e20049; overflow-x:hidden; text-align: center;"> SHARE WITH YOUR FRIENDS! </p></strong>
+
+          <%= social_share_button_tag(@repairshop.title, :url => "https://fierce-sea-43472.herokuapp.com/repairshops/#{@repairshop.id}", :image => "#{@repairshop.image if @repairshop.image }", desc: "#{@repairshop.description}") %>
+
+            <hr>
+      </div>
+
+    
+      <div class = "col-sm-12 col-md-12 col-lg-12">
+          <div class="description">
+
+              <div class = "col-sm-12 col-md-6 col-lg-6">
+                            <div class="row">
+                              <div class = "col-sm-12 col-md-12 col-lg-12 col-xs-12">
+                                  <div class="col-sm-10 col-lg-10" >   
+
+                                           
+                                          <h6 class="row text-center" style = "color:  #e20049; padding: 10px; font-size: 2em; text-align: left;"><strong><%= @repairshop.title.upcase if @repairshop.title%></strong></h6>
+
+                                                  <p><span class="glyphicon glyphicon-map-marker"></span> Location: <%= @repairshop.city if  @repairshop.city %> <%= @repairshop.state if  @repairshop.state %></p>
+
+                                          <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12">
+                                                  <%if user_is_listing_owner(@repairshop) %>
+                                                      <div class="col-sm-12 text-center">
+                                                          <%= link_to 'Edit', edit_repairshop_path(@repairshop), class: "btn btn-danger btn-xs", style: "border: #e20049;"  %>
+                                                          <%= link_to 'Destroy', @repairshop, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-xs", style: "border: #e20049;"  %>
+                                                      </div>
+                                                    <% end %>           
+                                          </div>
+                                                                                       
+
+                                          <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12 text-center">
+                                                <hr>
+                                          </div>
+
+             
+                                          <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12" style = "background-color: #fff; padding: 0px;">
+                                              
+
+                                               <h6 class="row text-center" style = "color:  #e20049; padding: 10px; font-size: 2em; text-align: left;"><strong>ABOUT THE SHOP</strong></h6>
+
+                                                <div class="col-sm-12 text-center" style = " padding: 0px; overflow-y: scroll; height: 500px; text-align: left;">
+
+
+                                                      <p style ="margin: 0px;font-size: 15px; color: #e20049; overflow-x:hidden;"> (Click Here and Scroll Down to Read More) </p>
+
+                                                      <br>
+
+                                                    <p style ="margin: 0px;font-size: 15px; overflow-x:hidden;"><%= raw @repairshop.description.to_s %></p>
+
+                                                </div>
+
+                                                <br>
+                                          
+                                          </div>
+
+
+                                          <div class="col-sm-12 " style = "background-color: #fff; padding: 12px;">                      
+                                              <hr>
+                                                  <h6 class="row text-center" style = "color:  #e20049; padding: 12px; font-size: 2em; text-align: left;"><strong>NEW INQUIRY</strong></h6>                
+
+                                                  <div class="col-sm-12 text-center" style = " padding: 0px; overflow-y: scroll; height: 500px;">                              
+                                                    <%= render 'inquiries/form' %>
+                                                  </div>
+                                                  
+                                              
+                                              <br>
+                                            </div>
+
+                       
+                                  </div> 
+                                </div>
+                            </div>                
+              </div>
+             
+
+              <div class = "col-sm-12 col-md-6 col-lg-6">
+                  <div class="row">
+                  <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12 text-center">
+                                  <hr>
+                            </div>
+                      <div class = "col-sm-12 col-md-12 col-lg-12 col-xs-12" style = " padding: 0px; overflow-y: scroll; height: 300px; text-align: left;">
+                                           
+                            <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12">
+
+                              <h6 style = "color:  #e20049; padding: 10px; font-size: 2em; text-align: left;"><strong>SHOP DETAILS</strong></h6>
+                            <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6">
+                              <p ><strong><span class="glyphicon glyphicon-envelope"></span><strong> Email: <%= @user.email %>  </strong></p>
+                            </div>
+                            <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6">
+                              <p style = "display: inline;"><strong><span class="glyphicon glyphicon-certificate"></span><strong> WACBAC Rating: <%= get_rating_in_star(Review.get_average_rating(@user.id)) %>  </strong></p>
+
+                            </div>
+                            <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6">
+                              <p ><strong><span class="glyphicon glyphicon-pushpin"></span><strong> Street Address: <%= @user.full_address %>  </strong></p>
+                            </div>
+                            <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6">
+                              <p ><strong><span class="glyphicon glyphicon-phone"></span><strong> Contact Details: <%= @user.phone_number %>  </strong></p>
+                            </div>
+                            
+
+                            </div>
+                          
+                      </div>
+                    </div>
+              </div>
+
+
+              <div class = "col-sm-12 col-md-6 col-lg-6">
+                  <div class="row">
+                      <div class = "col-sm-12 col-md-12 col-lg-12 col-xs-12">                          
+                            <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12">
+
+                              <h6 style = "color:  #e20049; padding: 10px; font-size: 2em; text-align: left;"><strong>OWNER REVIEWS</strong></h6>
+
+                              <div class="col-sm-12 text-center" style = " padding: 0px; overflow-y: scroll; height: 400px;">
+                              <% unless user_is_listing_owner(@repairshop) %>                                       
+                                <%= link_to 'Add A Review', new_user_review_path(@user, :parent_id => @repairshop.id, :parent_type => 'repairshop'), class: "btn btn-danger btn-xs", style: "border: #e20049" %>
+                              <% end %>
+
+                                  <% @reviews.each do |review| %>
+                                  <hr>         
+                                  <p style = "display: inline;">Rating:</p> <%= get_rating_in_star(review.rating) %>
+                                  <br>
+                                  <p style = "text-align: center;"><%= review.comment if  review.comment %></p>
+
+                                  <p style = "text-align: center;"><span class="glyphicon glyphicon-user"></span> <%= User.find_by_id(review.user_id).email if review.user_id %></p>
+
+                                    <% if user_is_review_owner(review)%>
+
+                                      <%= link_to 'Edit', edit_user_review_path(User.find_by_id(review.owner_id), review, :parent_id => @repairshop.id, :parent_type => 'repairshop'), class: "btn btn-danger btn-xs", style: " border: #e20049; margin: 1.5px 0;"  %>
+
+                                      <%= link_to 'Destroy', user_review_path(User.find_by_id(review.owner_id), review, :parent_id => @repairshop.id, :parent_type => 'repairshop'), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-xs", style: " border: #e20049; margin: 1.5px 0;"  %>
+
+                                    <% end %>
+
+                                  <hr>      
+
+                                  <% end %>
+
+                              </div>
+                                      
+                            </div>
+                      </div>
+                  </div>                
+              </div>
+
+               <div class="col-sm-12 text-center">
+                  <hr>
+              </div>
+          </div>
+      </div>
+
+  </div>
+
+<script>
+  (function() {
+
+    init(); //on page load - show first slide, hidethe rest
+
+    function init() {
+
+      // document.getElementById("defaultOpen").click();
+
+      parents = document.getElementsByClassName('slideshow-container');
+
+      for (j = 0; j < parents.length; j++) {
+        var slides = parents[j].getElementsByClassName("mySlides");
+        var dots = parents[j].getElementsByClassName("dot");
+        slides[0].classList.add('active-slide');
+        dots[0].classList.add('active');
+      }
+    }
+
+    dots = document.getElementsByClassName('dot'); //dots functionality
+
+    for (i = 0; i < dots.length; i++) {
+
+      dots[i].onclick = function() {
+
+        slides = this.parentNode.parentNode.getElementsByClassName("mySlides");
+
+        for (j = 0; j < this.parentNode.children.length; j++) {
+          this.parentNode.children[j].classList.remove('active');
+          slides[j].classList.remove('active-slide');
+          if (this.parentNode.children[j] == this) {
+            index = j;
+          }
+        }
+        this.classList.add('active');
+        slides[index].classList.add('active-slide');
+
+      }
+    }
+  //prev/next functionality
+    links = document.querySelectorAll('.slideshow-container a');
+
+    for (i = 0; i < links.length; i++) {
+      links[i].onclick = function() {
+        current = this.parentNode;
+
+        var slides = current.getElementsByClassName("mySlides");
+        var dots = current.getElementsByClassName("dot");
+        curr_slide = current.getElementsByClassName('active-slide')[0];
+        curr_dot = current.getElementsByClassName('active')[0];
+        curr_slide.classList.remove('active-slide');
+        curr_dot.classList.remove('active');
+        if (this.className == 'next') {
+
+          if (curr_slide.nextElementSibling.classList.contains('mySlides')) {
+            curr_slide.nextElementSibling.classList.add('active-slide');
+            curr_dot.nextElementSibling.classList.add('active');
+          } else {
+            slides[0].classList.add('active-slide');
+            dots[0].classList.add('active');
+          }
+
+        }
+
+        if (this.className == 'prev') {
+
+          if (curr_slide.previousElementSibling) {
+            curr_slide.previousElementSibling.classList.add('active-slide');
+            curr_dot.previousElementSibling.classList.add('active');
+          } else {
+            slides[slides.length - 1].classList.add('active-slide');
+            dots[slides.length - 1].classList.add('active');
+          }
+
+        }
+
+      }
+
+    }
+  })();
+
+
+</script>
+
+<script>
+
+
+$(document).ready(function(){
+
+  $('.togglediv').toggle('hide');
+
+   $('#hideshow').on('click', function(event) {        
+         $('.togglediv').toggle('show');
+    });
+
+   set_subject_in_inquiry()
+
+  
+});
+
+ function set_subject_in_inquiry(){
+        
+        var title = "<%= @repairshop.title %>";        
+        var to_email = "<%= @user.email %>";
+
+        var subject = "Inquiry About Your Repair Shop: " + title 
+        
+
+        $('input#inquiry_subject').val(subject);
+        $('#inquiry_to_email').val(to_email);
+        
+
+        <% if current_user %> 
+          
+            var user_signed_in = "<%= current_user.email %>";
+            $('input#inquiry_from_email').val(user_signed_in);          
+
+        <% end %>
+        
+
+    }
+
+
+</script>

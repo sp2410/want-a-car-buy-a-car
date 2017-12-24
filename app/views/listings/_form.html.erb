@@ -99,7 +99,7 @@
 
     
     
-    <% if (current_user.role.eql? "premium") %>            
+    <% if can_add_wholesale %>            
         <%= f.select :wholesale, [true,false], :label => "IS IT FOR WHOLESALE ONLY ?" , :style => "color: #7C064D;" %>
     <%end%>
 
@@ -118,10 +118,12 @@
    
     <%= f.text_field :stocknumber , :style => "color: #7C064D;", :label => "STOCK NUMBER" %>
 
-        
+    <% if can_add_wholesale %>      
+    
     <strong><p style = "font-size: 16px; color: #7C064D; margin-bottom: 20px; ">DESCRIBE SELLER OPTIONS</p></strong>                
 
-    <%= f.cktext_area :options, :as => :ckeditor, input_html: {:ckeditor => {:toolbar => 'FULL'}}, class: "form-control" %>    
+        <%= f.cktext_area :options, :as => :ckeditor, input_html: {:ckeditor => {:toolbar => 'FULL'}}, class: "form-control" %>    
+    <% end %>
 
     
     
