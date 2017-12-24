@@ -120,16 +120,15 @@ class ListingsController < ApplicationController
 	# end
 
 	def mylistings
-		if current_user		
-			@mylistings = Listing.where('user_id=?', current_user.id)	
 
-			respond_to do |format|
-	      		format.html
-	      		format.xml { render :xml => @mylistings.to_xml }
-    		end
+		if current_user		
+			@user_listings = Listing.where('user_id=?', current_user.id)	
+			@newcars = @user_listings.where('user_id=?', current_user.id)	
+			@usedcars = @user_listings.where('user_id=?', current_user.id)	
+			@wholesalecars = @user_listings.limit(5)
 
 		else
-			redirect_to new_user_session
+				redirect_to new_user_session
 		end
 
 	end

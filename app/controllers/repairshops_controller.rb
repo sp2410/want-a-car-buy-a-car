@@ -72,6 +72,15 @@ class RepairshopsController < InheritedResources::Base
 		@repairshops = Repairshop.search(params)
 	end
 
+	def myrepairshops
+		if current_user		
+			@repairshops = Repairshop.where('user_id=?', current_user.id)				
+		else
+			redirect_to new_user_session
+		end
+
+	end
+
 
   private
 

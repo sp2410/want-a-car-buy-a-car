@@ -27,7 +27,7 @@ class Repairshop < ActiveRecord::Base
 			end
 
 			if params[:keywords].present?
-				repairshop = repairshop.joins(:specializations).joins(:brands_we_services).where("LOWER(specializations.title) LIKE ? OR LOWER(brands_we_services.title) LIKE ?", "%#{params[:keywords].downcase}%", "%#{params[:keywords].downcase}%")
+				repairshop = repairshop.joins(:specializations).joins(:brands_we_services).where("LOWER(specializations.title) LIKE ? OR LOWER(brands_we_services.title) LIKE ? OR LOWER(repairshop.title) LIKE ?", "%#{params[:keywords].downcase}%", "%#{params[:keywords].downcase}%", "%#{params[:keywords].downcase}%")
 			end
 
 			repairshop.uniq

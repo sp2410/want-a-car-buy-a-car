@@ -21,7 +21,8 @@
             <p>Once we confirm your payments, this notice will dissappear and your repairshop will go live automatically</p>
             <hr>        
             <p>Just follow the link below to complete the payment of $ <%= @user.get_net_payment %></p>
-            <hr>               
+            <hr>    
+            <%= get_paypal_button(@user) %>             
 
             <hr>
           </div> 
