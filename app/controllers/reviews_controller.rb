@@ -3,7 +3,7 @@ class ReviewsController < InheritedResources::Base
 	before_action :authenticate_user!, only: [:new, :create, :destroy, :update]	
 
 	# before_action :get_parent, only:  [:new]
-	before_action :set_child_and_parent, only:  [:destroy, :update, :edit]
+	before_action :set_child_and_parent, only:  [:destroy, :update, :edit, :raise_appeal]
 
 	
 	
@@ -71,11 +71,31 @@ class ReviewsController < InheritedResources::Base
 		    format.json { head :no_content }
 		end
 	end
+
+	def raise_appeal
+		session[:parent_id] = params[:parent_id]
+		session[:parent_type] = params[:parent_type]
+
+		@parent = get_parent(session[:parent_type], session[:parent_id])
+		@review.appeal = true
+
+		respond_to do |format|
+	      	if @review.save!
+		        format.html { redirect_to @parent, notice: 'An appeal was raised against this review. Our team will look into this matter.' }
+		        format.json { render :show, status: :ok, location: @parent}
+	      	else
+		        format.html { render :edit }
+		        format.json { render json: @review.errors, status: :unprocessable_entity }
+	    	end
+    	end
+
+
+	end
 	
 	private
 
 	def review_params		
-      	params.require(:review).permit(:comment, :rating)
+      	params.require(:review).permit(:comment, :rating, :appeal)
     end
 
     def set_child_and_parent    	

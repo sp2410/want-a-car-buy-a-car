@@ -16,9 +16,11 @@ class Repairshop < ActiveRecord::Base
 		[city, state, zipcode].join(', ')
 	end
 
+	# scope :premium_repairshop 
+
 	def self.search(params)
 		if params
-			repairshop = Repairshop.all
+			repairshop = Repairshop.where(:approved => true)
 			
 			if params[:radius].present?
 				repairshop = repairshop.near(params[:location], params[:radius]) if params[:location].present?

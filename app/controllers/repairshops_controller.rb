@@ -11,7 +11,7 @@ class RepairshopsController < InheritedResources::Base
 	include ApplicationHelper
 
 	def index
-		@repairshops = Repairshop.all
+		@repairshops = Repairshop.where(:approved => true)
 	end	
 
 	def new

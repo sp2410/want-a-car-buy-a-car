@@ -11,14 +11,16 @@ Rails.application.routes.draw do
   devise_for :installs
 
   resources :users do
-    resources :reviews, only: [ :new, :edit, :create, :update, :destroy]
+    resources :reviews, only: [ :new, :edit, :create, :update, :destroy] do 
+      member do
+        get :raise_appeal
+      end 
+    end
   end
 
 
 
-  resources :categories do
-    resources :subcategories
-  end
+  resources :categories
 
   resources :listings do
     collection do
@@ -61,6 +63,8 @@ Rails.application.routes.draw do
   match '/subcategories/find_by_category', to: 'subcategories#find_by_category', via: :post
 
   match '/allcoupons', to: 'coupons#index', via: :get  
+
+
 
 end
 

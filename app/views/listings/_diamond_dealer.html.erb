@@ -300,7 +300,11 @@
 
                                       <%= link_to 'Destroy', user_review_path(User.find_by_id(review.owner_id), review, :parent_id => @listing.id, :parent_type => 'listing'), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-xs", style: " border: #e20049; margin: 1.5px 0;"  %>
 
-                          <% end %>
+                                    <% end %>
+
+                                      <% if user_is_listing_owner(@listing) %>
+                                          <%= link_to 'Raise Appeal', raise_appeal_user_review_path(User.find_by_id(review.owner_id), review, :parent_id => @listing.id, :parent_type => 'listing'),  class: "btn btn-danger btn-xs", style: " border: #e20049; margin: 1.5px 0;"  %>
+                                      <% end %>
 
                                   <hr>      
 

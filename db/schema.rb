@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171203045809) do
+ActiveRecord::Schema.define(version: 20171226084737) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -150,6 +150,7 @@ ActiveRecord::Schema.define(version: 20171203045809) do
     t.string   "rearinterior"
     t.string   "bodytype"
     t.string   "make"
+    t.boolean  "approved",          default: false
   end
 
   add_index "listings", ["user_id"], name: "index_listings_on_user_id"
@@ -161,13 +162,14 @@ ActiveRecord::Schema.define(version: 20171203045809) do
     t.string   "state"
     t.string   "zipcode"
     t.string   "phone"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
     t.float    "latitude"
     t.float    "longitude"
     t.integer  "user_id"
     t.string   "image"
     t.integer  "category_id"
+    t.boolean  "approved",    default: false
   end
 
   add_index "repairshops", ["category_id"], name: "index_repairshops_on_category_id"
@@ -181,6 +183,7 @@ ActiveRecord::Schema.define(version: 20171203045809) do
     t.integer  "user_id"
     t.integer  "owner_id"
     t.boolean  "approved",   default: false
+    t.boolean  "appeal",     default: false
   end
 
   create_table "specializations", force: :cascade do |t|

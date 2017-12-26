@@ -61,14 +61,6 @@ class ListingsController < ApplicationController
 		# @listings = Listing.search(params).order("#{sort_column}" + " " + "#{sort_direction}")
 		@listings = Listing.search(params)		
 
-		# @listings = apply_filters(@listings)
-
-		# @search = CarSearch.new(params)
-		# @listings = @search.result
-
-
-
-	
 	end
 
 	def bodysearch		

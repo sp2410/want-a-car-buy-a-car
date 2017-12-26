@@ -25,7 +25,7 @@ class User < ActiveRecord::Base
     [city, state, zipcode].join(', ')
   end
 
-
+ 
   def set_default_role
     self.role ||= :user
   end

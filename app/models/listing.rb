@@ -27,45 +27,22 @@ class Listing < ActiveRecord::Base
 	mount_uploader :frontinterior, ImageUploader
 	mount_uploader :rearinterior, ImageUploader
 
-	
-
 
 	geocoded_by :full_address
 	after_validation :geocode
 
+	
+	scope :approved_wholesale, -> {joins(:user).where('users.role = ?', 6).where(approved: true).where(wholesale: true)}
 
-	# include Elasticsearch::Model 
-	# include Elasticsearch::Model::Callbacks 
+	# scope :approved_wholesale, -> {where(approved: true).where(wholesale: true).where('users.role = ?', 6)}
 
-	# index_name Rails.application.class.parent_name.underscore 
-	# document_type self.name.downcase
+	scope :approved_used, -> {joins(:user).where('users.role = ?', 6).where(approved: true).where(newused: "U")}
 
+	scope :approved_new, -> {joins(:user).where('users.role = ?', 6).where(approved: true).where(newused: "N")}
 
-	# settings index: { number_of_shards: 2 } do 
-	# 	mapping dynamic: false do 
-	# 		indexes :year, analyzer: 'keyword'
-	#         indexes :miles, analyzer: 'keyword'
-	#         indexes :transmission, analyzer: 'english'
-	#         indexes :color, analyzer: 'english'  
-	#         indexes :cylinder, analyzer: 'english'
-	#         indexes :fuel, analyzer: 'english'
-	#         indexes :drive, analyzer: 'english'
-	#         indexes :model, analyzer: 'english'
-	#         indexes :make, analyzer: 'english'
-	#         indexes :trim, analyzer: 'english'
-	#         indexes :enginedescription, analyzer: 'english'
-	#         indexes :interiorcolor, analyzer: 'english'
-	#         indexes :bodytype, analyzer: 'english'
-	#         indexes :NewUsed, analyzer: 'english'
-	        
-	# 	end 
-	# end
+	# scope
 
-
-	# def as_indexed_json(options = nil) 
-	# 	self.as_json( only: [ :year, :miles, :transmission, :color, :cylinder, :fuel, :drive, :model, :make, :trim, :enginedescription, :interiorcolor, :bodytype, :NewUsed] ) 
-	# end
-
+	
 
 	def self.to_csv
 		CSV.generate do |csv|
@@ -134,7 +111,7 @@ class Listing < ActiveRecord::Base
 
 	def self.search(params)
 		if params
-			listings = Listing.all
+			listings = Listing.where(approved: true)
 			listings = listings.where('LOWER(listings.make) like ?', "%#{params[:category].downcase}%") if params[:category].present?
 			listings = listings.where('LOWER(listings.model) like ?',"%#{params[:subcategory].downcase}%") if params[:subcategory].present?
 			listings = listings.where("listings.NewUsed = '#{params[:NewUsed][0].upcase}'") if params[:NewUsed].present?
