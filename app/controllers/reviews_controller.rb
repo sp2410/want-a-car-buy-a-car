@@ -84,7 +84,7 @@ class ReviewsController < InheritedResources::Base
 		        format.html { redirect_to @parent, notice: 'An appeal was raised against this review. Our team will look into this matter.' }
 		        format.json { render :show, status: :ok, location: @parent}
 	      	else
-		        format.html { render :edit }
+		        format.html { redirect_to @parent, notice: 'There was some error with this appeal. We will look into this asap' }
 		        format.json { render json: @review.errors, status: :unprocessable_entity }
 	    	end
     	end

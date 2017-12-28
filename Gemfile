@@ -61,9 +61,8 @@ gem "fog"
 gem 'figaro'
 
 gem 'social-share-button', github: "huacnlee/social-share-button"
-# gem 'filterrific'
 
-# gem 'forty_facets', github: "sp2410/forty_facets"
+
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
@@ -74,11 +73,17 @@ gem 'twilio-ruby', '~> 4.11.1'
 #email notifications
 gem 'sendgrid-ruby'
 
+#For importing bulk csv 
+gem 'activerecord-import'
+
 
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
+  gem 'rspec-rails', '~> 3.6'	
+  # gem "factory_bot_rails", "~> 4.0"
+  # gem 'database_cleaner'
 end
 
 group :development do

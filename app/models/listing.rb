@@ -1,5 +1,11 @@
+require 'csv_uploading' 
+require 'csv'
+
+
 class Listing < ActiveRecord::Base
 	#attr_accessor :user
+	include CsvUploading
+
 
 	belongs_to :category
 	belongs_to :subcategory
@@ -53,37 +59,98 @@ class Listing < ActiveRecord::Base
 		end
 	end	
 
-	def self.import(file, current_user)		
+	
+
+	def self.import(file)		
 		count = 0
 		CSV.foreach(file.path, headers: true, encoding:'iso-8859-1:utf-8') do |row|
-			#Use create when you dont need customization with the listing			
-			listing =  Listing.new
+			#Use create when you dont need customization with the listing	
 
-			#listing.attributes = (row.to_hash).merge(image: URI.parse(row['image'])) #
-			#listing.attributes = (row.to_hash.except("image")).merge(user_id: current_user.id) #
-			#listing.attributes = (row.to_hash).merge(user_id: current_user.id) #
+			data = {}
 
-			listing.attributes = (row.to_hash.except("category").except("subcategory")).merge(user_id: current_user.id).merge(category_id: row["category"]).merge(subcategory_id: row["subcategory"])
-			
-			return false unless listing.valid?
-
-			if listing.valid?
-				#Listing.create!((row.to_hash).merge(user_id: current_user.id))
-				listing.save!
-				count = count+1									
+			row.to_hash.each do |k, v|
+				key = MAP[k]
+				data[key] = v
 			end
-			
 
-			#listing = Listing.where(:vin => row["Vin"]).first_or_create(row.to_hash).merge(user_id: current_user.id)
-		 	#Otherwise use new as shown below
+			unless data[:vin] == nil
 
-		 	# listing = find_by_id(row["vin"]) || new			 	
-		 	# listing.attributes = row.to_hash.slice()
-		 	# listing.user = current_user
-		 	# listing.save		 
+
+				listing =  Listing.find_by_vin(data[:vin]) || Listing.new
+
+				#listing.attributes = (row.to_hash).merge(image: URI.parse(row['image'])) #			
+				listing.title = "#{data[:year]} #{data[:make]} #{data[:model]}"
+				user = User.find_by_id(data[:user_id])
+
+				p "*******************************"
+				p "*******************************"
+
+				p user
+				if user != nil
+					listing.city = user.city 
+					listing.state = user.state 
+					listing.zipcode = user.zipcode 
+				end
+
+				listing.approved = true
+
+				# p data[:all_images]
+				p "*******************************"
+				p "*******************************"
+
+				
+
+				unless data[:all_images] == nil
+
+
+
+					listing_images = data[:all_images].split(",")
+					i = 0
+				
+					[:image, :imagefront, :imageback, :imageleft, :imageright, :frontinterior, :rearinterior].each do |image|				
+						unless listing_images.size < 1
+							data[image] = CsvUploading::picture_from_url(listing_images[i])
+							i += 1
+						end
+						p "hello"
+					end
+
+				end
+
+				#listing.attributes = (row.to_hash).merge(user_id: current_user.id) #
+				data.delete(:all_images)
+
+				# listing.attributes = .merge(user_id: current_user.id).merge(category_id: row["category"]).merge(subcategory_id: row["subcategory"])
+				p data
+				listing.attributes = data
+
+				# return false unless listing.valid?
+
+				if listing.valid?
+					#Listing.create!((row.to_hash).merge(user_id: current_user.id))
+					if listing.save!
+						count = count+1
+						p listing
+					end									
+				end
+
+				
+
+				p "*******************************"
+				p "*******************************"
+
+				
+
+				#listing = Listing.where(:vin => row["Vin"]).first_or_create(row.to_hash).merge(user_id: current_user.id)
+			 	#Otherwise use new as shown below
+
+			 	# listing = find_by_id(row["vin"]) || new			 	
+			 	# listing.attributes = row.to_hash.slice()
+			 	# listing.user = current_user
+			 	# listing.save		 
+			 end
 		end
-		
-		return count
+		count == 0 ? false : count		
 	end
 
 	def self.incrementcount(count)
