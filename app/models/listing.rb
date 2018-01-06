@@ -427,7 +427,7 @@ class Listing < ActiveRecord::Base
 
 	def self.search(params)
 		if params
-			listings = Listing.where(approved: true).where(:expiration_date > DateTime.now)
+			listings = Listing.where(approved: true).where('expiration_date > ?', DateTime.now)
 			listings = listings.where('LOWER(listings.make) like ?', "%#{params[:category].downcase}%") if params[:category].present?
 			listings = listings.where('LOWER(listings.model) like ?',"%#{params[:subcategory].downcase}%") if params[:subcategory].present?
 			listings = listings.where("listings.NewUsed = '#{params[:NewUsed][0].upcase}'") if params[:NewUsed].present?
