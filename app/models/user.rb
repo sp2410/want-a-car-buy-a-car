@@ -20,6 +20,17 @@ class User < ActiveRecord::Base
 
   validates_presence_of :street_address, :city, :zipcode, :phone_number
 
+
+    scope :all_users, -> {all}
+    scope :basic_users, -> {where('users.role = ?', 0)}
+    scope :basic_dealers, -> {where('users.role = ?', 1)}
+    scope :basic_repairshops, -> {where('users.role = ?', 2)}
+    scope :silver_dealers, -> {where('users.role = ?', 3)}
+    scope :silver_repairshops, -> {where('users.role = ?', 4)}
+    scope :gold_dealer, -> {where('users.role = ?', 5)}
+    scope :diamond_dealer, -> {where('users.role = ?', 6)}
+
+
   
   def full_address
     [city, state, zipcode].join(', ')
@@ -51,6 +62,8 @@ class User < ActiveRecord::Base
       return 0
     end     
   end
+
+   
 
 
   def user_can_create_listing
@@ -101,6 +114,34 @@ class User < ActiveRecord::Base
     user_role = self.role 
     user_role == "DIAMOND DEALER" ? true : false    
   end
+
+  def number_of_listings
+    Listing.where(:user_id => self.id).count
+  end
+
+  def number_of_repairshops
+      Repairshop.where(:user_id => self.id).count
+  end
+
+  # def self.approve_users_listings_or_repairshops(user_id)
+  #       begin
+  #         Listing.where(:user_id => user_id).update_all(:approved => true)
+  #         Repairshop.where(:user_id => user_id).update_all(:approved => true) 
+  #         return true       
+  #       rescue
+  #         return false
+  #       end
+  # end
+
+  # def self.hold_users_listings_or_repairshops(user_id)
+  #       begin
+  #         Listing.where(:user_id => user_id).update_all(:approved => false)
+  #         Repairshop.where(:user_id => user_id).update_all(:approved => false)
+  #         return true       
+  #       rescue
+  #         return false
+  #       end
+  # end
 
 end
 

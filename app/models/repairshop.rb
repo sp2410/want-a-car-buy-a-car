@@ -16,6 +16,11 @@ class Repairshop < ActiveRecord::Base
 		[city, state, zipcode].join(', ')
 	end
 
+	scope :silver_repairshops, -> {joins(:user).where('users.role = ?', 5)}
+	scope :diamond_repairshops, -> {joins(:user).where('users.role = ?', 6)}
+	scope :basic_repairshops, ->{joins(:user).where('users.role = ?', 2)}
+	
+
 	# scope :premium_repairshop 
 
 	def self.search(params)
@@ -40,6 +45,5 @@ class Repairshop < ActiveRecord::Base
 	end
 
 	
-
 end
 

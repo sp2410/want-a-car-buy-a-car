@@ -6,6 +6,7 @@ class ListingsController < ApplicationController
 
 	before_action :get_number_of_cars, only: [:search,:bodysearch,:index ]
 	before_action :get_number_of_repairshops, only: [:search,:bodysearch,:index]
+	
 
 
 	def index
@@ -16,6 +17,8 @@ class ListingsController < ApplicationController
 	end	
 
 	def create
+		listing_params[:external_url] = false
+		
 		@listing = Listing.new(listing_params)
 		@listing.user = current_user
 
@@ -23,6 +26,12 @@ class ListingsController < ApplicationController
 		@listing.state = current_user.state
 		@listing.zipcode = current_user.zipcode
 		@listing.title = "#{@listing.year} #{@listing.make} #{@listing.model}"
+		
+		if current_user.role == "BASIC USER"
+			@listing.expiration_date = DateTime.now + 30.days
+		end
+
+		# @listing.external_url = false
 		
 
 		if @listing.save				
@@ -83,15 +92,18 @@ class ListingsController < ApplicationController
 	end
 
 	def import
-
-		@imported = Listing.import(params[:file])	
 		
-		if @imported
-		    redirect_to root_url, notice: "#{@imported} Listings imported successfully"
-	  	else 
-	    	flash[:alert] =  "All Listings Not Imported! There were either some errors, or the VIN was duplicate"
-	    	redirect_to root_url
-	  	end 
+		@imported = CsvWorker.perform_async(params[:file].path)		
+		
+		# if @imported == true
+		#     redirect_to root_url, notice: "#{@imported} Listings imported successfully"
+	 #  	elsif @imported == false
+	 #    	flash[:alert] =  "All Listings Not Imported! There were either some errors, or the VIN was duplicate"
+	 #    	redirect_to root_url
+	 #  	else
+	  	# flash[:alert] =  "Hello! This upload job has been added for background importing. Please wait for few minutes and then cross check on listings page. Please recheck your CSV file headers and rows if new listings were not imported."
+	    redirect_to root_url, notice: "Hello! This upload job has been added for background importing. Please wait for few minutes and then cross check on listings page. Please recheck your CSV file headers and rows if new listings were not imported."
+	  	# end
 
 
 		# clearancing_status = ClearancingService.new.process_file(params[:csv_batch_file].tempfile)
@@ -138,7 +150,7 @@ class ListingsController < ApplicationController
 
 
 	def listing_params
-		params.require(:listing).permit(:description, :city, :state, :zipcode, :category_id, :subcategory_id, :image, :year, :miles, :transmission, :color, :cylinder, :fuel, :drive, :address,:wholesale,:price, :newused, :vin , :stocknumber, :model, :trim, :enginedescription,:interiorcolor,:options, :imagefront, :imageback, :imageleft, :imageright, :frontinterior, :rearinterior, :make)
+		params.require(:listing).permit(:description, :city, :state, :zipcode, :category_id, :subcategory_id, :image, :year, :miles, :transmission, :color, :cylinder, :fuel, :drive, :address,:wholesale,:price, :newused, :vin , :stocknumber, :model, :trim, :enginedescription,:interiorcolor,:options, :imagefront, :imageback, :imageleft, :imageright, :frontinterior, :rearinterior, :make, :expiration_date, :external_url)
 		
 
 	end

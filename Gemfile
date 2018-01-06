@@ -31,6 +31,7 @@ gem 'bootstrap_form'
 gem 'devise'
 #gem 'pundit'
 # gem 'cancancan', '~> 1.9'
+gem "sidekiq"
 
 
 
@@ -61,8 +62,9 @@ gem "fog"
 gem 'figaro'
 
 gem 'social-share-button', github: "huacnlee/social-share-button"
+# gem 'filterrific'
 
-
+# gem 'forty_facets', github: "sp2410/forty_facets"
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
@@ -73,8 +75,10 @@ gem 'twilio-ruby', '~> 4.11.1'
 #email notifications
 gem 'sendgrid-ruby'
 
-#For importing bulk csv 
+#For importing bulk csv
 gem 'activerecord-import'
+
+gem 'smarter_csv'
 
 
 
@@ -82,8 +86,8 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
   gem 'rspec-rails', '~> 3.6'	
-  # gem "factory_bot_rails", "~> 4.0"
-  # gem 'database_cleaner'
+  gem "factory_bot_rails", "~> 4.0"
+  gem 'database_cleaner'
 end
 
 group :development do
@@ -109,8 +113,15 @@ gem 'forty_facets'
 
 group :development do 
 	# Use sqlite3 as the database for Active Record
-	gem 'sqlite3'	
+	# gem 'sqlite3'	
+	gem 'mysql2'	
 end
+
+# group :test do 
+# 	# Use sqlite3 as the database for Active Record
+# 	# gem 'sqlite3'	
+# 	gem 'sqlite3'	
+# end
 
 group :production do 	
 	gem 'pg'

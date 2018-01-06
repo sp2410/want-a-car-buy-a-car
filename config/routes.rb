@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   #devise_for :users
+
   
   devise_for :users, :controllers => {:registrations => "users/registrations"}
   
@@ -45,6 +46,7 @@ Rails.application.routes.draw do
 
 
   root 'categories#index'
+  # mount Sidekiq::Web, at: '/sidekiq'
   
   match '/help', to: 'pages#help', via: :get
   match '/scams', to: 'pages#scams', via: :get

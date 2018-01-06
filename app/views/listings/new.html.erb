@@ -12,10 +12,17 @@
     <%= render "listings/form" %>     
   </div>
 
-  <%= form_tag import_listings_path, multipart: true do %>
-    <%= file_field_tag :file %>
-    <%= submit_tag "Import Csv" %>
-  <% end %>
+  <hr>
+  <br>
+
+  <div class = "col-sm-6 col-md-6 col-lg-6" style = "text-align: center; ">
+    <%= form_tag import_listings_path, multipart: true do %>
+      <%= file_field_tag :file %>
+      <%= submit_tag "Import Csv" %>
+    <% end %>     
+  </div>
+
+  
 
 
   <div class = "col-sm-3 col-md-3 col-lg-3">

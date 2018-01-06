@@ -2,6 +2,7 @@
 
     <div class ="w3-panel w3-card-2" >
           
+            <% if @listing.external_url == false %>
             <div class="slideshow-container">
 
                               <%- if @listing.image.present? -%>
@@ -99,6 +100,105 @@
                                  
                               </div>
             </div> 
+          <% else %>
+            <div class="slideshow-container">
+
+                              <%- if @listing.external_image.present? -%>
+                                <div class="mySlides" id = "showpage">                                                            
+                                  <img src=<%= @listing.external_image if @listing.external_image.present? %> style=" max-height: 100%; max-width: 100%; margin: auto;">
+                                </div>                                                                                    
+                              <% else %>
+                                  <div class="mySlides" id = "showpage">                                                            
+                                    <%= image_tag("https://s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/nopictures1.png", :alt => "Want a Car buy A Car| Cars For Sale | Used Cars | Repair Shops", :style=> " max-height: 100%; max-width: 100%; margin: auto;") %>
+                                  </div>
+                              <% end %>
+
+                              <%- if @listing.external_imagefront.present? -%>
+                                <div class="mySlides" id = "showpage">
+                                  <img src=<%= @listing.external_imagefront if @listing.external_imagefront.present? %> style=" max-height: 100%; max-width: 100%; margin: auto;">
+                                </div>
+                              <% else %>
+                                  <div class="mySlides" id = "showpage">                                                            
+                                    <%= image_tag("https://s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/nopictures1.png", :alt => "Want a Car buy A Car| Cars For Sale | Used Cars | Repair Shops", :style=> " max-height: 100%; max-width: 100%; margin: auto;") %>
+                                  </div>
+                              <% end %>
+
+
+
+                              <%- if @listing.external_imageback.present? -%>
+                                <div class="mySlides" id = "showpage">
+                                  <img src=<%= @listing.external_imageback if @listing.external_imageback.present? %> style=" max-height: 100%; max-width: 100%; margin: auto;">
+                                </div>
+                              <% else %>
+                                  <div class="mySlides" id = "showpage">                                                            
+                                    <%= image_tag("https://s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/nopictures1.png", :alt => "Want a Car buy A Car| Cars For Sale | Used Cars | Repair Shops", :style=> " max-height: 100%; max-width: 100%; margin: auto;") %>
+                                  </div>
+                              <% end %>
+
+
+                              <%- if @listing.external_imageleft.present? -%>  
+                                <div class="mySlides" id = "showpage">
+                                  <img src=<%= @listing.external_imageleft  if @listing.external_imageleft.present? %> style=" max-height: 100%; max-width: 100%; margin: auto;">
+                                </div>
+                              <% else %>
+                                  <div class="mySlides" id = "showpage">                                                            
+                                    <%= image_tag("https://s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/nopictures1.png", :alt => "Want a Car buy A Car| Cars For Sale | Used Cars | Repair Shops", :style=> " max-height: 100%; max-width: 100%; margin: auto;") %>
+                                  </div>
+                              <% end %>
+
+
+                              <%- if @listing.external_imageright.present? -%>  
+                                <div class="mySlides" id = "showpage">
+                                  <img src=<%= @listing.external_imageright if @listing.external_imageright.present? %> style=" max-height: 100%; max-width: 100%; margin: auto;">
+                                </div>
+                              <% else %>
+                                  <div class="mySlides" id = "showpage">                                                            
+                                    <%= image_tag("https://s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/nopictures1.png", :alt => "Want a Car buy A Car| Cars For Sale | Used Cars | Repair Shops", :style=> "width: max-height: 100%; max-width: 100%; margin: auto;") %>
+                                  </div>
+                              <% end %>
+
+
+
+                              <%- if @listing.external_frontinterior.present? -%>  
+                                <div class="mySlides" id = "showpage">
+                                  <img src=<%= @listing.external_frontinterior  if @listing.external_frontinterior.present? %> style=" max-height: 100%; max-width: 100%; margin: auto;">
+                                </div>
+                              <% else %>
+                                  <div class="mySlides" id = "showpage">                                                            
+                                    <%= image_tag("https://s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/nopictures1.png", :alt => "Want a Car buy A Car| Cars For Sale | Used Cars | Repair Shops", :style=> " max-height: 100%; max-width: 100%; margin: auto;") %>
+                                  </div>
+                              <% end %>
+
+
+                              <%- if @listing.external_rearinterior.present? -%>  
+                                <div class="mySlides" id = "showpage">
+                                  <img src=<%= @listing.external_rearinterior if @listing.external_rearinterior.present? %> style=" max-height: 100%; max-width: 100%; margin: auto;">
+                                </div>
+                              <% else %>
+                                  <div class="mySlides" id = "showpage">                                                            
+                                    <%= image_tag("https://s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/nopictures1.png", :alt => "Want a Car buy A Car| Cars For Sale | Used Cars | Repair Shops", :style=> " max-height: 100%; max-width: 100%; margin: auto;") %>
+                                  </div>
+                              <% end %>
+                                                       
+
+
+                              <a class="prev">&#10094;</a>
+                              <a class="next">&#10095;</a>
+                                
+
+                              <div style="text-align:center; ">                              
+
+                                  <span class="dot"></span>                                    
+                                  <span class="dot"></span>                               
+                                  <span class="dot"></span>                               
+                                  <span class="dot"></span>                               
+                                  <span class="dot"></span>                               
+                                  <span class="dot"></span>                               
+                                  <span class="dot"></span>
+                                 
+                              </div>
+            </div> 
+          <% end %>
 
     </div>
 

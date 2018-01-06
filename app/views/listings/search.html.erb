@@ -78,7 +78,8 @@
                             <%= link_to i do %>
 
                             <!-- , target: :_blank  -->
-                        <div class="slideshow-container" >
+                        <% if i.external_url == false %>
+                          <div class="slideshow-container" >
 
                             <%- if i.image.present? -%>                            
                               <div class="mySlides" id = "otherpage">
@@ -205,7 +206,137 @@
                                
                             </div>
 
-                          </div>
+                          </div> 
+                      <% else %>
+                          <div class="slideshow-container" >
+
+                            <%- if i.external_image.present? -%>                            
+                              <div class="mySlides" id = "otherpage">
+                                <div class = "w3-panel w3-card-2" style = "padding: 10px; height: 180px;">
+                                <img src=<%= i.external_image if i.external_image.present? %> style="max-width:100%; max-height: 100%;">
+                              </div>
+                            </div>                                                                                    
+                            <% else %>                              
+                                <div class="mySlides" id = "otherpage">
+                                  <div class = "w3-panel w3-card-2" style = "padding: 10px; height: 180px;">
+                                    <%= image_tag("https://s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/nopictures1.png", :alt => "Want a Car buy A Car| Cars For Sale | Used Cars | Repair Shops", :style=> "width:auto; height: 100%;") %>
+                                  </div>
+                              </div>
+                            <% end %>
+
+                          
+
+                            <%- if i.external_imagefront.present? -%>                            
+                              <div class="mySlides" id = "otherpage">
+                                <div class = "w3-panel w3-card-2" style = "padding: 10px; height: 180px;">
+                                  <img src=<%= i.external_imagefront if i.external_imagefront.present? %> style="max-width:100%; max-height: 100%;">
+                                </div>
+                            </div>
+                            <% else %>                              
+                                <div class="mySlides" id = "otherpage">
+                                  <div class = "w3-panel w3-card-2" style = "padding: 10px; height: 180px;">
+                                    <%= image_tag("https://s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/nopictures1.png", :alt => "Want a Car buy A Car| Cars For Sale | Used Cars | Repair Shops", :style=> "width:auto; height: 100%;") %>
+                                  </div>
+                              </div>
+                            <% end %>
+
+
+
+                            <%- if i.external_imageback.present? -%>
+                              <div class="mySlides" id = "otherpage">
+                                <div class = "w3-panel w3-card-2" style = "padding: 10px; height: 180px;">
+                                  <img src=<%= i.external_imageback if i.external_imageback.present? %> style="max-width:100%; max-height: 100%;">
+                                </div>
+                              </div>
+                            <% else %>
+                                <div class="mySlides" id = "otherpage">
+                                  <div class = "w3-panel w3-card-2" style = "padding: 10px; height: 180px;">
+                                    <%= image_tag("https://s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/nopictures1.png", :alt => "Want a Car buy A Car| Cars For Sale | Used Cars | Repair Shops", :style=> "width:auto; height: 100%;") %>
+                                  </div>
+                                </div>
+                            <% end %>
+
+
+                            <%- if i.external_imageleft.present? -%>  
+                              <div class="mySlides" id = "otherpage">
+                                <div class = "w3-panel w3-card-2" style = "padding: 10px; height: 180px;">
+                                  <img src=<%= i.external_imageleft  if i.external_imageleft.present? %> style="max-width:100%; max-height: 100%;">
+                                </div>
+                              </div>
+                            <% else %>
+                              <div class="mySlides" id = "otherpage">
+                                <div class = "w3-panel w3-card-2" style = "padding: 10px; height: 180px;">
+                                  <%= image_tag("https://s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/nopictures1.png", :alt => "Want a Car buy A Car| Cars For Sale | Used Cars | Repair Shops", :style=> "width:auto; height: 100%;") %>
+                                </div>
+                              </div>
+                            <% end %>
+
+
+                            <%- if i.external_imageright.present? -%>  
+                              <div class="mySlides" id = "otherpage">
+                                <div class = "w3-panel w3-card-2" style = "padding: 10px; height: 180px;">
+                                  <img src=<%= i.external_imageright if i.external_imageright.present? %> style="max-width:100%; max-height: 100%;">
+                                </div>
+                              </div>
+                            <% else %>
+                                <div class="mySlides" id = "otherpage">
+                                  <div class = "w3-panel w3-card-2" style = "padding: 10px; height: 180px;">
+                                    <%= image_tag("https://s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/nopictures1.png", :alt => "Want a Car buy A Car| Cars For Sale | Used Cars | Repair Shops", :style=> "width:auto; height: 100%;") %>
+                                  </div>
+                                </div>
+                            <% end %>
+
+
+
+                            <%- if i.external_frontinterior.present? -%>  
+                              <div class="mySlides" id = "otherpage">
+                                <div class = "w3-panel w3-card-2" style = "padding: 10px; height: 180px;">
+                                  <img src=<%= i.external_frontinterior  if i.external_frontinterior.present? %> style="max-width:100%; max-height: 100%;">
+                                  </div>
+                              </div>
+                            <% else %>
+                                <div class="mySlides" id = "otherpage">
+                                  <div class = "w3-panel w3-card-2" style = "padding: 10px; height: 180px;">
+                                    <%= image_tag("https://s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/nopictures1.png", :alt => "Want a Car buy A Car| Cars For Sale | Used Cars | Repair Shops", :style=> "width:auto; height: 100%;") %>
+                                  </div>
+                                </div>
+                            <% end %>
+
+
+                            <%- if i.external_rearinterior.present? -%>  
+                              <div class="mySlides" id = "otherpage">
+                                <div class = "w3-panel w3-card-2" style = "padding: 10px; height: 180px;">
+                                  <img src=<%= i.external_rearinterior  if i.external_rearinterior.present? %> style="max-width:100%; max-height: 100%;">
+                                </div>
+                              </div>
+                            <% else %>
+                                <div class="mySlides" id = "otherpage">
+                                  <div class = "w3-panel w3-card-2" style = "padding: 10px; height: 180px;">
+                                    <%= image_tag("https://s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/nopictures1.png", :alt => "Want a Car buy A Car| Cars For Sale | Used Cars | Repair Shops", :style=> "width:auto; height: 100%;") %>
+                                  </div>
+                                </div>
+                            <% end %>
+                                                     
+
+
+                            <a class="prev">&#10094;</a>
+                            <a class="next">&#10095;</a>
+                              
+
+                            <div style="text-align:center; ">                              
+
+                                <span class="dot"></span>                                    
+                                <span class="dot"></span>                               
+                                <span class="dot" ></span>                               
+                                <span class="dot" ></span>                               
+                                <span class="dot"></span>                               
+                                <span class="dot"></span>                               
+                                <span class="dot"></span>
+                               
+                            </div>
+
+                          </div> 
+                      <% end %>
 
                             <% end  %>
                             <div class="description">
