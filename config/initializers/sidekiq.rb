@@ -1,7 +1,9 @@
 Sidekiq.configure_client do |config|
-	config.redis = {db: 1, url: 'redis://localhost:6379/0'}
+	config.redis = {db: 1, ENV["REDISTOGO_URL"] || url: 'redis://localhost:6379/0'}
 end
 
 Sidekiq.configure_server do |config|
-	config.redis = {db: 1, url: 'redis://localhost:6379/0'}
+	config.redis = {db: 1, url: ENV["REDISTOGO_URL"] || 'redis://localhost:6379/0'}
 end
+
+# REDIS = Redis.new(:url => )

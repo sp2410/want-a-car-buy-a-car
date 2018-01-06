@@ -9,19 +9,21 @@
   <div class = "col-sm-6 col-md-6 col-lg-6" style = "text-align: center; ">
     <p style = "font-size: 110px; color: #7C064D; margin-bottom: 20px; text-align: center; ">NEW LISTING</p>
     <hr>
-    <%= render "listings/form" %>     
-  </div>
+    <%= render "listings/form" %>
 
-  <hr>
-  <br>
+     <hr>
+  <br>  
 
-  <div class = "col-sm-6 col-md-6 col-lg-6" style = "text-align: center; ">
     <%= form_tag import_listings_path, multipart: true do %>
       <%= file_field_tag :file %>
-      <%= submit_tag "Import Csv" %>
-    <% end %>     
+      <%= submit_tag "Import Csv", class: "btn btn-danger" %>
+    <% end %>   
+
+    <hr>
+  <br>  
   </div>
 
+ 
   
 
 
