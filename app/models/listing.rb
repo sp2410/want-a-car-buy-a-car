@@ -215,7 +215,7 @@ class Listing < ActiveRecord::Base
 
 
 
-					listing_images = data[:all_images].split(",")
+					listing_images = data[:all_images].split((/[|,]+/))
 						# i = 0
 					
 						# [:image, :imagefront, :imageback, :imageleft, :imageright, :frontinterior, :rearinterior].each do |image|				
