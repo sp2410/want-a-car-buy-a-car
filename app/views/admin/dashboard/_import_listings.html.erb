@@ -1,0 +1,4 @@
+<%= form_tag admin_dashboard_import_listings_path, multipart: true do %>
+  <%= file_field_tag 'file', accept: 'text/csv' %>
+  <%= submit_tag 'Import Csv' %>
+<% end %>

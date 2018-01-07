@@ -93,17 +93,16 @@ class ListingsController < ApplicationController
 
 	def import
 		
-		@imported = CsvWorker.perform_async(params[:file].path)		
-		
-		# if @imported == true
-		#     redirect_to root_url, notice: "#{@imported} Listings imported successfully"
-	 #  	elsif @imported == false
-	 #    	flash[:alert] =  "All Listings Not Imported! There were either some errors, or the VIN was duplicate"
-	 #    	redirect_to root_url
-	 #  	else
-	  	# flash[:alert] =  "Hello! This upload job has been added for background importing. Please wait for few minutes and then cross check on listings page. Please recheck your CSV file headers and rows if new listings were not imported."
-	    redirect_to root_url, notice: "Hello! This upload job has been added for background importing. Please wait for few minutes and then cross check on listings page. Please recheck your CSV file headers and rows if new listings were not imported."
-	  	# end
+		# @imported = CsvWorker.perform_async(params[:file].path)		
+		#redirect_to root_url, notice: "Hello! This upload job has been added for background importing. Please wait for few minutes and then cross check on listings page. Please recheck your CSV file headers and rows if new listings were not imported."
+		@imported = Listing.import_listings(params[:file])
+
+		if @imported == true
+		    redirect_to root_url, notice: "#{@imported} Listings imported successfully"
+	  	elsif @imported == false
+	    	flash[:alert] =  "All Listings Not Imported! There were either some errors, or the VIN was duplicate"
+	    	redirect_to root_url	  	
+	  	end
 
 
 		# clearancing_status = ClearancingService.new.process_file(params[:csv_batch_file].tempfile)

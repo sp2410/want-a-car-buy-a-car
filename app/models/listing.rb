@@ -112,6 +112,32 @@ class Listing < ActiveRecord::Base
 			user_hash[i["id"]] = i
 		end
 
+		map = {
+
+	  		"user_id" => :user_id,      
+	  		"NewUsed" => :newused,
+	  		"VIN"	=> :vin,
+	  		"StockNumber"	 => :stocknumber,
+	      "BodyType" => :bodytype,
+	      "Make" => :make,
+	  		"Model"	=> :model,
+	  		"year"	=> :year,
+	  		"Trim"	=> :trim,
+	  		"miles"	=> :miles,
+	  		"EnginerDescription"	=> :enginedescription,
+	  		"cylinder"	=> :cylinder,
+	  		"fuel"	=> :fuel,
+	  		"transmission" => :transmission,	
+	  		"price" => :price,
+	  		"color"	 => :color ,
+	      "InteriorColor" => :interiorcolor,
+	  		"ExteriorColor"	=> :color,
+	  		"Options" => :options,
+	  		"description" => :description,
+	      "image" => :all_images
+
+  		}
+
 		# p user_hash
 		# p "*******************************"
 		# p "*******************************"
@@ -124,9 +150,11 @@ class Listing < ActiveRecord::Base
 			#Use create when you dont need customization with the listing	
 
 		# p "problem is here 2"
+
+			# p row.to_hash["Make"]
 			
 			row.to_hash.each do |k, v|
-				key = MAP[k]
+				key = map[k]
 				data[key] = v
 
 				# p "problem is here 3"
@@ -170,15 +198,18 @@ class Listing < ActiveRecord::Base
 				# p "*******************************"
 				# p "*******************************"
 
-				
+				# p data[:make]
 				
 				data[:approved] = true
+
+				
 
 				# listing.attributes = .merge(user_id: current_user.id).merge(category_id: row["category"]).merge(subcategory_id: row["subcategory"])
 				# p data
 				begin
 					# p data.except(:all_images)
-					listing.attributes = data.except(:all_images)
+					# p data
+					listing.attributes = data.slice(:user_id, :newused, :vin, :stocknumber, :bodytype, :make, :model, :year, :trim, :miles, :enginedescription, :cylinder, :fuel, :transmission, :price, :color , :interiorcolor, :color, :options, :description, :approved)
 
 					unless data[:all_images] == nil
 
@@ -207,6 +238,9 @@ class Listing < ActiveRecord::Base
 					end
 
 					listing.external_url = true
+					listing.approved = true
+
+					# p listing.approved
 
 					#listing.attributes = (row.to_hash).merge(user_id: current_user.id) #
 					data.delete(:all_images)
@@ -258,8 +292,8 @@ class Listing < ActiveRecord::Base
 
 		# begin
 			# p valid_listings
-			Listing.import valid_listings, on_duplicate_key_update: { conflict_target: [:title], columns: [:user_id, :newused, :stocknumber, :model, :year, :trim, :miles, :enginedescription,:cylinder,:fuel,:transmission,  :price, :color, :interiorcolor, :options, :description,:city, :state, :zipcode]}
-			# Listing.import valid_listings, on_duplicate_key_update: [:user_id, :newused, :stocknumber, :model, :year, :trim, :miles, :enginedescription,:cylinder,:fuel,:transmission,  :price, :color, :interiorcolor, :options, :description,:city, :state, :zipcode]
+			# Listing.import valid_listings, on_duplicate_key_update: { conflict_target: [:title], columns: [:user_id, :newused, :stocknumber, :model, :year, :trim, :miles, :enginedescription,:cylinder,:fuel,:transmission,  :price, :color, :interiorcolor, :options, :description,:city, :state, :zipcode, :approved]}
+			Listing.import valid_listings, on_duplicate_key_update: [:user_id, :newused, :stocknumber, :model, :year, :trim, :miles, :enginedescription,:cylinder,:fuel,:transmission,  :price, :color, :interiorcolor, :options, :description,:city, :state, :zipcode, :approved]
 			# }
 			# p Listing.count
 			# p Listing.all

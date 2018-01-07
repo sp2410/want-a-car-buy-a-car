@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180103211902) do
+ActiveRecord::Schema.define(version: 20180106232002) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -143,7 +143,7 @@ ActiveRecord::Schema.define(version: 20180103211902) do
     t.string   "trim",                   limit: 255
     t.string   "enginedescription",      limit: 255
     t.string   "interiorcolor",          limit: 255
-    t.string   "options",                limit: 255
+    t.text     "options",                limit: 65535
     t.string   "imagefront",             limit: 255
     t.string   "imageback",              limit: 255
     t.string   "imageleft",              limit: 255

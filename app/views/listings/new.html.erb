@@ -11,16 +11,9 @@
     <hr>
     <%= render "listings/form" %>
 
-     <hr>
-  <br>  
+   
+  
 
-    <%= form_tag import_listings_path, multipart: true do %>
-      <%= file_field_tag :file %>
-      <%= submit_tag "Import Csv", class: "btn btn-danger" %>
-    <% end %>   
-
-    <hr>
-  <br>  
   </div>
 
  

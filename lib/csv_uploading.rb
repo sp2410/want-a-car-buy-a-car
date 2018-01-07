@@ -8,10 +8,12 @@ module CsvUploading
 
   	MAP = {
 
-  		"user_id" => :user_id,
+  		"user_id" => :user_id,      
   		"NewUsed" => :newused,
   		"VIN"	=> :vin,
   		"StockNumber"	 => :stocknumber,
+      "BodyType" => :bodytype,
+      "Make" => :make,
   		"Model"	=> :model,
   		"year"	=> :year,
   		"Trim"	=> :trim,
@@ -22,7 +24,8 @@ module CsvUploading
   		"transmission" => :transmission,	
   		"price" => :price,
   		"color"	 => :color ,
-  		"InteriorColor"	=> :interiorcolor,
+      "InteriorColor" => :interiorcolor,
+  		"ExteriorColor"	=> :color,
   		"Options" => :options,
   		"description" => :description,
       "image" => :all_images
@@ -33,3 +36,4 @@ module CsvUploading
 end
 
 
+# :user_id, :newused, :vin, :stocknumber, :bodytype, :make, :model, :year, :trim, :miles, :enginedescription, :cylinder, :fuel, :transmission, :price, :color , :interiorcolor, :color, :options, :description, :all_images
