@@ -14,6 +14,8 @@ class CategoriesController < ApplicationController
 		@newcars = Listing.approved_new
 		@usedcars = Listing.approved_used
 		@wholesalecars = Listing.approved_wholesale
+
+		@listings = Listing.approved_all
 		
 
 		respond_to do |format|

@@ -123,25 +123,29 @@ class User < ActiveRecord::Base
       Repairshop.where(:user_id => self.id).count
   end
 
-  # def self.approve_users_listings_or_repairshops(user_id)
-  #       begin
-  #         Listing.where(:user_id => user_id).update_all(:approved => true)
-  #         Repairshop.where(:user_id => user_id).update_all(:approved => true) 
-  #         return true       
-  #       rescue
-  #         return false
-  #       end
-  # end
+  def self.dealer_search(params)
+    if params
+      dealers = Users.where(:role => ["BASIC DEALER", "SILVER DEALER", "GOLD DEALER", "DIAMOND DEALER"])
+      
+      if params[:radius].present?
+        dealers = dealers.near(params[:location], params[:radius]) if params[:location].present?
+      else
+        dealers = dealers.near(params[:location], 200) if params[:location].present?        
+      end
 
-  # def self.hold_users_listings_or_repairshops(user_id)
-  #       begin
-  #         Listing.where(:user_id => user_id).update_all(:approved => false)
-  #         Repairshop.where(:user_id => user_id).update_all(:approved => false)
-  #         return true       
-  #       rescue
-  #         return false
-  #       end
-  # end
+      if params[:keywords].present?
+        dealers = dealers.joins(:listings).where("LOWER(listings.title) LIKE ? OR LOWER(listings.make) LIKE ? OR LOWER(listings.model) LIKE ?", "%#{params[:keywords].downcase}%", "%#{params[:keywords].downcase}%", "%#{params[:keywords].downcase}%")
+      end
+
+      dealers.uniq
+    else
+      all
+    end
+
+  end
+
 
 end
 
+# ["BASIC DEALER", "SILVER DEALER", "GOLD DEALER", "DIAMOND DEALER"]
+      

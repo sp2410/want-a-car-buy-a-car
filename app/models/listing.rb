@@ -53,6 +53,8 @@ class Listing < ActiveRecord::Base
 	geocoded_by :full_address
 	after_validation :geocode
 
+	scope :approved_all, -> {joins(:user).where('users.role = ?', 6).where(approved: true)}
+
 	
 	scope :approved_wholesale, -> {joins(:user).where('users.role = ?', 6).where(approved: true).where(wholesale: true)}
 
@@ -85,6 +87,14 @@ class Listing < ActiveRecord::Base
 	scope :silver_dealer_listing, ->{joins(:user).where('users.role = ?', 3)}
 	scope :gold_dealer_listing, ->{joins(:user).where('users.role = ?', 4)}
 	scope :basic_user_listing, ->{joins(:user).where('users.role = ?', 0)}
+
+
+	scope :other_approved_used, -> {joins(:user).where(approved: true).where(newused: "U")}
+
+	scope :other_approved_new, -> {joins(:user).where(approved: true).where(newused: "N")}
+
+	scope :other_wholesale_listings, -> {joins(:user).where(approved: true).where(wholesale: true)}
+
 
 	
 
@@ -190,6 +200,8 @@ class Listing < ActiveRecord::Base
 
 					listing.state = user["state"]
 					listing.zipcode = user["zipcode"] 
+					listing.latitude = user["latitude"].to_f
+					listing.longitude = user["longitude"].to_f
 				end
 
 				# listing.approved = true

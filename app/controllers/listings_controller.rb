@@ -25,6 +25,8 @@ class ListingsController < ApplicationController
 		@listing.city = current_user.city		
 		@listing.state = current_user.state
 		@listing.zipcode = current_user.zipcode
+		@listing.latitude = current_user.latitude
+		@listing.longitude = current_user.longitude
 		@listing.title = "#{@listing.year} #{@listing.make} #{@listing.model}"
 		
 		if current_user.role == "BASIC USER"
@@ -46,8 +48,12 @@ class ListingsController < ApplicationController
 		@listing = Listing.find(params[:id])
 		@parent = @listing
 		@user = User.find_by_id(@listing.user_id)
-		@listings = Listing.where(user: @listing.user)
+		# @listings = Listing.where(user: @listing.user)
 		@reviews = Review.where('owner_id = ?', @user.id)
+
+		@newcars = Listing.other_approved_new.where(user: @user).where.not(id: @listing.id)
+		@usedcars = Listing.other_approved_used.where(user: @user).where.not(id: @listing.id)
+		@wholesalecars = Listing.wholesale_listings.where(user: @user).where.not(id: @listing.id)
 		
 	end
 
