@@ -128,7 +128,7 @@ group :production do
 	gem 'rails_12factor'
 	#new relic monitoring
 	# gem 'newrelic_rpm'
-	gem "skylight"
+	# gem "skylight"
 	gem 'heroku-deflater'
 
 end
