@@ -157,7 +157,7 @@
 
                     <h3 style = "color:#7C064D;"><span class="glyphicon glyphicon-search"></span> <strong>SEARCH DEALERS NEAR YOU</strong></h3>
 
-                    <%= form_tag search_repairshops_path, method: :get do |f| %>
+                    <%= form_tag dealer_search_listings_path, method: :get do |f| %>
 
                      <div class= "col-xs-12 col-sm-12 col-lg-12 col-md-12">                        
                         <%= text_field_tag :keywords, nil, placeholder: 'Keywords (e.g. Dealer name or Make of Car or Model)', style: "width: 100%; margin: 1% 0;" %>

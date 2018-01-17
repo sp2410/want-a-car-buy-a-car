@@ -38,8 +38,11 @@
           <input class="btn btn-danger" id="hideshow" style="margin-top: 10px; margin-bottom: 10px;" type="button" value="VIEW OUR PACKAGES"></input>   
           <hr>       
         </div>
+
+        <%= f.text_field :name, autofocus: true, :label => "YOUR COMPANY NAME" %>
       
         <%= f.select :role, User.roles.keys.map{|x| x.upcase}, {:label => "EDIT PACKAGE"} %>
+
       
               
         <%= f.text_field :website, autofocus: true, :label => "YOUR WEBSITE" %>

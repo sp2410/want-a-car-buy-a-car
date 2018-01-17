@@ -1,0 +1,102 @@
+ <div class="center-column" id="right-center-column-full2" >    
+    
+    <div id="map"></div>
+    <script>
+      function initMap() {     
+        //   converting instance variable to json data
+        var json = <%= raw @dealers.to_json %>;  
+
+
+        //initialising map with center Washington DC  
+        
+   
+
+        var mycenter = {lat: 38.247535, lng: -98.713875};
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 3,
+          center: mycenter,
+
+          //adding style to the map
+          styles: [{"featureType":"water","elementType":"all","stylers":[{"hue":"#7fc8ed"},{"saturation":55},{"lightness":-6},{"visibility":"on"}]},{"featureType":"water","elementType":"labels","stylers":[{"hue":"#7fc8ed"},{"saturation":55},{"lightness":-6},{"visibility":"off"}]},{"featureType":"poi.park","elementType":"geometry","stylers":[{"hue":"#83cead"},{"saturation":1},{"lightness":-15},{"visibility":"on"}]},{"featureType":"landscape","elementType":"geometry","stylers":[{"hue":"#f3f4f4"},{"saturation":-84},{"lightness":59},{"visibility":"on"}]},{"featureType":"landscape","elementType":"labels","stylers":[{"hue":"#ffffff"},{"saturation":-100},{"lightness":100},{"visibility":"off"}]},{"featureType":"road","elementType":"geometry","stylers":[{"hue":"#ffffff"},{"saturation":-100},{"lightness":100},{"visibility":"on"}]},{"featureType":"road","elementType":"labels","stylers":[{"hue":"#bbbbbb"},{"saturation":-100},{"lightness":26},{"visibility":"on"}]},{"featureType":"road.arterial","elementType":"geometry","stylers":[{"hue":"#ffcc00"},{"saturation":100},{"lightness":-35},{"visibility":"simplified"}]},{"featureType":"road.highway","elementType":"geometry","stylers":[{"hue":"#ffcc00"},{"saturation":100},{"lightness":-22},{"visibility":"on"}]},{"featureType":"poi.school","elementType":"all","stylers":[{"hue":"#d7e4e4"},{"saturation":-60},{"lightness":23},{"visibility":"on"}]}]
+        });
+
+        var iw = new google.maps.InfoWindow();
+
+        var oms = new OverlappingMarkerSpiderfier(map, { 
+          markersWontMove: true, 
+          markersWontHide: true,
+          basicFormatEvents: true
+        });
+
+        for (var i=0; i<json.length; i++){
+          (function() {  // make a closure over the marker and marker data
+            var markerData = json[i];
+            latLng = new google.maps.LatLng(markerData.latitude, markerData.longitude);
+            var marker = new google.maps.Marker({ position: latLng, icon: "//s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/car32.png", title: markerData.title  });  // markerData works here as a LatLngLiteral
+            google.maps.event.addListener(marker, 'spider_click', function(e) {  // 'spider_click', not plain 'click'
+              iw.setContent(markerData.title);
+              iw.open(map, marker);
+            });
+            oms.addMarker(marker);  // adds the marker to the spiderfier _and_ the map
+
+            (function(marker, markerData) {
+
+              // Attaching a click event to the current marker
+              google.maps.event.addListener(marker, "dblclick", function(e) {
+                    var go_to = "/listings/" + markerData.id;
+                  //window.location.href = go_to;
+                    location.href = go_to;
+              });
+
+            })(marker, markerData);
+
+          })();
+        }
+
+        //
+
+         
+        
+
+        // //adding markers from json data
+        // for (var i=0; i<json.length; i++){
+        //   var data =  json[i];
+        //   // var a = 360.0 / json.length;
+        //   // var newLat = data.latitude + -.00004 * Math.cos((+a*i) / 180 * Math.PI);
+        //   // var newLng = data.longitude + -.00004 * Math.sin((+a*i) / 180 * Math.PI);
+        //   // latLng = new google.maps.LatLng(newLat, newLng);
+
+        //   latLng = new google.maps.LatLng(data.latitude, data.longitude);
+
+        //   var marker = new google.maps.Marker({
+        //     position: latLng,
+        //     map: map,
+        //     //icon:"https://s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/repair.png",
+        //     icon: "//s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/car32.png",
+        //     title: data.title          
+        //   });
+
+       
+        // (function(marker, data) {
+
+        //   // Attaching a click event to the current marker
+        //   google.maps.event.addListener(marker, "click", function(e) {
+        //         var go_to = "/products/" + data.id;
+        //       //window.location.href = go_to;
+        //         location.href = go_to;
+        //   });
+
+        // })(marker, data);
+
+
+        
+      }
+
+
+    </script>
+
+   <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD2alMtLSazyRllBkXIJfitgKwvc9zxYTo&callback=initMap">
+  </script>
+
+  </div>

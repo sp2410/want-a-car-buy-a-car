@@ -125,15 +125,16 @@ class User < ActiveRecord::Base
 
   def self.dealer_search(params)
     if params
-      dealers = Users.where(:role => ["BASIC DEALER", "SILVER DEALER", "GOLD DEALER", "DIAMOND DEALER"])
+      dealers = User.where(:role => [1, 3, 4, 6])
       
-      if params[:radius].present?
+      if params[:radius].present?        
         dealers = dealers.near(params[:location], params[:radius]) if params[:location].present?
       else
+
         dealers = dealers.near(params[:location], 200) if params[:location].present?        
       end
 
-      if params[:keywords].present?
+      if params[:keywords].present?         
         dealers = dealers.joins(:listings).where("LOWER(listings.title) LIKE ? OR LOWER(listings.make) LIKE ? OR LOWER(listings.model) LIKE ?", "%#{params[:keywords].downcase}%", "%#{params[:keywords].downcase}%", "%#{params[:keywords].downcase}%")
       end
 

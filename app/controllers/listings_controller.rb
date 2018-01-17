@@ -149,8 +149,21 @@ class ListingsController < ApplicationController
 		@newcars = Listing.where('newused=?', "N")	
 	end
 
-	
+	def dealer_search		
+		# @listings = Listing.search(params).order("#{sort_column}" + " " + "#{sort_direction}")
+		@dealers = User.dealer_search(params)		
 
+	end
+
+	def dealerlistings
+		@user_id = params[:id]
+		@user_listings = Listing.where('user_id=?', @user_id).where(:approved => true)
+		@newcars = @user_listings.where('user_id=?', @user_id).where(:approved => true)
+		@usedcars = @user_listings.where('user_id=?', @user_id).where(:approved => true)
+		@wholesalecars = @user_listings.limit(5)
+	end
+
+	
 	private
 
 

@@ -1,0 +1,17 @@
+<div class = "col-xs-12 col-sm-12 col-md-12 col-lg-12" id = "cardiv" style = "border: 3px solid red; padding: 0px; margin: 2px 0px;">
+                  <div class = "col-sm-12 col-md-12 col-lg-12 col-xs-12 text-center">
+                      <h3><strong><%= i.name.upcase %></strong></h3>
+                    </div>                    
+                    <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12">
+                    <p style = "display: inline;"><strong><span class="glyphicon glyphicon-certificate"></span><strong> WACBAC Rating: <%= get_rating_in_star(Review.get_average_rating(i.id)) %>  </strong></p>
+                    </div>
+                    <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12">
+                    <p ><strong><span class="glyphicon glyphicon-pushpin"></span><strong> Street Address: <%= i.full_address %>  </strong></p>
+                    </div>      
+                    <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12">                      
+                      <p><strong><span class="glyphicon glyphicon-paperclip"></span><strong> Website: <a href =<%= "//#{i.website}" %> rel="noopener noreferrer" style= "text-decoration: underline;" target="_blank"><%= i.website %></a> </strong></p>
+                    </div>   
+                    <div class = "col-sm-12 col-md-12 col-lg-12 col-xs-12 text-center">
+                      <p><%= link_to 'View Dealer Inventory', dealerlistings_path(:id => "#{i.id}"), class: "btn btn-danger btn-xs", style: "border: #e20049", target: :_blank %></p>
+                    </div>                              
+                </div>

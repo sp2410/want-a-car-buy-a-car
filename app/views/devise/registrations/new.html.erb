@@ -36,6 +36,8 @@
 
           <%= f.select :role, User.roles.keys.map{|x| x.upcase}, {:label => "CHOOSE PACKAGE THAT SUITS YOU BEST"} %>
 
+          <%= f.text_field :name, autofocus: true, :label => "YOUR COMPANY NAME" %>
+
            <br>
           <hr>
           <br>

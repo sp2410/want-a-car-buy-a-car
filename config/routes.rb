@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   
   devise_for :installs
 
-  resources :users do
+  resources :users do    
     resources :reviews, only: [ :new, :edit, :create, :update, :destroy] do 
       member do
         get :raise_appeal
@@ -27,6 +27,7 @@ Rails.application.routes.draw do
   resources :listings do
     collection do
       get 'search'
+      get 'dealer_search'
       get 'bodysearch'      
     end    
     collection { post :import }
@@ -38,7 +39,6 @@ Rails.application.routes.draw do
     resources :specializations, only: [ :new, :edit, :create, :update, :destroy]
     collection do 
       get 'search'
-      
     end
   end
 
@@ -56,6 +56,7 @@ Rails.application.routes.draw do
   match '/about', to: 'pages#about', via: :get
   match '/contact', to: 'pages#contact', via: :get
   match '/mylistings', to: 'listings#mylistings', via: :get
+  match '/dealerlistings', to: 'listings#dealerlistings', via: :get
   match '/myrepairshops', to: 'repairshops#myrepairshops', via: :get
 
   match '/usedcars', to: 'listings#usedcars', via: :get
