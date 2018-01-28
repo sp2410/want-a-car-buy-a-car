@@ -10,6 +10,11 @@ class RepairshopsController < InheritedResources::Base
 	
 	include ApplicationHelper
 
+
+	class Repairshopsearch < FortyFacets::FacetSearch
+		
+	end
+
 	def index
 		@repairshops = Repairshop.where(:approved => true)
 	end	
@@ -70,6 +75,21 @@ class RepairshopsController < InheritedResources::Base
 
 	def search
 		@repairshops = Repairshop.search(params)
+
+		@current_filters = params[:filters] || {:filters => ""}		
+
+		if params[:filters]
+	  		
+	  		@repairshops = @repairshops.where(:city => @current_filters[:city]) if @current_filters[:city]
+	  		@repairshops = @repairshops.where(:state => @current_filters[:state]) if @current_filters[:state]
+	  		
+	  	end
+
+	  	# @repairshops = @repairshops.order("#{sort_column}" + " " + "#{sort_direction}")
+
+	  	@repairshops_cities = @repairshops.repairshop_search_cities			
+		@repairshops_states = @repairshops.repairshop_search_states
+		
 	end
 
 	def myrepairshops
@@ -100,11 +120,11 @@ class RepairshopsController < InheritedResources::Base
 	end
 
   	def get_number_of_cars
-		@carcount = Listing.all.count
+		@carcount = Listing.where(:approved => true).count
 	end
 
 	def get_number_of_repairshops
-		@repairshopscount = Repairshop.all.count
+		@repairshopscount = Repairshop.where(:approved => true).count
 	end
 
 

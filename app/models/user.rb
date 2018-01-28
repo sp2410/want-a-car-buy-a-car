@@ -135,7 +135,7 @@ class User < ActiveRecord::Base
       end
 
       if params[:keywords].present?         
-        dealers = dealers.joins(:listings).where("LOWER(listings.title) LIKE ? OR LOWER(listings.make) LIKE ? OR LOWER(listings.model) LIKE ?", "%#{params[:keywords].downcase}%", "%#{params[:keywords].downcase}%", "%#{params[:keywords].downcase}%")
+        dealers = dealers.joins(:listings).where("LOWER(listings.title) LIKE ? OR LOWER(listings.make) LIKE ? OR LOWER(listings.model) LIKE ? OR LOWER(users.name) LIKE ?", "%#{params[:keywords].downcase}%", "%#{params[:keywords].downcase}%", "%#{params[:keywords].downcase}%", "%#{params[:keywords].downcase}%")
       end
 
       dealers.uniq

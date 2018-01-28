@@ -97,6 +97,20 @@ class Listing < ActiveRecord::Base
 
 
 	
+	#facets
+
+	scope :listing_search_cities, -> {group(:city).count}
+	scope :listing_search_body_type, -> {group(:bodytype).count}
+	scope :listing_search_states, -> {group(:state).count}
+	scope :listing_search_newused, -> {group(:NewUsed).count}
+	scope :listing_search_transmission, -> {group(:transmission).count}
+	scope :listing_search_cylinder, -> {group(:cylinder).count}
+	scope :listing_search_fuel, -> {group(:fuel).count}
+	scope :listing_search_drive, -> {group(:drive).count}
+	scope :listing_search_trim, -> {group(:trim).count}
+	scope :listing_search_color, -> {group(:color).count}
+	scope :listing_search_year, -> {group(:year).count}
+	scope :listing_search_interiorcolor, -> {group(:interiorcolor).count}
 
 
 
@@ -483,14 +497,17 @@ class Listing < ActiveRecord::Base
 
 			listings = listings.where('LOWER(listings.bodytype) like ?', "%#{params[:bodytype].downcase}%") if params[:bodytype].present?
 					
+			
+			# Listing.where(id: repairshop.near(params[:location], params[:radius]).map{|i| i.id})
+
 
 			if params[:radius].present?
-				listings = listings.near(params[:location],params[:radius]) if params[:location].present?
+				listings = Listing.where(id: listings.near(params[:location],params[:radius]).map{|i| i.id}) if params[:location].present?
 			else
-				listings = listings.near(params[:location],200) if params[:location].present?
+				listings = Listing.where(id: listings.near(params[:location],200).map{|i| i.id}) if params[:location].present?
 			end
 
-			p "I am here"
+			
 
 			listings.uniq
 
@@ -498,7 +515,7 @@ class Listing < ActiveRecord::Base
 
 		else
 
-			p "I am here"
+			
 			all
 		end
 

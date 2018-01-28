@@ -72,15 +72,74 @@ class ListingsController < ApplicationController
 		end
 	end
 
-	def search		
-		# @listings = Listing.search(params).order("#{sort_column}" + " " + "#{sort_direction}")
-		@listings = Listing.search(params)		
+	def search
+		@sort_column = sort_column
+		@sort_direction = sort_direction		
+		@listings = Listing.search(params).order("#{@sort_column}" + " " + "#{@sort_direction}")
+		# @listings = Listing.search(params)	
+
+		#Applied filters
+
+		@current_filters = params[:filters] || {:filters => ""}		
+
+		# @current_filters = @current_filters.merge({:sort => sort_column, :direction => sort_direction})
+
+		if params[:filters]
+	  		@listings = @listings.where(:cylinder => @current_filters[:cylinder]) if @current_filters[:cylinder]	  		
+	  		@listings = @listings.where(:bodytype => @current_filters[:bodytype]) if @current_filters[:bodytype]
+	  		@listings = @listings.where(:city => @current_filters[:city]) if @current_filters[:city]
+	  		@listings = @listings.where(:state => @current_filters[:state]) if @current_filters[:state]
+	  		@listings = @listings.where(:transmission => @current_filters[:transmission]) if @current_filters[:transmission]
+	  		@listings = @listings.where(:newused => @current_filters[:newused]) if @current_filters[:newused]
+	  		@listings = @listings.where(:fuel => @current_filters[:fuel]) if @current_filters[:fuel]
+	  		@listings = @listings.where(:drive => @current_filters[:drive]) if @current_filters[:drive]
+	  		@listings = @listings.where(:year => @current_filters[:year]) if @current_filters[:year]
+
+	  		@listings = @listings.where(:interiorcolor => @current_filters[:interiorcolor]) if @current_filters[:interiorcolor]	  		
+	  	end
+
+	  	# @listings = @listings.order("#{sort_column}" + " " + "#{sort_direction}")
+
+	  	@listings_cities = @listings.listing_search_cities	
+		@listings_bodytype = @listings.listing_search_body_type
+		@listings_states = @listings.listing_search_states
+
+		@listings_newused = @listings.listing_search_newused
+		@listings_cylinder = @listings.listing_search_cylinder
+		@listings_transmission = @listings.listing_search_transmission
+		@listings_drive = @listings.listing_search_drive
+		@listings_trim = @listings.listing_search_trim
+
+		@listings_fuel = @listings.listing_search_fuel
+
+		@listings_color = @listings.listing_search_color
+		@listings_interiorcolor = @listings.listing_search_interiorcolor
+		@listings_year = @listings.listing_search_year
+
+
+
 
 	end
 
 	def bodysearch		
 		# @listings = Listing.bodysearch(params).order("#{sort_column}" + " " + "#{sort_direction}")
 		@listings = Listing.all
+
+		@listings_cities = @listings.listing_search_cities	
+		@listings_bodytype = @listings.listing_search_body_type
+		@listings_states = @listings.listing_search_states
+
+		@listings_newused = @listings.listing_search_newused
+		@listings_cylinder = @listings.listing_search_cylinder
+		@listings_transmission = @listings.listing_search_transmission
+		@listings_drive = @listings.listing_search_drive
+		@listings_trim = @listings.listing_search_trim
+
+		@listings_fuel = @listings.listing_search_fuel
+
+		@listings_color = @listings.listing_search_color
+		@listings_interiorcolor = @listings.listing_search_interiorcolor
+		@listings_year = @listings.listing_search_year
 	end
 
 	# def searchbyuser		
@@ -174,11 +233,11 @@ class ListingsController < ApplicationController
 	end
 
 	def get_number_of_cars
-		@carcount = Listing.all.count
+		@carcount = Listing.where(:approved => true).count
 	end
 
 	def get_number_of_repairshops
-		@repairshopscount = Repairshop.all.count
+		@repairshopscount = Repairshop.where(:approved => true).count
 	end
 
 

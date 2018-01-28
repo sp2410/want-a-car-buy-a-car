@@ -1,6 +1,6 @@
  <div class = "col-xs-12 col-sm-12 col-lg-12 col-md-12" style = "padding: 0px; margin: 0px; background-color: white;">
   <div class= "col-xs-12 col-sm-12 col-lg-12 col-md-12" style = "background: #F00000; padding: 20px;">
-    <h3 style = "color:#fff; text-align: center;"><strong>Make: <%= params[:category]%> - Model: <%= params[:subcategory]%> - Min Price: $ <%= params[:minprice] %> - Max Price: $ <%= params[:maxprice]%></strong></h3>
+    <h3 style = "color:#fff; text-align: center;"><strong>Make: <%= params[:category] if params[:category] %> - Model: <%= params[:subcategory] if params[:subcategory] %> - Min Price: $ <%= params[:minprice] if params[:minprice]  %> - Max Price: $ <%= params[:maxprice] if params[:maxprice] %></strong></h3>
   </div>
 
   <div class= "col-xs-12 col-sm-12 col-lg-12 col-md-12" style = "background: #fff; color: white; box-shadow: 0 3px 7px rgba(0,0,0,0.15), 0 2px 2px rgba(0,0,0,0.22); padding: 2px;">
@@ -18,49 +18,158 @@
         <%= render "categories/search" %>      
         <hr> 
       </div>
+
+      <div class = "col-xs-12 col-sm-12 col-md-12 col-lg-12" id = "searchboxcontainer2" style = " margin-top: 2em; -webkit-box-shadow: 1px 1px 2px 2px #ccc; -moz-box-shadow: 1px 1px 2px 2px #ccc; box-shadow: 1px 1px 2px 2px #ccc;  padding: 5px;">   
+
+          <h3 style = "color:#7C064D; text-align: center;"><strong>BODY TYPE</strong></h3>
+
+          <%- @listings_bodytype.each do |key, value| -%>
+            <%= link_to "#{key.upcase if key} (#{value})" , search_listings_path(filters: @current_filters.merge(:bodytype => "#{key}")), {:class => "btn btn-danger another"} %>
+          <% end %>
+          
+                          
+      </div>
+
         
+       <div class = "col-xs-12 col-sm-12 col-md-12 col-lg-12" id = "searchboxcontainer2" style = " margin-top: 2em; -webkit-box-shadow: 1px 1px 2px 2px #ccc; -moz-box-shadow: 1px 1px 2px 2px #ccc; box-shadow: 1px 1px 2px 2px #ccc;  padding: 5px;">   
+
+          <h3 style = "color:#7C064D; text-align: center;"><strong>CITIES</strong></h3>
+
+          
+            <%- @listings_cities.each do |key, value| -%>
+              <%= link_to "#{key.upcase if key} (#{value})" , search_listings_path(filters: @current_filters.merge(:city => "#{key}")), {:class => "btn btn-danger another"} %>
+            <% end %>
+          
+          
+                          
+      </div>
+
+       <div class = "col-xs-12 col-sm-12 col-md-12 col-lg-12" id = "searchboxcontainer2" style = " margin-top: 2em; -webkit-box-shadow: 1px 1px 2px 2px #ccc; -moz-box-shadow: 1px 1px 2px 2px #ccc; box-shadow: 1px 1px 2px 2px #ccc;  padding: 5px;">   
+
+          <h3 style = "color:#7C064D; text-align: center;"><strong>STATE</strong></h3>
+
+          <%-@listings_states.each do |key, value| -%>
+            <%= link_to "#{key.upcase if key} (#{value})" , search_listings_path(filters: @current_filters.merge(:state => "#{key}")), {:class => "btn btn-danger another"} %>
+          <% end %>
+          
+                          
+      </div>
+
        <div class = "col-xs-12 col-sm-12 col-md-12 col-lg-12" id = "searchboxcontainer2" style = " margin-top: 2em; -webkit-box-shadow: 1px 1px 2px 2px #ccc; -moz-box-shadow: 1px 1px 2px 2px #ccc; box-shadow: 1px 1px 2px 2px #ccc;  padding: 5px;">   
 
           <h3 style = "color:#7C064D; text-align: center;"><strong>TRANSMISSION</strong></h3>
 
-          <%= addfilters "Automatic", "Transmission" %>
-          <%= addfilters "manual", "Transmission" %>
-          <%= addfilters "Any", "Transmission" %>
+          <%- @listings_transmission.each do |key, value| -%>
+            <%= link_to "#{key.upcase if key} (#{value})" , search_listings_path(filters: @current_filters.merge(:transmission => "#{key}")), {:class => "btn btn-danger another"} %>
+          <% end %>
+          
                           
       </div>
 
-     <!--  <div class = "col-xs-12 col-sm-12 col-md-12 col-lg-12" id = "searchboxcontainer2" style = " margin-top: 2em; -webkit-box-shadow: 1px 1px 2px 2px #ccc; -moz-box-shadow: 1px 1px 2px 2px #ccc; box-shadow: 1px 1px 2px 2px #ccc;  padding: 5px;">   
+       <div class = "col-xs-12 col-sm-12 col-md-12 col-lg-12" id = "searchboxcontainer2" style = " margin-top: 2em; -webkit-box-shadow: 1px 1px 2px 2px #ccc; -moz-box-shadow: 1px 1px 2px 2px #ccc; box-shadow: 1px 1px 2px 2px #ccc;  padding: 5px;">   
 
-          <h3 style = "color:#7C064D; text-align: center;"><strong>YEAR</strong></h3>
+          <h3 style = "color:#7C064D; text-align: center;"><strong>NEW & USED</strong></h3>
 
-          <%= form_tag search_listings_path, :method => 'get', class: 'navbar-form navbar-center' do %>  
-              <%= select_tag "year", options_for_select((Time.zone.now.year - 50)..(Time.zone.now.year + 1), params[:year]),:onchange => "this.form.submit()", class: 'my_filter' %>
+          <%- @listings_newused.each do |key, value| -%>
+            <%= link_to "#{key.upcase if key} (#{value})" , search_listings_path(filters: @current_filters.merge(:newused => "#{key}")), {:class => "btn btn-danger another"} %>
           <% end %>
+          
+                          
+      </div>
+
+      <div class = "col-xs-12 col-sm-12 col-md-12 col-lg-12" id = "searchboxcontainer2" style = " margin-top: 2em; -webkit-box-shadow: 1px 1px 2px 2px #ccc; -moz-box-shadow: 1px 1px 2px 2px #ccc; box-shadow: 1px 1px 2px 2px #ccc;  padding: 5px;">   
+
+          <h3 style = "color:#7C064D; text-align: center;"><strong>CYLINDER</strong></h3>
+
+          <%- @listings_cylinder.each do |key, value| -%>
+            <%= link_to "#{key.upcase if key} (#{value})" , search_listings_path(filters: @current_filters.merge(:cylinder => "#{key}")), {:class => "btn btn-danger another"} %>
+          <% end %>
+           
+      </div>
+
+      <div class = "col-xs-12 col-sm-12 col-md-12 col-lg-12" id = "searchboxcontainer2" style = " margin-top: 2em; -webkit-box-shadow: 1px 1px 2px 2px #ccc; -moz-box-shadow: 1px 1px 2px 2px #ccc; box-shadow: 1px 1px 2px 2px #ccc;  padding: 5px;">   
+
+          <h3 style = "color:#7C064D; text-align: center;"><strong>FUEL</strong></h3>
+
+          <%- @listings_fuel.each do |key, value| -%>
+            <%= link_to "#{key.upcase if key} (#{value})" , search_listings_path(filters: @current_filters.merge(:fuel => "#{key}")), {:class => "btn btn-danger another"} %>
+          <% end %>
+          
+                          
+      </div>
+
+      <div class = "col-xs-12 col-sm-12 col-md-12 col-lg-12" id = "searchboxcontainer2" style = " margin-top: 2em; -webkit-box-shadow: 1px 1px 2px 2px #ccc; -moz-box-shadow: 1px 1px 2px 2px #ccc; box-shadow: 1px 1px 2px 2px #ccc;  padding: 5px;">   
+
+          <h3 style = "color:#7C064D; text-align: center;"><strong>DRIVE</strong></h3>
+
+          <%- @listings_drive.each do |key, value| -%>
+            <%= link_to "#{key.upcase if key} (#{value})" , search_listings_path(filters: @current_filters.merge(:drive => "#{key}")), {:class => "btn btn-danger another"} %>
+          <% end %>
+          
+                          
       </div>
 
       <div class = "col-xs-12 col-sm-12 col-md-12 col-lg-12" id = "searchboxcontainer2" style = " margin-top: 2em; -webkit-box-shadow: 1px 1px 2px 2px #ccc; -moz-box-shadow: 1px 1px 2px 2px #ccc; box-shadow: 1px 1px 2px 2px #ccc;  padding: 5px;">   
 
           <h3 style = "color:#7C064D; text-align: center;"><strong>YEAR</strong></h3>
 
-          <%= form_tag search_listings_path, :method => 'get', class: 'navbar-form navbar-center' do %>  
-              <%= select_tag "year", options_for_select((Time.zone.now.year - 50)..(Time.zone.now.year + 1), params[:year]),:onchange => "this.form.submit()", class: 'my_filter' %>
+          <%- @listings_year.each do |key, value| -%>
+            <%= link_to "#{key.to_s.upcase if key} (#{value})" , search_listings_path(filters: @current_filters.merge(:year => "#{key}")), {:class => "btn btn-danger another"} %>
           <% end %>
+          
+                          
       </div>
 
-      <div class = "col-xs-12 col-sm-12 col-md-12 col-lg-12" id = "searchboxcontainer2" style = " margin-top: 2em; -webkit-box-shadow: 1px 1px 2px 2px #ccc; -moz-box-shadow: 1px 1px 2px 2px #ccc; box-shadow: 1px 1px 2px 2px #ccc;  padding: 5px;">   
+           <div class = "col-xs-12 col-sm-12 col-md-12 col-lg-12" id = "searchboxcontainer2" style = " margin-top: 2em; -webkit-box-shadow: 1px 1px 2px 2px #ccc; -moz-box-shadow: 1px 1px 2px 2px #ccc; box-shadow: 1px 1px 2px 2px #ccc;  padding: 5px;">   
 
-          <h3 style = "color:#7C064D; text-align: center;"><strong>YEAR</strong></h3>
+          <h3 style = "color:#7C064D; text-align: center;"><strong>COLOR</strong></h3>
 
-          <%= form_tag search_listings_path, :method => 'get', class: 'navbar-form navbar-center' do %>  
-              <%= select_tag "year", options_for_select((Time.zone.now.year - 50)..(Time.zone.now.year + 1), params[:year]),:onchange => "this.form.submit()", class: 'my_filter' %>
+          <%- @listings_color.each do |key, value| -%>
+            <%= link_to "#{key.upcase if key} (#{value})" , search_listings_path(filters: @current_filters.merge(:color => "#{key}")), {:class => "btn btn-danger another"} %> 
           <% end %>
+          
+                          
       </div>
-   -->
+
+           <div class = "col-xs-12 col-sm-12 col-md-12 col-lg-12" id = "searchboxcontainer2" style = " margin-top: 2em; -webkit-box-shadow: 1px 1px 2px 2px #ccc; -moz-box-shadow: 1px 1px 2px 2px #ccc; box-shadow: 1px 1px 2px 2px #ccc;  padding: 5px;">   
+
+          <h3 style = "color:#7C064D; text-align: center;"><strong>INTERIOR COLOR</strong></h3>
+
+          <%- @listings_interiorcolor.each do |key, value| -%>
+            <%= link_to "#{key.upcase if key} (#{value})" , search_listings_path(filters: @current_filters.merge(:interiorcolor => "#{key}")), {:class => "btn btn-danger another"} %>
+          <% end %>
+          
+                          
+      </div>
+ 
+     
     </div>  
 
     <div class= "col-xs-8 col-sm-8 col-md-8 col-lg-8" id = "rightdiv" style = "background: white; padding: 20px; max-height: 80vh; overflow-y: scroll; overflow-x: hidden; " >
 
       <h3 style = "color:#7C064D; text-align: center;"><strong>SEARCH RESULTS</strong></h3>
+
+     
+        <div class= "col-xs-12 col-sm-12 col-lg-12 col-md-12">        
+
+          <h5 style = "color:#E00000; text-align: left;"><strong>APPLIED FILTERS</strong></h5>
+
+              <% @current_filters.each do |key, value| %>  
+
+                <% if value != ""  %>
+                   
+                   <%= link_to search_listings_path(filters: @current_filters.except(key)), {:class => "btn btn-danger applied"}  do %>
+                   <%= value.upcase if value %> <span class="badge">X</span>
+                   <% end %>
+                <% end %>
+
+              <% end %>
+
+        </div>
+
+
+      
+
 
       <div id = "boatlist">
 
