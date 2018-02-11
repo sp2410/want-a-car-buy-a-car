@@ -1319,6 +1319,7 @@ background: linear-gradient(to top, #DC281E, #F00000); /* W3C, IE 10+/ Edge, Fir
 }
 
 
+
 .social li {
   background: #000 repeat scroll 0 0 #B5B5B5;
   border: 2px solid #B5B5B5;
@@ -1330,7 +1331,7 @@ background: linear-gradient(to top, #DC281E, #F00000); /* W3C, IE 10+/ Edge, Fir
   float: left;
   height: 36px;
   line-height: 36px;
-  margin: 2px 2px 2px 2px;
+  margin: 0 8px 0 0;
   padding: 0;
   text-align: center;
   width: 36px;
@@ -1351,12 +1352,12 @@ background: linear-gradient(to top, #DC281E, #F00000); /* W3C, IE 10+/ Edge, Fir
   color: #EDEFF1;
 }
 .social li:hover {
-  border: 2px solid #fff;
-  background: #FF3232;
+  border: 2px solid #2c3e50;
+  background: #2c3e50;
 }
 .social li a i {
   font-size: 16px;
-  margin: 0 0 0 0px;  
+  margin: auto auto;  
   color: #EDEFF1 !important;
 }
 
