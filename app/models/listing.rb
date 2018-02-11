@@ -99,18 +99,18 @@ class Listing < ActiveRecord::Base
 	
 	#facets
 
-	scope :listing_search_cities, -> {unscoped.group(:city).count}
-	scope :listing_search_body_type, -> {unscoped.group(:bodytype).count}
-	scope :listing_search_states, -> {unscoped.group(:state).count}
-	scope :listing_search_newused, -> {unscoped.group(:NewUsed).count}
-	scope :listing_search_transmission, -> {unscoped.group(:transmission).count}
-	scope :listing_search_cylinder, -> {unscoped.group(:cylinder).count}
-	scope :listing_search_fuel, -> {unscoped.group(:fuel).count}
-	scope :listing_search_drive, -> {unscoped.group(:drive).count}
-	scope :listing_search_trim, -> {unscoped.group(:trim).count}
-	scope :listing_search_color, -> {unscoped.group(:color).count}
-	scope :listing_search_year, -> {unscoped.group(:year).count}
-	scope :listing_search_interiorcolor, -> {unscoped.group(:interiorcolor).count}
+	scope :listing_search_cities, -> {group(:city).count}
+	scope :listing_search_body_type, -> {group(:bodytype).count}
+	scope :listing_search_states, -> {group(:state).count}
+	scope :listing_search_newused, -> {group(:newused).count}
+	scope :listing_search_transmission, -> {group(:transmission).count}
+	scope :listing_search_cylinder, -> {group(:cylinder).count}
+	scope :listing_search_fuel, -> {group(:fuel).count}
+	scope :listing_search_drive, -> {group(:drive).count}
+	scope :listing_search_trim, -> {group(:trim).count}
+	scope :listing_search_color, -> {group(:color).count}
+	scope :listing_search_year, -> {group(:year).count}
+	scope :listing_search_interiorcolor, -> {group(:interiorcolor).count}
 
 
 
@@ -552,7 +552,7 @@ class Listing < ActiveRecord::Base
 		if params
 			listings = Listing.all
 			listings = listings.where("bodytype like '#{params[:bodytype].downcase}'") if params[:bodytype].present?			
-			listings = listings.where("listings.nwused = '#{params[:NewUsed][0].upcase}'") if params[:NewUsed].present?
+			listings = listings.where("listings.newused = '#{params[:NewUsed][0].upcase}'") if params[:NewUsed].present?
 			listings = listings.where("price >= ?", "#{params[:minprice]}") if params[:minprice].present?			
 			listings = listings.where("price <= ?", "#{params[:maxprice]}") if params[:maxprice].present?			
 					
