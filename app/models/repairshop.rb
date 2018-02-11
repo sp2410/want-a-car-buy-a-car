@@ -40,7 +40,8 @@ class Repairshop < ActiveRecord::Base
 				repairshop = repairshop.joins(:specializations).joins(:brands_we_services).where("LOWER(specializations.title) LIKE ? OR LOWER(brands_we_services.title) LIKE ? OR LOWER(repairshops.title) LIKE ?", "%#{params[:keywords].downcase}%", "%#{params[:keywords].downcase}%", "%#{params[:keywords].downcase}%")
 			end
 
-			repairshop.uniq
+			# repairshop.uniq
+			repairshop
 		else
 			all
 		end
