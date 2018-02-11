@@ -490,7 +490,7 @@ class Listing < ActiveRecord::Base
 			listings = Listing.where(approved: true).where('expiration_date > ?', DateTime.now)
 			listings = listings.where('LOWER(listings.make) like ?', "%#{params[:category].downcase}%") if params[:category].present?
 			listings = listings.where('LOWER(listings.model) like ?',"%#{params[:subcategory].downcase}%") if params[:subcategory].present?
-			listings = listings.where("listings.NewUsed = '#{params[:NewUsed][0].upcase}'") if params[:NewUsed].present?
+			listings = listings.where("listings.newused = '#{params[:NewUsed][0].upcase}'") if params[:NewUsed].present?
 			listings = listings.where("price >= ?", "#{params[:minprice]}") if params[:minprice].present?			
 			listings = listings.where("price <= ?", "#{params[:maxprice]}") if params[:maxprice].present?			
 
@@ -551,7 +551,7 @@ class Listing < ActiveRecord::Base
 		if params
 			listings = Listing.all
 			listings = listings.where("bodytype like '#{params[:bodytype].downcase}'") if params[:bodytype].present?			
-			listings = listings.where("listings.NewUsed = '#{params[:NewUsed][0].upcase}'") if params[:NewUsed].present?
+			listings = listings.where("listings.nwused = '#{params[:NewUsed][0].upcase}'") if params[:NewUsed].present?
 			listings = listings.where("price >= ?", "#{params[:minprice]}") if params[:minprice].present?			
 			listings = listings.where("price <= ?", "#{params[:maxprice]}") if params[:maxprice].present?			
 					
