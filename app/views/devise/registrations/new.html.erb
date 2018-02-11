@@ -34,15 +34,48 @@
           <hr>       
         </div>
 
-          <%= f.select :role, User.roles.keys.map{|x| x.upcase}, {:label => "CHOOSE PACKAGE THAT SUITS YOU BEST"} %>
+          <%= f.select :role, User.roles.except("SALES").keys.map{|x| x.upcase}, {:label => "CHOOSE PACKAGE THAT SUITS YOU BEST"} %>          
 
-          <%= f.text_field :name, autofocus: true, :label => "YOUR COMPANY NAME" %>
+          <%= f.text_field :name, autofocus: true, :label => "YOUR COMPANY NAME(*)" %>
+
+          <%= f.text_field :website, autofocus: true, :label => "WEBSITE" %>
+
+
+
+         <div class="col-md-12 text-center" style = "margin-top: 1em;">
+              <input class="btn btn-danger" id="hideshow2" style="margin-top: 10px; margin-bottom: 10px;" type="button" value="IF YOU ARE A CAR DEALERSHIP CLICK HERE TO CLAIM YOUR FREE LANDING PAGE"></input>
+            </div>
+
+
+
+            <div class = "togglediv2">    
+                <div class = "w3-panel w3-card-2">    
+                    <div class = "col-sm-12 col-md-12 col-lg-12">                    
+
+                          <%= f.file_field :backgroundimage, :label => "CHOOSE A BACKGROUND IMAGE FOR THE PAGE" , :style => "color: #7C064D;" %>
+
+                          <%= f.file_field :logoimage, :label => "UPLOAD YOUR LOGO" , :style => "color: #7C064D;" %>
+
+                          <%= f.text_field :websiteheader, autofocus: true, :label => "ENTER A HEADER FOR THE PAGE" %>
+
+                          <%= f.text_field :websitesubheader, autofocus: true, :label => "ENTER A SUBHEADER FOR THE PAGE" %>
+
+                          <%= f.text_area :websitedescription, autofocus: true, :label => "ENTER A DESCRIPTION FOR THE PAGE" %>
+
+                    </div>  
+                </div>                  
+            </div>
+
+
+
+         
+
 
            <br>
           <hr>
           <br>
 
-          <%= f.text_field :website, autofocus: true, :label => "WEBSITE" %>
+          
 
             <br>
           <hr>
@@ -86,7 +119,12 @@ $(document).ready(function(){
      $('html,body').animate({scrollTop: $(".togglediv").offset().top},'slow');
   });
 
+  $('#hideshow2').on('click', function(event){
+    $('.togglediv2').toggle('show');    
+  });
+
   $('.togglediv').toggle('hide');
+  $('.togglediv2').toggle('hide');
   
 
 });

@@ -1,0 +1,22 @@
+<%= bootstrap_form_for [inquiry, note] do |f| %>
+  <% if note.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(note.errors.count, "error") %> prohibited this note from being saved:</h2>
+
+      <ul>
+      <% note.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <%= hidden_field_tag :parent_id, @parent.id  %>       
+  
+  <div class="field">    
+    <%= f.text_area :note, size: "30x10", :placeholder => "Add new note" %>
+  </div>
+  <div class="actions">
+    <%= f.submit "SUBMIT", class: "btn btn-danger"  %>
+  </div>
+<% end %>

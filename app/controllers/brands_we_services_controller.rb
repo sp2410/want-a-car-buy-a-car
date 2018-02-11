@@ -21,12 +21,12 @@ class BrandsWeServicesController < InheritedResources::Base
 
 		if params[:specializations]
 
-			params[:specializations].each do |brands_we_service_params|
-				@brands_we_service = BrandsWeService.new({:title => brands_we_service_params, :repairshop_id => @repairshop.id})					
+			params[:specializations].each do |brands_we_servicee|
+				@brands_we_service = BrandsWeService.new({:title => brands_we_servicee, :repairshop_id => @repairshop.id})					
 				
-				if !BrandsWeService.find_by_title(brands_we_service_params)
+				if !BrandsWeService.find_by_title(brands_we_servicee)
 					begin
-						@brands_we_service.save!
+						@brands_we_service.save
 					rescue
 						p "brands not saved"
 					end

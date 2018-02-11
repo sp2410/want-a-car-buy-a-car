@@ -114,7 +114,7 @@ gem 'forty_facets'
 group :development do  
 	# Use sqlite3 as the database for Active Record
 	# gem 'sqlite3'	
-	gem 'mysql2'	
+	 gem 'mysql2', '0.3.21'
 end
 
 # group :test do 

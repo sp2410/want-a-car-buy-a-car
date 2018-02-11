@@ -1,0 +1,166 @@
+<h1 style = "color:#7C064D; text-align: center;"><strong>DEALER INVENTORY</strong></h1>
+  <hr>
+  <div class= "col-xs-12 col-sm-12 col-lg-12 col-md-12" style = "background: #fff; color: white; box-shadow: 0 3px 7px rgba(0,0,0,0.15), 0 2px 2px rgba(0,0,0,0.22); padding: 2px; border-radius: 1px; margin-top: 4px;">
+      <%= render "listings/sharedsortinglinks" %>
+  </div>
+
+
+  <div class= "col-xs-12 col-sm-12 col-lg-12 col-md-12" style = "background-color: #fff; padding: 0px; min-height: 700px;">
+
+    <div class= "col-xs-12 col-sm-12 col-lg-12 col-md-12" >
+   
+        <div class="tab">
+          <button class="tablinks" onclick="openCity(event, 'used')" id="defaultOpen" >Dealer Used Cars</button>
+          <button class="tablinks" onclick="openCity(event, 'new')">Dealer New Cars</button>  
+          <% if can_view_wholesale %>
+            <button class="tablinks" onclick="openCity(event, 'wholesale')">Dealer wholesale Cars</button>  
+          <% end %>
+        </div>
+
+
+        <div id="used" class="tabcontent">
+               <%= render 'listings/usedcars'%>
+        </div>
+
+        <div id="new" class="tabcontent">
+               <%= render 'listings/newcars'%>
+        </div>
+
+        <% if can_view_wholesale %>
+
+          <div id="wholesale" class="tabcontent">
+            <%= render 'listings/wholesalecars'%>
+          </div>    
+        <% end %>
+
+    </div>
+
+
+
+  <script>
+
+  // document.addEventListener("DOMContentLoaded", function(event) {
+  //     console.log("DOM fully loaded and parsed");
+  //   });
+
+  (function() {
+
+    init(); //on page load - call the function show first slide, hide the rest
+
+    function init() {
+
+      // This is to intialize with active slides and dot
+      // document.getElementById("sharedsort").scrollIntoView();
+      document.getElementById("defaultOpen").click(); //this is for divs in tab to show boats first    
+
+       set_subject_in_inquiry();
+
+      parents = document.getElementsByClassName('slideshow-container'); //get all the div slideshowcontainer and store as parent array
+      
+  //    console.log(parents.length); //total number of slideshow containers
+
+      for (j = 0; j < parents.length; j++) { //Go in a loop for all the divs slideshow-container      
+        var slides = parents[j].getElementsByClassName("mySlides"); //
+        //console.log(slides);
+
+        var dots = parents[j].getElementsByClassName("dot");      
+        slides[0].classList.add('active-slide');
+        dots[0].classList.add('active');
+        // console.log(slides[0]);
+      }
+    }
+
+    function set_subject_in_inquiry(){
+
+          
+          var to_email = "<%= @user.email %>";
+
+          $('#inquiry_to_email').val(to_email);
+
+           <% if current_user %>           
+              var user_signed_in = "<%= current_user.email %>";
+              $('input#inquiry_from_email').val(user_signed_in);          
+          <% end %>
+          
+
+
+      }
+
+
+
+
+
+      dots = document.getElementsByClassName('dot'); //dots functionality
+
+      for (i = 0; i < dots.length; i++) {
+
+        dots[i].onclick = function() {
+
+          slides = this.parentNode.parentNode.getElementsByClassName("mySlides");
+
+          for (j = 0; j < this.parentNode.children.length; j++) {
+            this.parentNode.children[j].classList.remove('active');
+            slides[j].classList.remove('active-slide');
+            if (this.parentNode.children[j] == this) {
+              index = j;
+            }
+          }
+          this.classList.add('active');
+          slides[index].classList.add('active-slide');
+
+        }
+      }
+
+  //prev/next functionality
+    links = document.querySelectorAll('.slideshow-container a');
+
+    for (i = 0; i < links.length; i++) {
+      // console.log("here1");
+
+      links[i].onclick = function() {
+        current = this.parentNode;
+        // console.log("here2");
+
+        var slides = current.getElementsByClassName("mySlides");
+        var dots = current.getElementsByClassName("dot");
+        curr_slide = current.getElementsByClassName('active-slide')[0];
+        curr_dot = current.getElementsByClassName('active')[0];
+        curr_slide.classList.remove('active-slide');
+        curr_dot.classList.remove('active');
+
+        if (this.className == 'next') {
+
+          console.log("here3");
+
+          // console.log(curr_slide.nextElementSibling);
+
+          if (curr_slide.nextElementSibling) {
+            curr_slide.nextElementSibling.classList.add('active-slide');
+            curr_dot.nextElementSibling.classList.add('active');
+            console.log("here4");
+          } else {
+            slides[0].classList.add('active-slide');
+            dots[0].classList.add('active');
+            console.log("here5");
+          }
+
+        }
+
+        if (this.className == 'prev') {
+
+          if (curr_slide.previousElementSibling) {
+            curr_slide.previousElementSibling.classList.add('active-slide');
+            curr_dot.previousElementSibling.classList.add('active');
+          } else {
+            slides[slides.length - 1].classList.add('active-slide');
+            dots[slides.length - 1].classList.add('active');
+          }
+
+        }
+
+      }
+
+    }
+  })(jQuery);
+
+  </script>

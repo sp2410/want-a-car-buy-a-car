@@ -1,0 +1,5 @@
+<% if inquiry.senttoall %>
+	<%= link_to "#{inquiry.senttoall}", 'javascript:;', :id => :foo , class: "btn btn-info btn-xs"  %>
+<% else %>
+	<%= link_to "#{inquiry.senttoall}", 'javascript:;', :id => :foo , class: "btn btn-danger btn-xs"  %>
+<% end %>

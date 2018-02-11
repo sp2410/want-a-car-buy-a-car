@@ -2,6 +2,7 @@ Rails.application.routes.draw do
     
  
   
+  
   mount Ckeditor::Engine => '/ckeditor'
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
@@ -42,7 +43,10 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :inquiries, only: [:new, :create]
+  resources :inquiries, only: [:new, :create, :edit, :update] do     
+    member {  get :send_to_all }
+    resources :notes, only: [:new, :create, :edit, :update]
+  end
 
 
   root 'categories#index'
@@ -56,7 +60,7 @@ Rails.application.routes.draw do
   match '/about', to: 'pages#about', via: :get
   match '/contact', to: 'pages#contact', via: :get
   match '/mylistings', to: 'listings#mylistings', via: :get
-  match '/dealerlistings', to: 'listings#dealerlistings', via: :get
+  match '/userpage', to: 'listings#userpage', via: :get
   match '/myrepairshops', to: 'repairshops#myrepairshops', via: :get
 
   match '/usedcars', to: 'listings#usedcars', via: :get

@@ -17,8 +17,8 @@
 //= require bootstrap-sprockets
 //= require jquery.bar.custom
 //= require helpers
-//= require social-share-button
 // = require_tree .
+//= require social-share-button
 
 function openCity(evt, cityName) {
     var i, tabcontent, tablinks;

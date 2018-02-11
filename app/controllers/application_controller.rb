@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
 #  include Pundit
  	protect_from_forgery with: :exception  
 	 
- 	before_filter :configure_permitted_parameters, if: :devise_controller?
+ 	before_action :configure_permitted_parameters, if: :devise_controller?
 
   	protected
 
@@ -14,10 +14,10 @@ class ApplicationController < ActionController::Base
   		#devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:email, :password, :website, :password_confirmation, :role) }
 
 
-    	devise_parameter_sanitizer.permit(:sign_up, keys: [:email, :password, :website, :password_confirmation, :role, :city, :state, :zipcode, :street_address, :phone_number, :name])
+    	devise_parameter_sanitizer.permit(:sign_up, keys: [:email, :password, :website, :password_confirmation, :role, :city, :state, :zipcode, :street_address, :phone_number, :name, :backgroundimage, :logoimage, :websiteheader, :websitesubheader, :websitedescription])
     	#devise_parameter_sanitizer.permit(:sign_up, :website)
 
-    	devise_parameter_sanitizer.permit(:account_update, keys: [:email, :password, :website, :password_confirmation, :role, :city, :state, :zipcode, :street_address, :phone_number, :name])
+    	devise_parameter_sanitizer.permit(:account_update, keys: [:email, :password, :website, :password_confirmation, :role, :city, :state, :zipcode, :street_address, :phone_number, :name, :backgroundimage, :logoimage, :websiteheader, :websitesubheader, :websitedescription])
     	#devise_parameter_sanitizer.permit(:account_update, :website)
   	end
   	  

@@ -23,7 +23,7 @@ class CouponsController < ApplicationController
 
 	def create
 		@coupon = Coupon.new(coupon_params)	
-		@coupon.repairshop_id = @repairshop .id
+		@coupon.repairshop_id = @repairshop.id
 
 		respond_to do |format|
 			if @coupon.save	
@@ -84,7 +84,7 @@ class CouponsController < ApplicationController
 	def user_allowed_to_create_coupons
 		if !current_user.nil?
 			set_parents 
-			unless current_user.user_can_create_listing			
+			unless current_user.user_can_create_repairshop		
 				redirect_to @repairshop, alert: "Sorry, You are not allowed for this action. Please change the user package or contat us. If you are an automotive dealer, we will handle your bulk uploading."
 			end
 		end

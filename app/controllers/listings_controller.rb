@@ -2,7 +2,7 @@ class ListingsController < ApplicationController
 
 	before_action :authenticate_user!, only: [:new, :create, :mylistings]
 	before_action :user_allowed_to_create_listings, only: [:new, :create, :edit, :update, :destory]
-	before_filter :is_user?, only: [:edit, :update, :delete]
+	before_action :is_user?, only: [:edit, :update, :delete]
 
 	before_action :get_number_of_cars, only: [:search,:bodysearch,:index ]
 	before_action :get_number_of_repairshops, only: [:search,:bodysearch,:index]
@@ -53,7 +53,7 @@ class ListingsController < ApplicationController
 
 		@newcars = Listing.other_approved_new.where(user: @user).where.not(id: @listing.id)
 		@usedcars = Listing.other_approved_used.where(user: @user).where.not(id: @listing.id)
-		@wholesalecars = Listing.wholesale_listings.where(user: @user).where.not(id: @listing.id)
+		@wholesalecars = Listing.other_wholesale_listings.where(user: @user).where.not(id: @listing.id)
 		
 	end
 
@@ -122,9 +122,33 @@ class ListingsController < ApplicationController
 	end
 
 	def bodysearch		
-		# @listings = Listing.bodysearch(params).order("#{sort_column}" + " " + "#{sort_direction}")
-		@listings = Listing.all
+		
+		# @listings = Listing.all
 
+		@sort_column = sort_column
+		@sort_direction = sort_direction		
+		@listings = Listing.bodysearch(params).order("#{sort_column}" + " " + "#{sort_direction}")
+
+
+		@current_filters = params[:filters] || {:filters => ""}		
+
+		# @current_filters = @current_filters.merge({:sort => sort_column, :direction => sort_direction})
+
+		if params[:filters]
+	  		@listings = @listings.where(:cylinder => @current_filters[:cylinder]) if @current_filters[:cylinder]	  		
+	  		@listings = @listings.where(:bodytype => @current_filters[:bodytype]) if @current_filters[:bodytype]
+	  		@listings = @listings.where(:city => @current_filters[:city]) if @current_filters[:city]
+	  		@listings = @listings.where(:state => @current_filters[:state]) if @current_filters[:state]
+	  		@listings = @listings.where(:transmission => @current_filters[:transmission]) if @current_filters[:transmission]
+	  		@listings = @listings.where(:newused => @current_filters[:newused]) if @current_filters[:newused]
+	  		@listings = @listings.where(:fuel => @current_filters[:fuel]) if @current_filters[:fuel]
+	  		@listings = @listings.where(:drive => @current_filters[:drive]) if @current_filters[:drive]
+	  		@listings = @listings.where(:year => @current_filters[:year]) if @current_filters[:year]
+
+	  		@listings = @listings.where(:interiorcolor => @current_filters[:interiorcolor]) if @current_filters[:interiorcolor]	  		
+	  	end
+
+	  	
 		@listings_cities = @listings.listing_search_cities	
 		@listings_bodytype = @listings.listing_search_body_type
 		@listings_states = @listings.listing_search_states
@@ -157,17 +181,20 @@ class ListingsController < ApplicationController
 	end
 
 	def import
-		
-		# @imported = CsvWorker.perform_async(params[:file].path)		
-		#redirect_to root_url, notice: "Hello! This upload job has been added for background importing. Please wait for few minutes and then cross check on listings page. Please recheck your CSV file headers and rows if new listings were not imported."
-		@imported = Listing.import_listings(params[:file])
+		begin
+			CsvWorker.perform_async(params[:file].path)		
+			redirect_to root_url, notice: "Hello! This upload job has been added for background importing. Please wait for few minutes and then cross check on listings page. Please recheck your CSV file headers and rows if new listings were not imported."
+		rescue
+			redirect_to root_url, notice: "There was some error with the import. Kindly check your CSV file or contact admin."
+		end		
+		# @imported = Listing.import_listings(params[:file])
 
-		if @imported == true
-		    redirect_to root_url, notice: "#{@imported} Listings imported successfully"
-	  	elsif @imported == false
-	    	flash[:alert] =  "All Listings Not Imported! There were either some errors, or the VIN was duplicate"
-	    	redirect_to root_url	  	
-	  	end
+		# if @imported == true
+		#     redirect_to root_url, notice: "#{@imported} Listings imported successfully"
+	 #  	elsif @imported == false
+	 #    	flash[:alert] =  "All Listings Not Imported! There were either some errors, or the VIN was duplicate"
+	 #    	redirect_to root_url	  	
+	 #  	end
 
 
 		# clearancing_status = ClearancingService.new.process_file(params[:csv_batch_file].tempfile)
@@ -190,9 +217,9 @@ class ListingsController < ApplicationController
 
 		if current_user		
 			@user_listings = Listing.where('user_id=?', current_user.id)	
-			@newcars = @user_listings.where('user_id=?', current_user.id)	
-			@usedcars = @user_listings.where('user_id=?', current_user.id)	
-			@wholesalecars = @user_listings.limit(5)
+			@newcars = @user_listings.where('user_id=?', current_user.id).where(:newused => "N").order("#{sort_column}" + " " + "#{sort_direction}")	
+			@usedcars = @user_listings.where('user_id=?', current_user.id).where(:newused => "U").order("#{sort_column}" + " " + "#{sort_direction}")	
+			@wholesalecars = @user_listings.where('user_id=?', current_user.id).where(:wholesale => true).order("#{sort_column}" + " " + "#{sort_direction}")
 
 		else
 				redirect_to new_user_session
@@ -212,15 +239,47 @@ class ListingsController < ApplicationController
 		# @listings = Listing.search(params).order("#{sort_column}" + " " + "#{sort_direction}")
 		@dealers = User.dealer_search(params)		
 
+		#Applied filters
+
+		@current_filters = params[:filters] || {:filters => ""}		
+
+		# @current_filters = @current_filters.merge({:sort => sort_column, :direction => sort_direction})
+
+		if params[:filters]
+	  		
+	  		@dealers = @dealers.where(:city => @current_filters[:city]) if @current_filters[:city]
+	  		@dealers = @dealers.where(:state => @current_filters[:state]) if @current_filters[:state]
+
+	  		# @dealers = @dealers.joins(:reviews).where(:ratings => @current_filters[:ratings]) if @current_filters[:ratings]
+	  		@dealers = User.where(id: @dealers.select{|dealer| dealer.get_dealer_rating == @current_filters[:ratings]}.map{|user| user.id}) if @current_filters[:ratings]
+	  		
+	  	end
+
+	  	# @listings = @listings.order("#{sort_column}" + " " + "#{sort_direction}")
+
+	  	@dealers_cities = @dealers.dealers_search_cities			
+		@dealers_states = @dealers.dealers_search_states
+		@dealers_ratings = User.get_ratings_for_each(@dealers)
+
 	end
 
-	def dealerlistings
+	def userpage 
 		@user_id = params[:id]
+		@user = User.find_by_id(@user_id)
+		@parent = @user		
+
+
+		@inquiries = Inquiry.where(:to_email => @user.email).order('created_at DESC')
+		
 		@user_listings = Listing.where('user_id=?', @user_id).where(:approved => true)
-		@newcars = @user_listings.where('user_id=?', @user_id).where(:approved => true)
-		@usedcars = @user_listings.where('user_id=?', @user_id).where(:approved => true)
-		@wholesalecars = @user_listings.limit(5)
-	end
+		
+		@note = Note.new
+
+		@newcars = @user_listings.where('user_id=?', @user_id).where(:approved => true).where(:newused => "N").order("#{sort_column}" + " " + "#{sort_direction}")
+		@usedcars = @user_listings.where('user_id=?', @user_id).where(:approved => true).where(:newused => "U").order("#{sort_column}" + " " + "#{sort_direction}")
+		@wholesalecars = @user_listings.where('user_id=?', @user_id).where(:approved => true).where(:wholesale => true).order("#{sort_column}" + " " + "#{sort_direction}")
+		@repairshops = Repairshop.where('user_id=?', @user_id).where(:approved => true)
+	end 
 
 	
 	private

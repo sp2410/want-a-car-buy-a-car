@@ -1,0 +1,56 @@
+<div class="col-xs-12 col-sm-12 col-lg-12 col-md-12 " style = "background-color: #fff; padding: 12px; max-height: 80%; overflow-y: scroll; overflow-x: scroll;"> 
+   
+    <h1 style = "color:#7C064D; text-align: center;"><strong>NOTES</strong></h1>
+
+
+
+    <h2 style = "color:#7C064D; text-align: center; margin-top: 3px;"><strong>ADD NEW NOTE</strong></h2>
+ 		
+ 		<%= render partial: "notes/form", :locals => { :note => Note.new, :inquiry => inquiry } %>
+
+ 		
+ 		<h2 style = "color:#7C064D; text-align: center;"><strong>OLD NOTES</strong></h2>
+ 		<div class="col-xs-12 col-sm-12 col-lg-12 col-md-12" style = "background-color: #fff; padding: 12px; min-height: 80vh; max-height: 200vh; overflow-y: scroll; overflow-x: scroll;"> 
+			<%- if inquiry != nil -%>
+				<%- if inquiry.inquiry_notes.size > 0 -%>
+
+					<% inquiry.inquiry_notes.each do |note| %>		
+
+					  <div class = "col-xs-12 col-sm-12 col-lg-12 col-md-12" style = "border: 1px solid black; margin: 1px 0px;">					  	
+
+						  	
+							  	<div class = "col-xs-12 col-sm-12 col-lg-12 col-md-12">
+							      <h5 style = "color:black; text-align: center;" ><%= note.note %></h5>
+							    </div>
+							
+							    <div class = "col-xs-12 col-sm-12 col-lg-12 col-md-12">
+							      <p style = "color:#7C064D; text-align: center;">By: <%= link_to "#{User.find_by_id(note.comment_by).email}", userpage_path(:id => note.comment_by) if User.find_by_id(note.comment_by) %></p>
+							    </div>
+							    
+							    <div class = "col-xs-12 col-sm-12 col-lg-12 col-md-12">
+							      <p style = "color:#7C064D; text-align: center;">Created <%= distance_of_time_in_words(Time.now,note.created_at) %> ago</p>
+							    </div>
+							    
+							    <div class = "col-xs-12 col-sm-12 col-lg-12 col-md-12">
+							      <p style = "color:#7C064D; text-align: center;">Updated <%= distance_of_time_in_words(Time.now, note.updated_at) %> ago</p>
+							    </div>
+
+					  </div>	
+
+					  	
+
+					  				  
+					  
+					<% end %>
+				<%- else -%>
+				 		<div class = "col-xs-12 col-sm-12 col-lg-12 col-md-12">
+					      <h2 style = "color:#7C064D; text-align: center;"><strong>NO NOTES YET</strong></h2>
+					      <hr>
+					    </div>
+					    
+				<% end %>
+			<% end %>
+		</div>
+
+</div>
+

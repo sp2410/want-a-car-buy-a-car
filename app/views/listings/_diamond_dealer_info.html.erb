@@ -1,5 +1,12 @@
 <div class = "col-xs-12 col-sm-12 col-md-12 col-lg-12" id = "cardiv" style = "border: 3px solid red; padding: 0px; margin: 2px 0px;">
                   <div class = "col-sm-12 col-md-12 col-lg-12 col-xs-12 text-center">
+                      <%- if  i.logoimage.thumb.present? -%>
+                        <%= image_tag i.logoimage.thumb.url, :class => "style_image" %> 
+                      <% else %>                
+                        <%= image_tag("https://s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/TDC.png", :alt => "Want a Car buy A Car| Cars For Sale | Used Cars | Repair Shops", :style=> " max-height: 10%; max-width: 10%; margin: auto;") %>
+                      <% end %> 
+                    </div>
+                  <div class = "col-sm-12 col-md-12 col-lg-12 col-xs-12 text-center">
                       <h3><strong><%= i.name.upcase %></strong></h3>
                     </div>
                     <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12">
@@ -18,6 +25,6 @@
                       <p><a href = <%= "https://www.google.com/maps/?q=#{i.latitude},#{i.longitude}" %> class = "btn btn-danger btn" rel="noopener noreferrer" target="_blank">View Dealer Location In Google Maps</a></p>
                     </div>
                     <div class = "col-sm-12 col-md-12 col-lg-12 col-xs-12 text-center">
-                      <p><%= link_to 'View Dealer Inventory', dealerlistings_path(:id => "#{i.id}"), class: "btn btn-danger btn-xs", style: "border: #e20049", target: :_blank %></p>
+                      <p><%= link_to 'View Dealer Page and Inventory', userpage_path(:id => "#{i.id}"), class: "btn btn-danger btn-xs", style: "border: #e20049", target: :_blank %></p>
                     </div>
                 </div>

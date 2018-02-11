@@ -3,13 +3,29 @@ ActiveAdmin.register User do
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
- permit_params :email, :role, :website, :zipcode, :city, :state, :street_address, :phone_number
+ permit_params :email, :name, :role, :zipcode, :city, :street_address, :state, :phone_number, :password, :password_confirmation
+
+  form do |f|
+      f.inputs "User" do
+        f.input :email
+        f.input :name
+        f.input :password
+        f.input :password_confirmation
+        f.input :role      
+        f.input :street_address
+        f.input :city
+        f.input :state
+        f.input :zipcode
+        f.input :phone_number   
+      end
+      f.actions
+    end
 #
 # or
 #
 # permit_params do
-#   permitted = [:permitted, :attributes]
-#   permitted << :other if params[:action] == 'create' && current_user.admin?
+#   permitted = [:email, :role, :website, :zipcode, :city, :state, :street_address, :phone_number, :password, :password_confirmation]
+#   permitted << :other if params[:action] == 'create'
 #   permitted
 # end
 	scope :all_users
@@ -67,6 +83,7 @@ ActiveAdmin.register User do
     index do
 		column :id
 		column "Email", :email
+        column "Name", :name
 		column "Role", :role 
 
 		

@@ -12,6 +12,6 @@
                       <p><strong><span class="glyphicon glyphicon-paperclip"></span><strong> Website: <a href =<%= "//#{i.website}" %> rel="noopener noreferrer" style= "text-decoration: underline;" target="_blank"><%= i.website %></a> </strong></p>
                     </div>   
                     <div class = "col-sm-12 col-md-12 col-lg-12 col-xs-12 text-center">
-                      <p><%= link_to 'View Dealer Inventory', dealerlistings_path(:id => "#{i.id}"), class: "btn btn-danger btn-xs", style: "border: #e20049", target: :_blank %></p>
+                      <p><%= link_to 'View Dealer Page and Inventory', userpage_path(:id => "#{i.id}"), class: "btn btn-danger btn-xs", style: "border: #e20049", target: :_blank %></p>
                     </div>                              
                 </div>

@@ -13,7 +13,7 @@ class CategoriesController < ApplicationController
 						
 		@newcars = Listing.approved_new.order("#{sort_column}" + " " + "#{sort_direction}")
 		@usedcars = Listing.approved_used.order("#{sort_column}" + " " + "#{sort_direction}")
-		@wholesalecars = Listing.approved_wholesale.order("#{sort_column}" + " " + "#{sort_direction}")
+		@wholesalecars = Listing.other_wholesale_listings.order("#{sort_column}" + " " + "#{sort_direction}")
 
 		@listings = Listing.approved_all
 		

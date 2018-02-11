@@ -233,10 +233,10 @@
                                 <% if user_is_listing_owner(@repairshop) %>
 
                                   <div class="col-md-12 text-center" style = "margin-top: 1em;">
-                                    <input class="btn btn-danger" id="hideshow" style="margin-top: 10px; margin-bottom: 10px;" type="button" value="'WHAT IS BRANDS WE SERVICE' ?"></input>
+                                    <input class="btn btn-danger" id="hideshow2" style="margin-top: 10px; margin-bottom: 10px;" type="button" value="'WHAT IS BRANDS WE SERVICE' ?"></input>
                                   </div>
 
-                                      <div class = "togglediv">    
+                                      <div class = "togglediv2">    
                                             <div class = "w3-panel w3-card-2">    
                                                 <div class = "col-sm-12 col-md-12 col-lg-12">
                                                     <div class = " col-xs-12 col-sm-12 col-md-12 col-lg-12" style = "text-align: left;">
@@ -404,7 +404,7 @@
                                       <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12" id = "coupondiv">
                                           <p style = "text-align: center; font-size: 2em;"><%= coupon.title.upcase %></p>
                                           <p style = "text-align: center; font-size: 0.7em;">
-                                            <%= link_to 'Click To View Coupon', coupon.image.url, target: :_blank %>
+                                            <%= link_to 'Click To View Coupon', coupon.image.thumb.url, target: :_blank %>
                                           </p>
 
                                           <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12" style = "text-align: center;">
@@ -524,9 +524,14 @@
 $(document).ready(function(){
 
   $('.togglediv').toggle('hide');
+  $('.togglediv2').toggle('hide');
 
    $('#hideshow').on('click', function(event) {        
          $('.togglediv').toggle('show');
+    });
+
+   $('#hideshow2').on('click', function(event) {        
+         $('.togglediv2').toggle('show');
     });
 
    set_subject_in_inquiry()

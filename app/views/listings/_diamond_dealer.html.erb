@@ -348,6 +348,20 @@
                     <hr>  
                       <h6 class="row text-center" style = "color:  #e20049; padding: 12px; font-size: 2em; text-align: left;"><strong>ABOUT SELLER</strong></h6>
                       <div class="col-sm-12 text-center" style = " padding: 0px; overflow-y: scroll; height: 200px; text-align: left;">
+
+                      <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12 text-center">
+                        <%- if  @user.logoimage.thumb.present? -%>
+                          <%= image_tag @user.logoimage.thumb.url, :class => "style_image" %> 
+                        <% else %>                
+                          <%= image_tag("https://s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/TDC.png", :alt => "Want a Car buy A Car| Cars For Sale | Used Cars | Repair Shops", :style=> " max-height: 10%; max-width: 10%; margin: auto;") %>
+                        <% end %> 
+                      <br>
+                    <hr>
+                    <br>
+
+                    </div>
+
+
                       <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6">
                         <p ><strong><span class="glyphicon glyphicon-envelope"></span><strong> Email: <%= @user.email %>  </strong></p>
                       </div>
@@ -368,6 +382,9 @@
 
                        <div class = "col-sm-12 col-md-12 col-lg-12 col-xs-12 text-center">
                           <p><a href = <%= "https://www.google.com/maps/?q=#{@user.latitude},#{@user.longitude}" %> class = "btn btn-danger btn" rel="noopener noreferrer" target="_blank">View Dealer Location In Google Maps</a></p>
+                        </div>
+                        <div class = "col-sm-12 col-md-12 col-lg-12 col-xs-12 text-center">
+                          <p><%= link_to 'View Dealer Page and Inventory', userpage_path(:id => "#{@user.id}"), class: "btn btn-danger btn-xs", style: "border: #e20049", target: :_blank %></p>
                         </div>
 
 

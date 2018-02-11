@@ -340,6 +340,9 @@
                       <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6">
                         <p ><strong><span class="glyphicon glyphicon-pushpin"></span><strong> Street Address: <%= @user.full_address %>  </strong></p>
                       </div>
+                      <div class = "col-sm-12 col-md-12 col-lg-12 col-xs-12 text-center">
+                          <p><%= link_to 'View Dealer Page and Inventory', userpage_path(:id => "#{@user.id}"), class: "btn btn-danger btn-xs", style: "border: #e20049", target: :_blank %></p>
+                        </div>
                         <br>
                       </div>
                   

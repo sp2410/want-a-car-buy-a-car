@@ -1,7 +1,7 @@
 class RepairshopsController < InheritedResources::Base
 
-	before_filter :authenticate_user!, only: [:new, :create, :destroy, :update, :edit]
-	before_filter :is_user?, only: [:edit, :update, :delete]
+	before_action :authenticate_user!, only: [:new, :create, :destroy, :update, :edit]
+	before_action :is_user?, only: [:edit, :update, :delete]
 
 	before_action :user_allowed_to_create_repairshops, only: [:new, :create, :edit, :update, :destory]
 	

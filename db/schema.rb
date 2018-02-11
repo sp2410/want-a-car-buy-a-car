@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180115021927) do
+ActiveRecord::Schema.define(version: 20180209214844) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -90,8 +90,10 @@ ActiveRecord::Schema.define(version: 20180115021927) do
     t.string   "phone",      limit: 255
     t.string   "subject",    limit: 255
     t.string   "comment",    limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
+    t.string   "status",     limit: 255, default: "FRESH"
+    t.boolean  "senttoall",              default: false
   end
 
   create_table "installs", force: :cascade do |t|
@@ -167,6 +169,16 @@ ActiveRecord::Schema.define(version: 20180115021927) do
   add_index "listings", ["user_id"], name: "index_listings_on_user_id", using: :btree
   add_index "listings", ["vin", "title"], name: "index_listings_on_vin_and_title", unique: true, using: :btree
 
+  create_table "notes", force: :cascade do |t|
+    t.integer  "comment_by", limit: 4
+    t.text     "note",       limit: 65535
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.integer  "inquiry_id", limit: 4
+  end
+
+  add_index "notes", ["inquiry_id"], name: "index_notes_on_inquiry_id", using: :btree
+
   create_table "repairshops", force: :cascade do |t|
     t.string   "title",       limit: 255
     t.text     "description", limit: 65535
@@ -237,6 +249,11 @@ ActiveRecord::Schema.define(version: 20180115021927) do
     t.float    "longitude",              limit: 24
     t.string   "phone_number",           limit: 255
     t.string   "name",                   limit: 255, default: "No Name"
+    t.string   "backgroundimage",        limit: 255
+    t.string   "logoimage",              limit: 255
+    t.string   "websiteheader",          limit: 255
+    t.string   "websitesubheader",       limit: 255
+    t.string   "websitedescription",     limit: 255
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
@@ -244,6 +261,7 @@ ActiveRecord::Schema.define(version: 20180115021927) do
 
   add_foreign_key "brands_we_services", "repairshops"
   add_foreign_key "coupons", "repairshops"
+  add_foreign_key "notes", "inquiries", on_delete: :cascade
   add_foreign_key "reviews", "users"
   add_foreign_key "specializations", "repairshops"
 end

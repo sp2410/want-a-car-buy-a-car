@@ -26,6 +26,44 @@ module ApplicationHelper
       return false
     end
 
+    def user_is_webpage_owner(user_id)
+      if user_signed_in?
+          if user_id == current_user.id
+              return true
+          end
+        end
+
+        return false
+    end
+
+    def user_is_comment_owner(comment)
+        if user_signed_in?
+          if comment.comment_by == current_user.id
+              return true
+          end
+        end
+
+        return false
+    end
+
+     def current_user_is_sales_team
+      if user_signed_in?
+          if current_user.user_is_sales_team
+              return true
+          end
+        end
+
+        return false
+    end
+
+    def owner_is_sales_team(user)        
+          if user.user_is_sales_team
+              return true
+          end        
+
+        return false
+    end
+
     def get_paypal_button(user)
       user_role = user.role 
 

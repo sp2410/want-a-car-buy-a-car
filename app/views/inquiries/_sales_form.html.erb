@@ -1,0 +1,62 @@
+<%= bootstrap_form_for (@inquiry = Inquiry.new) do |f| %>
+  <% if @inquiry.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@inquiry.errors.count, "error") %> prohibited this inquiry from being saved:</h2>
+
+      <ul>
+      <% @inquiry.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class= "col-xs-12 col-sm-12 col-lg-12 col-md-12" style = "margin: auto;">
+      <div class= "col-xs-6 col-sm-6 col-lg-6 col-md-6" style = "margin: auto;">
+            <%= f.text_field :first_name, :label => "First Name of Customer" %>
+          </div>
+          <div class= "col-xs-6 col-sm-6 col-lg-6 col-md-6" style = "margin: auto;">
+            <%= f.text_field :last_name, :label => "Last Name of Customer" %>
+          </div>
+    <div class= "col-xs-6 col-sm-6 col-lg-6 col-md-6" style = "margin: auto;">
+      <%= f.text_field :from_email, :label => "Customer Email" %>
+    </div>
+    <div class= "col-xs-6 col-sm-6 col-lg-6 col-md-6" style = "margin: auto;">
+      <%= f.text_field :phone, :label => "Customer Phone" %>
+    </div>
+    <div class= "col-xs-12 col-sm-12 col-lg-12 col-md-12" style = "margin: auto;">
+      <%= f.text_field :subject %>  
+      <%= f.text_area :comment, :size => "30x10", :label => "Customer Inquiry" %>
+      <%= label_tag '','CHOOSE WHOM TO SEND THIS LEAD'  %>
+
+    </div>
+    
+    <div class= "col-xs-12 col-sm-12 col-lg-12 col-md-12" style = "margin: auto;">
+      <% User.all_emails_for_send_all.each do |dealer| %>
+         <div class= "col-xs-6 col-sm-6 col-lg-6 col-md-6" style = "margin: auto;">
+            <%= check_box_tag 'dealers[]', dealer -%>
+            <%= h dealer -%>
+          </div>  
+        <% end %>
+            
+      
+    </div>  
+
+
+
+        <%= hidden_field_tag :parent_id, @parent.id  %>    
+        <%= hidden_field_tag :parent_type, @parent.class.name  %>    
+
+       <%= f.submit "Send Message", class: "btn btn-danger"  %>
+      
+  </div> 
+
+
+<% end %>
+
+<!-- <script>
+  (function (){
+
+  })();
+
+</script> -->

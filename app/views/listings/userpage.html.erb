@@ -1,0 +1,283 @@
+<!-- Dealer Homepage -->
+<div class ="headerdiv"  id = "herodiv"  style = "
+  <%- if @user.backgroundimage.present? -%>
+    background-image: url(<%= @user.backgroundimage.url %>); box-shadow: inset 0 0 0 1000px rgba(0,0,0,.5); 
+  <% else %>
+    background-color: white;
+  <% end %>
+  background-repeat: no-repeat; background-size:cover; background-position: center; text-align:  center; padding: 2em;" > 
+  
+    <%- if @user.logoimage.present? -%>
+      <%= image_tag @user.logoimage.url, :class => "style_image" %> 
+    <% else %>                
+      <%= image_tag("https://s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/TDC.png", :alt => "Want a Car buy A Car| Cars For Sale | Used Cars | Repair Shops", :style=> " max-height: 10%; max-width: 10%; margin: auto;") %>
+    <% end %>  
+    
+    <h1 style = "margin-top: 1%; color: white;">
+      <%= @user.name.upcase if @user.name %>
+    </h1>   
+    <h3 style = "color: white;  margin: 1em 0;">      
+      <%= @user.websiteheader.upcase if @user.websiteheader %>
+    </h3>
+    <br>
+    <h4 style = "color: white; margin: 1em 0;">      
+      <%= @user.websitesubheader.upcase if @user.websitesubheader %>
+    </h4>
+    <h5 style = "color: white; margin: 1em 1em;">      
+      <%= @user.websitedescription.upcase if @user.websitedescription %>
+    </h5>
+
+    <div class="col-xs-12 text-center" style = "margin-top: 1%;" > 
+      <a href="tel:<%= @user.phone_number if @user.phone_number %>" class="btn btn-danger another">CALL US</a>       
+    </div>   
+
+    <% if user_is_webpage_owner(@user.id) %>      
+      <%= link_to 'EDIT YOUR PROFILE OR WEBPAGE', edit_user_registration_path, class: "btn btn-danger another" %>  
+    <% end %>    
+</div>
+
+<div class = "col-sm-12 col-md-12 col-lg-12" style = "text-align: center; margin-top: 20px;">
+
+    <% if @user.logoimage.present? %>
+      <%= social_share_button_tag(@user.name, :image => "#{@user.logoimage.url}") %>
+    <% else %>
+      <%= social_share_button_tag(@user.name, :image => "https://s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/TDC.png") %>
+    <% end %>
+</div>
+
+<div class="col-xs-12 text-center" style = "background-color: #fff; padding: 12px;">
+    <hr>  
+    <h6 class="row text-center" style = "color:  #e20049; padding: 12px; font-size: 2em; text-align: center;"><strong>ABOUT USER</strong></h6>
+                  <% if @user.role ==  "BASIC DEALER" %>
+                    <%= render :partial => 'listings/basic_dealer_info', :locals => { :i => @user } %>
+                  <% elsif @user.role ==  "SILVER DEALER" %>
+                    <%= render :partial => 'listings/silver_dealer_info', :locals => { :i => @user } %>
+                  <% elsif @user.role ==  "GOLD DEALER" %>
+                    <%= render :partial => 'listings/gold_dealer_info', :locals => { :i => @user } %>
+                  <% elsif @user.role ==  "DIAMOND DEALER" %>
+                    <%= render :partial => 'listings/diamond_dealer_info', :locals => { :i => @user } %>                    
+                  <% else %>
+                    <%= render :partial => 'listings/basic_dealer_info', :locals => { :i => @user }%>
+                  <% end %>                                
+</div>
+
+
+<% if !user_is_webpage_owner(@user.id) %>
+
+    <div class="col-xs-12 " style = "background-color: #fff; padding: 12px;">
+                  <hr>
+                      <h1 style = "color:#7C064D; text-align: center;"><strong>NEW INQUIRY</strong></h1>               
+
+                      <div class="col-sm-12 text-center" style = " padding: 0px; overflow-y: scroll; height: 500px;">                              
+                        <%= render 'inquiries/form' %>
+                      </div>
+                      
+                  
+                  <br>
+    </div>
+
+<% end %>
+
+<% if  owner_is_sales_team(@user) %>
+
+    <div class="col-xs-12 " style = "background-color: #fff; padding: 12px;">                      
+                  <hr>
+                      <h1 style = "color:#7C064D; text-align: center;"><strong>SEND NEW LEAD</strong></h1>               
+
+                      <div class="col-sm-12 text-center" style = " padding: 0px; overflow-y: scroll; height: 500px;">                              
+                        <%= render 'inquiries/sales_form' %>
+                      </div>
+                      
+                  
+                  <br>
+    </div>
+
+<% end %>
+
+
+<% if user_is_webpage_owner(@user.id) or current_user_is_sales_team and !owner_is_sales_team(@user) %>
+
+  <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12" style = "background-color: #fff; padding: 12px; height: 90%; overflow-y: scroll; overflow-x: scroll;"> 
+    <hr>
+    <h1 style = "color:#7C064D; text-align: center;"><strong>LEADS AND INQUIRIES</strong></h1>
+
+    <% if !@inquiries %>
+      <h4 style = "color:#7C064D; text-align: center;"><strong>No Inquiries or Leads Yet</strong></h4>        
+    <% else %>
+      <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12" style = "background-color: #fff; padding: 12px; height: 60vh; overflow-y: scroll; overflow-x: scroll;">
+
+      <table class="table table-bordered table-striped table-responsive">
+        <thead>
+          <tr>
+            <th>
+              LEADS ID
+            </th>
+            <th>
+              EMAIL
+            </th>
+            <th>
+             FIRST NAME
+            </th>
+            <th> 
+              LAST NAME
+            </th>
+            <th>
+              PHONE
+            </th>
+            <th>
+              SUBJECT
+            </th>
+            <th>
+              CUSTOMER NOTE
+            </th>
+            <th>
+              SENT AT
+            </th> 
+            <th>
+              LEAD STATUS
+            </th>             
+             <th>
+              EDIT STATUS
+            </th>  
+            <th>
+              ACTION
+            </th> 
+            <th>
+             SALES/DEALER noteS
+            </th>   
+            <% if current_user_is_sales_team %>   
+              <th>
+              SENT TO ALL
+              </th> 
+              <th>
+                SEND TO ALL
+              </th>
+            <% end %>
+          </tr>
+        </thead>
+
+        <tbody>        
+          <div id = "dialog">
+                  <% @inquiries.each do |inquiry| %>
+                    <div class= "col-xs-12 col-sm-12 col-lg-12 col-md-12" style = "margin: auto;">
+                      <tr>                      
+                          <td>
+                            <%= inquiry.id %>
+                          </td>
+                          <td>
+                            <%= inquiry.from_email %>
+                          </td>
+                          <td>
+                            <%= inquiry.first_name %>
+                          </td>
+                          <td>
+                            <%= inquiry.last_name %>
+                          </td>
+                          <td>
+                           <%= inquiry.phone %>
+                          </td>
+                          <td>
+                            <%= inquiry.subject %>
+                          </td>
+                          <td>
+                            <%= inquiry.comment %>
+                          </td>
+                          <td>
+                           <%= inquiry.created_at %>
+                          </td>
+                          <td>
+                            <%= render "inquiries/inquiry_status_buttons", :inquiry => inquiry %>
+                          </td>
+
+
+                          <%= form_for (inquiry) do |f| %>
+
+                              <%= hidden_field_tag :parent_id, @parent.id  %>    
+                              <%= hidden_field_tag :parent_type, @parent.class.name  %>
+
+                              <% if user_is_webpage_owner(@user.id) %>                         
+                                <td>
+                                    <%= f.select :status, Inquiry.statuses.except(:DONOTCALL, :ONHOLD).keys.map{|x| x.upcase}, {:label => "Change Lead Stage"} %>
+                                </td>
+                              <% end %>
+
+                              <% if current_user_is_sales_team  %>                    
+                                <td>
+                                 <%= f.select :status, Inquiry.statuses.keys.map{|x| x.upcase}, {:label => "Change Lead Stage"} %>
+                                </td>
+                              <% end %> 
+
+                              <td>
+                                <%= f.submit "Update Inquiry", class: "btn btn-danger"  %>
+                              </td>
+                          <% end %>
+
+                          <td>
+                              <div class = "overlayparent">
+
+                                <div class="overlay">
+                                  <div class="text">
+                                      <%= render "notes/inquiry_notes", inquiry: inquiry  %>
+                                  </div>
+                                  
+
+                                  <button onclick="off(this)" type="button" class = "btn btn-danger"><span class="badge">X</span></button>
+                                </div>     
+
+                                <div>                        
+                                  <button onclick="on(this)" type="button" class = "btn btn-primary">View/Add notes</button>
+                                </div>                        
+                              </div>
+                          </td>
+
+                          <% if current_user_is_sales_team %> 
+                            <td>
+                             <%= render "inquiries/inquiry_send_to_all_status", :inquiry => inquiry %>
+                            </td>
+                            <td>                 
+                              <%= link_to "SEND TO ALL", send_to_all_inquiry_path(inquiry, :parent_id => @user.id, :parent_type => 'User'), class: "btn  btn-primary"  %>
+                            </td>
+                          <% end %>
+                      </tr> 
+                    </div>  
+
+                  <% end %>
+          </div>
+        </tbody>
+      </table>
+      </div>
+    <% end %>
+    <hr>
+  </div>
+<% end %>
+
+
+<% unless owner_is_sales_team(@user) %>
+
+  <% if @user.user_has_listings %>
+
+    <%= render 'listings/listings_dashboard' %>
+
+  <% end %>
+
+
+  <br><hr><br>
+
+  <% if @user.user_has_repairshops %>
+   
+   <%= render 'repairshops/repairshop_dashboard' %>
+
+  <% end %>
+
+<% end %>
+
+<script>
+function on(clickedElement) {
+    clickedElement.parentElement.parentElement.getElementsByClassName("overlay")[0].style.display = "block";
+    // clickedElement.parentElement.parentElement.style.display = "block";
+}
+
+function off(clickedElement) {
+    clickedElement.parentElement.parentElement.getElementsByClassName("overlay")[0].style.display = "none";
+}
+</script>
