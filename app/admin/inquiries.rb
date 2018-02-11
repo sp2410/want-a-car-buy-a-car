@@ -64,12 +64,12 @@ permit_params :from_email, :to_email, :first_name, :last_name, :phone, :comment,
 		# end
 
 		def send_to_all(inquiry)
-			# begin
+			begin
 				CloneInquiryCreator.perform_async(inquiry.id)	
-			# 	return true			
-			# rescue
+				return true			
+			rescue
 				return false
-			# end
+			end
 		end
 		
     end
