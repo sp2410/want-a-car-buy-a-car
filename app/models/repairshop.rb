@@ -20,8 +20,8 @@ class Repairshop < ActiveRecord::Base
 	scope :diamond_repairshops, -> {joins(:user).where('users.role = ?', 6)}
 	scope :basic_repairshops, ->{joins(:user).where('users.role = ?', 2)}
 	
-	scope :repairshop_search_cities, -> {group(:city).count}
-	scope :repairshop_search_states, -> {group(:state).count}
+	scope :repairshop_search_cities, -> {group('city, created_at').count}
+	scope :repairshop_search_states, -> {group('state, created_at').count}
 	
 
 	# scope :premium_repairshop 

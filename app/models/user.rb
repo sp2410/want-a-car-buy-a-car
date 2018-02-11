@@ -40,8 +40,8 @@ class User < ActiveRecord::Base
     # scope :leads2dealsemails, -> {leads2deals.emails}
 
 
-    scope :dealers_search_cities, -> {group('users.city').count}    
-    scope :dealers_search_states, -> {group('users.state').count}    
+    scope :dealers_search_cities, -> {group('city, created_at').count}    
+    scope :dealers_search_states, -> {group('state, created_at').count}    
     # scope :user_search_ratings, -> {group(:state).count}
 
 
