@@ -316,7 +316,7 @@ class ListingsController < ApplicationController
 	end
 
 	def sort_column
-		params[:sort] ||= "created_at"
+		params[:sort] ||= "listings.created_at"
 	end
 
 	def sort_direction
