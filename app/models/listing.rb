@@ -509,7 +509,8 @@ class Listing < ActiveRecord::Base
 
 			
 
-			listings.uniq
+			# listings.uniq
+			listings
 
 
 
