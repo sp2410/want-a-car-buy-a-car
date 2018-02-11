@@ -41,7 +41,7 @@
 
           
             <%- @dealers_cities.each do |key, value| -%>
-              <%= link_to "#{key.upcase if key} (#{value})" ,dealer_search_listings_path(filters: @current_filters.merge(:city => "#{key}")), {:class => "btn btn-danger another"} %>
+              <%= link_to "#{key if key} (#{value})" ,dealer_search_listings_path(filters: @current_filters.merge(:city => "#{key}")), {:class => "btn btn-danger another"} %>
             <% end %>
           
           
@@ -53,7 +53,7 @@
           <h3 style = "color:#7C064D; text-align: center;"><strong>STATE</strong></h3>
 
           <%-@dealers_states.each do |key, value| -%>
-            <%= link_to "#{key.upcase if key} (#{value})" , dealer_search_listings_path(filters: @current_filters.merge(:state => "#{key}")), {:class => "btn btn-danger another"} %>
+            <%= link_to "#{key if key} (#{value})" , dealer_search_listings_path(filters: @current_filters.merge(:state => "#{key}")), {:class => "btn btn-danger another"} %>
           <% end %>
           
                           

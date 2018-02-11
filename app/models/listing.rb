@@ -99,18 +99,18 @@ class Listing < ActiveRecord::Base
 	
 	#facets
 
-	scope :listing_search_cities, -> {group('city, created_at').count}
-	scope :listing_search_body_type, -> {group('bodytype, created_at').count}
-	scope :listing_search_states, -> {group('state, created_at').count}
-	scope :listing_search_newused, -> {group('newused, created_at').count}
-	scope :listing_search_transmission, -> {group('transmission, created_at').count}
-	scope :listing_search_cylinder, -> {group('cylinder, created_at').count}
-	scope :listing_search_fuel, -> {group('fuel, created_at').count}
-	scope :listing_search_drive, -> {group('drive, created_at').count}
-	scope :listing_search_trim, -> {group('trim, created_at').count}
-	scope :listing_search_color, -> {group('color, created_at').count}
-	scope :listing_search_year, -> {group('year, created_at').count}
-	scope :listing_search_interiorcolor, -> {group('interiorcolor, created_at').count}
+	scope :listing_search_cities, -> {group('created_at, city').count}
+	scope :listing_search_body_type, -> {group('created_at, bodytype').count}
+	scope :listing_search_states, -> {group('created_at, state').count}
+	scope :listing_search_newused, -> {group('created_at, newused').count}
+	scope :listing_search_transmission, -> {group('created_at, transmission').count}
+	scope :listing_search_cylinder, -> {group('created_at, cylinder').count}
+	scope :listing_search_fuel, -> {group('created_at, fuel').count}
+	scope :listing_search_drive, -> {group('created_at, drive').count}
+	scope :listing_search_trim, -> {group('created_at, trim').count}
+	scope :listing_search_color, -> {group('created_at, color').count}
+	scope :listing_search_year, -> {group('created_at, year').count}
+	scope :listing_search_interiorcolor, -> {group('created_at, interiorcolor').count}
 
 
 
