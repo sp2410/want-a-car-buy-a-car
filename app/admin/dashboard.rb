@@ -95,9 +95,9 @@ ActiveAdmin.register_page "Dashboard" do
       # redirect_to admin_dashboard_path, notice: "Hello! This upload job has been added for background importing. Please wait for few minutes and then cross check on listings page. Please recheck your CSV file headers and rows if new listings were not imported."
       begin
         CsvWorker.perform_async(params[:file].path)   
-        redirect_to root_url, notice: "Hello! This upload job has been added for background importing. Please wait for few minutes and then cross check on listings page. Please recheck your CSV file headers and rows if new listings were not imported."
+        redirect_to admin_dashboard_path, notice: "Hello! This upload job has been added for background importing. Please wait for few minutes and then cross check on listings page. Please recheck your CSV file headers and rows if new listings were not imported."
       rescue
-        redirect_to root_url, notice: "There was some error with the import. Kindly check your CSV file or contact admin."
+        redirect_to admin_dashboard_path, notice: "There was some error with the import. Kindly check your CSV file or contact admin."
       end 
 
     end
