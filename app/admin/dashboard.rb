@@ -22,13 +22,13 @@ ActiveAdmin.register_page "Dashboard" do
         end
       end
 
-      column do
-         panel "CSV Uploads for Listings: Type cfsinventory" do
-          ul do
-            render 'admin/dashboard/import_listings'
-          end
-        end
-      end
+      # column do
+      #    panel "CSV Uploads for Listings: Type cfsinventory" do
+      #     ul do
+      #       render 'admin/dashboard/import_listings'
+      #     end
+      #   end
+      # end
     end
 
     # columns do
