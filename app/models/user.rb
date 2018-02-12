@@ -10,6 +10,11 @@ class User < ActiveRecord::Base
   has_one :repairshop, :dependent => :destroy
   has_many :reviews, :dependent => :destroy
 
+
+  def to_param
+    "#{id}-#{name}".parameterize
+  end
+
   enum role: {"BASIC USER": 0, "BASIC DEALER": 1, "BASIC REPAIRSHOP": 2, "SILVER DEALER": 3, "GOLD DEALER": 4, "SILVER REPAIRSHOP": 5, "DIAMOND DEALER": 6, "SALES": 7}
 
   geocoded_by :full_address

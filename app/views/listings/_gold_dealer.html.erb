@@ -348,7 +348,7 @@
                       </div> 
 
                       <div class = "col-sm-12 col-md-12 col-lg-12 col-xs-12 text-center">
-                          <p><%= link_to 'View Dealer Page and Inventory', userpage_path(:id => "#{@user.id}"), class: "btn btn-danger btn-xs", style: "border: #e20049", target: :_blank %></p>
+                          <p><%= link_to 'View Dealer Page and Inventory', userpage_path(:id => "#{@user.id}", :name => "#{@user.name.gsub(" ", "")}"), class: "btn btn-danger btn-xs", style: "border: #e20049", target: :_blank %></p>
                         </div> 
                         <br>
                       </div>

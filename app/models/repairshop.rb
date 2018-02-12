@@ -7,6 +7,10 @@ class Repairshop < ActiveRecord::Base
 	# validates_presence_of :zipcode
 
 
+	def to_param
+	    "#{id}-#{title}".parameterize
+	 end
+
 	mount_uploader :image, ImageUploader
 	
 	geocoded_by :full_address

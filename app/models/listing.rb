@@ -16,6 +16,11 @@ class Listing < ActiveRecord::Base
 	# 	super
 	# end
 
+	def to_param
+	    "#{id}-#{title}".parameterize
+	 end
+
+
 
 	belongs_to :category
 	belongs_to :subcategory

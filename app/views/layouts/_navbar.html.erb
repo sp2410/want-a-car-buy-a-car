@@ -61,7 +61,7 @@
 
         <% end %>
 
-          <li><%= link_to 'MY DASHBOARD', userpage_path(:id => "#{current_user.id}") %></li>           
+          <li><%= link_to 'MY DASHBOARD', userpage_path(:id => "#{current_user.id}", :name => "#{current_user.name.gsub(" ", "")}") %></li>           
           <li>
             <%= link_to "SIGN OUT", destroy_user_session_path, method: :delete %>
           </li>          
