@@ -1,3 +1,13 @@
+<%= content_for(:meta_og) do %>
+    <meta property="og:title" content="<%= @listing.title %>" />
+    <meta property="og:type" content="Page" />        
+    <meta property="og:description" content="<%= @listing.description %>" />
+    <meta property="og:url" content="<%= listing_path(@listing) %> />
+    <% if @listing.image %>
+        <%= tag :meta, property: 'og:image', content: "http://#{request.host}#{ @listing.image.url}" %>
+    <% end %>
+<% end %>
+
 
   <% if @user.role ==  "BASIC USER" %>
     <%= render 'listings/basic_user'%>

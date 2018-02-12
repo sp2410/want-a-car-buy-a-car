@@ -1,3 +1,14 @@
+<%= content_for(:meta_og) do %>
+    <meta property="og:title" content="<%= @user.name %>" />
+    <meta property="og:type" content="Page" />        
+    <meta property="og:description" content="<%= @user.websitedescription %>" />
+    <meta property="og:url" content="<%= userpage_path(:id => "#{@user.id}", :name => "#{@user.name.gsub(" ", "")}") %>" />
+    <% if @user.logoimage %>
+        <%= tag :meta, property: 'og:image', content: "http://#{request.host}#{ @user.logoimage.url}" %>
+    <% end %>
+<% end %>
+
+
 <!-- Dealer Homepage -->
 <div class ="headerdiv"  id = "herodiv"  style = "
   <%- if @user.backgroundimage.present? -%>

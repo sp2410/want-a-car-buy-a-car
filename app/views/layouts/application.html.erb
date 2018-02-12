@@ -29,6 +29,16 @@
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
 
+<% if content_for?(:meta_og) %>
+      <%= yield :meta_og %>
+  <% else %>
+      <meta property="og:title" content="Want A Car Buy A Car" />
+      <meta property="og:type" content="website" />
+      <meta property="og:url" content="http://www.wantacarbuyacar.com" />
+      <%= tag :meta, property: 'og:image', content: image_url('https://s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/TDC.png') %>
+  <% end %>
+
+
 <script>
   (adsbygoogle = window.adsbygoogle || []).push({
     google_ad_client: "ca-pub-7912024902186521",
