@@ -123,7 +123,7 @@ ActiveAdmin.register User do
 	    	link_to "Yes hold all", hold_users_listings_or_repairshops_method_admin_user_path(user)
 	    end
 
-        column "Leads 2 Deals Customer ?", :leads2dealscustomer 
+        column "Leads 2 Deals Customer?", :leads2dealscustomer
 
         column "Convert user to leads 2 deals customer" do |user|
             link_to "Yes convert User",  give_leadstodeals_priviliges_method_admin_user_path(user)
