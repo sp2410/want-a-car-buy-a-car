@@ -37,7 +37,7 @@ ActiveAdmin.register User do
     scope :gold_dealer
     scope :diamond_dealer
 
-    scope :leads2dealscustomer
+    scope :leads2deals
 
 
     controller do 
