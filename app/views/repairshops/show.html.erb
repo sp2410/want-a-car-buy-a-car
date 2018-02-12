@@ -2,7 +2,9 @@
     <meta property="og:title" content="<%= @repairshop.title %>" />
     <meta property="og:type" content="Page" />        
     <meta property="og:description" content="<%= @repairshop.description %>" />
-    <meta property="og:url" content="<%= repairshop_path(@repairshop) %> />
+    <meta property="og:url" content="<%= repairshop_path(@repairshop) %>" />
+    <meta property="og:image:all" content="Want A Car Buy A Car" />
+
     <% if @repairshop.image %>
         <%= tag :meta, property: 'og:image', content: "#{ @repairshop.image.url}" %>
     <% end %>

@@ -2,7 +2,8 @@
     <meta property="og:title" content="<%= @listing.title %>" />
     <meta property="og:type" content="Page" />        
     <meta property="og:description" content="<%= @listing.description %>" />
-    <meta property="og:url" content="<%= listing_path(@listing) %> />
+    <meta property="og:url" content="<%= listing_path(@listing) %>" />
+    <meta property="og:image:all" content="Want A Car Buy A Car" />
     <% if @listing.image %>
         <%= tag :meta, property: 'og:image', content: "#{ @listing.image.url}" %>
     <% end %>
