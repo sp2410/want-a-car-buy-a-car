@@ -481,6 +481,10 @@ class Listing < ActiveRecord::Base
 		[city, state, zipcode].join(', ')
 	end
 
+	 def city_state
+	    [state, zipcode].join(', ')
+	 end
+
 	def minprice(price)		
 		price.to_i - 10000
 	end
