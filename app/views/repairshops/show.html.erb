@@ -4,7 +4,7 @@
     <meta property="og:description" content="<%= @repairshop.description %>" />
     <meta property="og:url" content="<%= repairshop_path(@repairshop) %> />
     <% if @repairshop.image %>
-        <%= tag :meta, property: 'og:image', content: "http://#{request.host}#{ @repairshop.image.url}" %>
+        <%= tag :meta, property: 'og:image', content: "#{ @repairshop.image.url}" %>
     <% end %>
 <% end %>
 

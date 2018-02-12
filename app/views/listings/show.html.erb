@@ -4,7 +4,7 @@
     <meta property="og:description" content="<%= @listing.description %>" />
     <meta property="og:url" content="<%= listing_path(@listing) %> />
     <% if @listing.image %>
-        <%= tag :meta, property: 'og:image', content: "http://#{request.host}#{ @listing.image.url}" %>
+        <%= tag :meta, property: 'og:image', content: "#{ @listing.image.url}" %>
     <% end %>
 <% end %>
 
