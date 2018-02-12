@@ -4,7 +4,7 @@
     <meta property="og:description" content="<%= @user.websitedescription %>" />
     <meta property="og:url" content="<%= userpage_path(:id => "#{@user.id}", :name => "#{@user.name.gsub(" ", "")}") %>" />
     <% if @user.logoimage %>
-        <%= tag :meta, property: 'og:image', content: "http://#{request.host}#{ @user.logoimage.url}" %>
+        <%= tag :meta, property: 'og:image', content: "#{ @user.logoimage.url}" %>
     <% end %>
 <% end %>
 
