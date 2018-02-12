@@ -39,8 +39,7 @@
 </div>
 
 <div class="col-xs-12 text-center" style = "background-color: #fff; padding: 12px;">
-    <hr>  
-    <h6 class="row text-center" style = "color:  #e20049; padding: 12px; font-size: 2em; text-align: center;"><strong>ABOUT USER</strong></h6>
+    <hr>    
                   <% if @user.role ==  "BASIC DEALER" %>
                     <%= render :partial => 'listings/basic_dealer_info', :locals => { :i => @user } %>
                   <% elsif @user.role ==  "SILVER DEALER" %>
