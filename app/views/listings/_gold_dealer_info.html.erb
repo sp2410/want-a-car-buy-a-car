@@ -6,7 +6,7 @@
                     <p style = "display: inline;"><strong><span class="glyphicon glyphicon-certificate"></span><strong> WACBAC Rating: <%= get_rating_in_star(Review.get_average_rating(i.id)) %>  </strong></p>
                     </div>
                     <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12">
-                    <p ><strong><span class="glyphicon glyphicon-pushpin"></span><strong> Street Address: <%= i.city_state %>  </strong></p>
+                    <p ><strong><span class="glyphicon glyphicon-pushpin"></span><strong> Address: <%= i.city_state %>  </strong></p>
                     </div>      
                     <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12">                      
                       <p><strong><span class="glyphicon glyphicon-paperclip"></span><strong> Website: <a href =<%= "//#{i.website}" %> rel="noopener noreferrer" style= "text-decoration: underline;" target="_blank"><%= i.website %></a> </strong></p>

@@ -211,7 +211,7 @@
 
         <strong><p style ="font-size: 15px; color: #e20049; overflow-x:hidden; text-align: center;"> SHARE WITH YOUR FRIENDS! </p></strong>
 
-           <%= social_share_button_tag(@listing.title, :url => "https://fierce-sea-43472.herokuapp.com/listings/#{@listing.id}", :image => "#{@listing.image if @listing.image }") %>
+           <%= social_share_button_tag(@listing.title, url: "http://www.wantacarbuyacar.com/listings/#{@listing.id}", :image => "#{@listing.image if @listing.image }", desc: @listing.title ) %>
 
             <hr>
       </div>
