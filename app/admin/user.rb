@@ -37,6 +37,8 @@ ActiveAdmin.register User do
     scope :gold_dealer
     scope :diamond_dealer
 
+    scope :leads2dealscustomer
+
 
     controller do 
     	def approve_users_listings_or_repairshops(user_id)
@@ -123,7 +125,7 @@ ActiveAdmin.register User do
 	    	link_to "Yes hold all", hold_users_listings_or_repairshops_method_admin_user_path(user)
 	    end
 
-        column "Leads 2 Deals Customer?", :leads2dealscustomer
+        column :leads2dealscustomer
 
         column "Convert user to leads 2 deals customer" do |user|
             link_to "Yes convert User",  give_leadstodeals_priviliges_method_admin_user_path(user)

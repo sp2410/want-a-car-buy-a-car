@@ -36,6 +36,8 @@ class User < ActiveRecord::Base
     scope :gold_dealer, -> {where('users.role = ?', 5)}
     scope :diamond_dealer, -> {where('users.role = ?', 6)}
 
+    scope :leads2dealscustomer, -> {where('users.leads2dealscustomer = ?', true)}
+
     scope :leads2deals, -> {all}
 
     scope :emails, -> {pluck(:email)}
