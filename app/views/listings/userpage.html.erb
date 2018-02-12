@@ -32,9 +32,9 @@
 <div class = "col-sm-12 col-md-12 col-lg-12" style = "text-align: center; margin-top: 20px;">
 
     <% if @user.logoimage.present? %>
-      <%= social_share_button_tag @user.name, :image => "#{@user.logoimage}", desc: @user.websiteheader %>
+      <%= social_share_button_tag @user.name, :image => "#{@user.logoimage}", desc: @user.name %>
     <% else %>
-      <%= social_share_button_tag @user.name, :image => "//s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/TDC.png", desc: @user.websiteheader %>
+      <%= social_share_button_tag @user.name, :image => "//s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/TDC.png", desc: @user.name %>
     <% end %>
 </div>
 
