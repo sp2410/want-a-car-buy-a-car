@@ -60,6 +60,15 @@ ActiveAdmin.register User do
     			return false
     		end
     	end
+
+        def give_leadstodeals_priviliges(user_id)
+            begin
+                User.find_by_id(user_id).update(:leads2dealscustomer => true)
+                return true         
+            rescue
+                return false
+            end
+        end
     end
 
     member_action :approve_users_listings_or_repairshops_method, method: :get do 
@@ -80,6 +89,17 @@ ActiveAdmin.register User do
     	end
     end
 
+    member_action :give_leadstodeals_priviliges_method, method: :get do 
+        status = give_leadstodeals_priviliges(resource.id)
+        if status 
+            redirect_to admin_users_path, notice: "Users given leads to deals leads"
+        else
+            redirect_to admin_users_path, notice: "there was some error while converting this user to leads to deals"
+        end
+    end
+
+
+
     index do
 		column :id
 		column "Email", :email
@@ -98,12 +118,15 @@ ActiveAdmin.register User do
 	    column "Approve Users Listings/Repairshops" do |user|
 	    	link_to "Yes approve all", approve_users_listings_or_repairshops_method_admin_user_path(user)
 	    end
+
 	    column "Hold all users Listings/Repairshops" do |user|
 	    	link_to "Yes hold all", hold_users_listings_or_repairshops_method_admin_user_path(user)
 	    end
 
-
-		
+        column "Convert user to leads 2 deals customer" do |user|
+            link_to "Yes convert User",  give_leadstodeals_priviliges_method_admin_user_path(user)
+        end
+	
 		column "Website", :website 
 		column "Zipcode", :zipcode
 		column "City", :city
@@ -111,11 +134,6 @@ ActiveAdmin.register User do
 		column "Street address", :street_address
 		column "Phone", :phone_number
 
-
-
-		
-
-		
 	    column "" do |resource|
 	      links = ''.html_safe
 	      links += link_to I18n.t('active_admin.edit'), edit_resource_path(resource), :class => "member_link edit_link"

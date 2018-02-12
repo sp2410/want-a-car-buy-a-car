@@ -10,12 +10,12 @@
     <%- if @user.logoimage.present? -%>
       <%= image_tag @user.logoimage.url, :class => "style_image" %> 
     <% else %>                
-      <%= image_tag("https://s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/TDC.png", :alt => "Want a Car buy A Car| Cars For Sale | Used Cars | Repair Shops", :style=> " max-height: 10%; max-width: 10%; margin: auto;") %>
+      <h1 style = "margin-top: 1%; color: white; font-size: 120%;">
+        <%= @user.name.upcase if @user.name %>
+      </h1>  
     <% end %>  
     
-    <h1 style = "margin-top: 1%; color: white;">
-      <%= @user.name.upcase if @user.name %>
-    </h1>   
+     
     <h3 style = "color: white;  margin: 1em 0;">      
       <%= @user.websiteheader.upcase if @user.websiteheader %>
     </h3>
@@ -27,13 +27,6 @@
       <%= @user.websitedescription.upcase if @user.websitedescription %>
     </h5>
 
-    <div class="col-xs-12 text-center" style = "margin-top: 1%;" > 
-      <a href="tel:<%= @user.phone_number if @user.phone_number %>" class="btn btn-danger another">CALL US</a>       
-    </div>   
-
-    <% if user_is_webpage_owner(@user.id) %>      
-      <%= link_to 'EDIT YOUR PROFILE OR WEBPAGE', edit_user_registration_path, class: "btn btn-danger another" %>  
-    <% end %>    
 </div>
 
 <div class = "col-sm-12 col-md-12 col-lg-12" style = "text-align: center; margin-top: 20px;">
