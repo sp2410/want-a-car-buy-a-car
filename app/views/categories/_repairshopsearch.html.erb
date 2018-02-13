@@ -172,20 +172,20 @@
 </div>
 
 
+
 <script>
 
 $( document ).ready(function() {
 
-    
-    
+
     var prev ="https://api.edmunds.com/api/vehicle/v2/makes";
     var rest ="?fmt=json&api_key=";
     var key = "<%= ENV['EDMUNDS_API_KEY'] %>";
     var net = prev+rest+key;
 
     var options = [];
+    options.push("All");
     var dictionary = {};
-
 
     
     console.log("hello");
@@ -241,6 +241,8 @@ $( document ).ready(function() {
             }
         }
 
+        dictionary["All"] = ["All"]
+
         // console.log(options);
 
         $.each(options, function(key, value) {   
@@ -248,8 +250,7 @@ $( document ).ready(function() {
                  .append($("<option></option>")                            
                     .attr("value", value.html_safe)
                     .text(value));  
-        });
-
+        });    
         
     };
 
@@ -269,8 +270,9 @@ $( document ).ready(function() {
     
     function change_model(){
 
-        var make = $('#category').find(":selected").text();
+        var make = $('#category').find(":selected").text();        
         var models = dictionary[make];
+        // models.unshift("All");
 
         $('#subcategory').empty();
 
@@ -281,8 +283,6 @@ $( document ).ready(function() {
                     .text(value));  
         });
     }    
-
-  
 
     $("#searchboxcontainer").delay(100).fadeIn(200);   
     

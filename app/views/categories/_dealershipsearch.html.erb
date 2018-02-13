@@ -59,7 +59,7 @@
                 <%= form_tag search_listings_path, method: :get, class: 'navbar-form navbar-center' do |f| %>
 
                 <div class= "col-xs-12 col-sm-12 col-lg-12 col-md-12"> 
-                    <%= select_tag :NewUsed, "<option>New</option><option>Used</option>".html_safe, style: "width: 100%; margin: 1% 0;" %>
+                    <%= select_tag :NewUsed, "<option>Used</option><option>New</option>".html_safe, style: "width: 100%; margin: 1% 0;" %>
                 </div>
 
                 <div class= "col-xs-6 col-sm-6 col-lg-6 col-md-6"> 
@@ -89,7 +89,7 @@
                                
                     <%= submit_tag 'Search', class: 'btn btn-danger', style: "width: 100%;" %>
                     <%- if user_is_basic_user  -%>
-                        <h3 style = "color:#F00000;"><strong>OR</strong></h3>
+                        <h3 style = "color:#F00000;text-align: center;"><strong>OR</strong></h3>
                         <%= link_to 'Sell Your Car', new_listing_path , class: 'btn btn-danger another', style: "width: 100%;" %>
                     <% end %>
                 </div>
@@ -109,11 +109,11 @@
                 <%= form_tag search_listings_path, method: :get, class: 'navbar-form navbar-center' do |f| %>
 
                 <div class= "col-xs-12 col-sm-12 col-lg-12 col-md-12"> 
-                    <%= select_tag :NewUsed, "<option>New</option><option>Used</option>".html_safe, style: "width: 100%; margin: 1% 0;" %>
+                    <%= select_tag :NewUsed, "<option>Used</option><option>New</option>".html_safe, style: "width: 100%; margin: 1% 0;" %>
                 </div>
 
                 <div class= "col-xs-12 col-sm-12 col-lg-12 col-md-12"> 
-                    <%= select_tag :bodytype, "<option>4dr Hatchback</option><option>2dr SUV </option><option>4dr SUV </option><option>Cargo Minivan </option><option>Cargo Van </option><option>Convertible </option><option>Convertible SUV </option><option>Coup </option><option>Crew Cab Pickup </option><option>Extended Cab Pickup </option><option>Passenger Minivan </option><option>Passenger Van </option><option>Regular Cab Pickup </option><option>Sedan </option><option>Wagon</option>".html_safe, style: "width: 100%; margin: 1% 0;" %>
+                    <%= select_tag :bodytype, "<option>all</option><option>4dr Hatchback</option><option>2dr SUV </option><option>4dr SUV </option><option>Cargo Minivan </option><option>Cargo Van </option><option>Convertible </option><option>Convertible SUV </option><option>Coup </option><option>Crew Cab Pickup </option><option>Extended Cab Pickup </option><option>Passenger Minivan </option><option>Passenger Van </option><option>Regular Cab Pickup </option><option>Sedan </option><option>Wagon</option>".html_safe, style: "width: 100%; margin: 1% 0;" %>
                 </div>                
 
                 <div class= "col-xs-6 col-sm-6 col-lg-6 col-md-6"> 
@@ -132,7 +132,7 @@
                 <div class= "col-xs-12 col-sm-12 col-lg-12 col-md-12">              
                     <%= submit_tag 'Search', class: 'btn btn-danger', style: "width: 100%;" %>
                     <%- if user_is_basic_user  -%>
-                        <h3 style = "color:#F00000;"><strong>OR</strong></h3>
+                        <h3 style = "color:#F00000;text-align: center;"><strong>OR</strong></h3>
                         <%= link_to 'Sell Your Car', new_listing_path , class: 'btn btn-danger another', style: "width: 100%;" %>
                     <% end %>
                 </div>
@@ -173,20 +173,20 @@
 </div>
 
 
+
 <script>
 
 $( document ).ready(function() {
 
-    
-    
+
     var prev ="https://api.edmunds.com/api/vehicle/v2/makes";
     var rest ="?fmt=json&api_key=";
     var key = "<%= ENV['EDMUNDS_API_KEY'] %>";
     var net = prev+rest+key;
 
     var options = [];
+    options.push("All");
     var dictionary = {};
-
 
     
     console.log("hello");
@@ -242,6 +242,8 @@ $( document ).ready(function() {
             }
         }
 
+        dictionary["All"] = ["All"]
+
         // console.log(options);
 
         $.each(options, function(key, value) {   
@@ -249,8 +251,7 @@ $( document ).ready(function() {
                  .append($("<option></option>")                            
                     .attr("value", value.html_safe)
                     .text(value));  
-        });
-
+        });    
         
     };
 
@@ -270,8 +271,9 @@ $( document ).ready(function() {
     
     function change_model(){
 
-        var make = $('#category').find(":selected").text();
+        var make = $('#category').find(":selected").text();        
         var models = dictionary[make];
+        // models.unshift("All");
 
         $('#subcategory').empty();
 
@@ -283,8 +285,6 @@ $( document ).ready(function() {
         });
     }    
 
-  
-
     $("#searchboxcontainer").delay(100).fadeIn(200);   
     
 
@@ -292,5 +292,3 @@ $( document ).ready(function() {
 
 
 </script>
-
-
