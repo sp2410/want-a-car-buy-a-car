@@ -1,6 +1,7 @@
 require 'emailnotifier'
 
 class InquiriesController < InheritedResources::Base
+	include ApplicationHelper
 
 	def new		
 
@@ -28,7 +29,8 @@ class InquiriesController < InheritedResources::Base
 			@inquiry = Inquiry.new(inquiry_params)			
 			respond_to do |format|
 					if @inquiry.save					
-							format.html { redirect_to @parent, notice: 'Inquiry was successfuly sent!' }
+							# format.html { redirect_to @parent, notice: 'Inquiry was successfuly sent!' }
+							format.html { redirect_to get_affiliates }
 				        	format.json { head :ok }			    	
 				        	begin
 				        		send_email(@inquiry)
@@ -36,7 +38,7 @@ class InquiriesController < InheritedResources::Base
 				        		p "Inquiry Email not sent"
 				        	end
 					else				
-						format.html { render @parent }
+						format.html { render @parent }						
 				        format.json { render json: @inquiry.errors, status: :unprocessable_entity }
 					end
 			end

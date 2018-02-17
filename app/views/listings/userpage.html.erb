@@ -17,12 +17,12 @@
   <% else %>
     background-color: white;
   <% end %>
-  background-repeat: no-repeat; background-size:cover; background-position: center; text-align:  center; padding: 2em;" > 
+  background-repeat: no-repeat; background-size:cover; background-position: center; text-align:  center; padding: 10em 5em;" > 
   
     <%- if @user.logoimage.present? -%>
       <%= image_tag @user.logoimage.url, :class => "style_image" %> 
     <% else %>                
-      <h1 style = "margin-top: 1%; color: white; font-size: 120%;">
+      <h1 style = "margin-top: 1%; color: white; font-size: 200%;">
         <%= @user.name.upcase if @user.name %>
       </h1>  
     <% end %>  

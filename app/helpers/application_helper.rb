@@ -18,6 +18,10 @@ module ApplicationHelper
       false
     end
 
+    def get_affiliates
+      ["https://www.1800freshstart.com/?src=42051&lnk=74248", "https://www.autocreditexpress.com/sem/?lpgid=shortjcv1&affid=ap002455&startpage=fullform"].sample
+    end
+
     def user_is_review_owner(review)
       if user_signed_in?
         return true if (review.user_id == current_user.id)
