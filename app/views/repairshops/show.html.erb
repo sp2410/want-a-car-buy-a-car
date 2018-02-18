@@ -1,7 +1,7 @@
 <%= content_for(:meta_og) do %>
-    <meta property="og:title" content="<%= @repairshop.title %>" />
+    <meta property="og:title" content="<%= @repairshop.title if @repairshop.title %> | www.wantacarbuyacar.com" />
     <meta property="og:type" content="Page" />        
-    <meta property="og:description" content="<%= @repairshop.description %>" />
+    <meta property="og:description" content="Check out <%= @repairshop.title if @repairshop.title %> in <%= @repairshop.city if @repairshop.city %> for your vehicle repair and servicing needs. View more on www.wantacarbuyacar.com" />
     <meta property="og:url" content="<%= repairshop_path(@repairshop) %>" />
     <meta property="og:image:all" content="Want A Car Buy A Car" />
 
@@ -9,6 +9,7 @@
         <%= tag :meta, property: 'og:image', content: "#{ @repairshop.image.url}" %>
     <% end %>
 <% end %>
+
 
 
   <% if @user.role ==  "BASIC REPAIRSHOP" %>
