@@ -257,7 +257,7 @@ class InquiriesController < InheritedResources::Base
   private
 
     def inquiry_params
-      params.require(:inquiry).permit(:from_email, :to_email, :first_name, :last_name, :phone, :comment, :subject, :status, :senttoall)
+      params.require(:inquiry).permit(:from_email, :to_email, :first_name, :last_name, :phone, :comment, :subject, :status, :senttoall, :referredby)
     end
 
     def get_parent(params)

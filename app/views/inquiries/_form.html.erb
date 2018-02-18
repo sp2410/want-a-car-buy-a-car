@@ -17,8 +17,7 @@
       </div>
       <div class= "col-xs-6 col-sm-6 col-lg-6 col-md-6" style = "margin: auto;">
         <%= f.text_field :last_name, :label => "Last Name" %>
-      </div>
-     </p>
+      </div>     
    </div>   
 
   <div class= "col-xs-12 col-sm-12 col-lg-12 col-md-12" style = "margin: auto;">
@@ -27,9 +26,16 @@
     </div>
     <div class= "col-xs-6 col-sm-6 col-lg-6 col-md-6" style = "margin: auto;">
       <%= f.text_field :phone, :label => "Your Phone" %>
-    </div>
-    </p>
+    </div>    
   </div> 
+
+  <div class= "col-xs-12 col-sm-12 col-lg-12 col-md-12" style = "margin: auto;">
+    <div class= "col-xs-12 col-sm-12 col-lg-12 col-md-12" style = "margin: auto;">
+      <%= f.text_field :referredby, :label => "Referrer's Name" %>
+    </div>        
+  </div> 
+
+  
 
     <%= f.hidden_field :to_email %>
     <%= hidden_field_tag :parent_id, @parent.id  %>    

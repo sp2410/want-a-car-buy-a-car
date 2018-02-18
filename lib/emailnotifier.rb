@@ -32,7 +32,7 @@ class EmailNotifier
 		end
 
 		@email.add_personalization(personalization)
-		@email.add_content(Content.new(type: 'text/plain', value: "A new Auction has been added!!"))
+		@email.add_content(Content.new(type: 'text/plain', value: "Want A Car Buy A Car. Let us help you in finding your dream vehicle."))
 		@email.add_content( Content.new(type: 'text/html', value: @content))
 		
 

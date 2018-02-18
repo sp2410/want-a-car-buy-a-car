@@ -2,7 +2,7 @@ ActiveAdmin.register Inquiry do
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
-permit_params :from_email, :to_email, :first_name, :last_name, :phone, :comment, :subject, :status, :senttoall
+permit_params :from_email, :to_email, :first_name, :last_name, :phone, :comment, :subject, :status, :senttoall, :referredby
 #
 # or
 #
@@ -71,6 +71,26 @@ permit_params :from_email, :to_email, :first_name, :last_name, :phone, :comment,
 				return false
 			end
 		end
+
+		def resend_to_all(inquiry)
+			begin
+				ResendInquiryCreator.perform_async(inquiry.id)	
+				return true			
+			rescue
+				return false
+			end
+		end
+
+		def contact_customer(inquiry)
+			begin
+				SendEmail.perform_async("Are You still looking for a vehicle ? Let us help. | Want A Car Buy A Car", "Hi! We saw that you raised an inquiry on our website www.wantacarbuyacar.com on #{inquiry.created_at}. We informed the dealership right away but wanted to get in touch with you in person to help your demand reach all the dealerships around you. Please let us know if you are still looking for a vehicle.", ["#{inquiry.from_email}"])
+            	# send_contact_email("Are You still looking for a vehicle ? Let us help. | Want A Car Buy A Car", "Hi! We saw that you raised an inquiry on our website www.wantacarbuyacar.com on #{inquiry.created_at}. We informed the dealership right away but wanted to get in touch with you in person to help your demand reach all the dealerships around you. Please let us know if you are still looking for a vehicle.", ["#{inquiry.from_email}"])        
+            	return true
+	        rescue
+	        	return false
+	        end
+		end
+ 		
 		
     end
 
@@ -82,6 +102,27 @@ permit_params :from_email, :to_email, :first_name, :last_name, :phone, :comment,
     		redirect_to admin_inquiries_path, notice: "There was some error sending leads (this inquiry) to all, either it was already sent or the copies couldnt be created"
     	end
     end
+
+    member_action :resend_to_all_action, method: :get do 
+    	status = resend_to_all(resource)
+    	if status 
+    		redirect_to admin_inquiries_path, notice: "Great! This job has been added to the background. Leads will be sent to all"
+    	else
+    		redirect_to admin_inquiries_path, notice: "There was some error sending leads (this inquiry) to all, either it was already sent or the copies couldnt be created"
+    	end
+    end
+
+    member_action :contact_customer_action, method: :get do 
+    	status = contact_customer(resource)
+    	if status 
+    		redirect_to admin_inquiries_path, notice: "Great! An email was sent to the customer. You can also reach out directly to: #{resource.from_email if resource.from_email}, phone: #{resource.phone if resource.phone}"
+    	else
+    		redirect_to admin_inquiries_path, notice: "Error in sending the email to the customer. Please reach out directly to #{resource.from_email if resource.from_email}, phone: #{resource.phone if resource.phone}"
+    	end
+    end
+
+
+
 
 	index do
 		column :id
@@ -96,9 +137,19 @@ permit_params :from_email, :to_email, :first_name, :last_name, :phone, :comment,
 
 		column :senttoall
 
-		column "Leads 2 deals" do |resource|
-	    	link_to "Send To All", send_to_all_action_admin_inquiry_path(resource)
+		column "Leads 2 deals (If not sent)" do |resource|
+	    	link_to "Send To All", send_to_all_action_admin_inquiry_path(resource)	    	
 	    end	
+
+	    column "Leads 2 deals (Resend)" do |resource|
+	    	link_to "Resend To All", resend_to_all_action_admin_inquiry_path(resource)
+	    end
+
+	    column "Email Customer if still looking for vehicle" do |resource|
+	    	link_to "Yes, send the email", contact_customer_action_admin_inquiry_path(resource)
+	    end
+
+	    
 
 	    column "" do |resource|
 	      links = ''.html_safe

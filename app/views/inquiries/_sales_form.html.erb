@@ -23,12 +23,14 @@
     </div>
     <div class= "col-xs-6 col-sm-6 col-lg-6 col-md-6" style = "margin: auto;">
       <%= f.text_field :phone, :label => "Customer Phone" %>
-    </div>
+    </div>    
+    <div class= "col-xs-12 col-sm-12 col-lg-12 col-md-12" style = "margin: auto;">
+      <%= f.text_field :referredby, :label => "Enter Your name" %>
+    </div>          
     <div class= "col-xs-12 col-sm-12 col-lg-12 col-md-12" style = "margin: auto;">
       <%= f.text_field :subject %>  
       <%= f.text_area :comment, :size => "30x10", :label => "Customer Inquiry" %>
       <%= label_tag '','CHOOSE WHOM TO SEND THIS LEAD'  %>
-
     </div>
     
     <div class= "col-xs-12 col-sm-12 col-lg-12 col-md-12" style = "margin: auto;">

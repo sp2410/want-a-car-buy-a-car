@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180212073218) do
+ActiveRecord::Schema.define(version: 20180218013133) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -94,6 +94,7 @@ ActiveRecord::Schema.define(version: 20180212073218) do
     t.datetime "updated_at",                               null: false
     t.string   "status",     limit: 255, default: "FRESH"
     t.boolean  "senttoall",              default: false
+    t.string   "referredby", limit: 255, default: "none"
   end
 
   create_table "installs", force: :cascade do |t|
