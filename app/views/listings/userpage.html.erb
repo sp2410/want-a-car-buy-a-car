@@ -28,16 +28,16 @@
     <% end %>  
     
      
-    <h3 style = "color: white;  margin: 1em 0;">      
+    <h2 style = "color: white;  margin: 1em 0;">      
       <%= @user.websiteheader.upcase if @user.websiteheader %>
-    </h3>
+    </h2>
     <br>
-    <h4 style = "color: white; margin: 1em 0;">      
+    <h3 style = "color: white; margin: 1em 0;">      
       <%= @user.websitesubheader.upcase if @user.websitesubheader %>
-    </h4>
-    <h5 style = "color: white; margin: 1em 1em;">      
+    </h3>
+    <h4 style = "color: white; margin: 1em 1em;">      
       <%= @user.websitedescription.upcase if @user.websitedescription %>
-    </h5>
+    </h4>
 
 </div>
 
@@ -125,9 +125,11 @@
             <th> 
               LAST NAME
             </th>
-            <th>
-              PHONE
-            </th>
+            <% if user_is_diamond %> 
+              <th>
+                PHONE
+              </th>
+            <% end %>
             <th>
               SUBJECT
             </th>
@@ -177,9 +179,11 @@
                           <td>
                             <%= inquiry.last_name %>
                           </td>
-                          <td>
-                           <%= inquiry.phone %>
-                          </td>
+                          <% if user_is_diamond %> 
+                            <td>
+                             <%= inquiry.phone %>
+                            </td>
+                          <% end %>
                           <td>
                             <%= inquiry.subject %>
                           </td>

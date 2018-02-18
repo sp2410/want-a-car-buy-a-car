@@ -118,6 +118,14 @@ module ApplicationHelper
       end
     end      
 
+    def user_is_diamond      
+      unless current_user.nil?       
+        (current_user.user_is_diamond_dealer == true) ? true : false
+      else
+        true
+      end
+    end
+
     def user_is_basic_user
       unless current_user.nil?       
         (current_user.user_can_create_listing == true) ? true : false

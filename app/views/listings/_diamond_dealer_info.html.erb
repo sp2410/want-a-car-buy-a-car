@@ -8,10 +8,7 @@
                     </div>
                   <div class = "col-sm-12 col-md-12 col-lg-12 col-xs-12 text-center">
                       <h3><strong><%= i.name.upcase %></strong></h3>
-                    </div>
-                    <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12">
-                      <p ><strong><span class="glyphicon glyphicon-phone"></span><strong> Contact Details: <%= i.phone_number %>  </strong></p>
-                    </div>
+                    </div>                   
                     <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12">
                     <p style = "display: inline;"><strong><span class="glyphicon glyphicon-certificate"></span><strong> WACBAC Rating: <%= get_rating_in_star(Review.get_average_rating(i.id)) %>  </strong></p>
                     </div>

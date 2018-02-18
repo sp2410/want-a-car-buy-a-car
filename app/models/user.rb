@@ -162,6 +162,11 @@ class User < ActiveRecord::Base
     user_role == "SALES" or user_role == 7 ?  true : false    
   end
 
+  def user_is_diamond_dealer
+    user_role = self.role 
+    user_role == "DIAMOND DEALER" or user_role == 6 ?  true : false    
+  end
+
   def user_has_repairshops
     user_can_create_repairshop
   end

@@ -187,7 +187,7 @@
                                       <% @specialization.each do |specialization| %>
                                         
                                           <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12">
-                                              <p style = "text-align: left; font-size: 1em;"><span class="glyphicon glyphicon-cd"></span> <%= specialization.title.upcase %>
+                                              <p style = "text-align: left; font-size: 1em;"><%= specialization.title.upcase %>
 
                                                 <% if user_is_listing_owner(@repairshop) %>
                                                   <%= link_to 'Edit', edit_repairshop_specialization_path(@repairshop, specialization), class: "btn btn-danger btn-xs", style: " border: #e20049; margin: 1.5px 0;"  %>
@@ -262,7 +262,7 @@
                                       <% @brands_we_service.each do |specialization| %>
                                         
                                           <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12">
-                                              <p style = "text-align: left; font-size: 1em;"><span class="glyphicon glyphicon-wrench"></span> <%= specialization.title.upcase %>
+                                              <p style = "text-align: left; font-size: 1em;">%= specialization.title.upcase %>
 
                                                 <% if user_is_listing_owner(@repairshop) %>
                                                   <%= link_to 'Edit', edit_repairshop_brands_we_service_path(@repairshop, specialization), class: "btn btn-danger btn-xs", style: " border: #e20049; margin: 1.5px 0;"  %>
@@ -309,20 +309,14 @@
                                            
                             <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12">
 
-                              <h6 style = "color:  #e20049; padding: 10px; font-size: 2em; text-align: left;"><strong>SHOP DETAILS</strong></h6>
-                            <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6">
-                              <p ><strong><span class="glyphicon glyphicon-envelope"></span><strong> Email: <%= @user.email %>  </strong></p>
-                            </div>
+                              <h6 style = "color:  #e20049; padding: 10px; font-size: 2em; text-align: left;"><strong>SHOP DETAILS</strong></h6>                            
                             <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6">
                               <p style = "display: inline;"><strong><span class="glyphicon glyphicon-certificate"></span><strong> WACBAC Rating: <%= get_rating_in_star(Review.get_average_rating(@user.id)) %>  </strong></p>
 
                             </div>
                             <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6">
                               <p ><strong><span class="glyphicon glyphicon-pushpin"></span><strong> Street Address: <%= @user.full_address %>  </strong></p>
-                            </div>
-                            <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6">
-                              <p ><strong><span class="glyphicon glyphicon-phone"></span><strong> Contact Details: <%= @user.phone_number %>  </strong></p>
-                            </div>
+                            </div>                            
                             <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12">                      
 
                               <p ><strong><span class="glyphicon glyphicon-paperclip"></span><strong> Website: <a href =<%= "//#{@user.website}" %> rel="noopener noreferrer" style= "text-decoration: underline;" target="_blank"><%= @user.website %></a> </strong></p>
