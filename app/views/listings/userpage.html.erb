@@ -1,7 +1,7 @@
 <%= content_for(:meta_og) do %>
     <meta property="og:title" content="Check out <%= @user.name if @user.name %> | www.wantacarbuyacar.com" />
     <meta property="og:type" content="Page" />        
-    <meta property="og:description" content="<%= @user.name if @user.name %> | <%= @user.websiteheader if @user.websiteheader %> | Contact us today and get pre-approved with our quick and easy to use approval process | View more on www.wantacarbuyacar.com " />
+    <meta property="og:description" content="<%= @user.name if @user.name %> | <%= @user.websiteheader if @user.websiteheader %> | <%= @user.websitedescription if @user.websitedescription %> | View more on www.wantacarbuyacar.com " />
     <meta property="og:url" content="<%= userpage_path(:id => "#{@user.slug}") %>" />
     <meta property="og:image:all" content="Want A Car Buy A Car" />
     <% if @user.logoimage %>
