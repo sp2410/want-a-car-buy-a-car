@@ -1,0 +1,20 @@
+<div class="col-sm-12 col-md-12 col-lg-12 text-center" style = "background-color: #fff; padding: 12px;"> 
+
+<% if user.verified %>
+		<p style = "display: inline; margin: 0px 5px;"><%= image_tag "https://s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/verified_badge-6ee370f5ca86a52ed6198fac858ac1f4.png", :size => "20x20" %> Verified User</p>
+<% end %>
+
+<% if user.leads2dealscustomer %>
+
+	<p style = "display: inline;margin: 0px 5px;"><%= image_tag "https://s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/tdcfinance4_b.jpg", :size => "20x20" %> TDC Finance User</p>
+<% end %>
+
+<% if user.tdcfinance  %>
+
+	<p style = "display: inline;margin: 0px 5px;"><%= image_tag "https://s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/THEDEALERSCHOICElogosmall3.png", :size => "20x20" %> Leads 2 Deals User</p>
+
+<% end %>
+
+</div>
+
+

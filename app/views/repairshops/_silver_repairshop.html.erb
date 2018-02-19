@@ -91,7 +91,7 @@
                                            
                                           <h6 class="row text-center" style = "color:  #e20049; padding: 10px; font-size: 2em; text-align: left;"><strong><%= @repairshop.title.upcase if @repairshop.title%></strong></h6>
 
-                                                  <p><span class="glyphicon glyphicon-map-marker"></span> Location: <%= @repairshop.city if  @repairshop.city %> <%= @repairshop.state if  @repairshop.state %></p>
+                                                  <p><span class="glyphicon glyphicon-map-marker"></span> Location: <%= @user.city if  @user.city %> <%= @user.state if  @user.state %></p>
 
                                           <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12">
                                                   <%if user_is_listing_owner(@repairshop) %>

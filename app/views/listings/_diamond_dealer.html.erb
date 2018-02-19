@@ -226,12 +226,11 @@
                                   <div class="col-sm-10 col-lg-10" >   
                                           <h6 class="row text-center" style = "color:  #e20049; padding: 12px; font-size: 2em; text-align: left;"><strong><%= @listing.title.upcase if @listing.title%></strong></h6>
 
-                                          <div class = "col-sm-12 col-md-12 col-lg-12 col-xs-12">
-                                                  <p><span class="glyphicon glyphicon-map-marker"></span> Location: <%= @listing.city if  @listing.city %> <%= @listing.state if  @listing.state %>
+                                           <div class = "col-sm-12 col-md-12 col-lg-12 col-xs-12">
+                                                  <p><span class="glyphicon glyphicon-map-marker"></span> Location: <%= @user.city if  @user.city %> <%= @user.state if  @user.state %>
 
                                                   </p>
                                           </div>
-                                         
                                                  
                                             <!-- https://www.google.com/maps/?q=-15.623037,18.388672 -->
                                                   
@@ -413,7 +412,7 @@
 
                  <div class="col-sm-12 " style = "background-color: #fff; padding: 12px;">                      
                   <hr>
-                      <h6 class="row text-center" style = "color:  #e20049; padding: 12px; font-size: 2em; text-align: left;"><strong>NEW INQUIRY</strong></h6>                
+                      <h6 class="row text-center" style = "color:  #e20049; padding: 12px; font-size: 2em; text-align: left;"><strong>CONTACT SELLER</strong></h6>                
 
                       <div class="col-sm-12 text-center" style = " padding: 0px; overflow-y: scroll; height: 500px;">                              
                         <%= render 'inquiries/form' %>

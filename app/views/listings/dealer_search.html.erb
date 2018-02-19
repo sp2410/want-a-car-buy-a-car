@@ -25,7 +25,7 @@
           <h3 style = "color:#7C064D; text-align: center;"><strong>RATINGS</strong></h3>
 
           
-            <%- @dealers_ratings.each do |key, value| -%>
+            <%- @dealers_ratings.reverse_each.to_h.each do |key, value| -%>
               <%= link_to dealer_search_listings_path(filters: @current_filters.merge(:ratings => "#{key}")), {:class => "btn btn-basic"} do %>
                 <%= get_rating_in_star(key) %>(<%= value %>)
               <% end %>

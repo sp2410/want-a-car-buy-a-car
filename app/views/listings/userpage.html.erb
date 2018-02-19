@@ -13,7 +13,7 @@
 <!-- Dealer Homepage -->
 <div class ="headerdiv"  id = "herodiv"  style = "
   <%- if @user.backgroundimage.present? -%>
-    background-image: url(<%= @user.backgroundimage.url %>); box-shadow: inset 0 0 0 1000px rgba(0,0,0,.5); 
+    background-image: url(<%= @user.backgroundimage.url %>); box-shadow: inset 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   <% else %>
     background-color: white;
   <% end %>
@@ -35,9 +35,10 @@
     <h3 style = "color: white; margin: 1em 0;">      
       <%= @user.websitesubheader.upcase if @user.websitesubheader %>
     </h3>
-    <h4 style = "color: white; margin: 1em 1em;">      
-      <%= @user.websitedescription.upcase if @user.websitedescription %>
-    </h4>
+    <h3 style = "color: white; margin: 1em 0;">      
+      GOOD CREDIT - BAD CREDIT - NO CREDIT EVERYBODY GETS APPROVED!
+    </h3>
+   
 
 </div>
 
@@ -50,8 +51,10 @@
     <% end %>
 </div>
 
-<div class="col-xs-12 text-center" style = "background-color: #fff; padding: 12px;">
-    <hr>    
+<%= render :partial => 'listings/user_badges', :locals => { :user => @user }%>
+
+<div class="col-sm-12 col-md-12 col-lg-12 text-center" style = "background-color: #fff; padding: 12px;">  
+
                   <% if @user.role ==  "BASIC DEALER" %>
                     <%= render :partial => 'listings/basic_dealer_info', :locals => { :i => @user } %>
                   <% elsif @user.role ==  "SILVER DEALER" %>
@@ -62,7 +65,25 @@
                     <%= render :partial => 'listings/diamond_dealer_info', :locals => { :i => @user } %>                    
                   <% else %>
                     <%= render :partial => 'listings/basic_dealer_info', :locals => { :i => @user }%>
-                  <% end %>                                
+                  <% end %>                               
+</div>
+
+<div class="col-sm-12 col-md-12 col-lg-12 text-center" style = "background-color: #fff; padding: 12px;"> 
+
+          <div class = "col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+                  <div class = "col-sm-12 col-md-12 col-lg-12 col-xs-12 text-center">
+                      <h1 style = "color:#7C064D; text-align: center;"> <strong>
+                        ABOUT US</strong>
+                      </h1>
+                    </div>  
+
+                    <div class = "col-sm-12 col-md-12 col-lg-12 col-xs-12 text-center">
+                      <p style = "display: inline;"><%= @user.websitedescription.upcase if @user.websitedescription %></p>
+                    </div> 
+
+        </div>
+
 </div>
 
 

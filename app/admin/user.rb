@@ -3,7 +3,7 @@ ActiveAdmin.register User do
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
- permit_params :email, :name, :role, :zipcode, :city, :street_address, :state, :phone_number, :password, :password_confirmation, :leads2dealscustomer, :slug
+ permit_params :email, :name, :role, :zipcode, :city, :street_address, :state, :phone_number, :password, :password_confirmation, :leads2dealscustomer, :slug, :verified,:tdcfinance 
 
   form do |f|
       f.inputs "User" do
@@ -71,6 +71,24 @@ ActiveAdmin.register User do
                 return false
             end
         end
+
+        def verify_user(user_id)
+            begin
+                User.find_by_id(user_id).update(:verified => true)
+                return true         
+            rescue
+                return false
+            end
+        end
+
+        def give_tdcfinance_priviliges(user_id)
+            begin
+                User.find_by_id(user_id).update(:tdcfinance => true)
+                return true         
+            rescue
+                return false
+            end
+        end
     end
 
     member_action :approve_users_listings_or_repairshops_method, method: :get do 
@@ -94,11 +112,31 @@ ActiveAdmin.register User do
     member_action :give_leadstodeals_priviliges_method, method: :get do 
         status = give_leadstodeals_priviliges(resource.id)
         if status 
-            redirect_to admin_users_path, notice: "Users given leads to deals leads"
+            redirect_to admin_users_path, notice: "User given leads to deals leads"
         else
-            redirect_to admin_users_path, notice: "there was some error while converting this user to leads to deals"
+            redirect_to admin_users_path, notice: "There was some error while converting this user to leads to deals"
         end
     end
+
+    member_action :verify_user_method, method: :get do 
+        status = verify_user(resource.id)
+        if status 
+            redirect_to admin_users_path, notice: "User Verified"
+        else
+            redirect_to admin_users_path, notice: "There was some error while converting this user"
+        end
+    end
+
+    member_action :give_tdcfinance_priviliges_method, method: :get do 
+        status = give_tdcfinance_priviliges(resource.id)
+        if status 
+            redirect_to admin_users_path, notice: "User is now TDC Finance user"
+        else
+            redirect_to admin_users_path, notice: "There was some error while converting this user"
+        end
+    end
+
+
 
 
 
@@ -125,11 +163,23 @@ ActiveAdmin.register User do
 	    	link_to "Yes hold all", hold_users_listings_or_repairshops_method_admin_user_path(user)
 	    end
 
-        column :leads2dealscustomer
+        column :verified
+        column :leads2dealscustomer        
+        column :tdcfinance 
+
+        column "Verified user" do |user|
+            link_to "Yes Verified",  verify_user_method_admin_user_path(user)
+        end
 
         column "Convert user to leads 2 deals customer" do |user|
             link_to "Yes convert User",  give_leadstodeals_priviliges_method_admin_user_path(user)
         end
+
+        column "Convert user to TDC Finance customer" do |user|
+            link_to "Yes convert User",  give_tdcfinance_priviliges_method_admin_user_path(user)
+        end
+
+    
 	
 		column "Website", :website 
 		column "Zipcode", :zipcode
