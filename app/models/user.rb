@@ -48,6 +48,10 @@ class User < ActiveRecord::Base
 
     scope :all_emails_for_send_all, -> {leads2deals.emails.push("allleads2deals")}
 
+    def self.get_dealers_count
+      User.where(:role => [1, 3, 4, 6]).count
+    end
+
     # scope :leads2dealsemails, -> {leads2deals.emails}
 
 

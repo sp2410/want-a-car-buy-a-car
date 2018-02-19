@@ -16,6 +16,11 @@ class CategoriesController < ApplicationController
 		@wholesalecars = Listing.other_wholesale_listings.order("#{sort_column}" + " " + "#{sort_direction}")
 
 		@listings = Listing.approved_all
+
+		@carcount = Listing.where(:approved => true).count
+		@repairshopscount = Repairshop.where(:approved => true).count
+		@dealercount = User.get_dealers_count
+		
 		
 
 		respond_to do |format|

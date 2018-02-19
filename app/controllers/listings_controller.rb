@@ -116,7 +116,10 @@ class ListingsController < ApplicationController
 		@listings_interiorcolor = Listing.listing_search_interiorcolor(@listings)
 		@listings_year = Listing.listing_search_year(@listings)
 
-
+		@carcount = Listing.where(:approved => true).count
+		@repairshopscount = Repairshop.where(:approved => true).count
+		@dealercount = User.get_dealers_count
+		
 
 
 	end
@@ -164,6 +167,11 @@ class ListingsController < ApplicationController
 		@listings_color = Listing.listing_search_color(@listings)
 		@listings_interiorcolor = Listing.listing_search_interiorcolor(@listings)
 		@listings_year =Listing.listing_search_year(@listings)
+
+		@carcount = Listing.where(:approved => true).count
+		@repairshopscount = Repairshop.where(:approved => true).count
+		@dealercount = User.get_dealers_count
+		
 	end
 
 	# def searchbyuser		
@@ -260,6 +268,11 @@ class ListingsController < ApplicationController
 	  	@dealers_cities = User.dealers_search_cities(@dealers)
 		@dealers_states = User.dealers_search_states(@dealers)
 		@dealers_ratings = User.get_ratings_for_each(@dealers)
+
+		@carcount = Listing.where(:approved => true).count
+		@repairshopscount = Repairshop.where(:approved => true).count
+		@dealercount = User.get_dealers_count
+		
 
 	end
 

@@ -17,6 +17,10 @@ class RepairshopsController < InheritedResources::Base
 
 	def index
 		@repairshops = Repairshop.where(:approved => true)
+		@carcount = Listing.where(:approved => true).count
+		@repairshopscount = Repairshop.where(:approved => true).count
+		@dealercount = User.get_dealers_count
+		
 	end	
 
 	def new
@@ -84,6 +88,11 @@ class RepairshopsController < InheritedResources::Base
 	  		@repairshops = @repairshops.where(:state => @current_filters[:state]) if @current_filters[:state]
 	  		
 	  	end
+
+	  	@carcount = Listing.where(:approved => true).count
+		@repairshopscount = Repairshop.where(:approved => true).count
+		@dealercount = User.get_dealers_count
+		
 
 	  	# @repairshops = @repairshops.order("#{sort_column}" + " " + "#{sort_direction}")
 

@@ -3,7 +3,7 @@
     <div class= "col-xs-12 col-sm-12 col-lg-12 col-md-12" >
 
       <div class="tab">
-        <button class="tablinks1" onclick="openCity1(event, 'Dealerships')" id="defaultOpen1">Find Dealers</button>
+        <button class="tablinks1" onclick="openCity1(event, 'Dealerships')" id="defaultOpen1">Find  Dealerships</button>
         <button class="tablinks1" onclick="openCity1(event, 'ServiceCenter')">Find Repairshops and Service Centers</button>  
         <button class="tablinks1" onclick="openCity1(event, 'Make')"  >Search Cars By Make</button>
         <button class="tablinks1" onclick="openCity1(event, 'Type')">Search Cars By Type</button>
@@ -143,11 +143,11 @@
     <div id="Dealerships" class="tabcontent1">
         <section class="formclass">
 
-                    <h3 style = "color:#F00000; text-align: center;"><strong><%= @repairshopscount %> DEALERS TRUST US!</strong></h3>
+                    <h3 style = "color:#F00000; text-align: center;"><strong><%= @dealercount %> DEALERSHIPS TRUST US!</strong></h3>
 
                     <hr>
 
-                    <h3 style = "color:#7C064D;"><span class="glyphicon glyphicon-search"></span> <strong>SEARCH DEALERS NEAR YOU</strong></h3>
+                    <h3 style = "color:#7C064D;"><span class="glyphicon glyphicon-search"></span> <strong>SEARCH DEALERSHIPS NEAR YOU</strong></h3>
 
                     <%= form_tag dealer_search_listings_path, method: :get do |f| %>
 
