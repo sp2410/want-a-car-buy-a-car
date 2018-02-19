@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   
   devise_for :installs
 
-  resources :users do    
+  resources :users do      
     resources :reviews, only: [ :new, :edit, :create, :update, :destroy] do 
       member do
         get :raise_appeal
@@ -52,6 +52,8 @@ Rails.application.routes.draw do
 
   root 'categories#index'
   # mount Sidekiq::Web, at: '/sidekiq'
+
+  match '/userpage/:id', to: 'listings#userpage', via: :get, as: "userpage"
   
   match '/help', to: 'pages#help', via: :get
   match '/scams', to: 'pages#scams', via: :get
@@ -61,7 +63,7 @@ Rails.application.routes.draw do
   match '/about', to: 'pages#about', via: :get
   match '/contact', to: 'pages#contact', via: :get
   match '/mylistings', to: 'listings#mylistings', via: :get
-  match '/userpage', to: 'listings#userpage', via: :get
+  
   match '/myrepairshops', to: 'repairshops#myrepairshops', via: :get
 
   match '/usedcars', to: 'listings#usedcars', via: :get

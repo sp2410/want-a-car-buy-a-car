@@ -35,7 +35,7 @@ gem 'devise'
 # gem 'cancancan', '~> 1.9'
 gem "sidekiq"
 
-
+gem 'friendly_id', '~> 5.1.0'
 
 
 gem 'sdoc', '~> 0.4.0'

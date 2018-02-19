@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180218013133) do
+ActiveRecord::Schema.define(version: 20180219031558) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -256,10 +256,12 @@ ActiveRecord::Schema.define(version: 20180218013133) do
     t.string   "websitesubheader",       limit: 255
     t.string   "websitedescription",     limit: 255
     t.boolean  "leads2dealscustomer",                default: false
+    t.string   "slug",                   limit: 255
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+  add_index "users", ["slug"], name: "index_users_on_slug", using: :btree
 
   add_foreign_key "brands_we_services", "repairshops"
   add_foreign_key "coupons", "repairshops"

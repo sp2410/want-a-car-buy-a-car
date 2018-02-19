@@ -263,9 +263,14 @@ class ListingsController < ApplicationController
 
 	end
 
-	def userpage 
-		@user_id = params[:id]
-		@user = User.find_by_id(@user_id)
+	def userpage 			
+		# @user = User.find_by_id(@user_id)
+		@user = User.where(:slug => params[:id]).first
+		@user_id = @user.id
+		# (slug: params[:id])		
+
+		# p @user
+
 		@parent = @user		
 
 
@@ -280,6 +285,28 @@ class ListingsController < ApplicationController
 		@wholesalecars = @user_listings.where('user_id=?', @user_id).where(:approved => true).where(:wholesale => true).order("#{sort_column}" + " " + "#{sort_direction}")
 		@repairshops = Repairshop.where('user_id=?', @user_id).where(:approved => true)
 	end 
+
+	# def userpage 
+	# 	@user_id = params[:id]		
+	# 	# @user = User.find_by_id(@user_id)
+	# 	@user = User.where(slug: params[:id]) 
+	# 	# (slug: params[:id])
+
+	# 	@parent = @user		
+
+
+	# 	@inquiries = Inquiry.where(:to_email => @user.email).order('created_at DESC')
+		
+	# 	@user_listings = Listing.where('user_id=?', @user_id).where(:approved => true)
+		
+	# 	@note = Note.new
+
+	# 	@newcars = @user_listings.where('user_id=?', @user_id).where(:approved => true).where(:newused => "N").order("#{sort_column}" + " " + "#{sort_direction}")
+	# 	@usedcars = @user_listings.where('user_id=?', @user_id).where(:approved => true).where(:newused => "U").order("#{sort_column}" + " " + "#{sort_direction}")
+	# 	@wholesalecars = @user_listings.where('user_id=?', @user_id).where(:approved => true).where(:wholesale => true).order("#{sort_column}" + " " + "#{sort_direction}")
+	# 	@repairshops = Repairshop.where('user_id=?', @user_id).where(:approved => true)
+	# end 
+
 
 	
 	private

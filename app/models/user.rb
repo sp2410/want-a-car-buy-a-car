@@ -10,10 +10,14 @@ class User < ActiveRecord::Base
   has_one :repairshop, :dependent => :destroy
   has_many :reviews, :dependent => :destroy
 
+  extend FriendlyId
+  friendly_id :name, use: :slugged
 
-  def to_param
-    "#{id}-#{name}".parameterize
-  end
+  # def to_param
+  #   "#{id}-#{name}".parameterize
+  # end
+
+
 
 
 
