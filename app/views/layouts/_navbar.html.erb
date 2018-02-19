@@ -38,13 +38,14 @@
         <!-- <li>
             <%= link_to "ALL OFFERS", root_path %>
         </li>  -->
-        <!--  <li>
-          <%=link_to 'DEALER CORNER', dealercorner_path %>
-        </li>                                   
         <li>
+          <%=link_to 'ALL DEALERS', "/listings/dealer_search?utf8=%E2%9C%93&keywords=&location=&radius=&commit=Search" %>
+        </li>    
+
+        <!-- <li>
           <%=link_to 'PRICING', pricing_path %>
         </li>   -->                                 
-             
+              -->
         <% if current_user %>                
 
           <% if current_user.user_has_both %>
