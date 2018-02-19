@@ -104,18 +104,251 @@ class Listing < ActiveRecord::Base
 	
 	#facets
 
-	scope :listing_search_cities, -> {group('created_at, city').count}
-	scope :listing_search_body_type, -> {group('created_at, bodytype').count}
-	scope :listing_search_states, -> {group('created_at, state').count}
-	scope :listing_search_newused, -> {group('created_at, newused').count}
-	scope :listing_search_transmission, -> {group('created_at, transmission').count}
-	scope :listing_search_cylinder, -> {group('created_at, cylinder').count}
-	scope :listing_search_fuel, -> {group('created_at, fuel').count}
-	scope :listing_search_drive, -> {group('created_at, drive').count}
-	scope :listing_search_trim, -> {group('created_at, trim').count}
-	scope :listing_search_color, -> {group('created_at, color').count}
-	scope :listing_search_year, -> {group('created_at, year').count}
-	scope :listing_search_interiorcolor, -> {group('created_at, interiorcolor').count}
+	# scope :listing_search_cities, -> {group('created_at, city').count}
+	# scope :listing_search_body_type, -> {group('created_at, bodytype').count}
+	# #scope :listing_search_states, -> {group('created_at, state').count}
+	# scope :listing_search_newused, -> {group('created_at, newused').count}
+	# scope :listing_search_transmission, -> {group('created_at, transmission').count}
+	# scope :listing_search_cylinder, -> {group('created_at, cylinder').count}
+	# scope :listing_search_fuel, -> {group('created_at, fuel').count}
+	# scope :listing_search_drive, -> {group('created_at, drive').count}
+	# scope :listing_search_trim, -> {group('created_at, trim').count}
+	# scope :listing_search_color, -> {group('created_at, color').count}
+	# scope :listing_search_year, -> {group('created_at, year').count}
+	# scope :listing_search_interiorcolor, -> {group('created_at, interiorcolor').count}
+
+
+
+    def self.listing_search_cities(listings)
+      return {} if listings.size < 1
+
+      final_hash = Hash.new
+
+      listings.each do |listing|
+        city = listing.city
+        if final_hash.has_key?(city)
+          final_hash[city] += 1
+        else
+          final_hash[city] = 1
+        end
+      end
+
+      return final_hash
+    end
+
+
+    def self.listing_search_states(listings)
+      return {} if listings.size < 1
+
+      final_hash = Hash.new
+
+      listings.each do |listing|
+        state = listing.state
+        if final_hash.has_key?(state)
+          final_hash[state] += 1
+        else
+          final_hash[state] = 1
+        end
+      end
+
+      return final_hash
+    end
+
+
+ def self.listing_search_body_type(listings)
+      return {} if listings.size < 1
+
+      final_hash = Hash.new
+
+      listings.each do |listing|
+        state = listing.bodytype
+        if final_hash.has_key?(state)
+          final_hash[state] += 1
+        else
+          final_hash[state] = 1
+        end
+      end
+
+      return final_hash
+    end
+
+
+ def self.listing_search_newused(listings)
+      return {} if listings.size < 1
+
+      final_hash = Hash.new
+
+      listings.each do |listing|
+        state = listing.newused
+        if final_hash.has_key?(state)
+          final_hash[state] += 1
+        else
+          final_hash[state] = 1
+        end
+      end
+
+      return final_hash
+    end
+
+
+ def self.listing_search_transmission(listings)
+      return {} if listings.size < 1
+
+      final_hash = Hash.new
+
+      listings.each do |listing|
+        state = listing.transmission
+        if final_hash.has_key?(state)
+          final_hash[state] += 1
+        else
+          final_hash[state] = 1
+        end
+      end
+
+      return final_hash
+    end
+
+
+ def self.listing_search_cylinder(listings)
+      return {} if listings.size < 1
+
+      final_hash = Hash.new
+
+      listings.each do |listing|
+        state = listing.cylinder
+        if final_hash.has_key?(state)
+          final_hash[state] += 1
+        else
+          final_hash[state] = 1
+        end
+      end
+
+      return final_hash
+    end
+
+
+ def self.listing_search_fuel(listings)
+      return {} if listings.size < 1
+
+      final_hash = Hash.new
+
+      listings.each do |listing|
+        state = listing.fuel
+        if final_hash.has_key?(state)
+          final_hash[state] += 1
+        else
+          final_hash[state] = 1
+        end
+      end
+
+      return final_hash
+    end
+
+
+ def self.listing_search_drive(listings)
+      return {} if listings.size < 1
+
+      final_hash = Hash.new
+
+      listings.each do |listing|
+        state = listing.drive
+        if final_hash.has_key?(state)
+          final_hash[state] += 1
+        else
+          final_hash[state] = 1
+        end
+      end
+
+      return final_hash
+    end
+
+
+ def self.listing_search_trim(listings)
+      return {} if listings.size < 1
+
+      final_hash = Hash.new
+
+      listings.each do |listing|
+        state = listing.trim
+        if final_hash.has_key?(state)
+          final_hash[state] += 1
+        else
+          final_hash[state] = 1
+        end
+      end
+
+      return final_hash
+    end
+
+
+ def self.listing_search_color(listings)
+      return {} if listings.size < 1
+
+      final_hash = Hash.new
+
+      listings.each do |listing|
+        state = listing.color
+        if final_hash.has_key?(state)
+          final_hash[state] += 1
+        else
+          final_hash[state] = 1
+        end
+      end
+
+      return final_hash
+    end
+
+
+ def self.listing_search_year(listings)
+      return {} if listings.size < 1
+
+      final_hash = Hash.new
+
+      listings.each do |listing|
+        state = listing.year
+        if final_hash.has_key?(state)
+          final_hash[state] += 1
+        else
+          final_hash[state] = 1
+        end
+      end
+
+      return final_hash
+    end
+
+
+ def self.listing_search_interiorcolor(listings)
+      return {} if listings.size < 1
+
+      final_hash = Hash.new
+
+      listings.each do |listing|
+        state = listing.interiorcolor
+        if final_hash.has_key?(state)
+          final_hash[state] += 1
+        else
+          final_hash[state] = 1
+        end
+      end
+
+      return final_hash
+    end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

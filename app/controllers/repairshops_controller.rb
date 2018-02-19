@@ -87,8 +87,8 @@ class RepairshopsController < InheritedResources::Base
 
 	  	# @repairshops = @repairshops.order("#{sort_column}" + " " + "#{sort_direction}")
 
-	  	@repairshops_cities = @repairshops.repairshop_search_cities			
-		@repairshops_states = @repairshops.repairshop_search_states
+	  	@repairshops_cities = Repairshop.repairshop_search_cities(@repairshops)
+		@repairshops_states = Repairshop.repairshop_search_states(@repairshops)
 		
 	end
 

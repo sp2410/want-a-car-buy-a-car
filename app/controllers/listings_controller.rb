@@ -100,21 +100,21 @@ class ListingsController < ApplicationController
 
 	  	# @listings = @listings.order("#{sort_column}" + " " + "#{sort_direction}")
 
-	  	@listings_cities = @listings.listing_search_cities	
-		@listings_bodytype = @listings.listing_search_body_type
-		@listings_states = @listings.listing_search_states
+	  	@listings_cities = Listing.listing_search_cities(@listings)
+		@listings_bodytype = Listing.listing_search_body_type(@listings)
+		@listings_states = Listing.listing_search_states(@listings)
 
-		@listings_newused = @listings.listing_search_newused
-		@listings_cylinder = @listings.listing_search_cylinder
-		@listings_transmission = @listings.listing_search_transmission
-		@listings_drive = @listings.listing_search_drive
-		@listings_trim = @listings.listing_search_trim
+		@listings_newused = Listing.listing_search_newused(@listings)
+		@listings_cylinder = Listing.listing_search_cylinder(@listings)
+		@listings_transmission = Listing.listing_search_transmission(@listings)
+		@listings_drive = Listing.listing_search_drive(@listings)
+		@listings_trim = Listing.listing_search_trim(@listings)
 
-		@listings_fuel = @listings.listing_search_fuel
+		@listings_fuel = Listing.listing_search_fuel(@listings)
 
-		@listings_color = @listings.listing_search_color
-		@listings_interiorcolor = @listings.listing_search_interiorcolor
-		@listings_year = @listings.listing_search_year
+		@listings_color = Listing.listing_search_color(@listings)
+		@listings_interiorcolor = Listing.listing_search_interiorcolor(@listings)
+		@listings_year = Listing.listing_search_year(@listings)
 
 
 
@@ -149,21 +149,21 @@ class ListingsController < ApplicationController
 	  	end
 
 	  	
-		@listings_cities = @listings.listing_search_cities	
-		@listings_bodytype = @listings.listing_search_body_type
-		@listings_states = @listings.listing_search_states
+		@listings_cities = Listings.listing_search_cities(@listings)
+		@listings_bodytype = Listing.listing_search_body_type(@listings)
+		@listings_states = Listing.listing_search_states(@listings)
 
-		@listings_newused = @listings.listing_search_newused
-		@listings_cylinder = @listings.listing_search_cylinder
-		@listings_transmission = @listings.listing_search_transmission
-		@listings_drive = @listings.listing_search_drive
-		@listings_trim = @listings.listing_search_trim
+		@listings_newused = Listing.listing_search_newused(@listings)
+		@listings_cylinder = Listing.listing_search_cylinder(@listings)
+		@listings_transmission = Listing.listing_search_transmission(@listings)
+		@listings_drive = Listing.listing_search_drive(@listings)
+		@listings_trim = Listing.listing_search_trim(@listings)
 
-		@listings_fuel = @listings.listing_search_fuel
+		@listings_fuel = Listing.listing_search_fuel(@listings)
 
-		@listings_color = @listings.listing_search_color
-		@listings_interiorcolor = @listings.listing_search_interiorcolor
-		@listings_year = @listings.listing_search_year
+		@listings_color = Listing.listing_search_color(@listings)
+		@listings_interiorcolor = Listing.listing_search_interiorcolor(@listings)
+		@listings_year =Listing.listing_search_year(@listings)
 	end
 
 	# def searchbyuser		
@@ -257,8 +257,8 @@ class ListingsController < ApplicationController
 
 	  	# @listings = @listings.order("#{sort_column}" + " " + "#{sort_direction}")
 
-	  	@dealers_cities = @dealers.dealers_search_cities			
-		@dealers_states = @dealers.dealers_search_states
+	  	@dealers_cities = User.dealers_search_cities(@dealers)
+		@dealers_states = User.dealers_search_states(@dealers)
 		@dealers_ratings = User.get_ratings_for_each(@dealers)
 
 	end

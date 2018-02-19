@@ -51,8 +51,42 @@ class User < ActiveRecord::Base
     # scope :leads2dealsemails, -> {leads2deals.emails}
 
 
-    scope :dealers_search_cities, -> {group('created_at, city').count}    
-    scope :dealers_search_states, -> {group('created_at, state').count}    
+    # scope :dealers_search_cities, -> {group('created_at, city').count}    
+    # scope :dealers_search_states, -> {group('created_at, state').count}   
+
+    def self.dealers_search_cities(users)
+      return {} if users.size < 1
+
+      final_hash = Hash.new
+
+      users.each do |user|
+        city = user.city
+        if final_hash.has_key?(city)
+          final_hash[city] += 1
+        else
+          final_hash[city] = 1
+        end
+      end
+
+      return final_hash
+    end
+
+    def self.dealers_search_states(users)
+      return {} if users.size < 1
+
+      final_hash = Hash.new
+
+      users.each do |user|
+        state = user.state
+        if final_hash.has_key?(state)
+          final_hash[state] += 1
+        else
+          final_hash[state] = 1
+        end
+      end
+
+      return final_hash
+    end
     # scope :user_search_ratings, -> {group(:state).count}
 
 
