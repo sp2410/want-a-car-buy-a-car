@@ -22,10 +22,10 @@
 
   <div class= "col-xs-12 col-sm-12 col-lg-12 col-md-12" style = "margin: auto;">
     <div class= "col-xs-6 col-sm-6 col-lg-6 col-md-6" style = "margin: auto;">
-      <%= f.text_field :from_email, :label => "Your Email" %>
+      <%= f.text_field :from_email, :label => "Email" %>
     </div>
     <div class= "col-xs-6 col-sm-6 col-lg-6 col-md-6" style = "margin: auto;">
-      <%= f.text_field :phone, :label => "Your Phone" %>
+      <%= f.text_field :phone, :label => "Phone" %>
     </div>    
   </div> 
 
@@ -43,7 +43,7 @@
    
   <div class= "col-xs-12 col-sm-12 col-lg-12 col-md-12" style = "margin: auto;">
     <%= f.text_field :subject %>  
-    <%= f.text_area :comment, :label => "Your Inquiry" %>
+    <%= f.text_area :comment, :label => "Your Message" %>
   </div>
 
     <%= f.submit "Send Message", class: "btn btn-danger"  %>
