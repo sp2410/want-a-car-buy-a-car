@@ -93,7 +93,7 @@
             <% end %>
 
             <div class = "col-xs-6 col-sm-6 col-md-6 col-lg-6" ">
-             <div class = "col-xs-12 col-sm-12 col-md-12 col-lg-12" style = "max-height: 70vh; overflow-y: scroll; overflow-x: hidden; ">
+             <div class = "col-xs-12 col-sm-12 col-md-12 col-lg-12" style = "max-height: 100vh; overflow-y: scroll; overflow-x: hidden; ">
                 <%- @dealers.each do |i| -%>  
                    <% if i.role ==  "BASIC DEALER" %>
                     <%= render :partial => 'listings/basic_dealer_info', :locals => { :i => i } %>
