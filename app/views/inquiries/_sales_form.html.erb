@@ -46,7 +46,7 @@
 
 
 
-        <%= hidden_field_tag :parent_id, @parent.slug  %>    
+        <%= hidden_field_tag :parent_id, @parent.id  %>    
         <%= hidden_field_tag :parent_type, @parent.class.name  %>    
 
        <%= f.submit "Send Message", class: "btn btn-danger"  %>
