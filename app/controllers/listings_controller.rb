@@ -190,7 +190,8 @@ class ListingsController < ApplicationController
 
 	def import
 		begin
-			CsvWorker.perform_async(params[:file].path)		
+			# CsvWorker.perform_async(params[:file].path)		
+			CsvWorker.perform_async(params[:file])		
 			redirect_to root_url, notice: "Hello! This upload job has been added for background importing. Please wait for few minutes and then cross check on listings page. Please recheck your CSV file headers and rows if new listings were not imported."
 		rescue
 			redirect_to root_url, notice: "There was some error with the import. Kindly check your CSV file or contact admin."

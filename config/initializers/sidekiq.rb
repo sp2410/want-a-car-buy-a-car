@@ -3,7 +3,7 @@ Sidekiq.configure_client do |config|
 end
 
 Sidekiq.configure_server do |config|
-	config.redis = {size: 7, db: 0, url: ENV["REDISTOGO_URL"] || 'redis://localhost:6379/0'}
+	config.redis = {size: 1, db: 0, url: ENV["REDISTOGO_URL"] || 'redis://localhost:6379/0'}
 end
 
 # # REDIS = Redis.new(:url => )
