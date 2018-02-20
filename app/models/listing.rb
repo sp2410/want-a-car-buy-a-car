@@ -470,7 +470,7 @@ class Listing < ActiveRecord::Base
 
 				# listing.attributes = .merge(user_id: current_user.id).merge(category_id: row["category"]).merge(subcategory_id: row["subcategory"])
 				# p data
-				begin
+				# begin
 					# p data.except(:all_images)
 					# p data
 					listing.attributes = data.slice(:user_id, :newused, :vin, :stocknumber, :bodytype, :make, :model, :year, :trim, :miles, :enginedescription, :cylinder, :fuel, :transmission, :price, :color , :interiorcolor, :color, :options, :description, :approved)
@@ -527,9 +527,9 @@ class Listing < ActiveRecord::Base
 
 					data.clear
 
-				rescue Exception => e
+				# rescue Exception => e
 					
-				end
+				# end
 				
 
 
