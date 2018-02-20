@@ -556,8 +556,8 @@ class Listing < ActiveRecord::Base
 
 		# begin
 			# p valid_listings
-			#Listing.import valid_listings, on_duplicate_key_update: { conflict_target: [:vin], columns: [:user_id, :newused, :stocknumber, :model, :year, :trim, :miles, :enginedescription,:cylinder,:fuel,:transmission,  :price, :color, :interiorcolor, :options, :description,:city, :state, :zipcode, :approved]}
-			Listing.import valid_listings, on_duplicate_key_update: [:user_id, :newused, :stocknumber, :model, :year, :trim, :miles, :enginedescription,:cylinder,:fuel,:transmission,  :price, :color, :interiorcolor, :options, :description,:city, :state, :zipcode, :approved]
+			Listing.import valid_listings, on_duplicate_key_update: { conflict_target: [:vin], columns: [:user_id, :newused, :stocknumber, :model, :year, :trim, :miles, :enginedescription,:cylinder,:fuel,:transmission,  :price, :color, :interiorcolor, :options, :description,:city, :state, :zipcode, :approved]}
+			#Listing.import valid_listings, on_duplicate_key_update: [:user_id, :newused, :stocknumber, :model, :year, :trim, :miles, :enginedescription,:cylinder,:fuel,:transmission,  :price, :color, :interiorcolor, :options, :description,:city, :state, :zipcode, :approved]
 			# }
 			# p Listing.count
 			# p Listing.all
