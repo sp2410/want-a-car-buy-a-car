@@ -6,7 +6,7 @@ class CsvWorker
 
 	def perform(file)
 		#call import listings class method on the file.		
-		imported = Listing.import_listings(file.path)
+		imported = Listing.import_listings(file)
 		# return true	
 	end
 end
