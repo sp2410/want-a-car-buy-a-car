@@ -11,7 +11,7 @@
     </div>
   <% end %>
   
-  <%= hidden_field_tag :parent_id, @parent.slug  %>       
+  <%= hidden_field_tag :parent_id, @parent.id  %>       
   
   <div class="field">    
     <%= f.text_area :note, size: "30x10", :placeholder => "Add new note" %>
