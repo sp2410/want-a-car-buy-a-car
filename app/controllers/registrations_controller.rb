@@ -27,11 +27,17 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # GET /resource/edit
   def edit
     super
+
   end
 
   # PUT /resource
   def update
     super
+    @city = resource.city
+    @state = resource.state
+    @zipcode = resource.zipcode
+
+    resource.listings.update_all(:city => @city, :state => @state, :zipcode => @zipcode)
   end
 
   # DELETE /resource
