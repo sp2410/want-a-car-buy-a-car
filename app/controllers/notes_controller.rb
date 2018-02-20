@@ -54,7 +54,7 @@ class NotesController < InheritedResources::Base
 
     def get_parent(params)    	
     	if params[:parent_id]
-    		return userpage_path(:id => params[:parent_id])		
+    		return userpage_path(:slug => User.where(:id => params[:parent_id]).slug)	
     	else
     		return root_path
     	end		
