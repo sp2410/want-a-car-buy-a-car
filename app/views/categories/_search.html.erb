@@ -18,11 +18,11 @@
             <section class="formclass">
 
               <!-- f.select :transmission, ['Automanual','Automatic','Automatic 4 Speed','Automatic 5 Speed','Automatic 6 Speed','CVT','Manual'] -->
-                <h3 style = "color:#F00000; text-align: center;"><strong><%= @carcount %> CARS LISTED!</strong></h3>
+                <h3 style = "color:#F00000; text-align: center;"><strong><%= @carcount %> VEHICLES LISTED!</strong></h3>
 
                 <hr>
 
-                <h3 style = "color:#7C064D;"><span class="glyphicon glyphicon-search"></span> <strong>SEARCH CARS FOR SALE BY MAKE</strong></h3>
+                <h3 style = "color:#7C064D;"><span class="glyphicon glyphicon-search"></span> <strong>SEARCH VEHICLES FOR SALE BY MAKE</strong></h3>
                 <%= form_tag search_listings_path, method: :get, class: 'navbar-form navbar-center' do |f| %>
 
                 <div class= "col-xs-12 col-sm-12 col-lg-12 col-md-12"> 
@@ -73,11 +73,11 @@
       <div id="Type" class="tabcontent1">
         <section class="formclass">
 
-                <h3 style = "color:#F00000; text-align: center;"><strong><%= @carcount %> CARS LISTED!</strong></h3>
+                <h3 style = "color:#F00000; text-align: center;"><strong><%= @carcount %> VEHICLES LISTED!</strong></h3>
 
                 <hr>
 
-                <h3 style = "color:#7C064D;"><span class="glyphicon glyphicon-search"></span> <strong>SEARCH CARS FOR SALE BY BODY TYPE</strong></h3>
+                <h3 style = "color:#7C064D;"><span class="glyphicon glyphicon-search"></span> <strong>SEARCH VEHICLES FOR SALE BY BODY TYPE</strong></h3>
 
                 <%= form_tag search_listings_path, method: :get, class: 'navbar-form navbar-center' do |f| %>
 
