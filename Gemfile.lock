@@ -518,6 +518,7 @@ DEPENDENCIES
   heroku-deflater
   jbuilder (~> 2.0)
   jquery-rails
+  json
   mini_magick (~> 4.3)
   mysql2 (= 0.3.21)
   pg (~> 0.20)

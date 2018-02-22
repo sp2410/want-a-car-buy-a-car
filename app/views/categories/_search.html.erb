@@ -187,41 +187,22 @@
 
 $( document ).ready(function() {
 
-
-    var prev ="https://api.edmunds.com/api/vehicle/v2/makes";
-    var rest ="?fmt=json&api_key=";
-    var key = "<%= ENV['EDMUNDS_API_KEY'] %>";
-    var net = prev+rest+key;
-
+    var data = <%= edmunds_json.to_s.gsub("=>",":").html_safe %>;
     var options = [];
     options.push("All");
     var dictionary = {};
+    change_make(data);
+    change_model();
 
-    
-    console.log("hello");
-
-         $.ajax({
-
-            url: net,
-            dataType: "json",
-            type: "get", 
-            data: $(this).serialize()
-         }).done(function(data){
-            change_make(data);
-            change_model();
-         });
-
-    
+    // console.log(data);
 
 
     function change_make(data) {
         
-        // options.empty();
-        // dictionary.empty();
-    
-        
+        console.log(data["makes"]);
         
         for (var key in data["makes"]){
+
             if (data["makes"].hasOwnProperty(key)){
 
                 var make = data["makes"][key];
