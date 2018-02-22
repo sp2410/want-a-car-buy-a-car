@@ -24,7 +24,7 @@
           <h3 style = "color:#7C064D; text-align: center;"><strong>BODY TYPE</strong></h3>
 
           <%- @listings_bodytype.each do |key, value| -%>
-            <%= link_to "#{key.upcase if key} (#{value})" , search_listings_path(filters: @current_filters.merge(:bodytype => "#{key}")), {:class => "btn btn-danger another"} %>
+            <%= link_to "#{key.upcase if key} (#{value})" , search_listings_path(params.merge(filters: @current_filters.merge(:bodytype => "#{key}"))), {:class => "btn btn-danger another"} %>
           <% end %>
           
                           
@@ -158,7 +158,7 @@
 
                 <% if value != ""  %>
                    
-                   <%= link_to search_listings_path(filters: @current_filters.except(key)), {:class => "btn btn-danger applied"}  do %>
+                   <%= link_to search_listings_path(params.merge(filters: @current_filters.except(key))), {:class => "btn btn-danger applied"}  do %>
                    <%= value.upcase if value %> <span class="badge">X</span>
                    <% end %>
                 <% end %>
@@ -166,6 +166,7 @@
               <% end %>
 
         </div>
+
 
 
       

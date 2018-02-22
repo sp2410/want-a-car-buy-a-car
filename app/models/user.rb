@@ -229,6 +229,7 @@ class User < ActiveRecord::Base
   def self.dealer_search(params)
     if params
       dealers = User.where(:role => [1, 3, 4, 6])
+        # dealers = User.all
       
       if params[:radius].present?        
         dealers = User.where(id: dealers.near(params[:location], params[:radius]).map{|i| i.id}) if params[:location].present?  
@@ -237,8 +238,9 @@ class User < ActiveRecord::Base
         dealers = User.where(id: dealers.near(params[:location], 200).map{|i| i.id}) if params[:location].present?    
       end
 
-      if params[:keywords].present?         
-        dealers = dealers.joins(:listings).where("LOWER(listings.title) LIKE ? OR LOWER(listings.make) LIKE ? OR LOWER(listings.model) LIKE ? OR LOWER(users.name) LIKE ?", "%#{params[:keywords].downcase}%", "%#{params[:keywords].downcase}%", "%#{params[:keywords].downcase}%", "%#{params[:keywords].downcase}%")
+      if params[:keywords].present?      
+
+        dealers = dealers.joins("LEFT JOIN listings ON users.id = listings.user_id").where("LOWER(listings.title) LIKE ? OR LOWER(listings.make) LIKE ? OR LOWER(listings.model) LIKE ? OR LOWER(users.name) LIKE ?", "%#{params[:keywords].downcase}%", "%#{params[:keywords].downcase}%", "%#{params[:keywords].downcase}%", "%#{params[:keywords].downcase}%")
       end
 
       dealers.uniq

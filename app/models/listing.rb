@@ -16,9 +16,9 @@ class Listing < ActiveRecord::Base
 	# 	super
 	# end
 
-	def to_param
-	    "#{id}-#{title}".parameterize
-	 end
+	# def to_param
+	#     "#{id}-#{title}".parameterize
+	#  end
 
 
 

@@ -80,7 +80,9 @@ class ListingsController < ApplicationController
 
 		#Applied filters
 
-		@current_filters = params[:filters] || {:filters => ""}		
+		@current_filters = params[:filters] || {:filters => ""}	
+
+		p params
 
 		# @current_filters = @current_filters.merge({:sort => sort_column, :direction => sort_direction})
 
