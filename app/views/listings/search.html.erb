@@ -37,7 +37,7 @@
 
           
             <%- @listings_cities.each do |key, value| -%>
-              <%= link_to "#{key.upcase if key} (#{value})" , search_listings_path(filters: @current_filters.merge(:city => "#{key}")), {:class => "btn btn-danger another"} %>
+              <%= link_to "#{key.upcase if key} (#{value})" , search_listings_path(params.merge(filters: @current_filters.merge(:city => "#{key}")), {:class => "btn btn-danger another"} %>
             <% end %>
           
           
@@ -49,7 +49,7 @@
           <h3 style = "color:#7C064D; text-align: center;"><strong>STATE</strong></h3>
 
           <%-@listings_states.each do |key, value| -%>
-            <%= link_to "#{key.upcase if key} (#{value})" , search_listings_path(filters: @current_filters.merge(:state => "#{key}")), {:class => "btn btn-danger another"} %>
+            <%= link_to "#{key.upcase if key} (#{value})" , search_listings_path(params.merge(filters: @current_filters.merge(:state => "#{key}"))), {:class => "btn btn-danger another"} %>
           <% end %>
           
                           
@@ -60,7 +60,7 @@
           <h3 style = "color:#7C064D; text-align: center;"><strong>TRANSMISSION</strong></h3>
 
           <%- @listings_transmission.each do |key, value| -%>
-            <%= link_to "#{key.upcase if key} (#{value})" , search_listings_path(filters: @current_filters.merge(:transmission => "#{key}")), {:class => "btn btn-danger another"} %>
+            <%= link_to "#{key.upcase if key} (#{value})" , search_listings_path(params.merge(filters: @current_filters.merge(:transmission => "#{key}"))), {:class => "btn btn-danger another"} %>
           <% end %>
           
                           
@@ -71,7 +71,7 @@
           <h3 style = "color:#7C064D; text-align: center;"><strong>NEW & USED</strong></h3>
 
           <%- @listings_newused.each do |key, value| -%>
-            <%= link_to "#{key.upcase if key} (#{value})" , search_listings_path(filters: @current_filters.merge(:newused => "#{key}")), {:class => "btn btn-danger another"} %>
+            <%= link_to "#{key.upcase if key} (#{value})" , search_listings_path(params.merge(filters: @current_filters.merge(:newused => "#{key}"))), {:class => "btn btn-danger another"} %>
           <% end %>
           
                           
@@ -82,7 +82,7 @@
           <h3 style = "color:#7C064D; text-align: center;"><strong>CYLINDER</strong></h3>
 
           <%- @listings_cylinder.each do |key, value| -%>
-            <%= link_to "#{key.upcase if key} (#{value})" , search_listings_path(filters: @current_filters.merge(:cylinder => "#{key}")), {:class => "btn btn-danger another"} %>
+            <%= link_to "#{key.upcase if key} (#{value})" , search_listings_path(params.merge(filters: @current_filters.merge(:cylinder => "#{key}"))), {:class => "btn btn-danger another"} %>
           <% end %>
            
       </div>
@@ -92,7 +92,7 @@
           <h3 style = "color:#7C064D; text-align: center;"><strong>FUEL</strong></h3>
 
           <%- @listings_fuel.each do |key, value| -%>
-            <%= link_to "#{key.upcase if key} (#{value})" , search_listings_path(filters: @current_filters.merge(:fuel => "#{key}")), {:class => "btn btn-danger another"} %>
+            <%= link_to "#{key.upcase if key} (#{value})" , search_listings_path(params.merge(filters: @current_filters.merge(:fuel => "#{key}"))), {:class => "btn btn-danger another"} %>
           <% end %>
           
                           
@@ -103,7 +103,7 @@
           <h3 style = "color:#7C064D; text-align: center;"><strong>DRIVE</strong></h3>
 
           <%- @listings_drive.each do |key, value| -%>
-            <%= link_to "#{key.upcase if key} (#{value})" , search_listings_path(filters: @current_filters.merge(:drive => "#{key}")), {:class => "btn btn-danger another"} %>
+            <%= link_to "#{key.upcase if key} (#{value})" , search_listings_path(params.merge(filters: @current_filters.merge(:drive => "#{key}"))), {:class => "btn btn-danger another"} %>
           <% end %>
           
                           
@@ -114,34 +114,12 @@
           <h3 style = "color:#7C064D; text-align: center;"><strong>YEAR</strong></h3>
 
           <%- @listings_year.each do |key, value| -%>
-            <%= link_to "#{key.to_s.upcase if key} (#{value})" , search_listings_path(filters: @current_filters.merge(:year => "#{key}")), {:class => "btn btn-danger another"} %>
+            <%= link_to "#{key.to_s.upcase if key} (#{value})" , search_listings_path(params.merge(filters: @current_filters.merge(:year => "#{key}"))), {:class => "btn btn-danger another"} %>
           <% end %>
           
                           
       </div>
 
-           <div class = "col-xs-12 col-sm-12 col-md-12 col-lg-12" id = "searchboxcontainer2" style = " margin-top: 2em; -webkit-box-shadow: 1px 1px 2px 2px #ccc; -moz-box-shadow: 1px 1px 2px 2px #ccc; box-shadow: 1px 1px 2px 2px #ccc;  padding: 5px;">   
-
-          <h3 style = "color:#7C064D; text-align: center;"><strong>COLOR</strong></h3>
-
-          <%- @listings_color.each do |key, value| -%>
-            <%= link_to "#{key.upcase if key} (#{value})" , search_listings_path(filters: @current_filters.merge(:color => "#{key}")), {:class => "btn btn-danger another"} %> 
-          <% end %>
-          
-                          
-      </div>
-
-           <div class = "col-xs-12 col-sm-12 col-md-12 col-lg-12" id = "searchboxcontainer2" style = " margin-top: 2em; -webkit-box-shadow: 1px 1px 2px 2px #ccc; -moz-box-shadow: 1px 1px 2px 2px #ccc; box-shadow: 1px 1px 2px 2px #ccc;  padding: 5px;">   
-
-          <h3 style = "color:#7C064D; text-align: center;"><strong>INTERIOR COLOR</strong></h3>
-
-          <%- @listings_interiorcolor.each do |key, value| -%>
-            <%= link_to "#{key.upcase if key} (#{value})" , search_listings_path(filters: @current_filters.merge(:interiorcolor => "#{key}")), {:class => "btn btn-danger another"} %>
-          <% end %>
-          
-                          
-      </div>
- 
      
     </div>  
 
