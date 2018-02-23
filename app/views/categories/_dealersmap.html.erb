@@ -43,7 +43,7 @@
 
               // Attaching a click event to the current marker
               google.maps.event.addListener(marker, "dblclick", function(e) {
-                    var go_to = "/dealerlistings?id=" + markerData.id;
+                    var go_to = "/userpage/" + markerData.slug;
                   //window.location.href = go_to;
                     // location.href = go_to;
                     window.open(
