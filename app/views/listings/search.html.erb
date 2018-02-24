@@ -37,7 +37,7 @@
 
           
             <%- @listings_cities.each do |key, value| -%>
-              <%= link_to "#{key.upcase if key} (#{value})" , search_listings_path(params.merge(filters: @current_filters.merge(:city => "#{key}")), {:class => "btn btn-danger another"} %>
+              <%= link_to "#{key.upcase if key} (#{value})" , search_listings_path(params.merge(filters: @current_filters.merge(:city => "#{key}"))), {:class => "btn btn-danger another"} %>
             <% end %>
           
           
