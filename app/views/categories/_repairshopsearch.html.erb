@@ -105,16 +105,15 @@
 
                 <h3 style = "color:#7C064D;"><span class="glyphicon glyphicon-search"></span> <strong>SEARCH VEHICLES FOR SALE BY BODY TYPE</strong></h3>
 
-                <%= form_tag search_listings_path, method: :get, class: 'navbar-form navbar-center' do |f| %>
+                <%= form_tag bodysearch_listings_path, method: :get, class: 'navbar-form navbar-center' do |f| %>
 
                 <div class= "col-xs-12 col-sm-12 col-lg-12 col-md-12"> 
                     <%= select_tag :NewUsed, "<option>New</option><option>Used</option>".html_safe, style: "width: 100%; margin: 1% 0;" %>
                 </div>
 
                 <div class= "col-xs-12 col-sm-12 col-lg-12 col-md-12"> 
-                    <%= select_tag :bodytype, "<option>4dr Hatchback</option><option>2dr SUV </option><option>4dr SUV </option><option>Cargo Minivan </option><option>Cargo Van </option><option>Convertible </option><option>Convertible SUV </option><option>Coup </option><option>Crew Cab Pickup </option><option>Extended Cab Pickup </option><option>Passenger Minivan </option><option>Passenger Van </option><option>Regular Cab Pickup </option><option>Sedan </option><option>Wagon</option>".html_safe, style: "width: 100%; margin: 1% 0;" %>
-                </div>                
-
+                    <%= select_tag :bodytype, "<option>All</option><option>Hatchback</option><option>4dr Hatchback</option><option>SUV</option><option>2dr SUV </option><option>4dr SUV </option><option> Van </option><option>Cargo Minivan </option><option>Cargo Van </option><option>Convertible </option><option>Convertible SUV </option><option>Coup </option><option>Crew Cab Pickup </option><option>Pickup </option><option>Extended Cab Pickup </option><option>Passenger Minivan </option><option>Passenger Van </option><option>Regular Cab Pickup </option><option>Sedan </option><option>Wagon</option>".html_safe, style: "width: 100%; margin: 1% 0;" %>
+                </div>  
                 <div class= "col-xs-6 col-sm-6 col-lg-6 col-md-6"> 
                     <%= text_field_tag :minprice, nil, placeholder: 'Min Price', style: "width: 100%; margin: 1% 0;" %>
                 </div>

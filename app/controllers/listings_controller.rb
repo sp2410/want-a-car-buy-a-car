@@ -154,7 +154,7 @@ class ListingsController < ApplicationController
 	  	end
 
 	  	
-		@listings_cities = Listings.listing_search_cities(@listings)
+		@listings_cities = Listing.listing_search_cities(@listings)
 		@listings_bodytype = Listing.listing_search_body_type(@listings)
 		@listings_states = Listing.listing_search_states(@listings)
 

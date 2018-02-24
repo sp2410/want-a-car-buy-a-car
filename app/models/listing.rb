@@ -803,11 +803,11 @@ class Listing < ActiveRecord::Base
 
 	def self.bodysearch(params)
 		if params
-			listings = Listing.all
+			listings = Listing.where(approved: true).where('expiration_date > ?', DateTime.now)	
 
 			if params[:bodytype].present?
 				if params[:bodytype] != "All"
-					listings = listings.where("bodytype like '#{params[:bodytype].downcase}'") if params[:bodytype].present?			
+					listings = listings.where('LOWER(bodytype) like ?' ,"%#{params[:bodytype].downcase}%") if params[:bodytype].present?			
 				end
 			end
 			
