@@ -13,7 +13,7 @@
 <!-- Dealer Homepage -->
 <div class ="headerdiv"  id = "herodiv"  style = "
   <%- if @user.backgroundimage.present? -%>
-    background: linear-gradient(0deg,rgba(37, 63, 63, 0.55),rgba(37, 63, 63, 0.55)),url(<%= @user.backgroundimage.url %>);box-shadow: inset 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    background: url(<%= @user.backgroundimage.url %>);box-shadow: inset 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 
     /*background-image: url(<%= @user.backgroundimage.url %>); box-shadow: inset 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 
@@ -22,7 +22,9 @@
     background-color: white;
   <% end %>
   background-repeat: no-repeat; background-size:cover; background-position: center; text-align:  center; padding: 10em 5em;" > 
-  
+
+
+<div class = "col-sm-12 col-md-12 col-lg-12 text-center" style = "text-align: center; margin-top: 20px; background-color:rgba(37, 63, 63, 0.30); padding: 1%; ">  
     <%- if @user.logoimage.present? -%>
       <%= image_tag @user.logoimage.url, :class => "style_image", :style=> "max-height: 35%; max-width: 35%; margin: auto;" %> 
     <% else %>                
@@ -44,6 +46,7 @@
     </h3>
 
     <h2 style = "color: white; margin: 1em 0;"><strong>EVERYBODY GETS APPROVED!</strong></h2>
+</div>
 
 </div>
 
@@ -154,12 +157,10 @@
             </th>
             <th> 
               LAST NAME
-            </th>
-            <% if user_is_diamond %> 
+            </th>            
               <th>
                 PHONE
-              </th>
-            <% end %>
+              </th>            
             <th>
               SUBJECT
             </th>
@@ -208,12 +209,10 @@
                           </td>
                           <td>
                             <%= inquiry.last_name %>
-                          </td>
-                          <% if user_is_diamond %> 
+                          </td>                          
                             <td>
                              <%= inquiry.phone %>
-                            </td>
-                          <% end %>
+                            </td>                          
                           <td>
                             <%= inquiry.subject %>
                           </td>

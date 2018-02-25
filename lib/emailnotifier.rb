@@ -21,7 +21,7 @@ class EmailNotifier
 		@dealers = to
 
 		@email = Mail.new
-		@email.from = Email.new(email: @from)
+		@email.from = Email.new(email: 'noreply@tdcdigitalmedia.com')
 		@email.subject = @subject	
 
 		personalization = Personalization.new	
@@ -38,7 +38,7 @@ class EmailNotifier
 
 		
 		# @email.template_id = '13b8f94f-bcae-4ec6-b752-70d6cb59f932'			
-		@email.reply_to = Email.new(email: 'sales@tdcdigitalmedia.com')
+		@email.reply_to = Email.new(email: @from)
 
 		p @email.to_json
 		return @email

@@ -32,11 +32,11 @@ class InquiriesController < InheritedResources::Base
 							# format.html { redirect_to @parent, notice: 'Inquiry was successfuly sent!' }
 							format.html { redirect_to get_affiliates }
 				        	format.json { head :ok }			    	
-				        	begin
+				        	# begin
 				        		send_email(@inquiry)
-				        	rescue
-				        		p "Inquiry Email not sent"
-				        	end
+				        	# rescue
+				        	# 	p "Inquiry Email not sent"
+				        	# end
 					else				
 						format.html { render @parent }						
 				        format.json { render json: @inquiry.errors, status: :unprocessable_entity }
@@ -274,7 +274,8 @@ class InquiriesController < InheritedResources::Base
 
 
 	def send_email(inquiry)
-		from = 'sales@tdcdigitalmedia.com'
+		from = ((inquiry.from_email.empty?) or (inquiry.from_email.nil?)) ? "sales@tdcdigitalmedia.com" : inquiry.from_email
+		p from
 		dealers	= [inquiry.to_email]
 		subject = inquiry.subject
 		content = "<html><head><style type='text/css'>body,html,.body{background:#D3D3D3!important;}</style></head><body><container><spacer size='16'></spacer><row><columns large='8'><center><h2>#{inquiry.subject}</h2></center></columns></row><row><columns large='6'><center><h4>Hi! Its Want a Car Buy A Car!</h4><br><p>A user inquired about your listing. Here are his details: </p><br><p>From: #{inquiry.from_email}, First Name: #{inquiry.first_name}, Last Name: #{inquiry.last_name}, Phone: #{inquiry.phone}<br> Message:#{inquiry.comment}<br></p><center></columns><columns large='6'><br><p>For any help, contact our sales team at: Phone: +1 866-338-7870 Line 5</p><br><p>Our Email:sales@tdcdigitalmedia.com</p></columns><columns large='4'><img class='small-float-center' width='100px' height='100px' src='https://s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/TDC.png' alt=''></columns></row><row></row></container><body></html>"		
