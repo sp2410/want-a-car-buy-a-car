@@ -32,11 +32,11 @@ class InquiriesController < InheritedResources::Base
 							# format.html { redirect_to @parent, notice: 'Inquiry was successfuly sent!' }
 							format.html { redirect_to get_affiliates }
 				        	format.json { head :ok }			    	
-				        	# begin
+				        	begin
 				        		send_email(@inquiry)
-				        	# rescue
-				        	# 	p "Inquiry Email not sent"
-				        	# end
+				        	rescue
+				        		p "Inquiry Email not sent"
+				        	end
 					else				
 						format.html { render @parent }						
 				        format.json { render json: @inquiry.errors, status: :unprocessable_entity }
