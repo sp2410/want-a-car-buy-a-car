@@ -87,7 +87,11 @@
                     </div>  
 
                     <div class = "col-sm-12 col-md-12 col-lg-12 col-xs-12 text-center">
-                      <p style = "display: inline;"><%= @user.websitedescription.upcase if @user.websitedescription %></p>
+                    <% if @user.websitedescription %>
+                      <p style = "display: inline;"><%= @user.websitedescription.upcase %></p>
+                    <% else %>
+                      <p style = "display: inline;">Has not been filled in by dealership yet. If this is your business, please contact us to fill in this section. Sales@TDCDigitalMedia.com</p>
+                    <% end %>
                     </div> 
 
         </div>
