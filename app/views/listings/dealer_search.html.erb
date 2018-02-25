@@ -26,7 +26,7 @@
 
           
             <%- @dealers_ratings.reverse_each.to_h.each do |key, value| -%>
-              <%= link_to dealer_search_listings_path(filters: @current_filters.merge(params.merge(:ratings => "#{key}"))), {:class => "btn btn-basic"} do %>
+              <%= link_to dealer_search_listings_path(params.merge(filters: @current_filters.merge(:ratings => "#{key}"))), {:class => "btn btn-basic"} do %>
                 <%= get_rating_in_star(key) %>(<%= value %>)
               <% end %>
             <% end %>
