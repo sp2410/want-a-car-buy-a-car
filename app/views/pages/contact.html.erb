@@ -1,15 +1,107 @@
-<div class="container2">
-    <div class="center-column" id="right-center-column2" >
-      <div id="contact-area">  
-            <h1>CONTACT US</h1>    
-            <p>
-             If you have a question feel free to call us at the number below. 
-             <br>
-             Our Customer Sales Representatives look forward to helping you with your dream vehicle!
-            </p>
-             <a href="mailto:thedealerschoice@yahoo.com" style = "text-decoration: none" target="_top"><h2>Drop A Mail</h2></a>
-             <h2>OR</h2>
-            <a href="tel:866-338-7870" style = "text-decoration: none"><h2>Click To Call +1-866-338-7870</h2></a>            
-        </div>
-    </div>
-</div>
+<div class = "col-xs-12 col-sm-12 col-md-12 col-lg-12" id = "cardiv" style = "box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); padding: 0px; margin: 2px 0px;">
+                  <div class = "col-sm-12 col-md-12 col-lg-12 col-xs-12 text-center">
+                      <strong><h1 style = "font-size: 110px; color: #7C064D; margin-bottom: 20px; ">CONTACT US</h1></strong>
+                    </div>  
+                    <div class = "col-sm-6 col-md-6 col-lg-6 col-xs-6 text-center">
+                          <%= bootstrap_form_for (@inquiry = Inquiry.new) do |f| %>
+                          <% if @inquiry.errors.any? %>
+                            <div id="error_explanation">
+                              <h2><%= pluralize(@inquiry.errors.count, "error") %> prohibited this inquiry from being saved:</h2>
+
+                              <ul>
+                              <% @inquiry.errors.full_messages.each do |message| %>
+                                <li><%= message %></li>
+                              <% end %>
+                              </ul>
+                            </div>
+                          <% end %>
+
+                          <div class= "col-xs-12 col-sm-12 col-lg-12 col-md-12" style = "margin: auto;">
+                             <div class= "col-xs-6 col-sm-6 col-lg-6 col-md-6" style = "margin: auto;">
+                                <%= f.text_field :first_name, :label => "First Name" %>
+                              </div>
+                              <div class= "col-xs-6 col-sm-6 col-lg-6 col-md-6" style = "margin: auto;">
+                                <%= f.text_field :last_name, :label => "Last Name" %>
+                              </div>     
+                           </div>   
+
+                          <div class= "col-xs-12 col-sm-12 col-lg-12 col-md-12" style = "margin: auto;">
+                            <div class= "col-xs-6 col-sm-6 col-lg-6 col-md-6" style = "margin: auto;">
+                              <%= f.text_field :from_email, :label => "Email" %>
+                            </div>
+                            <div class= "col-xs-6 col-sm-6 col-lg-6 col-md-6" style = "margin: auto;">
+                              <%= f.text_field :phone, :label => "Phone" %>
+                            </div>    
+                          </div> 
+
+                          <div class= "col-xs-12 col-sm-12 col-lg-12 col-md-12" style = "margin: auto;">
+                            <div class= "col-xs-12 col-sm-12 col-lg-12 col-md-12" style = "margin: auto;">
+                              <%= f.text_field :referredby, :label => "Referred By" %>
+                            </div>        
+                          </div> 
+
+                          
+
+                            <%= f.hidden_field :to_email %>                            
+                            <%= hidden_field_tag :parent_type, @parent_type  %>    
+                           
+                          <div class= "col-xs-12 col-sm-12 col-lg-12 col-md-12" style = "margin: auto;">
+                            <%= f.text_field :subject %>  
+                            <%= f.text_area :comment, :label => "Your Message" %>
+                          </div>
+
+                            <%= f.submit "Send Message", class: "btn btn-danger"  %>
+                          
+                        <% end %>
+
+                    </div> 
+                     <div class = "col-sm-6 col-md-6 col-lg-6 col-xs-6 text-center">
+                          <p><strong>Customer Service</strong></p>
+                          <p>Call: (866) 338-7870 Ext. 4</p>
+                          <br>
+                          <p><strong>Sales</strong></p>
+                            <p>Call: (866) 338-7870 Ext. 1</p>
+                            <p>Fax: (866) 338-7870</p>
+                            <br>
+                            <p><strong>National Advertising</strong></p>
+                            <p>Sales@TDCDigitalMedia.com</p>                
+                    </div>   
+                    <div class = "col-sm-12 col-md-12 col-lg-12 col-xs-12 text-center">
+                        <p><%= link_to "Become a wantacarbuyacar.com Dealer", new_user_session_path, class: "btn btn-danger another" %></p>
+                    </div>
+                </div>
+
+
+<script>
+  (function() {
+
+        // console.log("aaa");
+
+      
+      set_subject_in_inquiry();
+
+    
+
+      // document.getElementById("defaultOpen").click();
+      
+     function set_subject_in_inquiry(){
+        
+        var to_email = "sales@tdcdigitalmedia.com";            
+        
+        $('#inquiry_to_email').val(to_email);
+
+        // console.log(to_email);
+
+        // console.log("aaa");
+
+         <% if current_user %>           
+            var user_signed_in = "<%= current_user.email %>";
+            $('input#inquiry_from_email').val(user_signed_in);          
+        <% end %>
+        
+
+
+    }
+})();
+
+</script>                

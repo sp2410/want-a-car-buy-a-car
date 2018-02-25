@@ -19,6 +19,7 @@ class PagesController < ApplicationController
 	end
 
 	def contact
+		@parent_type = "Contact"
 	end
 
 	def signup_thankyou

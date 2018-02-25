@@ -267,6 +267,8 @@ class InquiriesController < InheritedResources::Base
 			return Repairshop.find_by_id(params[:parent_id])
 		elsif params[:parent_type] == "User"
 			return userpage_path(:id => User.where(:id => params[:parent_id]).first.slug)
+		elsif params[:parent_type] == "Contact"
+			return contact_path
 		else
 			return root_path
 		end

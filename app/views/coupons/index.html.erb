@@ -8,7 +8,7 @@
     
   <div class="container2">
     <div id="contact-area">
-    <strong><h1 style = "font-size: 90px; color: #7C064D; margin-bottom: 20px; ">LATEST COUPONS</h1></strong>
+    <strong><h1 style = "font-size: 90px; color: #7C064D; margin-bottom: 20px; ">LATEST OFFERS</h1></strong>
     <hr>
 
   <% @coupons.each do |coupon| %>
@@ -16,7 +16,7 @@
                                       <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12" id = "coupondiv">
                                           <p style = "text-align: center; font-size: 2em;"><%= coupon.title.upcase %></p>
                                           <p style = "text-align: center; font-size: 0.7em;">
-                                            <%= link_to 'Click To View Coupon', coupon.image.url, target: :_blank %>
+                                            <%= link_to 'Click To View Offer', coupon.image.url, target: :_blank %>
                                           </p>                                          
                                       </div>                                      
                                     </div>
