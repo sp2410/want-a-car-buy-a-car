@@ -215,8 +215,9 @@ class User < ActiveRecord::Base
   end
 
   def user_has_both
-    user_role = self.role 
-    user_role == "DIAMOND DEALER" ? true : false    
+    # user_role = self.role 
+    # user_role == "DIAMOND DEALER" ? true : false    
+    false
   end
 
   def number_of_listings
