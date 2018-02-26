@@ -166,7 +166,8 @@ class User < ActiveRecord::Base
 
   def user_can_create_repairshop
     user_role = self.role 
-    (user_role == "BASIC REPAIRSHOP" or user_role == "SILVER REPAIRSHOP" or user_role == "DIAMOND DEALER") ? true : false
+    (user_role == "BASIC REPAIRSHOP" or user_role == "SILVER REPAIRSHOP") ? true : false
+        # (user_role == "BASIC REPAIRSHOP" or user_role == "SILVER REPAIRSHOP" or user_role == "DIAMOND DEALER") ? true : false
   end
 
   def user_can_create_offer
