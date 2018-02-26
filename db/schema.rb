@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180225093129) do
+ActiveRecord::Schema.define(version: 20180226040109) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -118,8 +118,8 @@ ActiveRecord::Schema.define(version: 20180225093129) do
   create_table "listings", force: :cascade do |t|
     t.string   "title",                  limit: 255
     t.text     "description",            limit: 65535
-    t.string   "city",                   limit: 255
-    t.string   "state",                  limit: 255
+    t.string   "city",                   limit: 255,   default: "NOT LISTED"
+    t.string   "state",                  limit: 255,   default: "NOT LISTED"
     t.string   "zipcode",                limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -129,17 +129,17 @@ ActiveRecord::Schema.define(version: 20180225093129) do
     t.float    "longitude",              limit: 24
     t.integer  "user_id",                limit: 4
     t.string   "image",                  limit: 255
-    t.integer  "year",                   limit: 4
+    t.integer  "year",                   limit: 4,     default: 0
     t.integer  "miles",                  limit: 4
-    t.string   "transmission",           limit: 255
+    t.string   "transmission",           limit: 255,   default: "NOT LISTED"
     t.string   "color",                  limit: 255
-    t.string   "cylinder",               limit: 255
-    t.string   "fuel",                   limit: 255
-    t.string   "drive",                  limit: 255
+    t.string   "cylinder",               limit: 255,   default: "NOT LISTED"
+    t.string   "fuel",                   limit: 255,   default: "NOT LISTED"
+    t.string   "drive",                  limit: 255,   default: "NOT LISTED"
     t.string   "address",                limit: 255
     t.boolean  "wholesale",                            default: false
     t.integer  "price",                  limit: 4,     default: 0
-    t.string   "newused",                limit: 255
+    t.string   "newused",                limit: 255,   default: "U"
     t.string   "vin",                    limit: 255
     t.string   "stocknumber",            limit: 255
     t.string   "model",                  limit: 255
@@ -153,7 +153,7 @@ ActiveRecord::Schema.define(version: 20180225093129) do
     t.string   "imageright",             limit: 255
     t.string   "frontinterior",          limit: 255
     t.string   "rearinterior",           limit: 255
-    t.string   "bodytype",               limit: 255
+    t.string   "bodytype",               limit: 255,   default: "NOT LISTED"
     t.string   "make",                   limit: 255
     t.boolean  "approved",                             default: false
     t.datetime "expiration_date",                      default: '2218-01-03 01:44:43'
@@ -183,12 +183,12 @@ ActiveRecord::Schema.define(version: 20180225093129) do
   create_table "repairshops", force: :cascade do |t|
     t.string   "title",       limit: 255
     t.text     "description", limit: 65535
-    t.string   "city",        limit: 255
-    t.string   "state",       limit: 255
+    t.string   "city",        limit: 255,   default: "NOT LISTED"
+    t.string   "state",       limit: 255,   default: "NOT LISTED"
     t.string   "zipcode",     limit: 255
     t.string   "phone",       limit: 255
-    t.datetime "created_at",                                null: false
-    t.datetime "updated_at",                                null: false
+    t.datetime "created_at",                                       null: false
+    t.datetime "updated_at",                                       null: false
     t.float    "latitude",    limit: 24
     t.float    "longitude",   limit: 24
     t.integer  "user_id",     limit: 4
@@ -228,23 +228,23 @@ ActiveRecord::Schema.define(version: 20180225093129) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                  limit: 255, default: "",        null: false
-    t.string   "encrypted_password",     limit: 255, default: "",        null: false
+    t.string   "email",                  limit: 255, default: "",           null: false
+    t.string   "encrypted_password",     limit: 255, default: "",           null: false
     t.string   "reset_password_token",   limit: 255
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          limit: 4,   default: 0,         null: false
+    t.integer  "sign_in_count",          limit: 4,   default: 0,            null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip",     limit: 255
     t.string   "last_sign_in_ip",        limit: 255
-    t.datetime "created_at",                                             null: false
-    t.datetime "updated_at",                                             null: false
+    t.datetime "created_at",                                                null: false
+    t.datetime "updated_at",                                                null: false
     t.integer  "role",                   limit: 4
     t.string   "website",                limit: 255
     t.string   "zipcode",                limit: 255
-    t.string   "city",                   limit: 255
-    t.string   "state",                  limit: 255
+    t.string   "city",                   limit: 255, default: "NOT LISTED"
+    t.string   "state",                  limit: 255, default: "NOT LISTED"
     t.string   "street_address",         limit: 255
     t.float    "latitude",               limit: 24
     t.float    "longitude",              limit: 24
