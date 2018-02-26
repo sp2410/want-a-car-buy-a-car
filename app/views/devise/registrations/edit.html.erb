@@ -105,7 +105,7 @@
       
 
               
-        <%= f.text_field :state, autofocus: true, :label => "YOUR STATE" %>
+        <%= f.select :state, options_for_select(us_states), {:label => "YOUR STATE"}  %>
       
 
               

@@ -9,11 +9,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
 # protected
 
 # def sign_up_params
-#     params.require(:user).permit(:email, :password, :website, :password_confirmation, :role)
+#     params.require(:user).permit(:email, :current_password, :password, :website, :password_confirmation, :role, :zipcode, :city, :state, :street_address, :phone_number, :name, :backgroundimage, :logoimage, :websiteheader, :websitesubheader, :websitedescription)
 # end
 
 # def account_update_params
-#     params.require(:user).permit(:email, :password, :website,  :password_confirmation, :role)
+#     params.require(:user).permit(:email, :current_password, :password, :website, :password_confirmation, :role, :zipcode, :city, :state, :street_address, :phone_number, :name, :backgroundimage, :logoimage, :websiteheader, :websitesubheader, :websitedescription)
 # end
 
   # GET /resource/sign_up

@@ -83,11 +83,12 @@
 
          
 
+
           <%= f.text_field :street_address, autofocus: true, :label => "YOUR STREET ADDRESS" %>  
         
           <%= f.text_field :city, autofocus: true, :label => "YOUR CITY" %>
 
-          <%= f.text_field :state, autofocus: true, :label => "YOUR STATE" %>
+          <%= f.select :state, options_for_select(us_states), {:label => "YOUR STATE"}  %>
         
           <%= f.text_field :zipcode, autofocus: true, :label => "YOUR ZIPCODE" %>
 
