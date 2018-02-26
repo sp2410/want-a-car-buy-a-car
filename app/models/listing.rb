@@ -25,7 +25,7 @@ class Listing < ActiveRecord::Base
 	belongs_to :category
 	belongs_to :subcategory
 	belongs_to :user
-	validates_uniqueness_of :vin
+	# validates_uniqueness_of :vin
 	validates_presence_of :title	
 
 
