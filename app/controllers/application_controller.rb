@@ -19,6 +19,8 @@ class ApplicationController < ActionController::Base
 
     	devise_parameter_sanitizer.permit(:account_update, keys: [:email, :password, :website, :password_confirmation, :role, :city, :state, :zipcode, :street_address, :phone_number, :name, :backgroundimage, :logoimage, :websiteheader, :websitesubheader, :websitedescription,:textcolor])
     	#devise_parameter_sanitizer.permit(:account_update, :website)
+
+      params.delete_if { |_key, value| value.blank? }
   	end
   	  
   
