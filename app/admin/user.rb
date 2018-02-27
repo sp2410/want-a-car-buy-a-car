@@ -3,7 +3,7 @@ ActiveAdmin.register User do
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
- permit_params :email, :name, :role, :zipcode, :city, :street_address, :state, :phone_number, :password, :password_confirmation, :leads2dealscustomer, :slug, :verified,:tdcfinance 
+ permit_params :email, :name, :role, :zipcode, :city, :street_address, :state, :phone_number, :password, :password_confirmation, :leads2dealscustomer, :slug, :verified,:tdcfinance ,:textcolor
 
   form do |f|
       f.inputs "User" do

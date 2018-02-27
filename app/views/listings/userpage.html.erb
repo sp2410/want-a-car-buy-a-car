@@ -28,24 +28,24 @@
     <%- if @user.logoimage.present? -%>
       <%= image_tag @user.logoimage.url, :class => "style_image", :style=> "max-height: 35%; max-width: 35%; margin: auto;" %> 
     <% else %>                
-      <h1 style = "margin-top: 1%; color: white; font-size: 200%;">
+      <h1 style = "margin-top: 1%; color: <%= @user.textcolor %>; font-size: 200%;">
         <%= @user.name.upcase if @user.name %>
       </h1>  
     <% end %>  
     
      
-    <h1 style = "color: white;  margin: 1em 0;">      
+    <h1 style = "color: <%= @user.textcolor %>;  margin: 1em 0;">      
       <strong><%= @user.websiteheader.upcase if @user.websiteheader %></strong>
     </h1>
     <br>
-    <h3 style = "color: white; margin: 1em 0;">      
+    <h3 style = "color: <%= @user.textcolor %>; margin: 1em 0;">      
       <%= @user.websitesubheader.upcase if @user.websitesubheader %>
     </h3>
-    <h3 style = "color: white; margin: 1em 0;">      
+    <h3 style = "color: <%= @user.textcolor %>; margin: 1em 0;">      
       GOOD CREDIT - BAD CREDIT - NO CREDIT 
     </h3>
 
-    <h2 style = "color: white; margin: 1em 0;"><strong>EVERYBODY GETS APPROVED!</strong></h2>
+    <h2 style = "color: <%= @user.textcolor %>; margin: 1em 0;"><strong>EVERYBODY GETS APPROVED!</strong></h2>
 
 
 </div>
