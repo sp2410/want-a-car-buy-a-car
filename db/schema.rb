@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180226040109) do
+ActiveRecord::Schema.define(version: 20180227013429) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -131,11 +131,11 @@ ActiveRecord::Schema.define(version: 20180226040109) do
     t.string   "image",                  limit: 255
     t.integer  "year",                   limit: 4,     default: 0
     t.integer  "miles",                  limit: 4
-    t.string   "transmission",           limit: 255,   default: "NOT LISTED"
+    t.string   "transmission",           limit: 255,   default: "AUTOMATIC"
     t.string   "color",                  limit: 255
     t.string   "cylinder",               limit: 255,   default: "NOT LISTED"
-    t.string   "fuel",                   limit: 255,   default: "NOT LISTED"
-    t.string   "drive",                  limit: 255,   default: "NOT LISTED"
+    t.string   "fuel",                   limit: 255,   default: "GASOLINE"
+    t.string   "drive",                  limit: 255,   default: "2WD"
     t.string   "address",                limit: 255
     t.boolean  "wholesale",                            default: false
     t.integer  "price",                  limit: 4,     default: 0
