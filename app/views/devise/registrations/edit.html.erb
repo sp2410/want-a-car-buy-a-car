@@ -34,7 +34,7 @@
 
 
          <div class="col-md-12 text-center" style = "margin-top: 1em;">
-              <input class="btn btn-danger" id="hideshow2" style="margin-top: 10px; margin-bottom: 10px;" type="button" value="EDIT YOUR LANDING PAGE DETAILS"></input>
+              <input class="btn btn-danger" id="hideshow2" style="margin-top: 10px; margin-bottom: 10px;" type="button" value="CUSTOMIZE YOUR LANDING PAGE"></input>
             </div>
 
 
@@ -70,21 +70,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-      
-
               
         <%= f.text_field :street_address, autofocus: true, :label => "YOUR STREET ADDRESS" %>
       
@@ -113,3 +98,16 @@
   <br>
     </div>
 
+<script>
+$(document).ready(function(){
+  
+  $('#hideshow2').on('click', function(event){
+    $('.togglediv2').toggle('show');    
+  });
+
+  
+  $('.togglediv2').toggle('hide');
+  
+
+});
+</script>
