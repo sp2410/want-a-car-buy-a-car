@@ -1,0 +1,72 @@
+<%= bootstrap_form_for (@new_dealer_contact = NewDealerContact.new) do |f| %>
+  <% if @new_dealer_contact.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@new_dealer_contact.errors.count, "error") %> prohibited this new_dealer_contact from being saved:</h2>
+
+      <ul>
+      <% @new_dealer_contact.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+   <div class= "col-xs-12 col-sm-12 col-lg-12 col-md-12" style = "margin: auto;">
+     <div class= "col-xs-12 col-sm-12 col-lg-12 col-md-12" style = "margin: auto;">          
+    <%= f.text_field :dealershipname, :label => "Dealership/Repairshop Name(*)" %>
+  </div>
+  </div>
+
+  <div class= "col-xs-12 col-sm-12 col-lg-12 col-md-12" style = "margin: auto;">
+     <div class= "col-xs-12 col-sm-12 col-lg-12 col-md-12" style = "margin: auto;">      
+      <%= f.text_field :fullname, :label => "Full Name(*)" %>
+    </div>
+  </div>
+   <div class= "col-xs-12 col-sm-12 col-lg-12 col-md-12" style = "margin: auto;">
+     <div class= "col-xs-6 col-sm-6 col-lg-6 col-md-6" style = "margin: auto;">            
+      <%= f.text_field :email, :label => "Email(*)" %>
+    </div>
+    <div class= "col-xs-6 col-sm-6 col-lg-6 col-md-6" style = "margin: auto;">          
+      <%= f.text_field :phone, :label => "Phone(*)" %>
+    </div>
+  </div>
+
+
+   <div class= "col-xs-12 col-sm-12 col-lg-12 col-md-12" style = "margin: auto;">
+     <div class= "col-xs-6 col-sm-6 col-lg-6 col-md-6" style = "margin: auto;">          
+    <%= f.text_field :address, :label => "Street Address" %>
+  </div>
+  <div class= "col-xs-6 col-sm-6 col-lg-6 col-md-6" style = "margin: auto;">          
+      <%= f.text_field :zip, :label => "Zipcode" %>
+    </div>
+  </div>
+
+
+   <div class= "col-xs-12 col-sm-12 col-lg-12 col-md-12" style = "margin: auto;">
+     <div class= "col-xs-6 col-sm-6 col-lg-6 col-md-6" style = "margin: auto;">          
+      <%= f.text_field :city, :label => "City" %>
+    </div>
+    <div class= "col-xs-6 col-sm-6 col-lg-6 col-md-6" style = "margin: auto;">          
+      <%= f.select :state, options_for_select(us_states), {:label => "State"}  %>
+    </div>
+  </div>
+
+
+   <div class= "col-xs-12 col-sm-12 col-lg-12 col-md-12" style = "margin: auto;">
+     <div class= "col-xs-12 col-sm-122 col-lg-12 col-md-12" style = "margin: auto;">          
+    <%= f.text_field :website, :label => "Website" %>
+  </div>
+  </div>
+
+   <div class= "col-xs-12 col-sm-12 col-lg-12 col-md-12" style = "margin: auto;">
+     <div class= "col-xs-12 col-sm-12 col-lg-12 col-md-12" style = "margin: auto;">          
+    <%= f.text_field :inventoryhost, :label => "Inventory Host" %>
+  </div>
+  </div>
+ 
+
+
+  <%= f.submit "Send Message", class: "btn btn-danger"  %>
+
+<% end %>

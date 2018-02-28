@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
     
  
+  
   require 'sidekiq/web'
   mount Sidekiq::Web => '/sidekiq'
   
@@ -48,6 +49,8 @@ Rails.application.routes.draw do
     member {  get :send_to_all }
     resources :notes, only: [:new, :create, :edit, :update]
   end
+
+  resources :new_dealer_contacts, only: [:new, :create] 
 
 
   root 'categories#index'

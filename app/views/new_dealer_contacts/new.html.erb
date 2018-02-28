@@ -1,0 +1,57 @@
+<div class ="headerdiv text-center" id = "herodivcontact">
+  <h1 style = "color: white; margin:5em ;vertical-align:middle;"><strong>JOIN OUR EXPANDING NETWORK</strong></h1>
+
+
+
+<div class = "col-sm-12 col-md-12 col-lg-12" style = "text-align: center; margin-top: 20px;">
+
+
+  <div class = "col-xs-12 col-sm-12 col-md-12 col-lg-12" id = "cardiv" style = "box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); padding: 10px; margin: 2px 0px; background-color: rgba(255,255,255,0.8);">
+
+      <div class="col-md-12 text-center" style = "margin-top: 1em;">
+          <input class="btn btn-danger" id="hideshow" style="margin-top: 10px; margin-bottom: 10px;" type="button" value="VIEW OUR PACKAGES"></input>   
+          <hr>       
+    </div>
+
+<div class = "togglediv">  
+ <%= render 'pages/packages'%>    
+</div>
+
+  		<div class = "col-sm-6 col-md-6 col-lg-6 col-xs-6 text-center" style = "background-color: #51BCFF; color:white;">
+  			<%= render 'new_dealer_contacts/form' %>
+  		</div>
+  		<div class = "col-sm-6 col-md-6 col-lg-6 col-xs-6 text-center" >
+                            <p><strong>Customer Service</strong></p>
+                            <p>Call: (866) 338-7870 Ext. 4</p>
+                            <br>
+                            <p><strong>Sales</strong></p>
+                              <p>Call: (866) 338-7870 Ext. 1</p>
+                              <p>Fax: (866) 338-7870</p>
+                              <br>
+                              <p><strong>National Advertising</strong></p>
+                              <p>Sales@TDCDigitalMedia.com</p>                
+                      </div> 
+
+  </div>
+</div>
+
+</div>
+
+<script>
+$(document).ready(function(){
+  $('#hideshow').on('click', function(event){
+    $('.togglediv').toggle('show');
+
+     $('html,body').animate({scrollTop: $(".togglediv").offset().top},'slow');
+  });
+
+  $('#hideshow2').on('click', function(event){
+    $('.togglediv2').toggle('show');    
+  });
+
+  $('.togglediv').toggle('hide');
+  $('.togglediv2').toggle('hide');
+  
+
+});
+</script>
