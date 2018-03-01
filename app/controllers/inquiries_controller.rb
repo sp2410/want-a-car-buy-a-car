@@ -13,7 +13,7 @@ class InquiriesController < InheritedResources::Base
 
 		if params[:dealers]
 			respond_to do |format|
-				if  (params[:from_email].present? and  params[:phone].present?)
+				if  (inquiry_params[:from_email] and inquiry_params[:phone])
 
 					begin
 						NewInquiryCreator.perform_async(params[:dealers], inquiry_params)
