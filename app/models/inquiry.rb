@@ -4,8 +4,8 @@ class Inquiry < ActiveRecord::Base
 		:BOUGHTHERE  => 'BOUGHTHERE', :DEADDEAL => "DEADDEAL", :DONOTCALL => "DONOTCALL", :BOUGHTELSEWHERE => "BOUGHTELSEWHERE", 
 		:ONHOLD => "ONHOLD"}
 
-	# validates_presence_of :phone
-	# validates_presence_of :from_email	
+	validates_presence_of :phone
+	validates_presence_of :from_email	
   
   	has_many :notes, :dependent => :delete_all
 

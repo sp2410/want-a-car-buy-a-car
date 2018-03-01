@@ -150,9 +150,11 @@ class InquiriesController < InheritedResources::Base
 		@inquiry = Inquiry.find_by_id(params[:id])
 		@parent = get_parent(params)
 
+		@inquiry.attributes = inquiry_params
 
 		respond_to do |format|
-				if @inquiry.update(inquiry_params)					
+				if @inquiry.save(:validate => false)					
+					# if @inquiry.update(inquiry_params)					
 						format.html { redirect_to @parent, notice: 'Inquiry was successfuly updated!' }
 			        	format.json {head :ok }			    				        	
 				else				
