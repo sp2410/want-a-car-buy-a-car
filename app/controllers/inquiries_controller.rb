@@ -156,7 +156,7 @@ class InquiriesController < InheritedResources::Base
 						format.html { redirect_to @parent, notice: 'Inquiry was successfuly updated!' }
 			        	format.json {head :ok }			    				        	
 				else				
-					format.html { render @parent }
+					format.html { redirect_to @parent, notice: "There was some error updating" }
 			        format.json { render json: @inquiry.errors, status: :unprocessable_entity }
 				end
 		end
