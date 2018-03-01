@@ -12,16 +12,22 @@ class InquiriesController < InheritedResources::Base
 		@parent = get_parent(params)
 
 		if params[:dealers]
-			begin
-				NewInquiryCreator.perform_async(params[:dealers], inquiry_params)
 
-				respond_to do |format|
-					format.html {redirect_to @parent, notice: 'This process has started in the background. Please wait a little to see changed'}
-				end				
-			rescue
-				respond_to do |format|
-					format.html {redirect_to @parent, notice: 'There was some error with the leads creation.Please fill in the required fields'}
-				end	
+			if  (params[:from_email].present? and  params[:phone].present?)
+
+				begin
+					NewInquiryCreator.perform_async(params[:dealers], inquiry_params)
+
+					respond_to do |format|
+						format.html {redirect_to @parent, notice: 'This process has started in the background. Please wait a little to see changed'}
+					end				
+				rescue
+					respond_to do |format|
+						format.html {redirect_to @parent, notice: 'There was some error with the leads creation.Please fill in the required fields'}
+					end	
+				end
+			else
+				format.html { redirect_to @parent, notice: 'Please fill in the required fields' }						
 			end
 
 		else
