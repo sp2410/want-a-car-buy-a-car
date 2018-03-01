@@ -3,6 +3,9 @@ class Inquiry < ActiveRecord::Base
 	enum status: {:FRESH => 'FRESH', :CONTACTED => 'CONTACTED', :APPOINTMENT => 'APPOINTMENT', :WORKINGDEAL => 'WORKINGDEAL', :MISSEDAPPOINTMENTFOLLOWUP => "MISSEDAPPOINTMENTFOLLOWUP", :DEALERVISITFOLLOWUP => "DEALERVISITFOLLOWUP",
 		:BOUGHTHERE  => 'BOUGHTHERE', :DEADDEAL => "DEADDEAL", :DONOTCALL => "DONOTCALL", :BOUGHTELSEWHERE => "BOUGHTELSEWHERE", 
 		:ONHOLD => "ONHOLD"}
+
+	validates_presence_of :phone
+	validates_presence_of :from_email	
   
   	has_many :notes, :dependent => :delete_all
 

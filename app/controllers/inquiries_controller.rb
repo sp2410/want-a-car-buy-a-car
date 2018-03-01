@@ -38,7 +38,7 @@ class InquiriesController < InheritedResources::Base
 				        		p "Inquiry Email not sent"
 				        	end
 					else				
-						format.html { render @parent }						
+						format.html { redirect_to @parent, notice: 'Please fill in the required fields' }						
 				        format.json { render json: @inquiry.errors, status: :unprocessable_entity }
 					end
 			end
