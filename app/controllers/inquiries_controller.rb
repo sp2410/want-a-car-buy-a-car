@@ -276,7 +276,7 @@ class InquiriesController < InheritedResources::Base
 
 
 	def send_email(inquiry)
-		from = ((inquiry.from_email.empty?) or (inquiry.from_email.nil?)) ? "sales@tdcdigitalmedia.com" : inquiry.from_email
+		from = ((inquiry.from_email.empty?) or (inquiry.from_email.nil?)) ? "none@tdcdigitalmedia.com" : inquiry.from_email
 		p from
 		dealers	= [inquiry.to_email]
 		subject = "New Lead From Want A Car Buy A Car"
