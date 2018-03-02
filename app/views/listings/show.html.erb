@@ -4,10 +4,21 @@
     <meta property="og:description" content="<%= @listing.title if @listing.title %> for sale at <%= @user.name if @user.name %> for $<%= @listing.price if @listing.price %>. View now on www.wantacarbuyacar.com" />
     <meta property="og:url" content="<%= listing_path(@listing) %>" />
     <meta property="og:image:all" content="Want A Car Buy A Car" />
-    <% if @listing.image %>
-        <%= tag :meta, property: 'og:image', content: "#{ @listing.image.url}" %>
+
+    
+    <% if @listing.external_url %>
+        <% if @listing.external_image %>
+            <%= tag :meta, property: 'og:image', content: "#{ @listing.external_image.url}" %>
+        <% end %>      
+    <% else %>
+        <% if @listing.image %>
+          <%= tag :meta, property: 'og:image', content: "#{ @listing.image.url}" %>      
+        <% end %>
     <% end %>
+
+    
 <% end %>
+
 
 
   <% if @user.role ==  "BASIC USER" %>
