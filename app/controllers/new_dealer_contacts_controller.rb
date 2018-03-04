@@ -10,7 +10,7 @@ class NewDealerContactsController < InheritedResources::Base
 	def create
 		@new_dealer_contact = NewDealerContact.new(new_dealer_contact_params)			
 			respond_to do |format|
-					if @new_dealer_contact.save					
+					if verify_recaptcha(model: @new_dealer_contact) and @new_dealer_contact.save					
 							# format.html { redirect_to @parent, notice: 'Inquiry was successfuly sent!' }
 							format.html { redirect_to new_new_dealer_contact_path, notice: 'Thank You! Our team will contact you very soon.'}
 				        	format.json { head :ok }			    	
