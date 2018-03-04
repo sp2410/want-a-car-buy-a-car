@@ -35,7 +35,7 @@ class InquiriesController < InheritedResources::Base
 			@inquiry = Inquiry.new(inquiry_params)					
 			respond_to do |format|			
 			# verify_recaptcha(model: @inquiry) and	
-					if  @inquiry.save									
+					if  verify_recaptcha(model: @inquiry) and @inquiry.save									
 							# format.html { redirect_to @parent, notice: 'Inquiry was successfuly sent!' }
 							format.html { redirect_to get_affiliates }
 				        	format.json { head :ok }			    	
