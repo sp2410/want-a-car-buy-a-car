@@ -86,6 +86,8 @@ gem 'activerecord-import'
 
 gem 'smarter_csv'
 
+gem 'recaptcha', require: 'recaptcha/rails'
+
 
 
 group :development, :test do

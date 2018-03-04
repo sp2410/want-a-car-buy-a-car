@@ -1,26 +1,38 @@
 ActiveAdmin.register User do
 	active_admin_importable
+
+    config.filters = false
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
- permit_params :email, :name, :role, :zipcode, :city, :street_address, :state, :phone_number, :password, :password_confirmation, :leads2dealscustomer, :slug, :verified,:tdcfinance ,:textcolor
+ permit_params :email, :password, :website, :password_confirmation, :role, :city, :state, :zipcode, :street_address, :phone_number, :name, :backgroundimage, :logoimage, :websiteheader, :websitesubheader, :websitedescription,:textcolor, :slug
+
+
 
   form do |f|
       f.inputs "User" do
         f.input :email
-        f.input :name
+        f.input :name    
         f.input :password
-        f.input :password_confirmation
+        f.input :password_confirmation    
         f.input :role      
-        f.input :street_address
+        f.input :street_address        
         f.input :city
         f.input :state
         f.input :zipcode
         f.input :phone_number   
+        f.input :website 
+        f.input :backgroundimage, as: :file
+        f.input :logoimage, as: :file        
+        f.input :websiteheader
+        f.input :websitesubheader
+        f.input :websitedescription
+        f.input :textcolor  
+        # f.input :slug    
       end
       f.actions
     end
-#
+# #
 # or
 #
 # permit_params do
@@ -39,8 +51,17 @@ ActiveAdmin.register User do
 
     scope :leads2deals
 
+    #before_action :remove_password_params_if_blank, only: [:update]
+
 
     controller do 
+
+        # def remove_password_params_if_blank
+        #   if params[:user][:password].blank? && params[:user][:password_confirmation].blank?
+        #     params[:user].delete(:password)
+        #     params[:user].delete(:password_confirmation)
+        #   end
+        # end
     	def approve_users_listings_or_repairshops(user_id)
     		begin
     			Listing.where(:user_id => user_id).update_all(:approved => true)

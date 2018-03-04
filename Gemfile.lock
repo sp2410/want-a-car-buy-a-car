@@ -401,6 +401,8 @@ GEM
       nokogiri (~> 1.5)
       trollop (~> 2.1)
     rdoc (4.3.0)
+    recaptcha (4.6.5)
+      json
     redis (4.0.1)
     responders (2.4.0)
       actionpack (>= 4.2.0, < 5.3)
@@ -521,6 +523,7 @@ DEPENDENCIES
   pg (~> 0.20)
   rails (= 4.2.5.1)
   rails_12factor
+  recaptcha
   redis
   rspec-rails (~> 3.6)
   sass-rails (~> 5.0)

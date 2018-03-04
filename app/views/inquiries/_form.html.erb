@@ -43,8 +43,12 @@
    
   <div class= "col-xs-12 col-sm-12 col-lg-12 col-md-12" style = "margin: auto;">
     <%= f.text_field :subject %>  
-    <%= f.text_area :comment, :label => "Your Message" %>
+    <%= f.text_area :comment, :label => "Your Message" %>    
   </div>
+
+    <div class= "col-xs-12 col-sm-12 col-lg-12 col-md-12" style = "margin: auto;">
+      <div class="g-recaptcha" data-sitekey="6LdhXUoUAAAAAFbv-KgQydn0lItiqiPuVPotpQ0z"></div>
+    </div>
 
     <%= f.submit "Send Message", class: "btn btn-danger"  %>
   
