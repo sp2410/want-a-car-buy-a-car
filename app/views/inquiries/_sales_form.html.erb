@@ -41,8 +41,9 @@
           </div>  
         <% end %>
         
-        <%= recaptcha_tags %>   
-            
+   <div class= "col-xs-12 col-sm-12 col-lg-12 col-md-12 text-center">
+      <div class="g-recaptcha" data-sitekey= <%= ENV["GOOGLE_RECAPTCHA_SITEKEY"] %> ></div>
+    </div>
       
     </div>  
 

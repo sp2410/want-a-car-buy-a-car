@@ -36,7 +36,7 @@ class ListingsController < ApplicationController
 		# @listing.external_url = false
 		
 
-		if @listing.save				
+		if verify_recaptcha(model: @listing) and @listing.save				
 			redirect_to @listing			
 		else
 			flash[:alert] =  @listing.errors.full_messages.to_sentence

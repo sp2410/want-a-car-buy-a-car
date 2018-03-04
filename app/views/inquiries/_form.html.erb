@@ -46,8 +46,8 @@
     <%= f.text_area :comment, :label => "Your Message" %>    
   </div>
 
-    <div class= "col-xs-12 col-sm-12 col-lg-12 col-md-12" style = "margin: auto;">
-      <div class="g-recaptcha" data-sitekey="6LdhXUoUAAAAAFbv-KgQydn0lItiqiPuVPotpQ0z"></div>
+    <div class= "col-xs-12 col-sm-12 col-lg-12 col-md-12 text-center">
+      <div class="g-recaptcha" data-sitekey= <%= ENV["GOOGLE_RECAPTCHA_SITEKEY"] %> ></div>
     </div>
 
     <%= f.submit "Send Message", class: "btn btn-danger"  %>

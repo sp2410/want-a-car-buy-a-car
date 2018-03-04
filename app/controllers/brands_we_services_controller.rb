@@ -24,7 +24,7 @@ class BrandsWeServicesController < InheritedResources::Base
 			params[:specializations].each do |brands_we_servicee|
 				@brands_we_service = BrandsWeService.new({:title => brands_we_servicee, :repairshop_id => @repairshop.id})					
 				
-				if !BrandsWeService.find_by_title(brands_we_servicee)
+				if verify_recaptcha(model: @brands_we_service) and !BrandsWeService.find_by_title(brands_we_servicee)
 					begin
 						@brands_we_service.save
 					rescue
@@ -43,7 +43,7 @@ class BrandsWeServicesController < InheritedResources::Base
 			@brands_we_service.repairshop_id = @repairshop.id
 
 			respond_to do |format|
-				if @brands_we_service.save	
+				if verify_recaptcha(model: @brands_we_service) and @brands_we_service.save	
 					format.html { redirect_to @repairshop, notice: 'brands was successfully created.' }
 			        format.json { render :show, status: :created, location:@repairshop }
 				else				
@@ -66,7 +66,7 @@ class BrandsWeServicesController < InheritedResources::Base
 
 	def update
 		respond_to do |format|
-	      	if @brand_we_service.update(brands_we_service_params)
+	      	if verify_recaptcha(model: @brands_we_service) and @brand_we_service.update(brands_we_service_params)
 		        format.html { redirect_to @repairshop, notice: 'brand was updated.' }
 		        format.json { render :show, status: :ok, location: @repairshop}
 	      	else
