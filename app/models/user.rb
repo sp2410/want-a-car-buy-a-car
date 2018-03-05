@@ -10,6 +10,8 @@ class User < ActiveRecord::Base
   has_one :repairshop, :dependent => :destroy
   has_many :reviews, :dependent => :destroy
 
+  has_many :timetables, :dependent => :destroy
+
   extend FriendlyId
   friendly_id :name, use: :slugged
 

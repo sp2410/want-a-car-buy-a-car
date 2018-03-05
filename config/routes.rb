@@ -21,6 +21,8 @@ Rails.application.routes.draw do
         get :raise_appeal
       end 
     end
+
+    resources :timetables, only: [:new, :edit, :create, :update, :destroy]
   end
 
 

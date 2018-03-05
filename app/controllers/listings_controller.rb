@@ -283,7 +283,8 @@ class ListingsController < ApplicationController
 		# @user = User.find_by_id(@user_id)
 		@user = User.where(:slug => params[:id]).first
 		@user_id = @user.id
-		# (slug: params[:id])		
+		# (slug: params[:id])	
+		@times = Timetable.where(:user_id => @user_id)	
 
 		# p @user
 

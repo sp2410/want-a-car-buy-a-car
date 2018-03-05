@@ -1,0 +1,30 @@
+<%= bootstrap_form_for [@user, @timetable] do |f| %>
+  <% if @timetable.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@timetable.errors.count, "error") %> prohibited this timetable from being saved:</h2>
+
+      <ul>
+      <% @timetable.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %> 
+  
+   <div class="field">
+    
+    <%= f.select :day, ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'] %>
+  </div>
+
+  <div class="field">      
+      <%= f.time_select :start_time %>        
+  </div>
+
+  <div class="field">      
+      <%= f.time_select :end_time %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "SUBMIT", class: "btn btn-danger"  %>
+  </div>
+<% end %>
