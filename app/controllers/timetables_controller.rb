@@ -21,11 +21,11 @@ class TimetablesController < InheritedResources::Base
 
 			respond_to do |format|
 				if @timetable.save	
-					format.html { redirect_to userpage_path(:id => @user.slug), notice: 'specialization was successfully created.' }
+					format.html { redirect_to userpage_path(:id => @user.slug), notice: 'Times were successfully created.' }
 			        #format.json { render :show, status: :created, location:@repairshop }
 				else				
-					format.html { render userpage_path(:id => @user.slug) }
-			        #format.json { render json: @specialization.errors, status: :unprocessable_entity }
+					format.html { render userpage_path(:id => @user.slug), notice: 'Times were not created.'  }
+			        #format.json { render json: @times wereerrors, status: :unprocessable_entity }
 				end
 			end		
 
@@ -34,7 +34,7 @@ class TimetablesController < InheritedResources::Base
 	def destroy
 		@timetable.destroy
 		respond_to do |format|						
-		    format.html { redirect_to userpage_path(:id => @user.slug), notice: 'specialization  was successfully destroyed.' }
+		    format.html { redirect_to userpage_path(:id => @user.slug), notice: 'times were successfully destroyed.' }
 		    #format.json { head :no_content }
 		end
 
@@ -46,8 +46,8 @@ class TimetablesController < InheritedResources::Base
 		        format.html { redirect_to userpage_path(:id => @user.slug), notice: 'Timetable was updated.' }
 		        #format.json { render :show, status: :ok, location: @repairshop}
 	      	else
-		        format.html { redirect_to userpage_path(:id => @user.slug) }
-		        #format.json { render json: @specialization.errors, status: :unprocessable_entity }
+		        format.html { redirect_to userpage_path(:id => @user.slug), notice: 'Times were not updated'  }
+		        #format.json { render json: @times wereerrors, status: :unprocessable_entity }
 	    	end
     	end
 	end
