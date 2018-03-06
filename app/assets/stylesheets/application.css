@@ -83,22 +83,46 @@
 
 
 #herodiv{   
-  background: #F00000;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to top, #DC281E, #F00000);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to top, #DC281E, #F00000); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+   position: relative;
+    bottom: 0%;
+    left: 0%;
+    min-height: 600px;          
+    width: 100%;      
+    padding: 10px;
+    background: linear-gradient(0deg,rgba(0,0,0,0.3),rgba(0,0,0,0.3)), url("https://s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/wacbacbg.jpg");
+            /*background: url('https://s3-us-west-1.amazonaws.com/tdcdigitalmedia/romanos-senikidis-36213.jpg');*/
+    
+    background-repeat:no-repeat;
+    background-size: cover;     
+  
+}
+
+#searchboxes{
+  background-color: rgba(255,255,255,0.9); 
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 5px 5px rgba(0,0,0,0.22);
+   padding: 20px; 
+   border-radius: 5px;
+
+}
+
+
+#herodiv2{   
+
   position: relative;
     bottom: 0%;
     left: 0%;
     min-height: 600px;          
     width: 100%;      
     padding: 10px;
-        
-    /*background: url('https://s3-us-west-1.amazonaws.com/tdcdigitalmedia/romanos-senikidis-36213.jpg');*/
+    background: url('https://s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/repairshopbg.jpg'); 
+            /*background: url('https://s3-us-west-1.amazonaws.com/tdcdigitalmedia/romanos-senikidis-36213.jpg');*/
     
     background-repeat:no-repeat;
-    background-size: cover;     
+    background-size: cover;      
+
   
 }
+
 
      
 
@@ -122,17 +146,6 @@
 }
 
 
-#herodiv2{   
-  background: white;  /* fallback for old browsers */  
-  position: relative;
-    bottom: 0%;
-    left: 0%;
-    height: 50em;    
-    width: 100%;      
-    padding: 10px;
-
-              
-}
 
 .overlay {
     position: fixed;
@@ -170,7 +183,7 @@
 /* Style the tab */
 div.tab {
     overflow: hidden;    
-    background-color: #fff;
+    background-color: transparent;
 }
 
 /* Style the buttons inside the tab */
@@ -185,6 +198,7 @@ div.tab button {
     font-size: 17px;    
     color:  #fff;    
     background-color: #DC281E;
+    /*width: 25%;*/
 }
 
 /* Change background color of buttons on hover */
@@ -1756,4 +1770,3 @@ font-family: 'Oswald', sans-serif;
 
 
 }
-
