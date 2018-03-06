@@ -13,15 +13,15 @@
   
    <div class="field">
     
-    <%= f.select :day, ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'] %>
+    <%= f.select :day, ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'], :label => "Select Day" %>
   </div>
 
   <div class="field">      
-      <%= f.time_select :start_time %>        
+      <%= f.time_select :start_time, :label => "Select Time You Open (24 Hour Format)" %>        
   </div>
 
   <div class="field">      
-      <%= f.time_select :end_time %>
+      <%= f.time_select :end_time, :label => "Select Time You Close (24 Hour Format)" %>
   </div>
 
   <div class="actions">

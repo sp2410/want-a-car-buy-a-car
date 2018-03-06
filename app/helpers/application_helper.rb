@@ -81,8 +81,13 @@ end
     end
 
     def get_affiliates
-      ["https://www.1800freshstart.com/?src=42051&lnk=74248", "https://www.autocreditexpress.com/sem/?lpgid=shortjcv1&affid=ap002455&startpage=fullform"].sample
+      ["https://www.1800freshstart.com/?src=42051&lnk=74248", "https://www.autocreditexpress.com/sem/?lpgid=shortjcv1&affid=ap002455&startpage=fullform", "https://www.carrental8.com/en_US", "https://www.creditrepair.com/?tid=10001.0.1", "https://www.cheapair.com/"].sample
     end
+
+    # def get_affiliates_square
+    #   []
+    # end
+
 
     def user_is_review_owner(review)
       if user_signed_in?
