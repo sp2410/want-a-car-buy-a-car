@@ -325,7 +325,7 @@
                                            <div class="col-sm-12" style = " padding: 12px; overflow-y: scroll; height: 500px;">                                              
                                                 <h6 style = "color:  #e20049; padding: 0px; font-size: 2em; text-align: left;"><strong>OPTIONS</strong></h6>
                                                 <br>                                              
-                                                  <p style ="margin: 0px; font-size: 15px; overflow-x:hidden;"><%= raw @listing.options.to_s %></p>
+                                                  <p style ="margin: 0px; font-size: 15px; overflow-x:hidden;"><%= raw @listing.options.to_s if @listing.options%></p>
                                             </div>
 
                                             <br>
