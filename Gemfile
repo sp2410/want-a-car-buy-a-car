@@ -88,6 +88,10 @@ gem 'smarter_csv'
 
 gem 'recaptcha', require: 'recaptcha/rails'
 
+# gem 'will_paginate', '~> 3.0.5'
+
+# gem 'bootstrap-will_paginate', '~> 0.0.10'
+
 
 
 group :development, :test do
