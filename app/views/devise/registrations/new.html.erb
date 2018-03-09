@@ -61,6 +61,10 @@
 
           <%= f.text_field :website, autofocus: true, :label => "WEBSITE" %>
 
+          <%= f.text_field :leademail1, autofocus: true, :label => "ADD EXTRA LEAD EMAIL" %>
+
+        <%= f.text_field :leademail2, autofocus: true, :label => "ADD EXTRA LEAD EMAIL" %>
+
 
 
          <div class="col-md-12 text-center" style = "margin-top: 1em;">
@@ -116,10 +120,7 @@
           <%= f.text_field :zipcode, autofocus: true, :label => "YOUR ZIPCODE" %>
 
           <%= f.text_field :phone_number, autofocus: true, :label => "YOUR PHONE NUMBER" %>
-
-          <div class= "col-xs-12 col-sm-12 col-lg-12 col-md-12 text-center">
-            <div class="g-recaptcha" data-sitekey= <%= ENV["GOOGLE_RECAPTCHA_SITEKEY"] %> ></div>
-          </div>
+         
            
 
           <%= f.submit "Sign up", class: "btn btn-danger" %>

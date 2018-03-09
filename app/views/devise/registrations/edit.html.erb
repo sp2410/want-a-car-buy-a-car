@@ -27,6 +27,11 @@
     
 
         <%= f.text_field :name, autofocus: true, :label => "YOUR COMPANY NAME" %>
+
+        <%= f.text_field :leademail1, autofocus: true, :label => "ADD EXTRA LEAD EMAIL" %>
+
+        <%= f.text_field :leademail2, autofocus: true, :label => "ADD EXTRA LEAD EMAIL" %>
+       
       
         <%= f.select :role, User.roles.keys.map{|x| x.upcase}, {:label => "EDIT PACKAGE"} %>
        

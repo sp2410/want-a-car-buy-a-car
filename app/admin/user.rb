@@ -5,7 +5,9 @@ ActiveAdmin.register User do
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
- permit_params :email, :password, :website, :password_confirmation, :role, :city, :state, :zipcode, :street_address, :phone_number, :name, :backgroundimage, :logoimage, :websiteheader, :websitesubheader, :websitedescription,:textcolor, :slug
+ permit_params :email, :password, :website, :password_confirmation, :role, :city, :state, :zipcode, :street_address, :phone_number, :name, :backgroundimage, :logoimage, :websiteheader, :websitesubheader, :websitedescription,:textcolor, :slug, :leademail1, :leademail2 
+
+
 
 
 
@@ -28,6 +30,8 @@ ActiveAdmin.register User do
         f.input :websitesubheader
         f.input :websitedescription
         f.input :textcolor  
+        f.input :leademail1
+        f.input :leademail2        
         # f.input :slug    
       end
       f.actions
@@ -208,6 +212,10 @@ ActiveAdmin.register User do
 		column "State", :state
 		column "Street address", :street_address
 		column "Phone", :phone_number
+
+        column "Lead Email 1", :leademail1
+        column "Lead Email 2", :leademail2   
+       
 
 	    column "" do |resource|
 	      links = ''.html_safe
