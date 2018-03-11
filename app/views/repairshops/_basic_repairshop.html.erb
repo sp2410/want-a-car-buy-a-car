@@ -6,11 +6,11 @@
               <div class="slideshow-container">
 
                 <%- if @repairshop.image.present? -%>
-                  <div class="mySlides showpage">                                                            
+                  <div class="mySlides" id = "showpage">                                                            
                       <img src=<%= @repairshop.image if @repairshop.image.present? %> style=" max-height: 100%; max-width: 100%; margin: auto;">
                   </div>                                                                                    
                   <% else %>
-                  <div class="mySlides showpage">
+                  <div class="mySlides" id = "showpage">
                     <%= image_tag("https://s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/repairbigsmall.png", :alt => "Want a Car buy A Car| Cars For Sale | Used Cars | Repair Shops", :style=> " max-height: 100%; max-width: 100%; margin: auto;") %>
                   </div>
                 <% end %>                            
@@ -61,7 +61,8 @@
                                                   <hr>
                                             </div>
 
-               
+                                            <div class = "row">
+                                  
                                             <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12" style = "background-color: #fff; padding: 0px;">
                                                 
 
@@ -81,20 +82,21 @@
                                                   <br>
                                             
                                             </div>
+                                            </div>
 
+                                            <div class = "row">
+                                              <div class="col-sm-12 " style = "background-color: #fff; padding: 12px;">                      
+                                                  <hr>
+                                                      <h6 class="row text-center" style = "color:  #e20049; padding: 12px; font-size: 2em; text-align: left;"><strong>NEW INQUIRY</strong></h6>                
 
-                                            <div class="col-sm-12 " style = "background-color: #fff; padding: 12px;">                      
-                                                <hr>
-                                                    <h6 class="row text-center" style = "color:  #e20049; padding: 12px; font-size: 2em; text-align: left;"><strong>NEW INQUIRY</strong></h6>                
-
-                                                    <div class="col-sm-12 text-center" style = " padding: 0px; overflow-y: scroll; height: 500px;">                              
-                                                      <%= render 'inquiries/form' %>
-                                                    </div>
-                                                    
-                                                
-                                                <br>
+                                                      <div class="col-sm-12 text-center" style = " padding: 0px; overflow-y: scroll; height: 500px;">                              
+                                                        <%= render 'inquiries/form' %>
+                                                      </div>
+                                                      
+                                                  
+                                                  <br>
+                                                </div>
                                               </div>
-
                          
                                     </div> 
                                   </div>
