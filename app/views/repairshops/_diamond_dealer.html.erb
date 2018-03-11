@@ -1,6 +1,7 @@
 <% if user_is_listing_owner(@repairshop) %>
   <% unless user_has_paid(@repairshop) %>
 
+<div class = "row">
     <div class = "col-md-12 col-xs-12 col-lg-12 col-sm-12" style = "background-color: #E0E0E0; min-height: 300px; padding-top: 5em;">
 
 
@@ -42,10 +43,11 @@
 
     </div>
 
-
+</div>
   <% end %>
 <% end %>
 
+<div class = "row">
 <div class = "col-xs-12 col-sm-12 text-center" id = "herodiv2">
 
     <div class ="w3-panel w3-card-2" >
@@ -66,7 +68,9 @@
     </div>
 
 </div>
+</div>
 
+<div class = "row">
    <div class = "col-sm-12 col-md-12 col-lg-12" style = "background-color: white;">    
       <div class = "col-sm-12 col-md-12 col-lg-12" style = "text-align: center; margin-top: 20px;">
 
@@ -377,55 +381,58 @@
       </div>
 
   </div>
+</div>
 
-<div class = "col-sm-12 col-md-12 col-lg-12" style = "background-color: white;">   
-  <div class="row">
-    <div class = "col-sm-12 col-md-12 col-lg-12 col-xs-12"> 
+<div class = "row">
+  <div class = "col-sm-12 col-md-12 col-lg-12" style = "background-color: white;">   
+    <div class="row">
       <div class = "col-sm-12 col-md-12 col-lg-12 col-xs-12"> 
+        <div class = "col-sm-12 col-md-12 col-lg-12 col-xs-12"> 
 
-                                  <h6 style = "color:  #e20049; padding: 10px; font-size: 2em; text-align: center;"><strong>OUR COUPONS</strong></h6>
+                                    <h6 style = "color:  #e20049; padding: 10px; font-size: 2em; text-align: center;"><strong>OUR COUPONS</strong></h6>
 
-                                    <% if user_is_listing_owner(@repairshop) %>
-                                        <div class="col-sm-12 text-center">
-                                          <%= link_to 'Add A Coupon', new_repairshop_coupon_path(@repairshop), class: "btn btn-danger btn-xs", style: "border: #e20049;"  %>                                      
-                                        </div>
-                                    <% end %>                                             
-      </div>
-                                  <% if !@coupons.empty? %>
-
-                                    <% @coupons.each do |coupon| %>
-                                    <div class = "col-sm-12 col-md-12 col-lg-12 col-xs-12">                                     
-                                      <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12" id = "coupondiv">
-                                          <p style = "text-align: center; font-size: 2em;"><%= coupon.title.upcase %></p>
-                                          <p style = "text-align: center; font-size: 0.7em;">
-                                            <%= link_to 'Click To View Coupon', coupon.image.thumb.url, target: :_blank %>
-                                          </p>
-
-                                          <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12" style = "text-align: center;">
-
-                                          <% if user_is_listing_owner(@repairshop) %>
-
-                                            <%= link_to 'Edit', edit_repairshop_coupon_path(@repairshop, coupon), class: "btn btn-danger btn-xs", style: " border: #e20049; margin: 1.5px 0;"  %>
-                                            <%= link_to 'Destroy', repairshop_coupon_path(@repairshop, coupon), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-xs", style: " border: #e20049; margin: 1.5px 0;"  %>
-
-                                            <% end %>
+                                      <% if user_is_listing_owner(@repairshop) %>
+                                          <div class="col-sm-12 text-center">
+                                            <%= link_to 'Add A Coupon', new_repairshop_coupon_path(@repairshop), class: "btn btn-danger btn-xs", style: "border: #e20049;"  %>                                      
                                           </div>
-                                      </div>                                      
-                                    </div>
+                                      <% end %>                                             
+        </div>
+                                    <% if !@coupons.empty? %>
+
+                                      <% @coupons.each do |coupon| %>
+                                      <div class = "col-sm-12 col-md-12 col-lg-12 col-xs-12">                                     
+                                        <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12" id = "coupondiv">
+                                            <p style = "text-align: center; font-size: 2em;"><%= coupon.title.upcase %></p>
+                                            <p style = "text-align: center; font-size: 0.7em;">
+                                              <%= link_to 'Click To View Coupon', coupon.image.thumb.url, target: :_blank %>
+                                            </p>
+
+                                            <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12" style = "text-align: center;">
+
+                                            <% if user_is_listing_owner(@repairshop) %>
+
+                                              <%= link_to 'Edit', edit_repairshop_coupon_path(@repairshop, coupon), class: "btn btn-danger btn-xs", style: " border: #e20049; margin: 1.5px 0;"  %>
+                                              <%= link_to 'Destroy', repairshop_coupon_path(@repairshop, coupon), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-xs", style: " border: #e20049; margin: 1.5px 0;"  %>
+
+                                              <% end %>
+                                            </div>
+                                        </div>                                      
+                                      </div>
+                                      <% end %>
+
+                                    <% else %>
+                                      <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12">
+                                        <p style = "text-align: center;">No Coupons Added yet!</p>
+                                        </div>
                                     <% end %>
 
-                                  <% else %>
-                                    <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12">
-                                      <p style = "text-align: center;">No Coupons Added yet!</p>
-                                      </div>
-                                  <% end %>
-
-                                  <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12 text-center">
-                                    <hr>
-                                  </div>
-    </div>
-  </div>                                        
-</div> 
+                                    <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12 text-center">
+                                      <hr>
+                                    </div>
+      </div>
+    </div>                                        
+  </div> 
+</div>
 
 
 <script>
