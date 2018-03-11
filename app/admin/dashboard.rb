@@ -31,16 +31,15 @@ ActiveAdmin.register_page "Dashboard" do
       end
     end
 
-    # columns do
-    #   column do
-    #     panel "CSV Uploads for Dealers" do
-    #       ul do
-    #         # Listing.recent(5).map do |post|
-    #         #   li link_to(post.title, admin_listing_path(post))
-    #         # end
-    #       end
-    #     end
-    #   end
+    columns do
+      column do
+        panel "CSV Uploads for Repairshops" do
+          ul do
+            render 'admin/dashboard/import_repairshops'
+          end
+        end
+      end
+    end
 
     #   column do
     #     panel "Info" do
@@ -115,6 +114,21 @@ ActiveAdmin.register_page "Dashboard" do
       end 
 
     end
+
+    page_action :import_repairshops, method: :post do
+      # # set a breakpoint here to check if you receive the file inside params properly
+      # CsvWorker.perform_async(params[:file].path)
+      # # do anything else you need and redirect as the last step
+      # redirect_to admin_dashboard_path, notice: "Hello! This upload job has been added for background importing. Please wait for few minutes and then cross check on listings page. Please recheck your CSV file headers and rows if new listings were not imported."
+      begin
+        CsvWorkerRepairshop.perform_async  
+        redirect_to admin_dashboard_path, notice: "Hello! This upload job has been added for background importing. Please wait for few minutes and then cross check on listings page. Please recheck your CSV file headers and rows if new listings were not imported."
+      rescue
+        redirect_to admin_dashboard_path, notice: "There was some error with the import. Kindly check your CSV file or contact admin."
+      end 
+
+    end
+
 
     
 end

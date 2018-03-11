@@ -47,7 +47,7 @@ class RepairshopsController < InheritedResources::Base
 	def show
 		@repairshop = Repairshop.find(params[:id])
 		@parent = @repairshop	
-		@desc = @repairshop.description.split(',')	
+		@desc =  @repairshop.description ? @repairshop.description.split(',') : ""	
 		@coupons = @repairshop.coupons if @repairshop != nil
 		@specialization = @repairshop.specializations  if @repairshop != nil
 		@brands_we_service = @repairshop.brands_we_services if @repairshop != nil

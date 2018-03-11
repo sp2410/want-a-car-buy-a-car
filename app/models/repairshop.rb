@@ -1,8 +1,8 @@
 class Repairshop < ActiveRecord::Base
 	belongs_to :user
-	has_many :coupons, :dependent => :destroy
-	has_many :specializations, :dependent => :destroy
-	has_many :brands_we_services, :dependent => :destroy
+	has_many :coupons, :dependent => :delete_all 
+	has_many :specializations, :dependent => :delete_all 
+	has_many :brands_we_services, :dependent => :delete_all 
 	validates_presence_of :title
 	# validates_presence_of :zipcode
 
@@ -87,6 +87,8 @@ class Repairshop < ActiveRecord::Base
 		end
 
 	end
+
+	
 
 	
 end
