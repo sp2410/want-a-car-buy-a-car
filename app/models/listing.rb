@@ -831,7 +831,135 @@ class Listing < ActiveRecord::Base
 	end
 
 	
+	def self.import_all_users(file) 
+	    start = Time.now  
+	    count = 0
+	    valid_users = Array.new
+	    data = {}   
+	    user_emails = User.all.pluck(:email)
+	    # last_user_id = User.last.id   
+	    # users = User.all.as_json
+	    # user_hash = Hash.new
 
+	    # users.each do |i|
+	    #   user_hash[i["id"]] = i
+	    # end
+
+	    map = {
+
+	        "DLR_TYPE" => :type,      
+	        "BUSINESS NAME" => :name,
+	        "STREET ADDRESS"  => :street_address,
+	        "DBA(S)" => :dba,
+	        "CITY"   => :city,
+	        "ST" => :state,
+	        "ZIP" => :zipcode,
+	        "PHONE #" => :phone_number
+
+	      }
+
+	    # p user_hash
+	    # p "*******************************"
+	    # p "*******************************"
+
+
+	    # p Listing.count
+	    # p Listing.delete_all
+	    # p "problem is here 1"
+	    CSV.foreach(file, headers: true, encoding:'iso-8859-1:utf-8') do |row|
+	      #Use create when you dont need customization with the listing 
+	      
+	        row.to_hash.each do |k, v|
+	          key = map[k]
+	          data[key] = v
+	        end
+
+	        user = User.new
+
+	        if  data[:type] == "AR" 
+	          user.role = 2       
+	        else
+	          user.role = 1
+	        end 
+
+	        if data[:dba] and data[:dba] != ""
+	          user.name = data[:dba]
+	        else
+	          user.name = data[:name] if data[:name]
+	        end
+
+	        #user.name = data[:name]  if data[:name]
+	        user.city = data[:city] if data[:city]
+	        user.zipcode = data[:zipcode] if data[:zipcode] 
+	        user.state = data[:state] if data[:state] 
+	        user.phone_number = data[:phone_number] if data[:phone_number]  
+	        user.street_address = data[:street_address] if data[:street_address]
+
+
+	        
+	        # the_email = Listing.email_generator
+
+	        # while !(user_emails.include?(the_email))
+	        #   the_email = Listing.email_generator   
+	        #   p "llop"     
+	        # end
+
+	        # user.email = the_email
+	        # user_emails << the_email
+
+
+	        user.email = "#{user.name.gsub(" ","")}@gmail.com"
+
+	        p user.email
+
+	        user.password = "123abc"
+	        user.password_confirmation = "123abc"
+
+	        if User.find_by_email(user.email) == nil 
+	        	user.save!
+	        end
+	        
+	        #begin
+
+	        p "llop2"  
+	  
+	        valid_users << user       
+	          
+	        data.clear
+
+	        # rescue Exception => e
+	          
+	        # end
+	        
+	    end
+
+	    # p "problem is here 2"p valid_listings
+	    # 
+
+	      count = valid_users.size
+
+	    # begin
+	      # p valid_listings
+	      #Listing.import valid_listings, on_duplicate_key_update: { conflict_target: [:vin], columns: [:user_id, :newused, :stocknumber, :model, :year, :trim, :miles, :enginedescription,:cylinder,:fuel,:transmission,  :price, :color, :interiorcolor, :options, :description,:city, :state, :zipcode, :approved]}
+	      p "llop3"  
+	      #User.import valid_users, on_duplicate_key_update: [:email, :password, :password_confirmation, :name, :role, :city, :zipcode, :state]
+	      # }
+	      # p Listing.count
+	      # p Listing.all
+	    # rescue
+	    #   p "some issue"
+	    # end
+
+	    finish = Time.now
+	    puts diff = finish - start
+	    #count == 0 ? false : count    
+	    # p self.last
+	end
+
+	def self.email_generator  
+	  sample = (2..99).to_a
+	  return "newuser#{sample.sample}#{sample.sample}#{sample.sample}@#{sample.sample}gmail.com"
+	end
 	
 
 end

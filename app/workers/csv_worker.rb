@@ -1,4 +1,3 @@
-
 class CsvWorker
 
 	include Sidekiq::Worker 
