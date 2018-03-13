@@ -35,5 +35,7 @@ task :update_location => :environment do
 	Listing.where(:user_id => 41).update_all(:city => "Phoenix", :state => "AZ", :latitude => "33.4382789", :longitude => "-112.0178286", :zipcode => "85034")
 
 	Listing.where(:user_id => 8).update_all(:city => "Phoenix", :state => "AZ", :latitude => "33.5083316", :longitude => "-112.0565795", :zipcode => "85014")
+
+	Listing.where(:user_id => 42).update_all(:city => "Glendale", :state => "AZ", :latitude => "33.5349253", :longitude => "-112.1847509", :zipcode => "85301")
 		
 end
