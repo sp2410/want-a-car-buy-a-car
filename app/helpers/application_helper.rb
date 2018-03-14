@@ -168,7 +168,7 @@ end
       css_class = column == sort_column ? "current #{sort_direction}" : nil
       direction = column == sort_column && sort_direction == "asc" ? "desc" : "asc"      
       # link_to title, request.params.merge({:sort => column, :direction => direction, :page => nil}), {:class => "css_class" }
-      link_to title, params.permit(:min, :max, :radius, :startdate, :near).merge({:sort => column, :direction => direction, :page => nil}), {:class => "css_class" }
+      link_to title, params.permit(:NewUsed, :category, :subcategory, :minprice, :maxprice, :location, :radius).merge({:sort => column, :direction => direction}), {:class => "css_class" }
     end
 
 
