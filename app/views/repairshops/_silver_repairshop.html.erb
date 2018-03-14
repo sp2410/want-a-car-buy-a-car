@@ -327,9 +327,14 @@
                               <p ><strong><span class="glyphicon glyphicon-paperclip"></span><strong> Website: <a href =<%= "//#{@user.website}" %> rel="noopener noreferrer" style= "text-decoration: underline;" target="_blank"><%= @user.website %></a> </strong></p>
                             </div>
 
+                            <div class = "col-sm-12 col-md-12 col-lg-12 col-xs-12 text-center">
+                              <p><%= link_to 'View Owner Page', userpage_path(:id => @user.slug), class: "btn btn-danger btn-xs", style: "border: #e20049", target: :_blank %></p>
+                            </div>
+
                              <div class = "col-sm-12 col-md-12 col-lg-12 col-xs-12 text-center">
                                 <p><a href = <%= "https://www.google.com/maps/?q=#{@user.latitude},#{@user.longitude}" %> class = "btn btn-danger btn" rel="noopener noreferrer" target="_blank">View Shop Location In Google Maps</a></p>
                               </div>
+
 
                             </div>
                           
