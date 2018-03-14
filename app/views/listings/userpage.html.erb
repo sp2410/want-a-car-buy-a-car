@@ -67,14 +67,16 @@
                   <% elsif @user.role ==  "GOLD DEALER" %>
                     <%= render :partial => 'listings/gold_dealer_info', :locals => { :i => @user } %>
                   <% elsif @user.role ==  "DIAMOND DEALER" %>
-                    <%= render :partial => 'listings/diamond_dealer_info', :locals => { :i => @user } %>                    
+                    <%= render :partial => 'listings/diamond_dealer_info', :locals => { :i => @user } %> 
+                  <% elsif @user.role ==  "SILVER REPAIRSHOP"%>  
+                    <%= render :partial => 'listings/silver_dealer_info', :locals => { :i => @user } %>
                   <% else %>
                     <%= render :partial => 'listings/basic_dealer_info', :locals => { :i => @user }%>
                   <% end %>                               
 </div>
 
 
-<% if @user.role !=  "BASIC DEALER" %>
+<% if @user.role !=  "BASIC DEALER" and @user.role !=  "BASIC USER" and @user.role !=  "BASIC REPAIRSHOP"  %>
   <div class="col-sm-12 col-md-12 col-lg-12 text-center" style = "background-color: #fff; padding: 12px;"> 
 
             <div class = "col-xs-12 col-sm-12 col-md-6 col-lg-6">
