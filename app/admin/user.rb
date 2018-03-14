@@ -32,7 +32,7 @@ ActiveAdmin.register User do
         f.input :textcolor  
         f.input :leademail1
         f.input :leademail2 
-        f.input :textbackgroundcolor       
+        #f.input :textbackgroundcolor       
         # f.input :slug    
       end
       f.actions
@@ -214,7 +214,7 @@ ActiveAdmin.register User do
 		column "Street address", :street_address
 		column "Phone", :phone_number
 
-        column "Text Background color", :textbackgroundcolor
+        #column "Text Background color", :textbackgroundcolor
 
         column "Lead Email 1", :leademail1
         column "Lead Email 2", :leademail2   
