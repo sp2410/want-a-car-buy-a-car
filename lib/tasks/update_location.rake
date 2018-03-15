@@ -40,7 +40,7 @@ task :update_location => :environment do
 	
 	Listing.where(:user_id => 1072).update_all(:city => "Phoenix", :state => "AZ", :latitude => "33.5636878", :longitude => "-112.0595603", :zipcode => "85020")
 
-	Listing.where(:user_id => 1072).update_all(:city => "Prescott Valley", :state => "AZ", :latitude => "34.6062718", :longitude => "-112.3099336", :zipcode => "86314")
+	Listing.where(:user_id => 1073).update_all(:city => "Prescott Valley", :state => "AZ", :latitude => "34.6062718", :longitude => "-112.3099336", :zipcode => "86314")
 
 	Listing.where(:user_id => 1074).update_all(:city => "Mesa", :state => "AZ", :latitude => "33.4525494", :longitude => "-111.7674282", :zipcode => "85213")	
 end
