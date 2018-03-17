@@ -6,9 +6,9 @@ class CloneInquiryCreator
 		#call import listings class method on the file.		
 		old_inquiry = Inquiry.find_by_id(inquiry_params)
 
-		puts "-------------------"
-		puts "I AM HERE"
-		puts "-------------------"
+		# puts "-------------------"
+		# puts "I AM HERE"
+		# puts "-------------------" 
 
 		if !old_inquiry.senttoall			
 			(User.leads2deals.emails - [old_inquiry.to_email]).each do |dealer|

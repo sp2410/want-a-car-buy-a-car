@@ -7,21 +7,20 @@ class CategoriesController < ApplicationController
 	
 	def index		
 
-		@repairshops = Repairshop.where(:approved => true)
-
-		@alllistings = Listing.all	
+		@carcount = Listing.where(:approved => true).count
+		@repairshopscount = Repairshop.where(:approved => true).count
+		@dealercount = User.get_dealers_count
 						
-		@newcars = Listing.approved_new.order("#{sort_column}" + " " + "#{sort_direction}")
-		@usedcars = Listing.approved_used.order("#{sort_column}" + " " + "#{sort_direction}")
-		@wholesalecars = Listing.approved_wholesale.order("#{sort_column}" + " " + "#{sort_direction}")
-
-		@listings = Listing.approved_all
+		@newcars = Listing.approved_new.order("#{sort_column}" + " " + "#{sort_direction}").where(:wholesale => false).sample(9)
+		@usedcars = Listing.approved_used.order("#{sort_column}" + " " + "#{sort_direction}").where(:wholesale => false).sample(9)
+		@wholesalecars = Listing.other_wholesale_listings.order("#{sort_column}" + " " + "#{sort_direction}").sample(9)
+ 
+		#@carcount = Listing.approved_all.count
 		
-
 		respond_to do |format|
 			format.html			
-			format.xml { render :xml => @alllistings}					
-			format.json { render :json => @alllistings}					
+			#format.xml { render :xml => @alllistings}					
+			#format.json { render :json => @alllistings}					
 		end
 	
 
