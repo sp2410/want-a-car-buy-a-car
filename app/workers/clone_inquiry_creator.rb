@@ -6,6 +6,10 @@ class CloneInquiryCreator
 		#call import listings class method on the file.		
 		old_inquiry = Inquiry.find_by_id(inquiry_params)
 
+		puts "-------------------"
+		puts "I AM HERE"
+		puts "-------------------"
+
 		if !old_inquiry.senttoall			
 			(User.leads2deals.emails - [old_inquiry.to_email]).each do |dealer|
 				inquiry = old_inquiry.dup
@@ -17,7 +21,6 @@ class CloneInquiryCreator
 				# rescue
 				# 	p "email not sent"
 				# end	
-				
 			end
 			old_inquiry.senttoall = true
 			old_inquiry.save
