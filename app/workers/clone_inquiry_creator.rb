@@ -12,11 +12,12 @@ class CloneInquiryCreator
 				inquiry.to_email = dealer			
 				inquiry.senttoall = true				
 				inquiry.save
-				begin 
-					send_email(inquiry, [dealer])
-				rescue
-					p "email not sent"
-				end	
+				# begin 
+				# 	send_email(inquiry, [dealer])
+				# rescue
+				# 	p "email not sent"
+				# end	
+				
 			end
 			old_inquiry.senttoall = true
 			old_inquiry.save

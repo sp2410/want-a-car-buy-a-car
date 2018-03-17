@@ -4,6 +4,8 @@ class CategoriesController < ApplicationController
 
 	#caches_page :index
 	#:skip_before_filter :require_no_authentication, only: [:index]
+
+	include ApplicationHelper
 	
 	def index		
 
@@ -11,9 +13,9 @@ class CategoriesController < ApplicationController
 
 		@alllistings = Listing.all	
 						
-		@newcars = Listing.approved_new.order("#{sort_column}" + " " + "#{sort_direction}").where(:wholesale => false).sample(20)
-		@usedcars = Listing.approved_used.order("#{sort_column}" + " " + "#{sort_direction}").where(:wholesale => false).sample(20)
-		@wholesalecars = Listing.other_wholesale_listings.order("#{sort_column}" + " " + "#{sort_direction}").sample(20)
+		@newcars = Listing.approved_new.order(sort_column + " " + sort_direction).where(:wholesale => false).sample(20)
+		@usedcars = Listing.approved_used.order(sort_column + " " + sort_direction).where(:wholesale => false).sample(20)
+		@wholesalecars = Listing.other_wholesale_listings.order(sort_column + " " + sort_direction).sample(20)
 
 		@listings = Listing.approved_all
 
@@ -42,4 +44,14 @@ class CategoriesController < ApplicationController
 	def sort_direction
 		params[:direction] ||= "asc"
 	end
+
+	# def sort_column           
+ #      Listing.column_names.include?(params[:sort]) ? params[:sort] : "year"
+ #    end      
+
+ #    def sort_direction
+ #      %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
+ #    end
+
+
 end

@@ -1,5 +1,5 @@
 source 'http://rubygems.org'
-
+#ruby "~> 2.3.0"
 
 #lolakutti
 
@@ -18,7 +18,7 @@ gem 'coffee-rails', '~> 4.1.0'
 
 gem 'redis'
 
-gem 'json'
+#gem 'json'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -63,7 +63,7 @@ gem 'mini_magick', '~> 4.3'
 #beautiful alerts
 gem 'slide-down-alerts-rails'
 #gem 'sprockets-rails', :require => 'sprockets/railtie'
-gem "fog"
+gem "fog-aws"
 
 gem 'figaro'
 
