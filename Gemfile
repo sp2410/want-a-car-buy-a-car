@@ -18,7 +18,7 @@ gem 'coffee-rails', '~> 4.1.0'
 
 gem 'redis'
 
-#gem 'json'
+gem 'json'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -63,7 +63,7 @@ gem 'mini_magick', '~> 4.3'
 #beautiful alerts
 gem 'slide-down-alerts-rails'
 #gem 'sprockets-rails', :require => 'sprockets/railtie'
-gem "fog-aws"
+gem "fog"
 
 gem 'figaro'
 
@@ -76,7 +76,7 @@ gem 'social-share-button', github: "huacnlee/social-share-button"
 # gem 'capistrano-rails', group: :development
 
 #Text Notification
-gem 'twilio-ruby', '~> 4.11.1'
+#gem 'twilio-ruby', '~> 4.11.1'
 
 #email notifications
 gem 'sendgrid-ruby'
@@ -118,7 +118,7 @@ gem 'active_admin_importable'
 
 # gem 'tire'
 
-gem 'elasticsearch-model'
+#gem 'elasticsearch-model'
 
 gem 'forty_facets'
 
