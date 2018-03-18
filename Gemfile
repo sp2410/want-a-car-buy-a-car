@@ -60,7 +60,7 @@ gem 'mini_magick', '~> 4.3'
 
 
 #beautiful alerts
-#gem 'slide-down-alerts-rails'
+gem 'slide-down-alerts-rails'
 #gem 'sprockets-rails', :require => 'sprockets/railtie'
 gem "fog"
 
