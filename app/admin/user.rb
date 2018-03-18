@@ -98,6 +98,15 @@ ActiveAdmin.register User do
             end
         end
 
+        def revoke_leadstodeals_priviliges(user_id)
+            begin
+                User.find_by_id(user_id).update(:leads2dealscustomer => false)
+                return true         
+            rescue
+                return false
+            end
+        end
+
         def verify_user(user_id)
             begin
                 User.find_by_id(user_id).update(:verified => true)
@@ -107,9 +116,27 @@ ActiveAdmin.register User do
             end
         end
 
+        def unverify_user(user_id)
+            begin
+                User.find_by_id(user_id).update(:verified => false)
+                return true         
+            rescue
+                return false
+            end
+        end
+
         def give_tdcfinance_priviliges(user_id)
             begin
                 User.find_by_id(user_id).update(:tdcfinance => true)
+                return true         
+            rescue
+                return false
+            end
+        end
+
+        def revoke_tdcfinance_priviliges(user_id)
+            begin
+                User.find_by_id(user_id).update(:tdcfinance => false)
                 return true         
             rescue
                 return false
@@ -144,10 +171,28 @@ ActiveAdmin.register User do
         end
     end
 
+    member_action :revoke_leadstodeals_priviliges_method, method: :get do 
+        status = revoke_leadstodeals_priviliges(resource.id)
+        if status 
+            redirect_to admin_users_path, notice: "User leads to deals revoked"
+        else
+            redirect_to admin_users_path, notice: "There was some error while revoking this user"
+        end
+    end
+
     member_action :verify_user_method, method: :get do 
         status = verify_user(resource.id)
         if status 
             redirect_to admin_users_path, notice: "User Verified"
+        else
+            redirect_to admin_users_path, notice: "There was some error while converting this user"
+        end
+    end
+
+     member_action :unverify_user_method, method: :get do 
+        status = unverify_user(resource.id)
+        if status 
+            redirect_to admin_users_path, notice: "User Unverified"
         else
             redirect_to admin_users_path, notice: "There was some error while converting this user"
         end
@@ -159,6 +204,15 @@ ActiveAdmin.register User do
             redirect_to admin_users_path, notice: "User is now TDC Finance user"
         else
             redirect_to admin_users_path, notice: "There was some error while converting this user"
+        end
+    end
+
+    member_action :revoke_tdcfinance_priviliges_method, method: :get do 
+        status = revoke_tdcfinance_priviliges(resource.id)
+        if status 
+            redirect_to admin_users_path, notice: "User revoked from TDC Finance user"
+        else
+            redirect_to admin_users_path, notice: "There was some error while revoking this user"
         end
     end
 
@@ -194,7 +248,11 @@ ActiveAdmin.register User do
         column :tdcfinance 
 
         column "Verified user" do |user|
-            link_to "Yes Verified",  verify_user_method_admin_user_path(user)
+            link_to "Yes Verify",  verify_user_method_admin_user_path(user)
+        end
+
+        column "Unverified user" do |user|
+            link_to "Yes Unverify",  unverify_user_method_admin_user_path(user)
         end
 
         column "Convert user to leads 2 deals customer" do |user|
@@ -205,6 +263,14 @@ ActiveAdmin.register User do
             link_to "Yes convert User",  give_tdcfinance_priviliges_method_admin_user_path(user)
         end
 
+        column "Revoke leads 2 deals" do |user|
+            link_to "Yes revoke",  revoke_leadstodeals_priviliges_method_admin_user_path(user)
+        end
+
+        column "Revoke TDC Finance" do |user|
+            link_to "Yes revoke",  revoke_tdcfinance_priviliges_method_admin_user_path(user)
+        end
+
     
 	
 		column "Website", :website 
@@ -213,8 +279,6 @@ ActiveAdmin.register User do
 		column "State", :state
 		column "Street address", :street_address
 		column "Phone", :phone_number
-
-        #column "Text Background color", :textbackgroundcolor
 
         column "Lead Email 1", :leademail1
         column "Lead Email 2", :leademail2   
