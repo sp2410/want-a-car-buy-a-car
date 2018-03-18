@@ -25,7 +25,8 @@ class EmailNotifier
 		@email.subject = @subject	
 
 		personalization = Personalization.new	
-		personalization.add_to(Email.new(email: "tech@tdcdigitalmedia.com"))
+		personalization.add_to(Email.new(email: "leads2deals@gmail.com"))
+		#personalization.add_to(Email.new(email: "tech@tdcdigitalmedia.com"))
 
 		@dealers.each do |dealer|																
   			personalization.add_bcc(Email.new(email: dealer))					
