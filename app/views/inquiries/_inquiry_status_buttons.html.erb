@@ -40,6 +40,10 @@
 
                       <%= link_to 'DONOTCALL', 'javascript:;', :id => :foo , class: "btn btn-danger another btn-xs"  %>
 
+                    <% elsif  inquiry.status == "SPAM"  %>
+
+                      <%= link_to 'SPAM', 'javascript:;', :id => :foo , class: "btn btn-danger another btn-xs"  %>
+
                     <% elsif  inquiry.status == "BOUGHELSEWHERE"  %>
 
                       <%= link_to 'BOUGHELSEWHERE', 'javascript:;', :id => :foo , class: "btn btn-danger another btn-xs"  %>
