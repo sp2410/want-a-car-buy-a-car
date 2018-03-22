@@ -245,7 +245,7 @@ class User < ActiveRecord::Base
         dealers = User.where(id: dealers.near(params[:location], params[:radius]).map{|i| i.id}) if params[:location].present?  
       else
 
-        dealers = User.where(id: dealers.near(params[:location], 200).map{|i| i.id}) if params[:location].present?    
+        dealers = User.where(id: dealers.near(params[:location], 20).map{|i| i.id}) if params[:location].present?    
       end
 
       if params[:keywords].present?      
