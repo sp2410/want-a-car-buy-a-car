@@ -142,5 +142,6 @@ group :production do
 	# gem 'newrelic_rpm'
 	# gem "skylight"
 	gem 'heroku-deflater'
+	gem 'scout_apm'
 
 end
