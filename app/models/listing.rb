@@ -819,7 +819,7 @@ class Listing < ActiveRecord::Base
 			if params[:radius].present?
 				listings = listings.near(params[:location].upcase,params[:radius]) if params[:location].present?
 			else
-				listings = listings.near(params[:location].upcase,200) if params[:location].present?
+				listings = listings.near(params[:location].upcase,20) if params[:location].present?
 			end
 
 			listings

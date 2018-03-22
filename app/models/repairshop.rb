@@ -73,7 +73,7 @@ class Repairshop < ActiveRecord::Base
 			if params[:radius].present?
 				repairshop = Repairshop.where(id: repairshop.near(params[:location], params[:radius]).map{|i| i.id}) if params[:location].present?
 			else
-				repairshop = Repairshop.where(id: repairshop.near(params[:location], 200).map{|i| i.id}) if params[:location].present?				
+				repairshop = Repairshop.where(id: repairshop.near(params[:location], 20).map{|i| i.id}) if params[:location].present?				
 			end
 
 			if params[:keywords].present?
