@@ -755,9 +755,9 @@ class Listing < ActiveRecord::Base
 
 
 			if params[:radius].present?
-				listings = Listing.where(id: listings.near(params[:location].upcase,params[:radius]).map{|i| i.id}) if params[:location].present?
+				listings = Listing.where(id: listings.near(params[:location].upcase,params[:radius], order: 'distance').map{|i| i.id}) if params[:location].present?
 			else
-				listings = Listing.where(id: listings.near(params[:location].upcase,200).map{|i| i.id}) if params[:location].present?
+				listings = Listing.where(id: listings.near(params[:location].upcase,200, order: 'distance').map{|i| i.id}) if params[:location].present?
 			end
 
 			
@@ -997,15 +997,15 @@ class Listing < ActiveRecord::Base
 
 	end
 
-	def self.update_or_create(attributes)
-	  assign_or_new(attributes).save
-	end
+	# def self.update_or_create(attributes)
+	#   assign_or_new(attributes).save
+	# end
 
-	def self.assign_or_new(attributes)
-	  obj = first || new
-	  obj.assign_attributes(attributes)
-	  obj
-	end
+	# def self.assign_or_new(attributes)
+	#   obj = first || new
+	#   obj.assign_attributes(attributes)
+	#   obj
+	# end
 
 
 
