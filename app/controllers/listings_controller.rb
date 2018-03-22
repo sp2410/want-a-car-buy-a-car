@@ -81,7 +81,14 @@ class ListingsController < ApplicationController
 
 		@sort_column = sort_column
 		@sort_direction = sort_direction		
-		@listings = Listing.search(params)#.order("#{@sort_column}" + " " + "#{@sort_direction}")#.near(@userLocation, 5000000, :order => :distance)
+		@listings = Listing.search(params)
+
+		@radius = params[:radius] ? params[:radius] : 200
+
+		if params[:location]
+			@listings = @listings.near(params[:location].upcase, @radius, order: 'distance DESC')
+		end
+		#.order("#{@sort_column}" + " " + "#{@sort_direction}")#.near(@userLocation, 5000000, :order => :distance)
 		#@listings = Listing.search(params).near(@userLocation, 5000, :order => :distance)
 		# @listings = Listing.search(params)	
 
