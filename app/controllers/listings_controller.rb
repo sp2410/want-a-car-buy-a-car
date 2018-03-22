@@ -73,9 +73,16 @@ class ListingsController < ApplicationController
 	end
 
 	def search
+
+		@userLocation = request.location #gets the ip of the user
+		#@searchResults = Geocoder.search(search_locations)
+		#@locations = @searchResults.near(@userLocation, 5000000, :order => :distance)
+
+
 		@sort_column = sort_column
 		@sort_direction = sort_direction		
-		@listings = Listing.search(params).order("#{@sort_column}" + " " + "#{@sort_direction}")
+		#@listings = Listing.search(params).order("#{@sort_column}" + " " + "#{@sort_direction}").near(@userLocation, 5000000, :order => :distance)
+		@listings = Listing.search(params).near(@userLocation, 5000, :order => :distance)
 		# @listings = Listing.search(params)	
 
 		#Applied filters
@@ -360,7 +367,7 @@ class ListingsController < ApplicationController
 	end
 
 	def sort_column
-		params[:sort] ||= "created_at"
+		params[:sort] ||= "price"
 	end
 
 	def sort_direction
