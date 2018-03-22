@@ -67,6 +67,9 @@ Rails.application.routes.draw do
   match '/policy', to: 'pages#policy', via: :get
   match '/about', to: 'pages#about', via: :get
   match '/contact', to: 'pages#contact', via: :get
+  match '/loaderio-403582f9270b5a0181c45c5ee5c1ccf1', to: 'pages#loadtesting', via: :get
+
+
   match '/mylistings', to: 'listings#mylistings', via: :get
   
   match '/myrepairshops', to: 'repairshops#myrepairshops', via: :get

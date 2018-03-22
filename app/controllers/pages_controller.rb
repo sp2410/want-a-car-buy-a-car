@@ -27,4 +27,7 @@ class PagesController < ApplicationController
 	
 	def dealercorner
 	end
+
+	def loadtesting
+	end
 end
