@@ -81,7 +81,7 @@ class ListingsController < ApplicationController
 
 		@sort_column = sort_column
 		@sort_direction = sort_direction		
-		@listings = Listing.search(params)
+		@listings = Listing.search(params).order("#{@sort_column}" + " " + "#{@sort_direction}")
 
 		# @radius = params[:radius] ? params[:radius] : 200
 
