@@ -773,12 +773,8 @@ class Listing < ActiveRecord::Base
 
 			if listings.empty?
 				#sleep 0.2				
-				listings = Listing.where(id: listings.near(params[:location].upcase,100, order: 'distance DESC').map{|i| i.id}) if params[:location].present?					
+				listings = Listing.where(id: Listing.near(params[:location].upcase,100, order: 'distance DESC').map{|i| i.id}) if params[:location].present?					
 			end
-
-			
-
-			
 
 			# listings.uniq
 			listings
@@ -845,7 +841,7 @@ class Listing < ActiveRecord::Base
 
 			if listings.empty?
 				#sleep 0.2				
-				listings = Listing.where(id: listings.near(params[:location].upcase,100, order: 'distance DESC').map{|i| i.id}) if params[:location].present?					
+				listings = Listing.where(id: Listing.near(params[:location].upcase,100, order: 'distance DESC').map{|i| i.id}) if params[:location].present?					
 			end
 
 			listings

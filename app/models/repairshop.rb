@@ -71,16 +71,16 @@ class Repairshop < ActiveRecord::Base
 			repairshop = Repairshop.where(:approved => true)
 			
 			if params[:radius].present?
-				sleep 0.2 
+				#sleep 0.2 
 				repairshop = Repairshop.where(id: repairshop.near(params[:location], params[:radius]).map{|i| i.id}) if params[:location].present?
 			else
-				sleep 0.2 
+				#sleep 0.2 
 				repairshop = Repairshop.where(id: repairshop.near(params[:location], 20).map{|i| i.id}) if params[:location].present?				
 			end
 
 			if repairshop.empty?
-				sleep 0.2 
-				repairshop = Repairshop.where(id: repairshop.near(params[:location], 100).map{|i| i.id}) if params[:location].present?				
+				#sleep 0.2 
+				repairshop = Repairshop.where(id: Repairshop.near(params[:location], 100).map{|i| i.id}) if params[:location].present?				
 			end
 
 			if params[:keywords].present?
