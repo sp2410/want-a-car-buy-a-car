@@ -483,25 +483,33 @@ class Listing < ActiveRecord::Base
 						# i = 0
 					
 						# [:image, :imagefront, :imageback, :imageleft, :imageright, :frontinterior, :rearinterior].each do |image|				
-							unless listing_images.size < 1
-								# p listing_images[i]
+							# unless listing_images.size < 1
+							# 	# p listing_images[i]
 
-								listing.external_image = listing_images[0]
-								listing.external_imagefront = listing_images[1] if listing_images[1]
-								listing.external_imageback = listing_images[2] if listing_images[2]
-								listing.external_imageleft = listing_images[3] if listing_images[3]
-								listing.external_imageright = listing_images[4] if listing_images[4]
-								listing.external_frontinterior = listing_images[5] if listing_images[5]
-								listing.external_rearinterior = listing_images[6] if listing_images[6]							
-								# p data[image]
-								# i += 1
-							end
+							# 	listing.external_image = listing_images[0]
+							# 	listing.external_imagefront = listing_images[1] if listing_images[1]
+							# 	listing.external_imageback = listing_images[2] if listing_images[2]
+							# 	listing.external_imageleft = listing_images[3] if listing_images[3]
+							# 	listing.external_imageright = listing_images[4] if listing_images[4]
+							# 	listing.external_frontinterior = listing_images[5] if listing_images[5]
+							# 	listing.external_rearinterior = listing_images[6] if listing_images[6]							
+							# 	# p data[image]
+							# 	# i += 1
+							# end
 							# p "hello"
 						# end
 
+						[:image, :imagefront, :imageback, :imageleft, :imageright, :frontinterior, :rearinterior].each do |image|				
+								#unless listing_images.size < 1
+									listing[image] = CsvUploading::picture_from_url(listing_images[i])
+									i += 1
+								#end
+							# p "hello"
+						end
+
 					end
 
-					listing.external_url = true
+					#listing.external_url = true
 					listing.approved = true
 
 					# p listing.approved
@@ -728,6 +736,7 @@ class Listing < ActiveRecord::Base
 
 
 	def self.search(params)
+		
 		if params
 			listings = Listing.where(approved: true).where('expiration_date > ?', DateTime.now)			
 			if params[:category].present?
@@ -755,10 +764,19 @@ class Listing < ActiveRecord::Base
 
 
 			if params[:radius].present?
+				sleep 0.2
 				listings = Listing.where(id: listings.near(params[:location].upcase,params[:radius], order: 'distance DESC').map{|i| i.id}) if params[:location].present?
-			else				
-				listings = Listing.where(id: listings.near(params[:location].upcase,20, order: 'distance DESC').map{|i| i.id}) if params[:location].present?
+			else
+				sleep 0.2				
+				listings = Listing.where(id: listings.near(params[:location].upcase,20, order: 'distance DESC').map{|i| i.id}) if params[:location].present?				
 			end
+
+			if listings.empty?
+				sleep 0.2				
+				listings = Listing.where(id: listings.near(params[:location].upcase,100, order: 'distance DESC').map{|i| i.id}) if params[:location].present?					
+			end
+
+			
 
 			
 
@@ -802,6 +820,7 @@ class Listing < ActiveRecord::Base
 
 
 	def self.bodysearch(params)
+
 		if params
 			listings = Listing.where(approved: true).where('expiration_date > ?', DateTime.now)	
 
@@ -817,9 +836,16 @@ class Listing < ActiveRecord::Base
 					
 
 			if params[:radius].present?
-				listings = listings.near(params[:location].upcase,params[:radius]) if params[:location].present?
+				sleep 0.2
+				listings = Listing.where(id: listings.near(params[:location].upcase,params[:radius], order: 'distance DESC').map{|i| i.id}) if params[:location].present?
 			else
-				listings = listings.near(params[:location].upcase,20) if params[:location].present?
+				sleep 0.2				
+				listings = Listing.where(id: listings.near(params[:location].upcase,20, order: 'distance DESC').map{|i| i.id}) if params[:location].present?				
+			end
+
+			if listings.empty?
+				sleep 0.2				
+				listings = Listing.where(id: listings.near(params[:location].upcase,100, order: 'distance DESC').map{|i| i.id}) if params[:location].present?					
 			end
 
 			listings

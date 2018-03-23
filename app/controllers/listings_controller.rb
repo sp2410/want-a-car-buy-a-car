@@ -54,6 +54,16 @@ class ListingsController < ApplicationController
 		@newcars = Listing.other_approved_new.where(user: @user).where.not(id: @listing.id)
 		@usedcars = Listing.other_approved_used.where(user: @user).where.not(id: @listing.id)
 		@wholesalecars = Listing.other_wholesale_listings.where(user: @user).where.not(id: @listing.id)
+
+		# begin
+		# 	if current_user	
+		# 		NewLogCreator.perform_async({:contact => "#{current_user.email}, #{current_user.phone if current_user.phone}", :activity => "User opened #{@listing.id} owned by #{user.where(:id => @listing.user_id).email}", :type => "Page View"})							
+		# 	else
+		# 		NewLogCreator.perform_async({:contact => "Guest", :activity => "User opened #{@listing.id} owned by #{user.where(:id => @listing.user_id).email}", :type => "Page View"})							
+		# 	end			
+		# rescue
+
+		# end
 		
 	end
 
@@ -135,6 +145,16 @@ class ListingsController < ApplicationController
 		@carcount = Listing.where(:approved => true).count
 		@repairshopscount = Repairshop.where(:approved => true).count
 		@dealercount = User.get_dealers_count
+
+		# begin
+		# 	if current_user	
+		# 		NewLogCreator.perform_async({:contact => "#{current_user.email}, #{current_user.phone if current_user.phone}", :activity => "User searched for #{params} for a car", :type => "Search"})
+		# 	else
+		# 		NewLogCreator.perform_async({:contact => "Guest", :activity => "User searched for #{params} for a car", :type => "Search"})
+		# 	end			
+		# rescue
+
+		# end
 		
 
 
@@ -187,6 +207,16 @@ class ListingsController < ApplicationController
 		@carcount = Listing.where(:approved => true).count
 		@repairshopscount = Repairshop.where(:approved => true).count
 		@dealercount = User.get_dealers_count
+
+		# begin
+		# 	if current_user	
+		# 		NewLogCreator.perform_async({:contact => "#{current_user.email}, #{current_user.phone if current_user.phone}", :activity => "User searched for #{params} for a car", :type => "Search"})
+		# 	else
+		# 		NewLogCreator.perform_async({:contact => "Guest", :activity => "User searched for #{params} for a car", :type => "Search"})
+		# 	end			
+		# rescue
+
+		# end
 		
 	end
 
@@ -289,6 +319,16 @@ class ListingsController < ApplicationController
 		@carcount = Listing.where(:approved => true).count
 		@repairshopscount = Repairshop.where(:approved => true).count
 		@dealercount = User.get_dealers_count
+
+		# begin
+		# 	if current_user	
+		# 		NewLogCreator.perform_async({:contact => "#{current_user.email}, #{current_user.phone if current_user.phone}", :activity => "User searched for #{params} for a dealership", :activity_type => "Search"})
+		# 	else
+		# 		NewLogCreator.perform_async({:contact => "Guest", :activity => "User searched for #{params} for a dealership", :activity_type => "Search"})
+		# 	end			
+		# rescue
+
+		# end
 		
 
 	end
@@ -315,6 +355,16 @@ class ListingsController < ApplicationController
 		@usedcars = @user_listings.where('user_id=?', @user_id).where(:approved => true).where(:newused => "U").order("#{sort_column}" + " " + "#{sort_direction}")
 		@wholesalecars = @user_listings.where('user_id=?', @user_id).where(:approved => true).where(:wholesale => true).order("#{sort_column}" + " " + "#{sort_direction}")
 		@repairshops = Repairshop.where('user_id=?', @user_id).where(:approved => true)
+
+		# begin
+		# 	if current_user	
+		# 		NewLogCreator.perform_async({:contact => "#{current_user.email}, #{current_user.phone if current_user.phone}", :activity => "User opened #{params[:id]} user's page", :type => "Page View"})							
+		# 	else
+		# 		NewLogCreator.perform_async({:contact => "Guest", :activity => "User opened #{params[:id]} user's page", :type => "Page View"})						
+		# 	end			
+		# rescue
+
+		# end
 	end 
 
 	# def userpage 

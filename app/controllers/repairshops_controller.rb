@@ -52,7 +52,17 @@ class RepairshopsController < InheritedResources::Base
 		@specialization = @repairshop.specializations  if @repairshop != nil
 		@brands_we_service = @repairshop.brands_we_services if @repairshop != nil
 		@user = User.find_by_id(@repairshop.user_id)
-		@reviews = Review.where('owner_id = ?', @repairshop.user_id)		
+		@reviews = Review.where('owner_id = ?', @repairshop.user_id)
+
+		# begin
+		# 	if current_user	
+		# 		NewLogCreator.perform_async({:contact => "#{current_user.email}, #{current_user.phone if current_user.phone}", :activity => "User opened repairshop #{@repairshop.id} repairshop page", :type => "Page View"})							
+		# 	else
+		# 		NewLogCreator.perform_async({:contact => "Guest", :activity => "User opened repairshop #{@repairshop.id} repairshop page", :type => "Page View"})							
+		# 	end			
+		# rescue
+
+		# end
 	end
 
 	def update
@@ -98,6 +108,16 @@ class RepairshopsController < InheritedResources::Base
 
 	  	@repairshops_cities = Repairshop.repairshop_search_cities(@repairshops)
 		@repairshops_states = Repairshop.repairshop_search_states(@repairshops)
+
+		# begin
+		# 	if current_user	
+		# 		NewLogCreator.perform_async({:contact => "#{current_user.email}, #{current_user.phone if current_user.phone}", :activity => "User searched for #{params} for a repairshop", :type => "Search"})
+		# 	else
+		# 		NewLogCreator.perform_async({:contact => "Guest", :activity => "User searched for #{params} for a repairshop", :type => "Search"})
+		# 	end			
+		# rescue
+
+		# end
 		
 	end
 

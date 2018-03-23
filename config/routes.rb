@@ -2,6 +2,7 @@ Rails.application.routes.draw do
     
  
   
+  
   require 'sidekiq/web'
   mount Sidekiq::Web => '/sidekiq'
   
@@ -24,6 +25,8 @@ Rails.application.routes.draw do
 
     resources :timetables, only: [:new, :edit, :create, :update, :destroy]
   end
+
+  resources :activity_loggers, only: [:create]
 
 
 

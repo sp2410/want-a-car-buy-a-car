@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Activity Loggers</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Contact</th>
+      <th>Activity</th>
+      <th>Type</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @activity_loggers.each do |activity_logger| %>
+      <tr>
+        <td><%= activity_logger.contact %></td>
+        <td><%= activity_logger.activity %></td>
+        <td><%= activity_logger.type %></td>
+        <td><%= link_to 'Show', activity_logger %></td>
+        <td><%= link_to 'Edit', edit_activity_logger_path(activity_logger) %></td>
+        <td><%= link_to 'Destroy', activity_logger, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Activity logger', new_activity_logger_path %>

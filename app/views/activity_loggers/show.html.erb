@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Contact:</strong>
+  <%= @activity_logger.contact %>
+</p>
+
+<p>
+  <strong>Activity:</strong>
+  <%= @activity_logger.activity %>
+</p>
+
+<p>
+  <strong>Type:</strong>
+  <%= @activity_logger.type %>
+</p>
+
+<%= link_to 'Edit', edit_activity_logger_path(@activity_logger) %> |
+<%= link_to 'Back', activity_loggers_path %>
