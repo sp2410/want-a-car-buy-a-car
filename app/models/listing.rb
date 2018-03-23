@@ -764,15 +764,15 @@ class Listing < ActiveRecord::Base
 
 
 			if params[:radius].present?
-				sleep 0.2
+				#sleep 0.2
 				listings = Listing.where(id: listings.near(params[:location].upcase,params[:radius], order: 'distance DESC').map{|i| i.id}) if params[:location].present?
 			else
-				sleep 0.2				
+				#sleep 0.2				
 				listings = Listing.where(id: listings.near(params[:location].upcase,20, order: 'distance DESC').map{|i| i.id}) if params[:location].present?				
 			end
 
 			if listings.empty?
-				sleep 0.2				
+				#sleep 0.2				
 				listings = Listing.where(id: listings.near(params[:location].upcase,100, order: 'distance DESC').map{|i| i.id}) if params[:location].present?					
 			end
 
@@ -836,15 +836,15 @@ class Listing < ActiveRecord::Base
 					
 
 			if params[:radius].present?
-				sleep 0.2
+				#sleep 0.2
 				listings = Listing.where(id: listings.near(params[:location].upcase,params[:radius], order: 'distance DESC').map{|i| i.id}) if params[:location].present?
 			else
-				sleep 0.2				
+				#sleep 0.2				
 				listings = Listing.where(id: listings.near(params[:location].upcase,20, order: 'distance DESC').map{|i| i.id}) if params[:location].present?				
 			end
 
 			if listings.empty?
-				sleep 0.2				
+				#sleep 0.2				
 				listings = Listing.where(id: listings.near(params[:location].upcase,100, order: 'distance DESC').map{|i| i.id}) if params[:location].present?					
 			end
 
