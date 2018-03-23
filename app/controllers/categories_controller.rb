@@ -12,7 +12,8 @@ class CategoriesController < ApplicationController
 		@dealercount = User.get_dealers_count
 						
 		@newcars = Listing.approved_new.order("#{sort_column}" + " " + "#{sort_direction}").where(:wholesale => false).sample(6)
-		@usedcars = Listing.approved_used.order("#{sort_column}" + " " + "#{sort_direction}").where(:wholesale => false).sample(6)
+		@all_used = Listing.approved_used.order("#{sort_column}" + " " + "#{sort_direction}").where(:wholesale => false)
+		@usedcars = @all_used.sample(6)
 		@wholesalecars = Listing.other_wholesale_listings.order("#{sort_column}" + " " + "#{sort_direction}").sample(6)
  
 		#@carcount = Listing.approved_all.count
