@@ -240,21 +240,19 @@ class User < ActiveRecord::Base
     if params
       dealers = User.where(:role => [1, 3, 4, 6])
         # dealers = User.all
-
-        
-      
+            
       if params[:radius].present?    
         #sleep 0.2    
         dealers = User.where(id: dealers.near(params[:location], params[:radius]).map{|i| i.id}) if params[:location].present?  
       else
          #sleep 0.2
-        dealers = User.where(id: dealers.near(params[:location], 20).map{|i| i.id}) if params[:location].present?    
+        dealers = User.where(id: dealers.near(params[:location], 100).map{|i| i.id}) if params[:location].present?    
       end
 
-      if dealers.empty?
-        #sleep 0.2
-        dealers = User.where(id: User.near(params[:location], 100).map{|i| i.id}) if params[:location].present?    
-      end
+      # if dealers.empty?
+      #   #sleep 0.2
+      #   dealers = User.where(id: User.near(params[:location], 100).map{|i| i.id}) if params[:location].present?    
+      # end
         
       if params[:keywords].present?      
 
