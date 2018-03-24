@@ -766,14 +766,14 @@ class Listing < ActiveRecord::Base
 				#sleep 0.2
 				if params[:location].present?
 					ids = listings.near(params[:location].upcase,params[:radius], order: 'distance').map{|i| i.id} 
-					listings = Listing.where(id: ids).sort_by {|u| ids.index(u.id)}
+					listings = Listing.where(id: ids).order("position(id::text in '#{ids.join(',')}')")
 					ids.clear
 				end							
 			else
 				#sleep 0.2				
 				if params[:location].present?
 					ids = listings.near(params[:location].upcase,20, order: 'distance').map{|i| i.id} 
-					listings = Listing.where(id: ids).sort_by {|u| ids.index(u.id)}
+					listings = Listing.where(id: ids).order("position(id::text in '#{ids.join(',')}')")
 					ids.clear
 				end	
 				
@@ -786,7 +786,7 @@ class Listing < ActiveRecord::Base
 				#sleep 0.2		
 				if params[:location].present?		
 					ids = listing2.near(params[:location].upcase,100, order: 'distance').map{|i| i.id}
-					listings = Listing.where(id: ids).sort_by {|u| ids.index(u.id)}	
+					listings = Listing.where(id: ids).order("position(id::text in '#{ids.join(',')}')")	
 					ids.clear
 				end 
 						
