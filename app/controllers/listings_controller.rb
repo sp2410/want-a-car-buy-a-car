@@ -172,7 +172,7 @@ class ListingsController < ApplicationController
 
 		@sort_column = sort_column
 		@sort_direction = sort_direction		
-		@listings = Listing.bodysearch(params).order("#{sort_column}" + " " + "#{sort_direction}")
+		@listings = Listing.bodysearch(params)#.order("#{sort_column}" + " " + "#{sort_direction}")
 
 
 		@current_filters = params[:filters] || {:filters => ""}		
