@@ -70,22 +70,56 @@ class Repairshop < ActiveRecord::Base
 		if params
 			repairshop = Repairshop.where(:approved => true)
 			
-			if params[:radius].present?
-				#sleep 0.2 
-				repairshop = Repairshop.where(id: repairshop.near(params[:location], params[:radius]).map{|i| i.id}) if params[:location].present?
-			else
-				#sleep 0.2 
-				repairshop = Repairshop.where(id: repairshop.near(params[:location], 20).map{|i| i.id}) if params[:location].present?				
-			end
+			# if params[:radius].present?
+			# 	#sleep 0.2 
+			# 	repairshop = Repairshop.where(id: repairshop.near(params[:location], params[:radius]).map{|i| i.id}) if params[:location].present?
+			# else
+			# 	#sleep 0.2 
+			# 	repairshop = Repairshop.where(id: repairshop.near(params[:location], 20).map{|i| i.id}) if params[:location].present?				
+			# end
 
-			if repairshop.empty?
-				#sleep 0.2 
-				repairshop = Repairshop.where(id: Repairshop.near(params[:location], 100).map{|i| i.id}) if params[:location].present?				
-			end
+			# if repairshop.empty?
+			# 	#sleep 0.2 
+			# 	repairshop = Repairshop.where(id: Repairshop.near(params[:location], 100).map{|i| i.id}) if params[:location].present?				
+			# end
 
 			if params[:keywords].present?
 				repairshop = repairshop.joins("LEFT JOIN specializations ON specializations.repairshop_id = repairshops.id").joins("LEFT JOIN brands_we_services ON brands_we_services.repairshop_id = repairshops.id").where("LOWER(specializations.title) LIKE ? OR LOWER(brands_we_services.title) LIKE ? OR LOWER(repairshops.title) LIKE ?", "%#{params[:keywords].downcase}%", "%#{params[:keywords].downcase}%", "%#{params[:keywords].downcase}%")
 			end
+
+			repairshop2 = repairshop
+
+
+			if params[:radius].present?
+				#sleep 0.2
+				if params[:location].present?
+					ids = repairshop.near(params[:location].upcase,params[:radius], order: 'distance').map{|i| i.id} 
+					repairshop = Repairshop.where(id: ids).order("position(id::text in '#{ids.join(',')}')")
+					ids.clear
+				end							
+			else
+				#sleep 0.2				
+				if params[:location].present?
+					ids = repairshop.near(params[:location].upcase,20, order: 'distance').map{|i| i.id} 
+					repairshop = Repairshop.where(id: ids).order("position(id::text in '#{ids.join(',')}')")
+					ids.clear
+				end	
+				
+				#repairshops = repairshop.where(id: repairshops.near(params[:location].upcase,20, order: 'distance').map{|i| i.id}) if params[:location].present?				
+			end
+
+
+
+			if repairshop.empty?
+				#sleep 0.2		
+				if params[:location].present?		
+					ids = repairshop2.near(params[:location].upcase,100, order: 'distance').map{|i| i.id}
+					repairshop = Repairshop.where(id: ids).order("position(id::text in '#{ids.join(',')}')")	
+					ids.clear
+				end 
+						
+			end
+
 
 			# repairshop.uniq
 			repairshop
