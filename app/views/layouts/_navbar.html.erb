@@ -10,7 +10,7 @@
 
       <ul class="nav navbar-nav navbar-left">
         <li>
-          <%= image_tag("https://s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/TDCsmaller.jpg", :alt => "Want A Car Buy A Car", :size => "40x40") %>          
+        <%= link_to image_tag("https://s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/TDCsmaller.jpg", :alt => "Want A Car Buy A Car", :size => "40x40"), root_path, :style => "padding: 0px;" %>             
         </li>
       </ul>
     </div>
@@ -18,7 +18,7 @@
     <div class="collapse navbar-collapse" id="myNavbar">      
          <ul class="nav navbar-nav navbar-right">        
          <li>
-          <%= link_to 'HOME', root_path %>     
+          <%= link_to 'SEARCH', root_path %>     
          </li>
          <li>
           <%= link_to 'SELL MY VEHICLE', new_listing_path %>     
