@@ -759,7 +759,7 @@ class Listing < ActiveRecord::Base
 			listings = listings.where("price <= ?", "#{params[:maxprice]}") if params[:maxprice].present?			
 
 
-			listing2 = listing
+			listing2 = listings
 
 
 			if params[:radius].present?
