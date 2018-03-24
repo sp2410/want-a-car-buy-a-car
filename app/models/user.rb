@@ -241,7 +241,7 @@ class User < ActiveRecord::Base
       dealers = User.where(:role => [1, 3, 4, 6])
         # dealers = User.all                 
 
-      dealers2 = dealers
+      #dealers2 = dealers
 
 
       if params[:radius].present?
