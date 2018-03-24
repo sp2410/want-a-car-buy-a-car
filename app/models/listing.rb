@@ -739,20 +739,7 @@ class Listing < ActiveRecord::Base
 		
 		if params
 			listings = Listing.where(approved: true).where('expiration_date > ?', DateTime.now)	
-
-			if params[:radius].present?
-				#sleep 0.2
-				listings = Listing.where(id: listings.near(params[:location].upcase,params[:radius], order: 'distance DESC').map{|i| i.id}) if params[:location].present?
-			else
-				#sleep 0.2				
-				listings = Listing.where(id: listings.near(params[:location].upcase,20, order: 'distance DESC').map{|i| i.id}) if params[:location].present?				
-			end
-
-			if listings.empty?
-				#sleep 0.2				
-				listings = Listing.where(id: Listing.near(params[:location].upcase,100, order: 'distance DESC').map{|i| i.id}) if params[:location].present?					
-			end
-
+			
 
 			if params[:category].present?
 				if params[:category] != "All"
@@ -770,6 +757,42 @@ class Listing < ActiveRecord::Base
 			listings = listings.where("listings.newused = '#{params[:NewUsed][0].upcase}'") if params[:NewUsed].present?
 			listings = listings.where("price >= ?", "#{params[:minprice]}") if params[:minprice].present?			
 			listings = listings.where("price <= ?", "#{params[:maxprice]}") if params[:maxprice].present?			
+
+
+			listing2 = listing
+
+
+			if params[:radius].present?
+				#sleep 0.2
+				if params[:location].present?
+					ids = listings.near(params[:location].upcase,params[:radius], order: 'distance').map{|i| i.id} 
+					listings = Listing.where(id: ids).sort_by {|u| ids.index(u.id)}
+					ids.clear
+				end							
+			else
+				#sleep 0.2				
+				if params[:location].present?
+					ids = listings.near(params[:location].upcase,20, order: 'distance').map{|i| i.id} 
+					listings = Listing.where(id: ids).sort_by {|u| ids.index(u.id)}
+					ids.clear
+				end	
+				
+				#listings = Listing.where(id: listings.near(params[:location].upcase,20, order: 'distance').map{|i| i.id}) if params[:location].present?				
+			end
+
+
+
+			if listings.empty?
+				#sleep 0.2		
+				if params[:location].present?		
+					ids = listing2.near(params[:location].upcase,100, order: 'distance').map{|i| i.id}
+					listings = Listing.where(id: ids).sort_by {|u| ids.index(u.id)}	
+					ids.clear
+				end 
+						
+			end
+
+
 
 
 			# listings = listings.where('LOWER(listings.bodytype) like ?', "%#{params[:bodytype].downcase}%") if params[:bodytype].present?
@@ -823,15 +846,15 @@ class Listing < ActiveRecord::Base
 
 			if params[:radius].present?
 				#sleep 0.2
-				listings = Listing.where(id: listings.near(params[:location].upcase,params[:radius], order: 'distance DESC').map{|i| i.id}) if params[:location].present?
+				listings = Listing.where(id: listings.near(params[:location].upcase,params[:radius], order: 'distance').map{|i| i.id}) if params[:location].present?
 			else
 				#sleep 0.2				
-				listings = Listing.where(id: listings.near(params[:location].upcase,20, order: 'distance DESC').map{|i| i.id}) if params[:location].present?				
+				listings = Listing.where(id: listings.near(params[:location].upcase,20, order: 'distance').map{|i| i.id}) if params[:location].present?				
 			end
 
 			if listings.empty?
 				#sleep 0.2				
-				listings = Listing.where(id: Listing.near(params[:location].upcase,100, order: 'distance DESC').map{|i| i.id}) if params[:location].present?					
+				listings = Listing.where(id: Listing.near(params[:location].upcase,100, order: 'distance').map{|i| i.id}) if params[:location].present?					
 			end
 
 			if params[:bodytype].present?
