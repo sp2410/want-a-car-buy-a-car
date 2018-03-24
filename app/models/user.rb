@@ -254,7 +254,7 @@ class User < ActiveRecord::Base
       else
         #sleep 0.2        
         if params[:location].present?
-          ids = dealers.near(params[:location].upcase,20, order: 'distance').map{|i| i.id} 
+          ids = dealers.near(params[:location].upcase,100, order: 'distance').map{|i| i.id} 
           dealers = User.where(id: ids).order("position(id::text in '#{ids.join(',')}')")
           ids.clear
         end 
@@ -264,14 +264,14 @@ class User < ActiveRecord::Base
 
 
 
-      if dealers.empty?
-        #sleep 0.2    
-        if params[:location].present?   
-          ids = dealers2.near(params[:location].upcase,200, order: 'distance').map{|i| i.id}
-          dealers = User.where(id: ids).order("position(id::text in '#{ids.join(',')}')") 
-          ids.clear
-        end             
-      end
+      # if dealers.empty?
+      #   #sleep 0.2    
+      #   if params[:location].present?   
+      #     ids = dealers2.near(params[:location].upcase,200, order: 'distance').map{|i| i.id}
+      #     dealers = User.where(id: ids).order("position(id::text in '#{ids.join(',')}')") 
+      #     ids.clear
+      #   end             
+      # end
 
       dealers
 
