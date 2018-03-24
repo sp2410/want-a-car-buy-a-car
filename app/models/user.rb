@@ -279,7 +279,7 @@ class User < ActiveRecord::Base
       #   end             
       # end
 
-      dealers
+      dealers.uniq
 
     else      
       all
