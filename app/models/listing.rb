@@ -479,37 +479,37 @@ class Listing < ActiveRecord::Base
 
 
 
-					listing_images = data[:all_images].split((/[|,]+/))
+						listing_images = data[:all_images].split((/[|,]+/))
 						# i = 0
 					
 						# [:image, :imagefront, :imageback, :imageleft, :imageright, :frontinterior, :rearinterior].each do |image|				
-							# unless listing_images.size < 1
-							# 	# p listing_images[i]
+							unless listing_images.size < 1
+								# p listing_images[i]
 
-							# 	listing.external_image = listing_images[0]
-							# 	listing.external_imagefront = listing_images[1] if listing_images[1]
-							# 	listing.external_imageback = listing_images[2] if listing_images[2]
-							# 	listing.external_imageleft = listing_images[3] if listing_images[3]
-							# 	listing.external_imageright = listing_images[4] if listing_images[4]
-							# 	listing.external_frontinterior = listing_images[5] if listing_images[5]
-							# 	listing.external_rearinterior = listing_images[6] if listing_images[6]							
-							# 	# p data[image]
-							# 	# i += 1
-							# end
+								listing.external_image = listing_images[0]
+								listing.external_imagefront = listing_images[1] if listing_images[1]
+								listing.external_imageback = listing_images[2] if listing_images[2]
+								listing.external_imageleft = listing_images[3] if listing_images[3]
+								listing.external_imageright = listing_images[4] if listing_images[4]
+								listing.external_frontinterior = listing_images[5] if listing_images[5]
+								listing.external_rearinterior = listing_images[6] if listing_images[6]							
+								# p data[image]
+								# i += 1
+							end
 							# p "hello"
 						# end
 
-						[:image, :imagefront, :imageback, :imageleft, :imageright, :frontinterior, :rearinterior].each do |image|				
-								#unless listing_images.size < 1
-									listing[image] = CsvUploading::picture_from_url(listing_images[i])
-									i += 1
-								#end
-							# p "hello"
-						end
+						# [:image, :imagefront, :imageback, :imageleft, :imageright, :frontinterior, :rearinterior].each do |image|				
+						# 		#unless listing_images.size < 1
+						# 			listing[image] = CsvUploading::picture_from_url(listing_images[i])
+						# 			i += 1
+						# 		#end
+						# 	# p "hello"
+						# end
 
 					end
 
-					#listing.external_url = true
+					listing.external_url = true
 					listing.approved = true
 
 					# p listing.approved
