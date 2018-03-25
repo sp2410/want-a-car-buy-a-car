@@ -250,22 +250,28 @@ class User < ActiveRecord::Base
       #dealers2 = dealers
 
 
-      if params[:radius].present?
-        #sleep 0.2
-        if params[:location].present?
-          ids = dealers.near(params[:location].upcase,params[:radius], order: 'distance').map{|i| i.id} 
-          dealers = User.where(id: ids).order("position(id::text in '#{ids.join(',')}')")
-          ids.clear
-        end             
-      else
-        #sleep 0.2        
-        if params[:location].present?
-          ids = dealers.near(params[:location].upcase,100, order: 'distance').map{|i| i.id} 
-          dealers = User.where(id: ids).order("position(id::text in '#{ids.join(',')}')")
-          ids.clear
-        end 
+      # if params[:radius].present?
+      #   #sleep 0.2
+      #   if params[:location].present?
+      #     ids = dealers.near(params[:location].upcase,params[:radius], order: 'distance').map{|i| i.id} 
+      #     dealers = User.where(id: ids).order("position(id::text in '#{ids.join(',')}')")
+      #     ids.clear
+      #   end             
+      # else
+      #   #sleep 0.2        
+      #   if params[:location].present?
+      #     ids = dealers.near(params[:location].upcase,100, order: 'distance').map{|i| i.id} 
+      #     dealers = User.where(id: ids).order("position(id::text in '#{ids.join(',')}')")
+      #     ids.clear
+      #   end 
         
-        #dealers = User.where(id: dealers.near(params[:location].upcase,20, order: 'distance').map{|i| i.id}) if params[:location].present?       
+      #   #dealers = User.where(id: dealers.near(params[:location].upcase,20, order: 'distance').map{|i| i.id}) if params[:location].present?       
+      # end
+
+      if params[:radius].present?        
+        dealers = dealers.near(params[:location], params[:radius]) if params[:location].present?
+      else
+        dealers = dealers.near(params[:location], 100) if params[:location].present?        
       end
 
 
