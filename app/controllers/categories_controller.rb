@@ -7,9 +7,9 @@ class CategoriesController < ApplicationController
 	
 	def index		
 
-		@carcount = Listing.where(:approved => true).count
-		@repairshopscount = Repairshop.where(:approved => true).count
-		@dealercount = User.get_dealers_count
+		#@carcount = Listing.where(:approved => true).count
+		#@repairshopscount = Repairshop.where(:approved => true).count
+		#@dealercount = User.get_dealers_count
 						
 		@newcars = Listing.approved_new.order("#{sort_column}" + " " + "#{sort_direction}").where(:wholesale => false).sample(6)
 		@all_used = Listing.approved_used.order("#{sort_column}" + " " + "#{sort_direction}").where(:wholesale => false)

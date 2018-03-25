@@ -99,9 +99,9 @@ class RepairshopsController < InheritedResources::Base
 	  		
 	  	end
 
-	  	@carcount = Listing.where(:approved => true).count
-		@repairshopscount = Repairshop.where(:approved => true).count
-		@dealercount = User.get_dealers_count
+	  	#@carcount = Listing.where(:approved => true).count
+		#@repairshopscount = Repairshop.where(:approved => true).count
+		#@dealercount = User.get_dealers_count
 		
 
 	  	# @repairshops = @repairshops.order("#{sort_column}" + " " + "#{sort_direction}")

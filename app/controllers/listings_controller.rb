@@ -148,9 +148,9 @@ class ListingsController < ApplicationController
 		@listings_interiorcolor = Listing.listing_search_interiorcolor(@listings)
 		@listings_year = Listing.listing_search_year(@listings)
 
-		@carcount = Listing.where(:approved => true).count
-		@repairshopscount = Repairshop.where(:approved => true).count
-		@dealercount = User.get_dealers_count
+		#@carcount = Listing.where(:approved => true).count
+		#@repairshopscount = Repairshop.where(:approved => true).count
+		#@dealercount = User.get_dealers_count
 
 		# begin
 		# 	if current_user	
@@ -210,9 +210,9 @@ class ListingsController < ApplicationController
 		@listings_interiorcolor = Listing.listing_search_interiorcolor(@listings)
 		@listings_year =Listing.listing_search_year(@listings)
 
-		@carcount = Listing.where(:approved => true).count
-		@repairshopscount = Repairshop.where(:approved => true).count
-		@dealercount = User.get_dealers_count
+		#@carcount = Listing.where(:approved => true).count
+		#@repairshopscount = Repairshop.where(:approved => true).count
+		#@dealercount = User.get_dealers_count
 
 		# begin
 		# 	if current_user	
@@ -322,9 +322,9 @@ class ListingsController < ApplicationController
 		@dealers_states = User.dealers_search_states(@dealers)
 		@dealers_ratings = User.get_ratings_for_each(@dealers)
 
-		@carcount = Listing.where(:approved => true).count
-		@repairshopscount = Repairshop.where(:approved => true).count
-		@dealercount = User.get_dealers_count
+		#@carcount = Listing.where(:approved => true).count
+		#@repairshopscount = Repairshop.where(:approved => true).count
+		#@dealercount = User.get_dealers_count
 
 		# begin
 		# 	if current_user	
