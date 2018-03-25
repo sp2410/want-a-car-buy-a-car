@@ -241,7 +241,7 @@ class User < ActiveRecord::Base
       dealers = User.where(:role => [1, 3, 4, 6])
 
       if params[:keywords].present?         
-        dealers = dealers.joins('LEFT JOIN listings ON listings.user_id = users.id').where("LOWER(listings.title) LIKE ? OR LOWER(listings.make) LIKE ? OR LOWER(listings.model) LIKE ? OR LOWER(users.name) LIKE ?", "%#{params[:keywords].downcase}%", "%#{params[:keywords].downcase}%", "%#{params[:keywords].downcase}%", "%#{params[:keywords].downcase}%")
+        dealers = dealers.joins('LEFT JOIN listings ON listings.user_id = users.id').where("LOWER(listings.title) LIKE ? OR LOWER(listings.make) LIKE ? OR LOWER(listings.model) LIKE ? OR LOWER(users.name) LIKE ? OR LOWER(users.slug) LIKE ?", "%#{params[:keywords].downcase}%", "%#{params[:keywords].downcase}%", "%#{params[:keywords].downcase}%", "%#{params[:keywords].downcase}%", "%#{params[:keywords].downcase}%")
       end
 
 
