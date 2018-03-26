@@ -1074,6 +1074,16 @@ class Listing < ActiveRecord::Base
 	# end
 
 
+	# def self.export_oodle
+	# 	oddle_attributes = %w{}
+		
+	# 	CSV.generate do |csv|
+
+	# 	end
+
+	# end 
+
+
 
 
 	
