@@ -78,25 +78,25 @@
     <h3 style = "color:#7C064D; text-align: center;"><strong>POPULAR BODY TYPE</strong></h3>
 
     <div class = "col-xs-12 col-sm-12 col-lg-4 col-md-12 text-center">
-      <%=link_to 'Hatchback', "/listings/bodysearch?utf8=✓&NewUsed=Used&bodytype=Hatchback&minprice=&maxprice=&location=&radius=&commit=Search"%>
+      <%=link_to 'Hatchback', "/listings/bodysearch?utf8=✓&NewUsed=Used&bodytype=Hatchback&minprice=&maxprice=&location=&radius=&commit=Search", target: "_blank" %>
       <br>
-      <%=link_to 'SUV', "/listings/bodysearch?utf8=✓&NewUsed=Used&bodytype=SUV&minprice=&maxprice=&location=&radius=&commit=Search" %>
+      <%=link_to 'SUV', "/listings/bodysearch?utf8=✓&NewUsed=Used&bodytype=SUV&minprice=&maxprice=&location=&radius=&commit=Search", target: "_blank" %>
       <br>
-      <%=link_to 'Van', "/listings/bodysearch?utf8=✓&NewUsed=Used&bodytype=Van&minprice=&maxprice=&location=&radius=&commit=Search" %>
+      <%=link_to 'Van', "/listings/bodysearch?utf8=✓&NewUsed=Used&bodytype=Van&minprice=&maxprice=&location=&radius=&commit=Search", target: "_blank" %>
     </div>
     <div class = "col-xs-12 col-sm-12 col-lg-4 col-md-12 text-center">
-      <%=link_to 'Convertible', "/listings/bodysearch?utf8=✓&NewUsed=Used&bodytype=Convertible&minprice=&maxprice=&location=&radius=&commit=Search" %>
+      <%=link_to 'Convertible', "/listings/bodysearch?utf8=✓&NewUsed=Used&bodytype=Convertible&minprice=&maxprice=&location=&radius=&commit=Search", target: "_blank" %>
       <br>
-      <%=link_to 'Coupe', "/listings/bodysearch?utf8=✓&NewUsed=Used&bodytype=Coupe&minprice=&maxprice=&location=&radius=&commit=Search" %>
+      <%=link_to 'Coupe', "/listings/bodysearch?utf8=✓&NewUsed=Used&bodytype=Coupe&minprice=&maxprice=&location=&radius=&commit=Search", target: "_blank" %>
       <br>
-      <%=link_to 'Pickup', "/listings/bodysearch?utf8=✓&NewUsed=Used&bodytype=Pickup&minprice=&maxprice=&location=&radius=&commit=Search" %>
+      <%=link_to 'Pickup', "/listings/bodysearch?utf8=✓&NewUsed=Used&bodytype=Pickup&minprice=&maxprice=&location=&radius=&commit=Search", target: "_blank" %>
     </div>
     <div class = "col-xs-12 col-sm-12 col-lg-4 col-md-12 text-center">
-      <%=link_to 'Sedan', "/listings/bodysearch?utf8=✓&NewUsed=Used&bodytype=Sedan&minprice=&maxprice=&location=&radius=&commit=Search" %>
+      <%=link_to 'Sedan', "/listings/bodysearch?utf8=✓&NewUsed=Used&bodytype=Sedan&minprice=&maxprice=&location=&radius=&commit=Search", target: "_blank" %>
       <br>
-      <%=link_to 'Wagon', "/listings/bodysearch?utf8=✓&NewUsed=Used&bodytype=Wagon&minprice=&maxprice=&location=&radius=&commit=Search" %>
+      <%=link_to 'Wagon', "/listings/bodysearch?utf8=✓&NewUsed=Used&bodytype=Wagon&minprice=&maxprice=&location=&radius=&commit=Search", target: "_blank" %>
       <br>
-      <%=link_to 'Truck', "/listings/bodysearch?utf8=✓&NewUsed=Used&bodytype=Truck&minprice=&maxprice=&location=&radius=&commit=Search" %>
+      <%=link_to 'Truck', "/listings/bodysearch?utf8=✓&NewUsed=Used&bodytype=Truck&minprice=&maxprice=&location=&radius=&commit=Search", target: "_blank" %>
     </div>  
 
   </div>
@@ -111,54 +111,54 @@
 
       <div class = "col-xs-12 col-sm-12 col-lg-1 col-md-12 text-center">      
         <% ["Acura", "Alfa Romeo", "Aston Martin", "Audi", "BMW"].each do |i| %>
-        <%= link_to "#{i}", "/listings/search?utf8=✓&NewUsed=Used&category=#{i}&minprice=&maxprice=&location=&radius=&commit=Search" %>
+        <%= link_to "#{i}", "/listings/search?utf8=✓&NewUsed=Used&category=#{i}&minprice=&maxprice=&location=&radius=&commit=Search", target: "_blank" %>
         <br>
         <% end %>
       </div>
 
       <div class = "col-xs-12 col-sm-12 col-lg-1 col-md-12 text-center">
         <% ["Bentley", "Bugatti", "Buick", "Cadillac", "Chevrolet"].each do |i| %>
-        <%= link_to "#{i}", "/listings/search?utf8=✓&NewUsed=Used&category=#{i}&minprice=&maxprice=&location=&radius=&commit=Search" %>
+        <%= link_to "#{i}", "/listings/search?utf8=✓&NewUsed=Used&category=#{i}&minprice=&maxprice=&location=&radius=&commit=Search", target: "_blank" %>
         <br>
         <% end %>
       </div>
       <div class = "col-xs-12 col-sm-12 col-lg-1 col-md-12 text-center">
         <% ["Chrysler", "Daewoo", "Dodge", "Eagle", "FIAT"].each do |i| %>
-        <%= link_to "#{i}", "/listings/search?utf8=✓&NewUsed=Used&category=#{i}&minprice=&maxprice=&location=&radius=&commit=Search" %>
+        <%= link_to "#{i}", "/listings/search?utf8=✓&NewUsed=Used&category=#{i}&minprice=&maxprice=&location=&radius=&commit=Search", target: "_blank" %>
         <br>
         <% end %>
       </div>
       <div class = "col-xs-12 col-sm-12 col-lg-1 col-md-12 text-center">
         <% ["Ferrari", "Fisker", "Ford", "GMC", "Genesis", "Geo"].each do |i| %>
-        <%= link_to "#{i}", "/listings/search?utf8=✓&NewUsed=Used&category=#{i}&minprice=&maxprice=&location=&radius=&commit=Search" %>
+        <%= link_to "#{i}", "/listings/search?utf8=✓&NewUsed=Used&category=#{i}&minprice=&maxprice=&location=&radius=&commit=Search", target: "_blank" %>
         <br>
         <% end %>
       </div>     
 
       <div class = "col-xs-12 col-sm-12 col-lg-1 col-md-12 text-center">
         <% ["HUMMER", "Honda", "Hyundai", "INFINITI", "Isuzu"].each do |i| %>        
-        <%= link_to "#{i}", "/listings/search?utf8=✓&NewUsed=Used&category=#{i}&minprice=&maxprice=&location=&radius=&commit=Search" %>
+        <%= link_to "#{i}", "/listings/search?utf8=✓&NewUsed=Used&category=#{i}&minprice=&maxprice=&location=&radius=&commit=Search", target: "_blank" %>
         <br>
         <% end %>
       </div>
 
        <div class = "col-xs-12 col-sm-12 col-lg-1 col-md-12 text-center">
         <% ["Jaguar", "Jeep", "Kia", "Lamborghini", "Land Rover"].each do |i| %>        
-        <%= link_to "#{i}", "/listings/search?utf8=✓&NewUsed=Used&category=#{i}&minprice=&maxprice=&location=&radius=&commit=Search" %>
+        <%= link_to "#{i}", "/listings/search?utf8=✓&NewUsed=Used&category=#{i}&minprice=&maxprice=&location=&radius=&commit=Search", target: "_blank" %>
         <br>
         <% end %>
       </div>
 
        <div class = "col-xs-12 col-sm-12 col-lg-1 col-md-12 text-center">
         <% ["Lexus", "Lincoln", "Lotus", "MINI", "Maserati"].each do |i| %>        
-        <%= link_to "#{i}", "/listings/search?utf8=✓&NewUsed=Used&category=#{i}&minprice=&maxprice=&location=&radius=&commit=Search" %>
+        <%= link_to "#{i}", "/listings/search?utf8=✓&NewUsed=Used&category=#{i}&minprice=&maxprice=&location=&radius=&commit=Search", target: "_blank" %>
         <br>
         <% end %>
       </div>
 
        <div class = "col-xs-12 col-sm-12 col-lg-1 col-md-12 text-center">
         <% ["Maybach", "Mazda", "McLaren", "Mercedes-Benz", "Mercury"].each do |i| %>        
-        <%= link_to "#{i}", "/listings/search?utf8=✓&NewUsed=Used&category=#{i}&minprice=&maxprice=&location=&radius=&commit=Search" %>
+        <%= link_to "#{i}", "/listings/search?utf8=✓&NewUsed=Used&category=#{i}&minprice=&maxprice=&location=&radius=&commit=Search", target: "_blank" %>
         <br>
         <% end %>
       </div>
@@ -168,28 +168,28 @@
 
       <div class = "col-xs-12 col-sm-12 col-lg-1 col-md-12 text-center">
         <% ["Mitsubishi", "Nissan", "Oldsmobile", "Panoz", "Plymouth"].each do |i| %>
-        <%= link_to "#{i}", "/listings/search?utf8=✓&NewUsed=Used&category=#{i}&minprice=&maxprice=&location=&radius=&commit=Search" %>
+        <%= link_to "#{i}", "/listings/search?utf8=✓&NewUsed=Used&category=#{i}&minprice=&maxprice=&location=&radius=&commit=Search", target: "_blank" %>
         <br>
         <% end %>
       </div>
 
         <div class = "col-xs-12 col-sm-12 col-lg-1 col-md-12 text-center">
         <% ["Pontiac", "Porsche", "Ram", "Rolls Royce", "Saab"].each do |i| %>
-        <%= link_to "#{i}", "/listings/search?utf8=✓&NewUsed=Used&category=#{i}&minprice=&maxprice=&location=&radius=&commit=Search" %>
+        <%= link_to "#{i}", "/listings/search?utf8=✓&NewUsed=Used&category=#{i}&minprice=&maxprice=&location=&radius=&commit=Search", target: "_blank" %>
         <br>
         <% end %>
       </div>
 
         <div class = "col-xs-12 col-sm-12 col-lg-1 col-md-12 text-center">
         <% ["Saturn", "Scion", "Spyker", "Subaru", "Suzuki"].each do |i| %>
-        <%= link_to "#{i}", "/listings/search?utf8=✓&NewUsed=Used&category=#{i}&minprice=&maxprice=&location=&radius=&commit=Search" %>
+        <%= link_to "#{i}", "/listings/search?utf8=✓&NewUsed=Used&category=#{i}&minprice=&maxprice=&location=&radius=&commit=Search", target: "_blank" %>
         <br>
         <% end %>
       </div>
 
         <div class = "col-xs-12 col-sm-12 col-lg-1 col-md-12 text-center">
         <% ["Tesla", "Toyota", "Volkswagen", "Volvo", "smart"].each do |i| %>
-        <%= link_to "#{i}", "/listings/search?utf8=✓&NewUsed=Used&category=#{i}&minprice=&maxprice=&location=&radius=&commit=Search" %>
+        <%= link_to "#{i}", "/listings/search?utf8=✓&NewUsed=Used&category=#{i}&minprice=&maxprice=&location=&radius=&commit=Search", target: "_blank" %>
         <br>
         <% end %>
       </div>
