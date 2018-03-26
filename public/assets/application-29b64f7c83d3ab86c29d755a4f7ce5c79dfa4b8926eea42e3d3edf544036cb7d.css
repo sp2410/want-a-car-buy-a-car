@@ -10,11 +10,12 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
- *= require_self
- *= require jbar.colors
- *= require jbar
- *= require social-share-button 
+
+
+
+
  */
+
 
 @import "social-share-button";
 
@@ -1795,4 +1796,202 @@ font-family: 'Oswald', sans-serif;
 
 
 
+}
+/* line 13, D:/RailsInstaller/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/slide-down-alerts-rails-0.0.2/vendor/assets/stylesheets/jbar.colors.css.scss */
+.notification {
+  background-color: #FFF;
+  color: #1E90FF;
+  border-bottom: 1px solid #EBEBEB;
+}
+
+/* line 20, D:/RailsInstaller/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/slide-down-alerts-rails-0.0.2/vendor/assets/stylesheets/jbar.colors.css.scss */
+.notification.warning {
+  background-color: #FCF8E3;
+  color: #C09853;
+  border-bottom: 1px solid #FBEED5;
+}
+
+/* line 27, D:/RailsInstaller/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/slide-down-alerts-rails-0.0.2/vendor/assets/stylesheets/jbar.colors.css.scss */
+.notification.error {
+  background-color: #F2DEDE;
+  color: #B94A48;
+  border-bottom: 1px solid #EED3D7;
+}
+/* line 1, D:/RailsInstaller/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/slide-down-alerts-rails-0.0.2/vendor/assets/stylesheets/jbar.css.scss */
+.jbar {
+  width: 100%;
+  position: fixed;
+  filter: progid:DXImageTransform.Microsoft.Alpha(opacity=90);
+  opacity: 0.9;
+  -moz-opacity: 0.9;
+  text-align: center;
+  left: 0px;
+  z-index: 9999999;
+  margin: 0px;
+  padding: .5em;
+}
+
+/* line 13, D:/RailsInstaller/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/slide-down-alerts-rails-0.0.2/vendor/assets/stylesheets/jbar.css.scss */
+.jbar-top {
+  top: 0px;
+}
+
+/* line 16, D:/RailsInstaller/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/slide-down-alerts-rails-0.0.2/vendor/assets/stylesheets/jbar.css.scss */
+.jbar-bottom {
+  bottom: 0px;
+  color: #777;
+}
+
+/* line 20, D:/RailsInstaller/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/slide-down-alerts-rails-0.0.2/vendor/assets/stylesheets/jbar.css.scss */
+.jbar-content {
+  line-height: 46px;
+  font-size: 18px;
+  font-family: 'Lucida Grande',sans-serif;
+}
+
+/* line 25, D:/RailsInstaller/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/slide-down-alerts-rails-0.0.2/vendor/assets/stylesheets/jbar.css.scss */
+a.jbar-cross {
+  position: absolute;
+  width: 31px;
+  height: 31px;
+  background: transparent url(/assets/cross.png) no-repeat top left;
+  cursor: pointer;
+  right: 10px;
+}
+
+/* line 33, D:/RailsInstaller/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/slide-down-alerts-rails-0.0.2/vendor/assets/stylesheets/jbar.css.scss */
+a.jbar-cross:hover {
+  background-image: url(/assets/cross_hover.png);
+}
+
+/* line 36, D:/RailsInstaller/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/slide-down-alerts-rails-0.0.2/vendor/assets/stylesheets/jbar.css.scss */
+.jbar-top a.jbar-cross {
+  top: 8px;
+}
+
+/* line 39, D:/RailsInstaller/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/slide-down-alerts-rails-0.0.2/vendor/assets/stylesheets/jbar.css.scss */
+.jbar-bottom a.jbar-cross {
+  bottom: 8px;
+}
+.social-share-button .ssb-icon {
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 18px 18px;
+  display: inline-block;
+  height: 18px;
+  width: 18px;
+}
+
+.social-share-button .ssb-twitter {
+  background-image: url(/assets/social-share-button/twitter-e25b0831dc866d31a6a705890c891c121e1012e3c00a5104e7b054cc208400e4.svg);
+}
+
+.social-share-button .ssb-facebook {
+  background-image: url(/assets/social-share-button/facebook-c2dca7c85dd0837a70b43512de731c79b6e2e3ec4f5307f2ff2ae78d889114af.svg);
+}
+
+.social-share-button .ssb-google_bookmark {
+  background-image: url(/assets/social-share-button/google_bookmark-eb875e99dc961c7b3b3f781662ddd10783ac851b191d67b1624e9120790603e4.svg);
+}
+
+.social-share-button .ssb-google_plus {
+  background-image: url(/assets/social-share-button/google_plus-cc3cbb77298e698b61ff9746a91b0c98dfd3df4a11df9dfc42236503bfe6949c.svg);
+}
+
+.social-share-button .ssb-weibo {
+  background-image: url(/assets/social-share-button/weibo-a1f8477f3da513c905c3c629f2184b30b7d0a47e1a3aa5babe0e3a27c5ec233b.svg);
+}
+
+.social-share-button .ssb-qq {
+  background-image: url(/assets/social-share-button/qq-e2787aa17d407be448f4ef522d7aafc6af38c3cce164e1e6348ff069eaec4192.svg);
+}
+
+.social-share-button .ssb-delicious {
+  background-image: url(/assets/social-share-button/delicious-885e0df6a4bf9ccaacb38d7d97bc04c73b19cbf4147a89d60d96412848c127cb.svg);
+}
+
+.social-share-button .ssb-linkedin {
+  background-image: url(/assets/social-share-button/linkedin-24638b61e9dad6b21da8b9e6296550e2d309f6c4dde184d5685ccf3144dca623.svg);
+}
+
+.social-share-button .ssb-tumblr {
+  background-image: url(/assets/social-share-button/tumblr-43efe043e1c69986a4b686359ab73e0481aeb3f2894888ebfd4bf8f6c30fe277.svg);
+}
+
+.social-share-button .ssb-pinterest {
+  background-image: url(/assets/social-share-button/pinterest-b1bcad1a958e0654057f05fa52c41147307995dc8068fe7f531cb6095c878454.svg);
+}
+
+.social-share-button .ssb-douban {
+  background-image: url(/assets/social-share-button/douban-8f6cb2bcf0101892468ec9a3de928a32d10a96d674acaa7bb729ae789d5057d3.svg);
+}
+
+.social-share-button .ssb-wechat {
+  background-image: url(/assets/social-share-button/wechat-a85f2db55493776b7f5e314c18df4e463a555937a7f9ca480cadc5bd95347b83.svg);
+}
+
+.social-share-button .ssb-vkontakte {
+  background-image: url(/assets/social-share-button/vkontakte-0c2b68277fade991d74efcbdb6f7b359a35e65156cbada9625a3fe8f73151c14.svg);
+}
+
+.social-share-button .ssb-odnoklassniki {
+  background-image: url(/assets/social-share-button/odnoklassniki-579bf782bd70fe94748254cac2c8c3dc150cceb0d2a143399e3062246b5ecb39.svg);
+}
+
+.social-share-button .ssb-xing {
+  background-image: url(/assets/social-share-button/xing-1426b7c5ebd2f6a04318c188737f9f5ce719e791e4f0c0996ade22b53b0b8c1b.svg);
+}
+
+.social-share-button .ssb-email {
+  background-image: url(/assets/social-share-button/email-c34ebe35388d8205c2d7cf38998a61a119a91da5e859fefc0fdab84af4905618.svg);
+}
+
+.social-share-button .ssb-reddit {
+  background-image: url(/assets/social-share-button/reddit-4ea0cea16550ea1c8ff5251dd8048d0a44fcbbbd09acc7a0d48eaad2e162f99e.svg);
+}
+
+.social-share-button .ssb-hacker_news {
+  background-image: url(/assets/social-share-button/hacker_news-a09d6ba8a7fc387617cc99367ff478c0bfb2d3e3c1361daf878267107a07daac.svg);
+}
+
+.social-share-button .ssb-telegram {
+  background-image: url(/assets/social-share-button/telegram-08d4917138579b53772c2532654a7a770e16c9890b208114e04595348b9f3251.svg);
+}
+
+.ss-wechat-dialog {
+  width: 300px;
+  position: fixed;
+  background: #fff;
+  padding: 15px;
+  border-radius: 3px;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.15);
+  z-index: 11001;
+  font-size: 14px;
+  line-height: 1.2em;
+}
+
+.ss-wechat-dialog .wechat-popup-header {
+  font-weight: bold;
+}
+
+.ss-wechat-dialog .wechat-dialog-qr {
+  text-align: center;
+  margin: 25px 0;
+}
+
+.ss-wechat-dialog .wechat-popup-close {
+  width: 16px;
+  height: 16px;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  color: #999;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+.ss-wechat-dialog .wechat-popup-footer {
+  text-align: left;
+  line-height: 22px;
+  color: #666;
 }
