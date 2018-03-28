@@ -86,7 +86,7 @@ Rails.application.routes.draw do
 
   match '/allcoupons', to: 'coupons#index', via: :get  
 
-  match '/oodleimport', to: 'pages#oodleimport', via: :get , defaults: { format: :csv }
+  match '/oodleimport.csv', to: 'pages#oodleimport', via: :get , defaults: { format: :csv }
 
 
 
