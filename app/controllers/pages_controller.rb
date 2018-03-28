@@ -1,4 +1,6 @@
 class PagesController < ApplicationController
+
+	#before_action :authenticate_user!, only: [:oodleimport]
 	
 	def help
 	end
@@ -30,4 +32,18 @@ class PagesController < ApplicationController
 
 	def loadtesting
 	end
+
+	def oodleimport		
+
+		if current_user_is_sales_team
+			respond_to do |format|
+				format.csv{ send_data Listing.export_oodle("oodle")}
+			end 
+		else 
+			redirect_to root_path, alert: "Sorry, You are not allowed for this action."
+		end 
+
+		
+	end
+
 end

@@ -1074,14 +1074,21 @@ class Listing < ActiveRecord::Base
 	# end
 
 
-	# def self.export_oodle
-	# 	oddle_attributes = %w{}
+	def self.export_oodle(type)
+		oddle_attributes = %w{category description	id	title	url	address	city	country	neighborhood	state	zip_code	body_type	color	condition	create_time	currency	dealer_phone	expire_time	features	fee	image_url	interior_color	ip_address	make	mileage	mileage_units	model	price	registration	seller_email	seller_name	seller_phone	seller_type	seller_url	transmission	trim	vin	year}
 		
-	# 	CSV.generate do |csv|
 
-	# 	end
+		CSV.generate(headers: true) do |csv|
+			if type == "oodle"
+				csv << oddle_attributes
+			end
 
-	# end 
+			all.each do |listing|
+				csv  << ["cars", listing.description, listing.id, listing.title, "http://wantacarbuyacar.com/listings/#{listing.id}", "#{listing.full_address}", listing.city, "USA", listing.city, listing.state, listing.zipcode, listing.bodytype, listing.color, listing.newused, listing.created_at, "USD", "", "", listing.options, "", listing.external_imagefront, listing.interiorcolor, "", listing.make, listing.miles, "miles", listing.model, listing.price, "", "sales@wantacarbuyacar.com", "wantacarbuyacar.com", "(866)-338-7870", "dealer", "wantacarbuyacar.com", listing.transmission, listing.trim, listing.vin, listing.year]
+			end
+		end
+
+	end 
 
 
 
