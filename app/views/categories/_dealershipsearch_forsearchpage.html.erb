@@ -3,20 +3,20 @@
     <div class= "col-xs-12 col-sm-12 col-lg-12 col-md-12" >
 
       <div class="tab">
-          <div class = "row">
-              <div class= "col-xs-12 col-sm-12 col-lg-3 col-md-3" style = "padding: 0px; margin: 0px;">  
-                    <button class="tablinks1" onclick="openCity1(event, 'ServiceCenter')" id="defaultOpen1">Find Repairshops</button>  
-                </div>
-                <div class= "col-xs-12 col-sm-12 col-lg-3 col-md-3" style = "padding: 0px; margin: 0px;">  
-                    <button class="tablinks1" onclick="openCity1(event, 'Make')"  >Search Vehicles By Make</button>
-                </div>
-                <div class= "col-xs-12 col-sm-12 col-lg-3 col-md-3" style = "padding: 0px; margin: 0px;">  
-                    <button class="tablinks1" onclick="openCity1(event, 'Type')">Search Vehicles By Type</button>
-                </div>
-                <div class= "col-xs-12 col-sm-12 col-lg-3 col-md-3" style = "padding: 0px; margin: 0px;">  
-                    <button class="tablinks1" onclick="openCity1(event, 'Dealerships')">Find Dealerships</button>
-                </div>
-          </div>
+        <div class = "row">
+            <div class= "col-xs-12 col-sm-12 col-lg-6 col-md-6" style = "padding: 0px; margin: 0px;">  
+                <button class="tablinks1" onclick="openCity1(event, 'Dealerships')" id="defaultOpen1">Find  Dealerships</button>
+            </div>
+            <div class= "col-xs-12 col-sm-12 col-lg-6 col-md-6" style = "padding: 0px; margin: 0px;">  
+                <button class="tablinks1" onclick="openCity1(event, 'ServiceCenter')">Find Repairshops</button>  
+            </div>
+            <div class= "col-xs-12 col-sm-12 col-lg-6 col-md-6" style = "padding: 0px; margin: 0px;">  
+                <button class="tablinks1" onclick="openCity1(event, 'Make')"  >Search Vehicles By Make</button>
+            </div>
+            <div class= "col-xs-12 col-sm-12 col-lg-6 col-md-6" style = "padding: 0px; margin: 0px;">  
+                <button class="tablinks1" onclick="openCity1(event, 'Type')">Search Vehicles By Type</button>
+            </div>
+        </div>
       </div>
 
       <hr>
@@ -25,9 +25,9 @@
        <div id="ServiceCenter" class="tabcontent1">
         <section class="formclass">
 
-                    <!-- <h3 style = "color:#F00000; text-align: center;"><strong><%= @repairshopscount %> REPAIR SHOPS!</strong></h3> -->
-
-                    <hr>
+                    <!-- <h3 style = "color:#F00000; text-align: center;"><strong><%= @repairshopscount %> REPAIR SHOPS</strong></h3>
+ -->
+                    <!-- <hr> -->
 
                     <h3 style = "color:#7C064D;"><span class="glyphicon glyphicon-search"></span> <strong>SEARCH REPAIR SHOPS & SERVICE CENTERS NEAR YOU</strong></h3>
 
@@ -60,15 +60,15 @@
             <section class="formclass">
 
               <!-- f.select :transmission, ['Automanual','Automatic','Automatic 4 Speed','Automatic 5 Speed','Automatic 6 Speed','CVT','Manual'] -->
-                <!-- <h3 style = "color:#F00000; text-align: center;"><strong><%= @carcount %> VEHICLES</strong></h3> -->
+               <!--  <h3 style = "color:#F00000; text-align: center;"><strong><%= @carcount %> VEHICLES</strong></h3> -->
 
-                <hr>
+                <!-- <hr> -->
 
                 <h3 style = "color:#7C064D;"><span class="glyphicon glyphicon-search"></span> <strong>SEARCH VEHICLES FOR SALE BY MAKE</strong></h3>
                 <%= form_tag search_listings_path, method: :get, class: 'navbar-form navbar-center' do |f| %>
 
                 <div class= "col-xs-12 col-sm-12 col-lg-12 col-md-12"> 
-                    <%= select_tag :NewUsed, "<option>New</option><option>Used</option>".html_safe, style: "width: 100%; margin: 1% 0;" %>
+                    <%= select_tag :NewUsed, "<option>Used</option><option>New</option>".html_safe, style: "width: 100%; margin: 1% 0;" %>
                 </div>
 
                 <div class= "col-xs-6 col-sm-6 col-lg-6 col-md-6"> 
@@ -98,7 +98,7 @@
                                
                     <%= submit_tag 'Search', class: 'btn btn-danger', style: "width: 100%;" %>
                     <%- if user_is_basic_user  -%>
-                        <h3 style = "color:#F00000;"><strong>OR</strong></h3>
+                        <h3 style = "color:#F00000;text-align: center;"><strong>OR</strong></h3>
                         <%= link_to 'Sell Your Car', new_listing_path , class: 'btn btn-danger another', style: "width: 100%;" %>
                     <% end %>
                 </div>
@@ -109,21 +109,22 @@
       <div id="Type" class="tabcontent1">
         <section class="formclass">
 
-                <!-- <h3 style = "color:#F00000; text-align: center;"><strong><%= @carcount %> VEHICLES</strong></h3> -->
+               <!--  <h3 style = "color:#F00000; text-align: center;"><strong><%= @carcount %> VEHICLES</strong></h3> -->
 
-                <hr>
+                <!-- <hr> -->
 
                 <h3 style = "color:#7C064D;"><span class="glyphicon glyphicon-search"></span> <strong>SEARCH VEHICLES FOR SALE BY BODY TYPE</strong></h3>
 
                 <%= form_tag bodysearch_listings_path, method: :get, class: 'navbar-form navbar-center' do |f| %>
 
                 <div class= "col-xs-12 col-sm-12 col-lg-12 col-md-12"> 
-                    <%= select_tag :NewUsed, "<option>New</option><option>Used</option>".html_safe, style: "width: 100%; margin: 1% 0;" %>
+                    <%= select_tag :NewUsed, "<option>Used</option><option>New</option>".html_safe, style: "width: 100%; margin: 1% 0;" %>
                 </div>
 
                  <div class= "col-xs-12 col-sm-12 col-lg-12 col-md-12"> 
                     <%= select_tag :bodytype, "<option>All</option><option>Hatchback</option><option>SUV</option><option>Van</option><option>Convertible</option><option>Coupe</option><option>Pickup</option><option>Sedan</option><option>Wagon</option><option>Truck</option>".html_safe, style: "width: 100%; margin: 1% 0;" %>
-                </div>   
+                </div>                
+
                 <div class= "col-xs-6 col-sm-6 col-lg-6 col-md-6"> 
                     <%= text_field_tag :minprice, nil, placeholder: 'Min Price', style: "width: 100%; margin: 1% 0;" %>
                 </div>
@@ -140,7 +141,7 @@
                 <div class= "col-xs-12 col-sm-12 col-lg-12 col-md-12">              
                     <%= submit_tag 'Search', class: 'btn btn-danger', style: "width: 100%;" %>
                     <%- if user_is_basic_user  -%>
-                        <h3 style = "color:#F00000;"><strong>OR</strong></h3>
+                        <h3 style = "color:#F00000;text-align: center;"><strong>OR</strong></h3>
                         <%= link_to 'Sell Your Car', new_listing_path , class: 'btn btn-danger another', style: "width: 100%;" %>
                     <% end %>
                 </div>
@@ -148,12 +149,12 @@
         </section>
       </div>  
 
-       <div id="Dealerships" class="tabcontent1">
+    <div id="Dealerships" class="tabcontent1">
         <section class="formclass">
 
-                    <!-- <h3 style = "color:#F00000; text-align: center;"><strong><%= @dealercount %> DEALERSHIPS</strong></h3>
+                   <!--  <h3 style = "color:#F00000; text-align: center;"><strong><%= @dealercount %> DEALERSHIPS</strong></h3>
  -->
-                    <hr>
+                    <!-- <hr> -->
 
                     <h3 style = "color:#7C064D;"><span class="glyphicon glyphicon-search"></span> <strong>SEARCH DEALERSHIPS NEAR YOU</strong></h3>
 
@@ -187,7 +188,7 @@
 $( document ).ready(function() {
 
 
-
+    
     var data = <%= edmunds_json.to_s.gsub("=>",":").html_safe %>;
     var options = [];
     options.push("All");
@@ -285,5 +286,3 @@ $( document ).ready(function() {
 
 
 </script>
-
-
