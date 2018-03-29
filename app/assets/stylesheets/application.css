@@ -13,7 +13,7 @@
  *= require_self
  *= require jbar.colors
  *= require jbar
- *= require social-share-button 
+ .*= require social-share-button 
  */
 
 @import "social-share-button";
@@ -198,7 +198,7 @@ div.tab button {
     background-color: inherit;
     float: left;
     border: none;
-    outline: none;
+    outline: 0.1px solid white;
     cursor: pointer;
     padding: 14px 16px;
     transition: 0.3s;
@@ -220,6 +220,10 @@ div.tab button:hover {
 div.tab button.active {
     background-color: #7C064D;    
     color: #fff;
+}
+
+.tablinks1{
+  width: 100%;
 }
 
 
