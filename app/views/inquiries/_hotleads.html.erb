@@ -1,0 +1,5 @@
+<% if inquiry.senttoall %>
+	<%= link_to '<i class="icon-fire icon-green"></i>'.html_safe, 'javascript:;', :id => :foo , class: "btn btn-info btn-xs"  %>
+<% else %>
+	<%= link_to "No", 'javascript:;', :id => :foo , class: "btn btn-danger btn-xs"  %>
+<% end %>

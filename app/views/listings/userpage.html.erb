@@ -229,7 +229,12 @@
               <th>
                 SEND TO ALL
               </th>
+            <% else %>
+              <th>
+                HOT LEAD
+              </th> 
             <% end %>
+
           </tr>
         </thead>
 
@@ -312,6 +317,10 @@
                             </td>
                             <td>                 
                               <%= link_to "SEND TO ALL", send_to_all_inquiry_path(inquiry, :parent_id => @user.id, :parent_type => 'User'), class: "btn  btn-primary"  %>
+                            </td>
+                          <% else %>
+                            <td>
+                             <%= render "inquiries/hotleads", :inquiry => inquiry %>
                             </td>
                           <% end %>
                       </tr> 
