@@ -3,7 +3,7 @@
     <meta property="og:type" content="Page" />        
     <meta property="og:description" content="<%= @listing.title if @listing.title %> for sale at <%= @user.name if @user.name %> for $<%= @listing.price if @listing.price %>. View now on www.wantacarbuyacar.com" />
     <meta property="og:url" content="<%= listing_path(@listing) %>" />
-    <meta property="og:image:all" content="Want A Car Buy A Car" />
+    <meta property="og:image:alt" content="Want A Car Buy A Car" />
 
     
     <% if @listing.external_url %>

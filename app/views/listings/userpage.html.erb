@@ -3,7 +3,7 @@
     <meta property="og:type" content="Page" />        
     <meta property="og:description" content="<%= @user.name if @user.name %> | <%= @user.websiteheader if @user.websiteheader %> | <%= @user.websitedescription if @user.websitedescription %> | View more on www.wantacarbuyacar.com " />
     <meta property="og:url" content="<%= userpage_path(:id => "#{@user.slug}") %>" />
-    <meta property="og:image:all" content="Want A Car Buy A Car" />
+    <meta property="og:image:alt" content="Want A Car Buy A Car" />
     <% if @user.logoimage %>
         <%= tag :meta, property: 'og:image', content: "#{ @user.logoimage.url}" %>
     <% end %>
