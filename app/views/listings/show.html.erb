@@ -13,10 +13,12 @@
     <% if @listing.external_url %>
         <% if @listing.external_image %>
             <%= tag :meta, property: 'og:image', content: "#{ @listing.external_image}" %>
+            <%= tag :meta, property: 'og:image_url', content: "#{ @listing.external_image}" %>
         <% end %>      
     <% else %>
         <% if @listing.image %>
           <%= tag :meta, property: 'og:image', content: "#{ @listing.image.url}" %>      
+          <%= tag :meta, property: 'og:image_url', content: "#{ @listing.external_image}" %>
         <% end %>
     <% end %>
 
