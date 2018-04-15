@@ -17,11 +17,11 @@
   </div>
 
   <div class="field">      
-      <%= f.time_select :start_time, {:minute_step => 60, :ampm => true}, :label => "Select Time You Open (24 Hour Format)" %>        
+      <%= f.time_select :start_time, {:minute_step => 15, :ampm => true}, :label => "Select Time You Open (24 Hour Format)" %>        
   </div>
 
   <div class="field">      
-      <%= f.time_select :end_time, {:minute_step => 60, :ampm => true}, :label => "Select Time You Close (24 Hour Format)" %>
+      <%= f.time_select :end_time, {:minute_step => 15, :ampm => true}, :label => "Select Time You Close (24 Hour Format)" %>
   </div>
 
   <div class="actions">
