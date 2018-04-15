@@ -1,10 +1,14 @@
 <%= content_for(:meta_og) do %>
     <meta property="og:title" content="<%= @listing.title if @listing.title %> for sale in <%= @listing.city %> | www.wantacarbuyacar.com" />
-    <meta property="og:type" content="Page" />        
+    <meta property="og:type" content="product" />           
     <meta property="og:description" content="<%= @listing.title if @listing.title %> for sale at <%= @user.name if @user.name %> for $<%= @listing.price if @listing.price %>. View now on www.wantacarbuyacar.com" />
     <meta property="og:url" content="<%= listing_path(@listing) %>" />
     <meta property="og:image:alt" content="Want A Car Buy A Car" />
-
+    <meta property="og:site_name" content="Want A Car Buy A Car" />
+    <meta property="product:price:amount" content="<%= @listing.price if @listing.price %>" />
+    <meta property="product:price:currency" content="USD" />
+    <meta property="og:availability" content="instock" />
+   
     
     <% if @listing.external_url %>
         <% if @listing.external_image %>
