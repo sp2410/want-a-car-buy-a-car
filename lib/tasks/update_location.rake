@@ -44,11 +44,13 @@ task :update_location => :environment do
 
 	Listing.where(:user_id => 1074).update_all(:city => "Mesa", :state => "AZ", :latitude => "33.4525494", :longitude => "-111.7674282", :zipcode => "85213")	
 
-	Listing.where(:user_id => 1073).update_all(:city => "PRESCOTT VALLEY", :state => "AZ", :latitude => "34.5550811", :longitude => "-112.4831981", :zipcode => "863148566")	
+	#Listing.where(:user_id => 1073).update_all(:city => "PRESCOTT VALLEY", :state => "AZ", :latitude => "34.5550811", :longitude => "-112.4831981", :zipcode => "863148566")	
 
 	Listing.where(:user_id => 864).update_all(:city => "GILBERT", :state => "AZ", :latitude => "33.3391759", :longitude => "-111.8417458", :zipcode => "852335019")	
 
 	Listing.where(:user_id => 1075).update_all(:city => "Mesa", :state => "AZ", :latitude => "33.379424", :longitude => "-111.8747445", :zipcode => "85202")	
+
+	Listing.where(:user_id => 1076).update_all(:city => "Phoenix", :state => "AZ", :latitude => "33.5636878", :longitude => "-112.0595603", :zipcode => "85020")	
 
 	Listing.update_all(:newused => "U")
 end
