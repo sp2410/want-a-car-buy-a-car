@@ -155,9 +155,20 @@ class InquiriesController < InheritedResources::Base
 
 		respond_to do |format|
 				if @inquiry.save(:validate => false)					
-					# if @inquiry.update(inquiry_params)					
-						format.html { redirect_to @parent, notice: 'Inquiry was successfuly updated!' }
-			        	format.json {head :ok }			    				        	
+					# if @inquiry.update(inquiry_params)																	
+					format.html { redirect_to @parent, notice: 'Inquiry was successfuly updated!' }
+			        format.json {head :ok }
+
+			        begin
+						if @inquiry.status == 'BOUGHTHERE'
+							user = User.find_by_email(@inquiry.to_email)	
+							name = user.name || user.email														
+							BoughtHereNotifications.perform_async("Hi! #{user.name} converted a lead to deal.", "Hi! #{user.name} converted a lead to deal. Please charge them accordingly.", ['sales@tdcdigitalmedia.com'])																
+						end	
+					rescue											
+							
+					end	
+
 				else				
 					format.html { redirect_to @parent, notice: "There was some error updating" }
 			        format.json { render json: @inquiry.errors, status: :unprocessable_entity }
