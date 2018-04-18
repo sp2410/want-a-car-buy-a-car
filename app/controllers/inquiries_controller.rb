@@ -163,7 +163,7 @@ class InquiriesController < InheritedResources::Base
 						if @inquiry.status == 'BOUGHTHERE'
 							user = User.find_by_email(@inquiry.to_email)	
 							name = user.name || user.email														
-							BoughtHereNotifications.perform_async("Hi! #{user.name} converted a lead to deal.", "Hi! #{user.name} converted a lead to deal. Please charge them accordingly.", ['sales@tdcdigitalmedia.com'])																
+							BoughtHereNotifications.perform_async("Hi! #{user.name} converted a lead to deal.", "Good News! #{user.name} converted lead id #{@inquiry.id} to a deal. Please charge them accordingly.", ['sales@tdcdigitalmedia.com'])																
 						end	
 					rescue											
 							
