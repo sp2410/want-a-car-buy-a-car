@@ -379,24 +379,24 @@ class Listing < ActiveRecord::Base
 	  		"user_id" => :user_id,      
 	  		"NewUsed" => :newused,
 	  		"VIN"	=> :vin,
-	  		"StockNumber"	 => :stocknumber,
+	  		"StockNumber" => :stocknumber,
 	      "BodyType" => :bodytype,
 	      "Make" => :make,
 	  		"Model"	=> :model,
 	  		"year"	=> :year,
 	  		"Trim"	=> :trim,
 	  		"miles"	=> :miles,
-	  		"EnginerDescription"	=> :enginedescription,
+	  		"EnginerDescription" => :enginedescription,
 	  		"cylinder"	=> :cylinder,
 	  		"fuel"	=> :fuel,
 	  		"transmission" => :transmission,	
 	  		"price" => :price,
-	  		"color"	 => :color ,
+	  		"color"	 => :color,
 	      "InteriorColor" => :interiorcolor,
 	  		"ExteriorColor"	=> :color,
 	  		"Options" => :options,
 	  		"description" => :description,
-	      "image" => :all_images
+	      	"image" => :all_images
 
   		}
 
