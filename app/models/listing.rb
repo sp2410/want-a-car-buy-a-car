@@ -1091,9 +1091,10 @@ class Listing < ActiveRecord::Base
 	end 
 
 
+	def self.remove_unwanted_listings
+		Listing.where('updated_at < ?', Time.now - 7.days).delete_all
+	end
 
-
-	
 
 end
 
