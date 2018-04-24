@@ -158,9 +158,11 @@
                   <hr>
                       <h1 style = "color:#7C064D; text-align: center;"><strong>SEND NEW LEAD</strong></h1>               
 
-                      <div class="col-sm-12 text-center" style = " padding: 0px; overflow-y: scroll; height: 500px;">                              
+                      <div class="col-sm-12 text-center" style = " padding: 0px; overflow-y: scroll; height: 700px;">                              
                         <%= render 'inquiries/sales_form' %>
                       </div>
+
+                    
                       
                   
                   <br>
@@ -365,6 +367,42 @@ function on(clickedElement) {
 function off(clickedElement) {
     clickedElement.parentElement.parentElement.getElementsByClassName("overlay")[0].style.display = "none";
 }
+
+
+
+
+  
+      $("#financing")        
+        .click(function(){                       
+            //var txt = $('textarea#inquiry_comment.form_control').text(); 
+            txt = $('#inquiry_comment').val();
+            $('#inquiry_comment').val(txt+" I Need Financing.");
+        });
+
+        $("#500down")        
+        .click(function(){                       
+            //var txt = $('textarea#inquiry_comment.form_control').text(); 
+            txt = $('#inquiry_comment').val();
+            $('#inquiry_comment').val(txt+" I have 500$ for down-payment.");
+        });
+
+        $("#prefertext")        
+        .click(function(){                       
+            //var txt = $('textarea#inquiry_comment.form_control').text(); 
+            txt = $('#inquiry_comment').val();
+            $('#inquiry_comment').val(txt+" I prefer text contact.");
+        });
+
+        $("#bkprogram")        
+        .click(function(){                       
+            //var txt = $('textarea#inquiry_comment.form_control').text(); 
+            txt = $('#inquiry_comment').val();
+            $('#inquiry_comment').val(txt+" I am a BK Program Customer.");
+        });
+
+                
+           
+            
 
 // $(document).on('ready page:load', function() {
 //     var REFRESH_INTERVAL_IN_MILLIS = 5000;
