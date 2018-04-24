@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180322105157) do
+ActiveRecord::Schema.define(version: 20180424013624) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -98,11 +98,12 @@ ActiveRecord::Schema.define(version: 20180322105157) do
     t.string   "phone",      limit: 255
     t.string   "subject",    limit: 255
     t.string   "comment",    limit: 255
-    t.datetime "created_at",                                null: false
-    t.datetime "updated_at",                                null: false
+    t.datetime "created_at",                                      null: false
+    t.datetime "updated_at",                                      null: false
     t.string   "status",     limit: 255, default: "FRESH"
     t.boolean  "senttoall",              default: false
     t.string   "referredby", limit: 255, default: "WACBAC"
+    t.string   "offer",      limit: 255, default: "Listed Price"
   end
 
   create_table "installs", force: :cascade do |t|

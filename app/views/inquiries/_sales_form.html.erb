@@ -29,6 +29,19 @@
     </div>          
     <div class= "col-xs-12 col-sm-12 col-lg-12 col-md-12" style = "margin: auto;">
       <%= f.text_field :subject %>  
+
+       <div class="col-md-12 text-center" style = "margin-top: 1em;">
+      <input class="btn btn-primary" id="hideshowoffer" style="margin-top: 10px; margin-bottom: 10px;" type="button" value="ADD AM OFFER"></input>
+    </div>
+
+
+
+    <div class = "toggledivoffer">    
+      <div class="col-md-12 text-center">
+        <%= f.text_field :offer, :label => "Your Offer" %> 
+      </div>
+    </div>   
+      
       <%= f.text_area :comment, :size => "30x10", :label => "Customer Message" %>
 
         <div class="col-sm-12 text-center" style = " padding: 0px;">
@@ -68,9 +81,13 @@
 
 <% end %>
 
-<!-- <script>
-  (function (){
+<script>
+ $(document).ready(function(){
 
-  })();
+    $('#hideshowoffer').on('click', function(event) {        
+         $('.toggledivoffer').toggle('show');
+    });
 
-</script> -->
+  });
+
+</script>

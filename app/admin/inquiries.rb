@@ -2,7 +2,7 @@ ActiveAdmin.register Inquiry do
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
-permit_params :from_email, :to_email, :first_name, :last_name, :phone, :comment, :subject, :status, :senttoall, :referredby
+permit_params :from_email, :to_email, :first_name, :last_name, :phone, :comment, :subject, :status, :senttoall, :referredby, :offer
 #
 # or
 #
@@ -133,6 +133,7 @@ permit_params :from_email, :to_email, :first_name, :last_name, :phone, :comment,
 
 		column :last_name
 		column :phone
+		column :offer
 		column :comment
 		column :subject	
 
