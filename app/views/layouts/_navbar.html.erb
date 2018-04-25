@@ -27,7 +27,7 @@
           <%=link_to 'ALL DEALERSHIPS', "/listings/dealer_search?utf8=%E2%9C%93&keywords=&location=&radius=&commit=Search" %>
         </li> 
          <li>
-          <%=link_to 'REPAIR SHOPS', repairshops_path %>
+          <%=link_to 'PARTS & SERVICES', repairshops_path %>
         </li>
         <li>
           <%=link_to 'SPECIAL OFFERS', allcoupons_path %>
@@ -50,11 +50,11 @@
 
           <% if current_user.user_has_both %>
             <li><%= link_to 'MY LISTINGS', mylistings_path %></li>
-            <li><%= link_to 'MY REPAIRSHOP', myrepairshops_path %></li>
+            <li><%= link_to 'MY PARTS & SERVICE', myrepairshops_path %></li>
 
           <% elsif current_user.user_has_repairshops %>
 
-            <li><%= link_to 'MY REPAIRSHOP', myrepairshops_path %></li>
+            <li><%= link_to 'MY PARTS & SERVICE', myrepairshops_path %></li>
 
           <% elsif current_user.user_has_listings %>        
 

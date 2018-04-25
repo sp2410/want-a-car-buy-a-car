@@ -5,7 +5,7 @@
       <div class="tab">
           <div class = "row">
               <div class= "col-xs-12 col-sm-12 col-lg-3 col-md-3" style = "padding: 0px; margin: 0px;">  
-                    <button class="tablinks1" onclick="openCity1(event, 'ServiceCenter')" id="defaultOpen1">Find Repairshops</button>  
+                    <button class="tablinks1" onclick="openCity1(event, 'ServiceCenter')" id="defaultOpen1">Find Parts & Services</button>  
                 </div>
                 <div class= "col-xs-12 col-sm-12 col-lg-3 col-md-3" style = "padding: 0px; margin: 0px;">  
                     <button class="tablinks1" onclick="openCity1(event, 'Make')"  >Search Vehicles By Make</button>
@@ -29,7 +29,7 @@
 
                     <hr>
 
-                    <h3 style = "color:#7C064D;"><span class="glyphicon glyphicon-search"></span> <strong>SEARCH REPAIR SHOPS & SERVICE CENTERS NEAR YOU</strong></h3>
+                    <h3 style = "color:#7C064D;"><span class="glyphicon glyphicon-search"></span> <strong>SEARCH PARTS & SERVICES NEAR YOU</strong></h3>
 
                     <%= form_tag search_repairshops_path, method: :get do |f| %>
 
@@ -278,7 +278,7 @@ $( document ).ready(function() {
         });
     }    
 
-    $("#searchboxcontainer").delay(100).fadeIn(200);   
+    $("#searchboxcontainer").delay(80).fadeIn(150);  
     
 
 });
