@@ -152,7 +152,7 @@
 
 <% end %>
 
-<% if  owner_is_sales_team(@user) %>
+<% if current_user_is_sales_team and owner_is_sales_team(@user)%>
 
     <div class="col-xs-12 " style = "background-color: #fff; padding: 12px;">                      
                   <hr>
@@ -171,7 +171,8 @@
 <% end %>
 
 
-<% if user_is_webpage_owner(@user.id) or current_user_is_sales_team and !owner_is_sales_team(@user) %>
+<% if user_is_webpage_owner(@user.id) or current_user_is_sales_team  %>
+
 
   <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12" style = "background-color: #fff; padding: 12px; height: 90%; overflow-y: scroll; overflow-x: scroll;"> 
     <hr>
@@ -288,7 +289,7 @@
                               <%= hidden_field_tag :parent_id, @parent.id  %>    
                               <%= hidden_field_tag :parent_type, @parent.class.name  %>
                               <td>
-                                <% if user_is_webpage_owner(@user.id) %>
+                                <% if user_is_webpage_owner(@user.id) and !current_user_is_sales_team %>
                                       <%= f.select :status, Inquiry.statuses.except(:DONOTCALL, :ONHOLD).keys.map{|x| x.upcase}, {:label => "Change Lead Stage"} %>
                                 <% end %>
                                 <% if current_user_is_sales_team  %>                    
@@ -382,35 +383,42 @@ function off(clickedElement) {
         .click(function(){                       
             //var txt = $('textarea#inquiry_comment.form_control').text(); 
             txt = $('#inquiry_comment').val();
-            $('#inquiry_comment').val(txt+" I Need Financing. ");
+            $('#inquiry_comment').val(txt+" Need Financing. ");
         });
 
         $("#500down")        
         .click(function(){                       
             //var txt = $('textarea#inquiry_comment.form_control').text(); 
             txt = $('#inquiry_comment').val();
-            $('#inquiry_comment').val(txt+" I have at least $500 for down-payment. ");
+            $('#inquiry_comment').val(txt+" Has atleast $500 for down-payment. ");
         });
 
         $("#1000down")        
         .click(function(){                       
             //var txt = $('textarea#inquiry_comment.form_control').text(); 
             txt = $('#inquiry_comment').val();
-            $('#inquiry_comment').val(txt+" I have at least $1000 for down-payment. ");
+            $('#inquiry_comment').val(txt+" Has atleast $1000 for down-payment. ");
         });
 
         $("#prefertext")        
         .click(function(){                       
             //var txt = $('textarea#inquiry_comment.form_control').text(); 
             txt = $('#inquiry_comment').val();
-            $('#inquiry_comment').val(txt+" I prefer text contact. ");
+            $('#inquiry_comment').val(txt+" Prefers text contact. ");
         });
 
         $("#bkprogram")        
         .click(function(){                       
             //var txt = $('textarea#inquiry_comment.form_control').text(); 
             txt = $('#inquiry_comment').val();
-            $('#inquiry_comment').val(txt+" I am a BK Program Customer. ");
+            $('#inquiry_comment').val(txt+" BK Program Customer. ");
+        });
+        
+        $("#bhphprogram")        
+        .click(function(){                       
+            //var txt = $('textarea#inquiry_comment.form_control').text(); 
+            txt = $('#inquiry_comment').val();
+            $('#inquiry_comment').val(txt+" BHPH Program Customer. ");
         });
 
                 

@@ -350,8 +350,12 @@ class ListingsController < ApplicationController
 
 		@parent = @user		
 
-
-		@inquiries = Inquiry.where(:to_email => @user.email).order('created_at DESC')
+		if current_user_is_sales_team
+			@inquiries = Inquiry.all.order('created_at DESC')
+		else
+			@inquiries = Inquiry.where(:to_email => @user.email).order('created_at DESC')	
+		end
+		
 		
 		@user_listings = Listing.where('user_id=?', @user_id).where(:approved => true)
 		
