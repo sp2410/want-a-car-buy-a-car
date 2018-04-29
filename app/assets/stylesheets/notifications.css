@@ -14,35 +14,28 @@
 .danger {
     background-color: red ;
   color: white;
-  border:1px solid #ffcc00;
 }
 .success {
     background-color: green;
   color: white;
-  border:1px solid #ffcc00;
 }
 .warning {
     background-color: red ;
   color: white;
-  border:1px solid #ffcc00;
 }
 .notice {
     background-color: skyblue ;
   color: white;
-  border:1px solid #ffcc00;
 }
 .alert{
  background-color: red ;
   color: white;
-  border:1px solid #ffcc00;
 }
 .notification{
   background-color: red ;
   color: white;
-  border:1px solid #ffcc00;
 }
 .notification.warning {
 background-color: red ;
   color: white;
-  border:1px solid #ffcc00;
 }
