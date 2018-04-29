@@ -17,7 +17,7 @@ class InquiriesController < InheritedResources::Base
 
 					begin
 						NewInquiryCreator.perform_async(params[:dealers], inquiry_params)
-						format.html {redirect_to @parent, notice: 'This process has started in the background. Please wait a little to see changed'}
+						format.html {redirect_to @parent, notice: 'Thanks! This lead has been sent.'}
 									
 					rescue
 						
@@ -26,7 +26,7 @@ class InquiriesController < InheritedResources::Base
 					end
 				else
 					
-					format.html { redirect_to @parent, notice: 'Please fill in the required fields' }			
+					format.html { redirect_to @parent, notice: 'Oops! Please fill in all the required fields' }			
 				end
 			end
 
@@ -45,7 +45,7 @@ class InquiriesController < InheritedResources::Base
 				        		p "Inquiry Email not sent"
 				        	end
 					else				
-						format.html { redirect_to @parent, notice: 'Please fill in the required fields' }						
+						format.html { redirect_to @parent, notice: 'Oops! Please fill in all the required fields' }						
 				        format.json { render json: @inquiry.errors, status: :unprocessable_entity }
 					end
 			end
@@ -192,17 +192,17 @@ class InquiriesController < InheritedResources::Base
 			begin
 				CloneInquiryCreator.perform_async(params[:id])	
 				respond_to do |format|
-					format.html {redirect_to @parent, notice: 'This process has started in the background. Please wait a little to see changed'}
+					format.html {redirect_to @parent, notice: 'Great! This lead has been sent. '}
 				end				
 			rescue
 				respond_to do |format|
-					format.html {redirect_to @parent, notice: 'There was some error with the leads creation.'}
+					format.html {redirect_to @parent, notice: 'Oops! There was some error with the leads creation.'}
 				end	
 			end
 			
 		else
 			respond_to do |format|
-				format.html {redirect_to @parent, notice: 'This lead was already sent to all Leads 2 Deals Customers'}
+				format.html {redirect_to @parent, notice: 'Wait! This lead was already sent to all Leads 2 Deals Customers'}
 			end
 		end
 
