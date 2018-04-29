@@ -1,0 +1,48 @@
+.alert-box {
+  color:white;
+  border-radius:10px;
+  font-family: 'Oswald', sans-serif;
+  
+  padding:10px 10px 10px 36px;
+  margin:auto auto;
+  background-color: red;
+  span {
+    font-weight:bold;
+    text-transform:uppercase;
+  }
+}
+.danger {
+    background-color: red ;
+  color: white;
+  border:1px solid #ffcc00;
+}
+.success {
+    background-color: green;
+  color: white;
+  border:1px solid #ffcc00;
+}
+.warning {
+    background-color: red ;
+  color: white;
+  border:1px solid #ffcc00;
+}
+.notice {
+    background-color: skyblue ;
+  color: white;
+  border:1px solid #ffcc00;
+}
+.alert{
+ background-color: red ;
+  color: white;
+  border:1px solid #ffcc00;
+}
+.notification{
+  background-color: red ;
+  color: white;
+  border:1px solid #ffcc00;
+}
+.notification.warning {
+background-color: red ;
+  color: white;
+  border:1px solid #ffcc00;
+}
