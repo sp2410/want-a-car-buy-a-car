@@ -14,9 +14,9 @@
 //= require jquery_ujs
 //= require ckeditor/init
 //= require bootstrap-sprockets
+// = require_tree .
 //= require jquery.bar.custom
 //= require helpers
-// = require_tree .
 //= require social-share-button
 
 function openCity(evt, cityName) {

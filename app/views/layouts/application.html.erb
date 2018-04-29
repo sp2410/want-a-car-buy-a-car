@@ -86,12 +86,10 @@
 <body>
 
 
-<%= slide_down_alerts %>
+
 
  <div class = "container3">
-      <%= content_tag :div, alert, class: "flash bg-danger" if alert %>
-      <%= content_tag :div, notice, class: "flash bg-success" if notice %>
-      <div id="notification" class = "flash bg-success"> </div>    
+       <%= slide_down_alerts %>
   </div>
 
 
