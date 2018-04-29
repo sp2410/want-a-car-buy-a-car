@@ -20,7 +20,7 @@ class CategoriesController < ApplicationController
 		
 		respond_to do |format|
 			format.html			
-			flash[:notice] =  "Welcome!"
+			#flash[:notice] =  "Welcome!"
 			#format.xml { render :xml => @alllistings}					
 			#format.json { render :json => @alllistings}					
 		end
