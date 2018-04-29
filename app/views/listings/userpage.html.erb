@@ -171,7 +171,8 @@
 <% end %>
 
 
-<% if user_is_webpage_owner(@user.id) or current_user_is_sales_team  %>
+<% if user_is_webpage_owner(@user.id) or current_user_is_sales_team and !owner_is_sales_team(@user) %>
+
 
 
   <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12" style = "background-color: #fff; padding: 12px; height: 90%; overflow-y: scroll; overflow-x: scroll;"> 
@@ -413,7 +414,7 @@ function off(clickedElement) {
             txt = $('#inquiry_comment').val();
             $('#inquiry_comment').val(txt+" BK Program Customer. ");
         });
-        
+
         $("#bhphprogram")        
         .click(function(){                       
             //var txt = $('textarea#inquiry_comment.form_control').text(); 
