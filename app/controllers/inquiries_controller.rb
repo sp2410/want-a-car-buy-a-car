@@ -21,7 +21,7 @@ class InquiriesController < InheritedResources::Base
 									
 					rescue
 						
-						format.html {redirect_to @parent, notice: 'There was some error with the leads creation.Please fill in the required fields'}
+						format.html {redirect_to @parent, notice: 'There was some error with the leads creation. Please fill in the required fields'}
 						
 					end
 				else

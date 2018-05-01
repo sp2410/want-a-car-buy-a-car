@@ -56,6 +56,8 @@ ActiveAdmin.register User do
 
     scope :leads2deals
 
+    scope :bhphcustomer
+
     #before_action :remove_password_params_if_blank, only: [:update]
 
 
@@ -142,6 +144,24 @@ ActiveAdmin.register User do
                 return false
             end
         end
+
+        def give_bhph_priviliges(user_id)
+            begin
+                User.find_by_id(user_id).update(:bhphcustomer => true)
+                return true         
+            rescue
+                return false
+            end
+        end
+
+        def revoke_bhph_priviliges(user_id)
+            begin
+                User.find_by_id(user_id).update(:bhphcustomer => false)
+                return true         
+            rescue
+                return false
+            end
+        end
     end
 
     member_action :approve_users_listings_or_repairshops_method, method: :get do 
@@ -207,6 +227,15 @@ ActiveAdmin.register User do
         end
     end
 
+    member_action :give_bhph_priviliges_method, method: :get do 
+        status = give_bhph_priviliges(resource.id)
+        if status 
+            redirect_to admin_users_path, notice: "User is now BHPH user"
+        else
+            redirect_to admin_users_path, notice: "There was some error while converting this user"
+        end
+    end
+
     member_action :revoke_tdcfinance_priviliges_method, method: :get do 
         status = revoke_tdcfinance_priviliges(resource.id)
         if status 
@@ -215,6 +244,16 @@ ActiveAdmin.register User do
             redirect_to admin_users_path, notice: "There was some error while revoking this user"
         end
     end
+
+    member_action :revoke_bhph_priviliges_method, method: :get do 
+        status = revoke_bhph_priviliges(resource.id)
+        if status 
+            redirect_to admin_users_path, notice: "User revoked from BHPH"
+        else
+            redirect_to admin_users_path, notice: "There was some error while revoking this user"
+        end
+    end
+
 
 
 
@@ -247,6 +286,8 @@ ActiveAdmin.register User do
         column :leads2dealscustomer        
         column :tdcfinance 
 
+        column :bhphcustomer
+
         column "Verified user" do |user|
             link_to "Yes Verify",  verify_user_method_admin_user_path(user)
         end
@@ -263,12 +304,20 @@ ActiveAdmin.register User do
             link_to "Yes convert User",  give_tdcfinance_priviliges_method_admin_user_path(user)
         end
 
+        column "Convert user to BHPH customer" do |user|
+            link_to "Yes convert User",  give_bhph_priviliges_method_admin_user_path(user)
+        end
+
         column "Revoke leads 2 deals" do |user|
             link_to "Yes revoke",  revoke_leadstodeals_priviliges_method_admin_user_path(user)
         end
 
         column "Revoke TDC Finance" do |user|
             link_to "Yes revoke",  revoke_tdcfinance_priviliges_method_admin_user_path(user)
+        end
+
+        column "Revoke BHPH" do |user|
+            link_to "Yes revoke",  revoke_bhph_priviliges_method_admin_user_path(user)
         end
 
     

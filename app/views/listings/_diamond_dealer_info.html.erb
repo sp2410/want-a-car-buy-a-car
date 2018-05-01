@@ -24,4 +24,7 @@
                     <div class = "col-sm-12 col-md-12 col-lg-12 col-xs-12 text-center">
                       <p><%= link_to 'View Dealer Page and Inventory', userpage_path(:id => "#{i.slug}")  , class: "btn btn-danger btn-xs", style: "border: #e20049", target: :_blank %></p>
                     </div>
+                    <div class= "col-xs-12 col-sm-12 col-lg-12 col-md-12">
+                                      <%= render :partial => 'listings/user_badges', :locals => { :user => i }%>
+                                    </div>  
                 </div>

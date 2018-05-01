@@ -52,6 +52,8 @@ class User < ActiveRecord::Base
 
     scope :leads2deals, -> {where('users.leads2dealscustomer = ?', true)}
 
+    scope :bhphcustomer, -> {where('users.bhphcustomer = ?', true)}
+
     scope :emails, -> {pluck(:email)}
 
     scope :all_emails_for_send_all, -> {leads2deals.emails.push("allleads2deals")}
