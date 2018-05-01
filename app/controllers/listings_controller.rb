@@ -350,13 +350,13 @@ class ListingsController < ApplicationController
 
 		@parent = @user		
 
-		# if current_user_is_sales_team
-		# 	@inquiries = Inquiry.all.order('created_at DESC')
-		# else
-		# 	@inquiries = Inquiry.where(:to_email => @user.email).order('created_at DESC')	
-		# end
+		if current_user_is_sales_team
+			@inquiries = Inquiry.includes(:notes).all.order('created_at DESC')
+		else
+			@inquiries = Inquiry.includes(:notes).where(:to_email => @user.email).order('created_at DESC')	
+		end
 
-		@inquiries = Inquiry.includes(:notes).where(:to_email => @user.email).order('created_at DESC')	
+		
 		
 		
 		@user_listings = Listing.where('user_id=?', @user_id).where(:approved => true)
