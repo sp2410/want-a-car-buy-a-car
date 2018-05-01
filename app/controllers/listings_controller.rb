@@ -356,7 +356,7 @@ class ListingsController < ApplicationController
 		# 	@inquiries = Inquiry.where(:to_email => @user.email).order('created_at DESC')	
 		# end
 
-		@inquiries = Inquiry.where(:to_email => @user.email).order('created_at DESC')	
+		@inquiries = Inquiry.includes(:notes).where(:to_email => @user.email).order('created_at DESC')	
 		
 		
 		@user_listings = Listing.where('user_id=?', @user_id).where(:approved => true)
