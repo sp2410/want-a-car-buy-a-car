@@ -378,6 +378,7 @@ class Listing < ActiveRecord::Base
 
 	  		"user_id" => :user_id,      
 	  		"NewUsed" => :newused,
+	  		"VIN"	=> :vin,
 	  		"StockNumber" => :stocknumber,
 	      "BodyType" => :bodytype,
 	      "Make" => :make,
