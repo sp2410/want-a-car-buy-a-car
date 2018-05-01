@@ -280,7 +280,10 @@
                       <div class="description">
                           <div class= "col-xs-12 col-sm-12 col-lg-12 col-md-12"> 
                             <div class="row">
-                              <div class= "col-xs-12 col-sm-12 col-lg-12 col-md-12">                                 
+                              <div class= "col-xs-12 col-sm-12 col-lg-12 col-md-12">  
+                              <div class= "col-xs-12 col-sm-12 col-lg-12 col-md-12">
+                                      <%= render :partial => 'listings/user_badges_withouttext', :locals => { :user => i.user }%>
+                                    </div>                                  
 
                               <div class= "col-xs-12 col-sm-12 col-lg-12 col-md-12"> 
                                 <p style ="margin: 1px;font-size: 0.9em; color: #7C064D;" ><span class="glyphicon glyphicon-fire"></span></span> <%= i.title.upcase if i.title %></p> 
@@ -299,12 +302,7 @@
                                              <%= distance_of_time_in_words(i.updated_at, Time.now).split(' ')[-1] %>
 
                                           </div>
-                                      </div> -->
-
-                                       <div class= "col-xs-12 col-sm-12 col-lg-12 col-md-12">
-                                      <%= render :partial => 'listings/user_badges_withouttext', :locals => { :user => i.user }%>
-                                    </div>  
-
+                                      </div> -->                                   
                               </div>                  
                             </div>
                           </div>
