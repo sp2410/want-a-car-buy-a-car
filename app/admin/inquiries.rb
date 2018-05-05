@@ -127,6 +127,7 @@ permit_params :from_email, :to_email, :first_name, :last_name, :phone, :comment,
 	index do
 		column :id
 		column :status
+		column :referredby
 		column :from_email
 		column :to_email			   
 		column :first_name
