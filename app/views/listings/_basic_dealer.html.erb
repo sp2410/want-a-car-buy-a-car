@@ -216,6 +216,12 @@
 
             <hr>
 
+            <div class= "col-xs-12 col-sm-12 col-lg-12 col-md-12">
+                                      <%= render :partial => 'listings/leads_to_deals_coupon', :locals => { :user => @user }%>
+                                    </div> 
+
+                                    <hr>  
+
              
       </div>
 
@@ -320,11 +326,7 @@
 
                                   </div>    
 
-                                 <div class= "col-xs-12 col-sm-12 col-lg-12 col-md-12">
-                                      <%= render :partial => 'listings/leads_to_deals_coupon', :locals => { :user => @user }%>
-                                    </div> 
-
-                                    <hr>                                                     
+                                                                                    
                                           <div class="col-sm-12" style = " padding: 12px; overflow-y: scroll; height: 500px;">
                                               <h6 style = "color:  #e20049; padding: 0px; font-size: 2em; text-align: left;"><strong>ABOUT THE CAR</strong></h6>
                                               <p style ="margin: 0px;font-size: 15px; color: #e20049; overflow-x:hidden;"> (Click Here and Scroll Down to Read More) </p>
