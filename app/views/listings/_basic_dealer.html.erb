@@ -215,6 +215,10 @@
            <%= social_share_button_tag(@listing.title, :url => "https://fierce-sea-43472.herokuapp.com/listings/#{@listing.id}", :image => "#{@listing.image if @listing.image }") %>
 
             <hr>
+
+             <div class= "col-xs-12 col-sm-12 col-lg-12 col-md-12"> <div class= "col-xs-12 col-sm-12 col-lg-12 col-md-12">
+                                      <%= render :partial => 'listings/leads_to_deals_coupon', :locals => { :user => @user }%>
+                                    </div>    
       </div>
 
     
