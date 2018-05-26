@@ -1,8 +1,9 @@
 class Inquiry < ActiveRecord::Base	
 
-	enum status: {:FRESH => 'FRESH', :ATTEMPTED => 'ATTEMPTED', :CONTACTED => 'CONTACTED', :APPOINTMENT => 'APPOINTMENT', :WORKINGDEAL => 'WORKINGDEAL', :MISSEDAPPOINTMENTFOLLOWUP => "MISSEDAPPOINTMENTFOLLOWUP", :DEALERVISITFOLLOWUP => "DEALERVISITFOLLOWUP",
-		:BOUGHTHERE  => 'BOUGHTHERE', :DEADDEAL => "DEADDEAL", :DONOTCALL => "DONOTCALL", :BOUGHTELSEWHERE => "BOUGHTELSEWHERE", 
-		:ONHOLD => "ONHOLD", :SPAM => "SPAM"}
+	enum status: {:Fresh => 'Fresh', :Attempted => 'Attempted', :Contacted => 'Contacted', :Appointment => 'Appointment', 
+		:Working_Deal => 'Working_Deal', :Missed_Appointment_Followup => "Missed_Appointment_Followup", 
+		:Dealer_Visit_Followup => "Dealer_Visit_Followup", :Bought_Here  => 'Bought_Here', :Dead_Deal => "Dead_Deal", 
+		:Do_Not_Call => "Do_Not_Call", :Bought_Else_Where => "Bought_Else_Where", :On_Hold => "On_Hold", :Spam => "Spam"}
 
 	validates_presence_of :phone
 	validates_presence_of :from_email	
@@ -10,17 +11,17 @@ class Inquiry < ActiveRecord::Base
   	has_many :notes, :dependent => :delete_all
 
   		def set_as_new_inquiry
-    		self.status = :fresh
+    		self.status = :Fresh
     		# return true
 		end
 
 		def set_as_contacted_inquiry
-    		self.status = :contacted
+    		self.status = :Contacted
     		# return true
 		end
 
 		def set_as_appointment
-    		self.status = :appointment
+    		self.status = :Appointment
     		# return true
 		end
 		def set_as_negotiation
@@ -28,19 +29,19 @@ class Inquiry < ActiveRecord::Base
     		# return true
 		end
 		def set_as_bought
-    		self.status = :bought
+    		self.status = :Bought_Here
     		# return true
 		end
 		def set_as_donotcall
-    		self.status = :donotcall
+    		self.status = :Do_Not_Call
     		# return true
 		end
 		def set_as_boughtelsewhere
-    		self.status = :boughtelsewhere
+    		self.status = :Bought_Else_Where
     		# return true
 		end
 		def set_as_onhold
-    		self.status = :onhold
+    		self.status = :On_Hold
     		# return true
 		end
 
@@ -54,17 +55,17 @@ class Inquiry < ActiveRecord::Base
 		scope :individual, -> {where('senttoall = ?', false)}
 		
 		scope :ALL, -> {all}
-		scope :FRESH, -> {where('status = ?', "FRESH")}
-		scope :CONTACTED, -> {where('status = ?', "CONTACTED")}
-		scope :APPOINTMENT, -> {where('status = ?', "APPOINTMENT")}
-		scope :WORKINGDEAL, -> {where('status = ?', "WORKINGDEAL")}
-		scope :MISSEDAPPOINTMENTFOLLOWUP, -> {where('status = ?', "MISSEDAPPOINTMENTFOLLOWUP")}
-		scope :DEALERVISITFOLLOWUP, -> {where('status = ?', "DEALERVISITFOLLOWUP")}
-		scope :BOUGHTHERE, -> {where('status = ?', "BOUGHTHERE")}
-		scope :DEADDEAL, -> {where('status = ?', "DEADDEAL")}
-		scope :DONOTCALL, -> {where('status = ?', "DONOTCALL")}
-		scope :BOUGHTELSEWHERE, -> {where('status = ?', "BOUGHTELSEWHERE")}
-		scope :ONHOLD, -> {where('status = ?', "ONHOLD")}
+		scope :FRESH, -> {where('status = ?', "Fresh")}
+		scope :CONTACTED, -> {where('status = ?', "Contacted")}
+		scope :APPOINTMENT, -> {where('status = ?', "Appointment")}
+		scope :WORKINGDEAL, -> {where('status = ?', "Working_Deal")}
+		scope :MISSEDAPPOINTMENTFOLLOWUP, -> {where('status = ?', "Missed_Appointment_Followup")}
+		scope :DEALERVISITFOLLOWUP, -> {where('status = ?', "Dealer_Visit_Followup")}
+		scope :BOUGHTHERE, -> {where('status = ?', "Bought_Here")}
+		scope :DEADDEAL, -> {where('status = ?', "Dead_Deal")}
+		scope :DONOTCALL, -> {where('status = ?', "Do_Not_Call")}
+		scope :BOUGHTELSEWHERE, -> {where('status = ?', "Bought_Else_Where")}
+		scope :ONHOLD, -> {where('status = ?', "On_Hold")}
 
 		
 

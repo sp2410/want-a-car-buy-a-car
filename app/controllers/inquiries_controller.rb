@@ -55,97 +55,6 @@ class InquiriesController < InheritedResources::Base
 
 	end
 
-	#old create
-
-	# def create
-	# 	# session[:parent_id] = params[:parent_id]
-	# 	# session[:parent_type] = params[:parent_type]
-
-	# 	# p params[:parent_id]
-	# 	# p params[:parent_type]
-	# 	@parent = get_parent(params)
-
-	# 	if params[:dealers]
-
-	# 		all_saved = true
-	# 		buffer_array_of_cloned_inquiries = Array.new
-
-	# 		if params[:dealers].include? "allleads2deals"
-	# 			(User.leads2deals.emails).each do |dealer|
-	# 				@inquiry = Inquiry.new(inquiry_params.merge(:to_email => dealer))	
-	# 				@inquiry.senttoall = true
-
-	# 				buffer_array_of_cloned_inquiries << @inquiry
-
-	# 				if !@inquiry.save
-	# 					all_saved = false
-	# 				end	
-										
-	# 			end	
-
-	# 			# begin
-	# 			# 	Inquiry.create(buffer_array_of_cloned_inquiries)
-	# 			# rescue
-	# 			# 	all_saved = false
-	# 			# end			
-	# 		else
-	# 			buffer_array_of_new_inquiries = Array.new 
-
-	# 			params[:dealers].each do |dealer|
-	# 				@inquiry = Inquiry.new(inquiry_params.merge(:to_email => dealer))
-	# 				buffer_array_of_new_inquiries << @inquiry					
-	# 				if !@inquiry.save
-	# 					all_saved = false
-	# 				end
-	# 				# begin
-	# 				# 	Inquiry.create(buffer_array_of_new_inquiries)
-	# 				# rescue
-	# 				# 	all_saved = false
-	# 				# end	
-
-								
-	# 			end
-
-	# 		end
-
-	# 		if all_saved
-	# 			respond_to do |format|
-	# 				format.html {redirect_to @parent, notice: 'Leads were successfuly sent!'}
-	# 			end
-	# 		else
-	# 			respond_to do |format|
-	# 				format.html {redirect_to @parent, notice: 'There was some problems sending the leads!'}
-	# 			end
-	# 		end
-
-			
-
-	# 	else
-
-	# 		@inquiry = Inquiry.new(inquiry_params)			
-
-
-	# 		respond_to do |format|
-	# 				if @inquiry.save					
-	# 						format.html { redirect_to @parent, notice: 'Inquiry was successfuly sent!' }
-	# 			        	format.json { head :ok }			    	
-	# 			        	begin
-	# 			        		send_email(@inquiry)
-	# 			        	rescue
-	# 			        		p "Inquiry Email not sent"
-	# 			        	end
-	# 				else				
-	# 					format.html { render @parent }
-	# 			        format.json { render json: @inquiry.errors, status: :unprocessable_entity }
-	# 				end
-	# 		end
-
-	# 	end
-		
-
-	# end
-
-
 	def update
 		
 		@inquiry = Inquiry.find_by_id(params[:id])
@@ -160,7 +69,7 @@ class InquiriesController < InheritedResources::Base
 			        format.json {head :ok }
 
 			        begin
-						if @inquiry.status == 'BOUGHTHERE'
+						if @inquiry.status == 'Bought_Here'
 							user = User.find_by_email(@inquiry.to_email)	
 							name = user.name || user.email														
 							BoughtHereNotifications.perform_async("Hi! #{user.name} converted a lead to deal.", "Good News! #{user.name} converted lead id #{@inquiry.id} to a deal. Please charge them accordingly.", ['sales@tdcdigitalmedia.com'])																
@@ -210,67 +119,6 @@ class InquiriesController < InheritedResources::Base
 		
 
 	end
-
-
-	#old send to all
-
-	# def send_to_all
-	# 	p params[:parent_id]
-	# 	p params[:parent_type]
-	# 	p params[:id]
-
-	# 	@parent = get_parent(params)
-
-	# 	all_saved = true		
-
-	# 	@old_inquiry = Inquiry.find_by_id(params[:id])
-
-	# 	#buffer_array_of_cloned_inquiries = Array.new
-
-	# 	if !@old_inquiry.senttoall			
-
-	# 		(User.leads2deals.emails - [@old_inquiry.to_email]).each do |dealer|
-	# 			@inquiry = @old_inquiry.dup
-	# 			@inquiry.to_email = dealer			
-	# 			@inquiry.senttoall = true
-	# 			#buffer_array_of_cloned_inquiries << @inquiry
-
-	# 			if !@inquiry.save
-	# 				all_saved = false
-	# 			end		
-	# 		end
-
-	# 		# begin
-	# 		# 	Inquiry.create(buffer_array_of_cloned_inquiries)
-	# 		# rescue
-	# 		# 	all_saved = false
-	# 		# end
-	
-
-	# 		if all_saved
-
-	# 			@old_inquiry.senttoall = true
-	# 			@old_inquiry.save
-
-	# 			respond_to do |format|
-	# 				format.html {redirect_to @parent, notice: 'All Leads were successfuly sent!'}
-	# 			end
-	# 		else
-	# 			respond_to do |format|
-	# 				format.html {redirect_to @parent, notice: 'There was some problems sending all the leads! Try sending one by one'}
-	# 			end
-	# 		end
-	# 	else
-	# 		respond_to do |format|
-	# 			format.html {redirect_to @parent, notice: 'This lead was already sent to all Leads 2 Deals Customers'}
-	# 		end
-	# 	end
-
-
-		
-
-	# end
-
 
 
 

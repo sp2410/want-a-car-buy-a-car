@@ -306,10 +306,10 @@
                               <%= hidden_field_tag :parent_type, @parent.class.name  %>
                               <td>
                                 <% if user_is_webpage_owner(@user.id) and !current_user_is_sales_team %>
-                                      <%= f.select :status, Inquiry.statuses.except(:DONOTCALL, :ONHOLD).keys.map{|x| x.upcase}, {:label => "Change Lead Stage"} %>
+                                      <%= f.select :status, Inquiry.statuses.except(:Do_Not_Call, :On_Hold).keys.map{|x| x}, {:label => "Change Lead Stage"} %>
                                 <% end %>
                                 <% if current_user_is_sales_team  %>                    
-                                   <%= f.select :status, Inquiry.statuses.keys.map{|x| x.upcase}, {:label => "Change Lead Stage"} %>
+                                   <%= f.select :status, Inquiry.statuses.keys.map{|x| x}, {:label => "Change Lead Stage"} %>
                                 <% end %> 
                               </td>
 
