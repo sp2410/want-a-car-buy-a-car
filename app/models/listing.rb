@@ -9,19 +9,6 @@ class Listing < ActiveRecord::Base
 	#attr_accessor :user
 	include CsvUploading
 
-	# attr_accessor :remote
-
-	# def initialize(input = {})
-	# 	@remote = input[:remote] || false
-	# 	super
-	# end
-
-	# def to_param
-	#     "#{id}-#{title}".parameterize
-	#  end
-
-
-
 	belongs_to :category
 	belongs_to :subcategory
 	belongs_to :user
@@ -29,38 +16,19 @@ class Listing < ActiveRecord::Base
 	validates_presence_of :title	
 
 
-
-	#validates :user_id, presence: true
-	
-	# validates_presence_of :title
-	# validates_presence_of :city
-	# validates_presence_of :state
-	# validates_presence_of :description
-
-
-	# if :external_url == false
-	# 	puts "hello I am here"
-	# 	puts "*************"
-	# 	puts "*************"
-	# 	puts "*************"
-	# 	puts "*************"
-
-		mount_uploader :image, ImageUploader
-		mount_uploader :imagefront, ImageUploader
-		mount_uploader :imageback, ImageUploader
-		mount_uploader :imageleft, ImageUploader
-		mount_uploader :imageright, ImageUploader
-		mount_uploader :frontinterior, ImageUploader
-		mount_uploader :rearinterior, ImageUploader
-	# end
-
+	mount_uploader :image, ImageUploader
+	mount_uploader :imagefront, ImageUploader
+	mount_uploader :imageback, ImageUploader
+	mount_uploader :imageleft, ImageUploader
+	mount_uploader :imageright, ImageUploader
+	mount_uploader :frontinterior, ImageUploader
+	mount_uploader :rearinterior, ImageUploader
 
 	geocoded_by :full_address
 	after_validation :geocode
 
 	scope :approved_all, -> {joins(:user).where('users.role = ?', 6).where(approved: true)}
 
-	
 	scope :approved_wholesale, -> {joins(:user).where('users.role = ?', 6).where(approved: true).where(wholesale: true)}
 
 	# scope :approved_wholesale, -> {where(approved: true).where(wholesale: true).where('users.role = ?', 6)}
@@ -99,25 +67,6 @@ class Listing < ActiveRecord::Base
 	scope :other_approved_new, -> {joins(:user).where(approved: true).where(newused: "N")}
 
 	scope :other_wholesale_listings, -> {joins(:user).where(approved: true).where(wholesale: true)}
-
-
-	
-	#facets
-
-	# scope :listing_search_cities, -> {group('created_at, city').count}
-	# scope :listing_search_body_type, -> {group('created_at, bodytype').count}
-	# #scope :listing_search_states, -> {group('created_at, state').count}
-	# scope :listing_search_newused, -> {group('created_at, newused').count}
-	# scope :listing_search_transmission, -> {group('created_at, transmission').count}
-	# scope :listing_search_cylinder, -> {group('created_at, cylinder').count}
-	# scope :listing_search_fuel, -> {group('created_at, fuel').count}
-	# scope :listing_search_drive, -> {group('created_at, drive').count}
-	# scope :listing_search_trim, -> {group('created_at, trim').count}
-	# scope :listing_search_color, -> {group('created_at, color').count}
-	# scope :listing_search_year, -> {group('created_at, year').count}
-	# scope :listing_search_interiorcolor, -> {group('created_at, interiorcolor').count}
-
-
 
     def self.listing_search_cities(listings)
       return {} if listings.size < 1
@@ -335,23 +284,6 @@ class Listing < ActiveRecord::Base
     end
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	def self.to_csv
 		CSV.generate do |csv|
 			csv << column_names
@@ -399,28 +331,10 @@ class Listing < ActiveRecord::Base
 	      	"image" => :all_images
 
   		}
-
-		# p user_hash
-		# p "*******************************"
-		# p "*******************************"
-
-
-		# p Listing.count
-		# p Listing.delete_all
-		# p "problem is here 1"
 		CSV.foreach(file, headers: true, encoding:'iso-8859-1:utf-8') do |row|
-			#Use create when you dont need customization with the listing	
-
-		# p "problem is here 2"
-
-			# p row.to_hash["Make"]
-			
 			row.to_hash.each do |k, v|
 				key = map[k]
 				data[key] = v
-
-				# p "problem is here 3"
-
 			end
 
 			unless data[:vin] == nil
@@ -431,45 +345,15 @@ class Listing < ActiveRecord::Base
 				#listing.attributes = (row.to_hash).merge(image: URI.parse(row['image'])) #			
 				listing.title = "#{data[:year] if data[:year]} #{data[:make] if data[:make]} #{data[:model] if data[:model]}"
 				user = user_hash[data[:user_id].to_i]
-
-				# p "*******************************"
-				# p "*******************************"
-
-				# p user
-
-				# p user
-				# p "*******************************"
-				# p "*******************************"
-
-
 				if user != nil
 					listing.city = user["city"]
-
-					# p user["city"]
-					# p "*******************************"
-					# p "*******************************"
-
-
 					listing.state = user["state"]
 					listing.zipcode = user["zipcode"] 
 					listing.latitude = user["latitude"].to_f
 					listing.longitude = user["longitude"].to_f
 				end
-
-				# listing.approved = true
-
-				# # p data[:all_images]
-				# p "*******************************"
-				# p "*******************************"
-
-				# p data[:make]
-				
 				data[:approved] = true
-
 				
-
-				# listing.attributes = .merge(user_id: current_user.id).merge(category_id: row["category"]).merge(subcategory_id: row["subcategory"])
-				# p data
 				begin
 					# p data.except(:all_images)
 					# p data

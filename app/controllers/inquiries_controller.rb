@@ -24,8 +24,7 @@ class InquiriesController < InheritedResources::Base
 						format.html {redirect_to @parent, notice: 'There was some error with the leads creation. Please fill in the required fields'}
 						
 					end
-				else
-					
+				else					
 					format.html { redirect_to @parent, notice: 'Oops! Please fill in all the required fields' }			
 				end
 			end
@@ -45,21 +44,16 @@ class InquiriesController < InheritedResources::Base
 				        		p "Inquiry Email not sent"
 				        	end
 					else				
-						format.html { redirect_to @parent, notice: 'Oops! Please fill in all the required fields' }						
+						format.html { redirect_to @parent, notice: 'Oops! Please fill in all the required fields' }												
 				        format.json { render json: @inquiry.errors, status: :unprocessable_entity }
 					end
 			end
-
-		end
-		
-
+		end		
 	end
 
 	def update
-		
 		@inquiry = Inquiry.find_by_id(params[:id])
 		@parent = get_parent(params)
-
 		@inquiry.attributes = inquiry_params
 
 		respond_to do |format|
@@ -134,6 +128,7 @@ class InquiriesController < InheritedResources::Base
 		elsif params[:parent_type] == "Repairshop"
 			return Repairshop.find_by_id(params[:parent_id])
 		elsif params[:parent_type] == "User"
+			#return User.where(:id => params[:parent_id])
 			return userpage_path(:id => User.where(:id => params[:parent_id]).first.slug)
 		elsif params[:parent_type] == "Contact"
 			return contact_path
@@ -157,8 +152,6 @@ class InquiriesController < InheritedResources::Base
 				dealers << user.leademail2
 			end 
 		end
-
-
 
 		subject = "New Lead From Want A Car Buy A Car"
 		#inquiry.subject
