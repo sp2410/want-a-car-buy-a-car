@@ -58,5 +58,5 @@ task :update_location => :environment do
 
 	Listing.update_all(:newused => "U")
 
-	#Listing.remove_unwanted_listings
+	Listing.remove_unwanted_listings
 end
