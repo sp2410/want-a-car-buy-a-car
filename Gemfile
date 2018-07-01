@@ -1,5 +1,5 @@
 source 'http://rubygems.org'
-ruby '2.2.6'
+ruby '2.4.4'
 
 #lolakutti
 
