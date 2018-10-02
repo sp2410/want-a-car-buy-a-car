@@ -44,8 +44,6 @@ task :update_location => :environment do
 
 	Listing.where(:user_id => 1074).update_all(:city => "Mesa", :state => "AZ", :latitude => "33.4525494", :longitude => "-111.7674282", :zipcode => "85213")	
 
-	#Listing.where(:user_id => 1073).update_all(:city => "PRESCOTT VALLEY", :state => "AZ", :latitude => "34.5550811", :longitude => "-112.4831981", :zipcode => "863148566")	
-
 	Listing.where(:user_id => 864).update_all(:city => "GILBERT", :state => "AZ", :latitude => "33.3391759", :longitude => "-111.8417458", :zipcode => "852335019")	
 
 	Listing.where(:user_id => 1075).update_all(:city => "Mesa", :state => "AZ", :latitude => "33.379424", :longitude => "-111.8747445", :zipcode => "85202")	
@@ -55,6 +53,8 @@ task :update_location => :environment do
 	Listing.where(:user_id => 1080).update_all(:city => "Scottsdale", :state => "AZ", :latitude => "33.468848", :longitude => "-111.910516", :zipcode => "85257")	
 
 	Listing.where(:user_id => 1081).update_all(:city => "Apache Junction", :state => "AZ", :latitude => "33.3934373", :longitude => "-111.5647165", :zipcode => "85120")
+
+	Listing.where(:user_id => 1094).update_all(:city => "Phoenix", :state => "AZ", :latitude => "33.4485866", :longitude => "-112.0773456", :zipcode => "85020")
 
 	Listing.update_all(:newused => "U")
 
