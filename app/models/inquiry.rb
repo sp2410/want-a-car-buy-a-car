@@ -6,7 +6,7 @@ class Inquiry < ActiveRecord::Base
 		:Do_Not_Call => "Do_Not_Call", :Bought_Else_Where => "Bought_Else_Where", :On_Hold => "On_Hold", :Spam => "Spam"}
 
 	validates_presence_of :phone
-	validates_presence_of :from_email	
+	validates_presence_of :first_name
   
   	has_many :notes, :dependent => :delete_all
 

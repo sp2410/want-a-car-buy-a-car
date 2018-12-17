@@ -56,6 +56,8 @@ task :update_location => :environment do
 
 	Listing.where(:user_id => 1094).update_all(:city => "Phoenix", :state => "AZ", :latitude => "33.4485866", :longitude => "-112.0773456", :zipcode => "85020")
 
+	Listing.where(:user_id => 1088).update_all(:city => "Phoenix", :state => "AZ", :latitude => "33.4438042", :longitude => "-112.1310986", :zipcode => "85009")
+
 	Listing.update_all(:newused => "U")
 
 	Listing.remove_unwanted_listings
