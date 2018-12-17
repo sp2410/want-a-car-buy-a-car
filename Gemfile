@@ -33,7 +33,7 @@ gem 'geocoder'
 
 gem 'bootstrap_form'
 
-gem 'devise'
+gem 'devise', '4.4.0'
 #gem 'pundit'
 # gem 'cancancan', '~> 1.9'
 gem "sidekiq"
@@ -111,7 +111,7 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 
-gem 'activeadmin', github: 'activeadmin'
+gem 'activeadmin', '1.2'
 
 gem 'active_admin_importable'
 
