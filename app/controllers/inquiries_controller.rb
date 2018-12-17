@@ -13,7 +13,7 @@ class InquiriesController < InheritedResources::Base
 
 		if params[:dealers]
 			respond_to do |format|
-				if  ( verify_recaptcha(model: Inquiry.new) and inquiry_params[:from_email].present? and inquiry_params[:phone].present?)
+				if  ( verify_recaptcha(model: Inquiry.new) and inquiry_params[:first_name].present? and inquiry_params[:phone].present?)
 
 					begin
 						NewInquiryCreator.perform_async(params[:dealers], inquiry_params)

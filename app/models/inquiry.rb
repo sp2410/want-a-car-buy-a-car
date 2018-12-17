@@ -67,6 +67,4 @@ class Inquiry < ActiveRecord::Base
 		scope :BOUGHTELSEWHERE, -> {where('status = ?', "Bought_Else_Where")}
 		scope :ONHOLD, -> {where('status = ?', "On_Hold")}
 
-		
-
 end
