@@ -49,7 +49,7 @@ class NewInquiryCreator
 		@notifier = EmailNotifier.new(from, dealers, subject, contentPlainEmail)
 		@notifier.send
 
-		@notifier2 = EmailNotifier.new(from, dealers, subject, contentXMLEmail)
+		@notifier2 = XMLEmailNotifier.new(from, dealers, subject, contentXMLEmail)
 		@notifier2.send
 	end
 end
