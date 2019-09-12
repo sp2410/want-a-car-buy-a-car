@@ -15,7 +15,6 @@ class NewInquiryCreator
 				end
 			end
 
-
 		else
 			dealer_params.each do |dealer|
 				inquiry = Inquiry.new(inquiry_params.merge(:to_email => dealer))
