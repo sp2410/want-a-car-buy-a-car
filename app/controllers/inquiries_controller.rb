@@ -1,4 +1,5 @@
 require 'emailnotifier'
+require 'xmlemailnotifier'
 
 class InquiriesController < InheritedResources::Base
 	include ApplicationHelper
