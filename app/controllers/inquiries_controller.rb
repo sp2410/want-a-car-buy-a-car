@@ -155,6 +155,8 @@ class InquiriesController < InheritedResources::Base
 			end
 		end
 
+		dealers.uniq!
+
 		subject = "New Lead From Want A Car Buy A Car"
 		#inquiry.subject
 
