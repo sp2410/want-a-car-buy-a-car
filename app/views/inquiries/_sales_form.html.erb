@@ -23,12 +23,12 @@
     </div>
     <div class= "col-xs-6 col-sm-6 col-lg-6 col-md-6" style = "margin: auto;">
       <%= f.text_field :phone, :label => "Customer Phone(*)", :placeholder => "Necessary Field" %>
-    </div>    
+    </div>
     <div class= "col-xs-12 col-sm-12 col-lg-12 col-md-12" style = "margin: auto;">
       <%= f.text_field :referredby, :label => "Referred By" %>
-    </div>          
+    </div>
     <div class= "col-xs-12 col-sm-12 col-lg-12 col-md-12" style = "margin: auto;">
-      <%= f.text_field :subject %>  
+      <%= f.text_field :subject %>
 
     <div class="col-md-12 text-center" style = "margin-top: 1em;">
       <input class="btn btn-primary btn-xs" id="hideshowoffer" style="margin-top: 10px; margin-bottom: 10px;" type="button" value="ADD YOUR OFFER"></input>
@@ -36,12 +36,12 @@
 
 
 
-    <div class = "toggledivoffer">    
+    <div class = "toggledivoffer">
       <div class="col-md-12 text-center">
-        <%= f.text_field :offer, :label => "Your Offer" %> 
+        <%= f.text_field :offer, :label => "Your Offer" %>
       </div>
-    </div>   
-      
+    </div>
+
       <%= f.text_area :comment, :size => "30x10", :label => "Customer Message" %>
 
         <div class="col-sm-12 text-center" style = " padding: 0px;">
@@ -56,29 +56,33 @@
 
       <%= label_tag '','CHOOSE WHOM TO SEND THIS LEAD'  %>
     </div>
-    
+
     <div class= "col-xs-12 col-sm-12 col-lg-12 col-md-12" style = "margin: auto;">
       <% User.all_emails_for_send_all.each do |dealer| %>
          <div class= "col-xs-6 col-sm-6 col-lg-6 col-md-6" style = "margin: auto;">
             <%= check_box_tag 'dealers[]', dealer -%>
-            <%= h dealer -%>
-          </div>  
+            <%= h (dealer == "allleads2deals" ? User.find_by_email(dealer).name : dealer) -%>
+          </div>
         <% end %>
-        
+<%
+=begin%>
+
    <div class= "col-xs-12 col-sm-12 col-lg-12 col-md-12 text-center">
       <div class="g-recaptcha" data-sitekey= <%= ENV["GOOGLE_RECAPTCHA_SITEKEY"] %> style = "display: inline-block;"></div>
     </div>
-      
-    </div>  
+<%
+=end%>
+
+    </div>
 
 
 
-        <%= hidden_field_tag :parent_id, @parent.id  %>    
-        <%= hidden_field_tag :parent_type, @parent.class.name  %>    
+        <%= hidden_field_tag :parent_id, @parent.id  %>
+        <%= hidden_field_tag :parent_type, @parent.class.name  %>
 
        <%= f.submit "Send Message", class: "btn btn-danger"  %>
-      
-  </div> 
+
+  </div>
 
 
 <% end %>
@@ -88,7 +92,7 @@
 
   $('.toggledivoffer').toggle('hide');
 
-    $('#hideshowoffer').on('click', function(event) {        
+    $('#hideshowoffer').on('click', function(event) {
          $('.toggledivoffer').toggle('show');
     });
 

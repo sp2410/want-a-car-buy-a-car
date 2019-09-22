@@ -15,7 +15,7 @@ class InquiriesController < InheritedResources::Base
 
 		if params[:dealers]
 			respond_to do |format|
-				if  ( verify_recaptcha(model: Inquiry.new) and inquiry_params[:first_name].present? and inquiry_params[:phone].present?)
+				if  ( inquiry_params[:first_name].present? and inquiry_params[:phone].present?)
 
 					begin
 						NewInquiryCreator.perform_async(params[:dealers], inquiry_params)
@@ -36,7 +36,7 @@ class InquiriesController < InheritedResources::Base
 			@inquiry = Inquiry.new(inquiry_params)
 			respond_to do |format|
 			# verify_recaptcha(model: @inquiry) and
-					if  verify_recaptcha(model: @inquiry) and @inquiry.save
+					if @inquiry.save
 							# format.html { redirect_to @parent, notice: 'Inquiry was successfuly sent!' }
 							format.html { redirect_to get_affiliates }
 				        	format.json { head :ok }
@@ -68,7 +68,7 @@ class InquiriesController < InheritedResources::Base
 						if @inquiry.status == 'Bought_Here'
 							user = User.find_by_email(@inquiry.to_email)
 							name = user.name || user.email
-							BoughtHereNotifications.perform_async("Hi! #{user.name} converted a lead to deal.", "Good News! #{user.name} converted lead id #{@inquiry.id} to a deal. Please charge them accordingly.", ['sales@tdcdigitalmedia.com'])
+							BoughtHereNotifications.perform_async("Hi! #{user.name} converted a lead to deal.", "Good News! #{user.name} converted lead id #{@inquiry.id}, for #{@inquiry.first_name if @inquiry.first_name} #{@inquiry.last_name if @inquiry.last_name} to a deal. Please charge them accordingly.", ['sales@tdcdigitalmedia.com'])
 						end
 					rescue
 
