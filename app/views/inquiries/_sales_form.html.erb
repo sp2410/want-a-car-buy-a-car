@@ -61,7 +61,7 @@
       <% User.all_emails_for_send_all.each do |dealer| %>
          <div class= "col-xs-6 col-sm-6 col-lg-6 col-md-6" style = "margin: auto;">
             <%= check_box_tag 'dealers[]', dealer -%>
-            <%= h (dealer == "allleads2deals" ? User.find_by_email(dealer).name : dealer) -%>
+            <%= h (dealer == "allleads2deals" ? dealer : User.find_by_email(dealer).name) -%>
           </div>
         <% end %>
 <%
