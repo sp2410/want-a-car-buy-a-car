@@ -64,15 +64,11 @@
             <%= h (dealer == "allleads2deals" ? dealer : User.find_by_email(dealer).name) -%>
           </div>
         <% end %>
-<%
-=begin%>
 
-   <div class= "col-xs-12 col-sm-12 col-lg-12 col-md-12 text-center">
-      <div class="g-recaptcha" data-sitekey= <%= ENV["GOOGLE_RECAPTCHA_SITEKEY"] %> style = "display: inline-block;"></div>
-    </div>
-<%
-=end%>
 
+      <div class= "col-xs-12 col-sm-12 col-lg-12 col-md-12 text-center">
+        <div class="g-recaptcha" data-sitekey= <%= ENV["GOOGLE_RECAPTCHA_SITEKEY"] %> style = "display: inline-block;"></div>
+      </div>
     </div>
 
 
