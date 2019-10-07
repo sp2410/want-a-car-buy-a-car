@@ -38,7 +38,8 @@ class NewInquiryCreator
 			user = User.find_by_email(inquiry.to_email)
 			if user.leademail1.present?
 				leadsemails << user.leademail1
-			elsif user.leademail2.present?
+			end
+			if user.leademail2.present?
 				leadsemails << user.leademail2
 			end
 		end
