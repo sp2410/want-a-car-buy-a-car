@@ -167,11 +167,11 @@ class InquiriesController < InheritedResources::Base
 		@notifier = EmailNotifier.new(from, [inquiry.to_email], subject, contentPlainEmail)
 		@notifier.send
 
-		# @notifier2 = XMLEmailNotifier.new(from, leadsemails, subject, contentXMLEmail)
-		# @notifier2.send
+		@notifier2 = XMLEmailNotifier.new(from, leadsemails, subject, contentXMLEmail)
+		@notifier2.send
 
-		@notifier3 = XMLApplicationEmailNotifier.new(from, leadsemails, subject, contentXMLEmail)
-		@notifier3.send
+		# @notifier3 = XMLApplicationEmailNotifier.new(from, leadsemails, subject, contentXMLEmail)
+		# @notifier3.send
 	end
 
 end
