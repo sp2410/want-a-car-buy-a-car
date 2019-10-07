@@ -14,26 +14,24 @@ ActiveAdmin.register User do
   form do |f|
       f.inputs "User" do
         f.input :email
-        f.input :name    
+        f.input :name
         f.input :password
-        f.input :password_confirmation    
-        f.input :role      
-        f.input :street_address        
+        f.input :password_confirmation
+        f.input :role
+        f.input :street_address
         f.input :city
         f.input :state
         f.input :zipcode
-        f.input :phone_number   
-        f.input :website 
+        f.input :phone_number
+        f.input :website
         f.input :backgroundimage, as: :file
-        f.input :logoimage, as: :file        
+        f.input :logoimage, as: :file
         f.input :websiteheader
         f.input :websitesubheader
         f.input :websitedescription
-        f.input :textcolor  
-        f.input :leademail1
-        f.input :leademail2 
-        #f.input :textbackgroundcolor       
-        # f.input :slug    
+        f.input :textcolor
+        f.input :leademail1, label: 'Selly Format'
+        f.input :leademail2, label: 'Autoraptor Format'
       end
       f.actions
     end
@@ -61,7 +59,7 @@ ActiveAdmin.register User do
     #before_action :remove_password_params_if_blank, only: [:update]
 
 
-    controller do 
+    controller do
 
         # def remove_password_params_if_blank
         #   if params[:user][:password].blank? && params[:user][:password_confirmation].blank?
@@ -72,20 +70,20 @@ ActiveAdmin.register User do
     	def approve_users_listings_or_repairshops(user_id)
     		begin
     			Listing.where(:user_id => user_id).update_all(:approved => true)
-    			Repairshop.where(:user_id => user_id).update_all(:approved => true) 
-    			return true   		
+    			Repairshop.where(:user_id => user_id).update_all(:approved => true)
+    			return true
     		rescue
     			return false
     		end
     	end
 
-    	
+
 
     	def hold_users_listings_or_repairshops(user_id)
     		begin
     			Listing.where(:user_id => user_id).update_all(:approved => false)
     			Repairshop.where(:user_id => user_id).update_all(:approved => false)
-    			return true   		
+    			return true
     		rescue
     			return false
     		end
@@ -94,7 +92,7 @@ ActiveAdmin.register User do
         def give_leadstodeals_priviliges(user_id)
             begin
                 User.find_by_id(user_id).update(:leads2dealscustomer => true)
-                return true         
+                return true
             rescue
                 return false
             end
@@ -103,7 +101,7 @@ ActiveAdmin.register User do
         def revoke_leadstodeals_priviliges(user_id)
             begin
                 User.find_by_id(user_id).update(:leads2dealscustomer => false)
-                return true         
+                return true
             rescue
                 return false
             end
@@ -112,7 +110,7 @@ ActiveAdmin.register User do
         def verify_user(user_id)
             begin
                 User.find_by_id(user_id).update(:verified => true)
-                return true         
+                return true
             rescue
                 return false
             end
@@ -121,7 +119,7 @@ ActiveAdmin.register User do
         def unverify_user(user_id)
             begin
                 User.find_by_id(user_id).update(:verified => false)
-                return true         
+                return true
             rescue
                 return false
             end
@@ -130,7 +128,7 @@ ActiveAdmin.register User do
         def give_tdcfinance_priviliges(user_id)
             begin
                 User.find_by_id(user_id).update(:tdcfinance => true)
-                return true         
+                return true
             rescue
                 return false
             end
@@ -139,7 +137,7 @@ ActiveAdmin.register User do
         def revoke_tdcfinance_priviliges(user_id)
             begin
                 User.find_by_id(user_id).update(:tdcfinance => false)
-                return true         
+                return true
             rescue
                 return false
             end
@@ -148,7 +146,7 @@ ActiveAdmin.register User do
         def give_bhph_priviliges(user_id)
             begin
                 User.find_by_id(user_id).update(:bhphcustomer => true)
-                return true         
+                return true
             rescue
                 return false
             end
@@ -157,97 +155,97 @@ ActiveAdmin.register User do
         def revoke_bhph_priviliges(user_id)
             begin
                 User.find_by_id(user_id).update(:bhphcustomer => false)
-                return true         
+                return true
             rescue
                 return false
             end
         end
     end
 
-    member_action :approve_users_listings_or_repairshops_method, method: :get do 
+    member_action :approve_users_listings_or_repairshops_method, method: :get do
     	status = approve_users_listings_or_repairshops(resource.id)
-    	if status 
+    	if status
     		redirect_to admin_users_path, notice: "Users Listings and Repairshops were approved"
     	else
     		redirect_to admin_users_path, notice: "there was some error while approving this user's listings/repairshops"
     	end
     end
 
-     member_action :hold_users_listings_or_repairshops_method, method: :get do 
+     member_action :hold_users_listings_or_repairshops_method, method: :get do
     	status = hold_users_listings_or_repairshops(resource.id)
-    	if status 
+    	if status
     		redirect_to admin_users_path, notice: "Users Listings and Repairshops were put on hold"
     	else
     		redirect_to admin_users_path, notice: "there was some error while putting hold on this user's listings/repairshops"
     	end
     end
 
-    member_action :give_leadstodeals_priviliges_method, method: :get do 
+    member_action :give_leadstodeals_priviliges_method, method: :get do
         status = give_leadstodeals_priviliges(resource.id)
-        if status 
+        if status
             redirect_to admin_users_path, notice: "User given leads to deals leads"
         else
             redirect_to admin_users_path, notice: "There was some error while converting this user to leads to deals"
         end
     end
 
-    member_action :revoke_leadstodeals_priviliges_method, method: :get do 
+    member_action :revoke_leadstodeals_priviliges_method, method: :get do
         status = revoke_leadstodeals_priviliges(resource.id)
-        if status 
+        if status
             redirect_to admin_users_path, notice: "User leads to deals revoked"
         else
             redirect_to admin_users_path, notice: "There was some error while revoking this user"
         end
     end
 
-    member_action :verify_user_method, method: :get do 
+    member_action :verify_user_method, method: :get do
         status = verify_user(resource.id)
-        if status 
+        if status
             redirect_to admin_users_path, notice: "User Verified"
         else
             redirect_to admin_users_path, notice: "There was some error while converting this user"
         end
     end
 
-     member_action :unverify_user_method, method: :get do 
+     member_action :unverify_user_method, method: :get do
         status = unverify_user(resource.id)
-        if status 
+        if status
             redirect_to admin_users_path, notice: "User Unverified"
         else
             redirect_to admin_users_path, notice: "There was some error while converting this user"
         end
     end
 
-    member_action :give_tdcfinance_priviliges_method, method: :get do 
+    member_action :give_tdcfinance_priviliges_method, method: :get do
         status = give_tdcfinance_priviliges(resource.id)
-        if status 
+        if status
             redirect_to admin_users_path, notice: "User is now TDC Finance user"
         else
             redirect_to admin_users_path, notice: "There was some error while converting this user"
         end
     end
 
-    member_action :give_bhph_priviliges_method, method: :get do 
+    member_action :give_bhph_priviliges_method, method: :get do
         status = give_bhph_priviliges(resource.id)
-        if status 
+        if status
             redirect_to admin_users_path, notice: "User is now BHPH user"
         else
             redirect_to admin_users_path, notice: "There was some error while converting this user"
         end
     end
 
-    member_action :revoke_tdcfinance_priviliges_method, method: :get do 
+    member_action :revoke_tdcfinance_priviliges_method, method: :get do
         status = revoke_tdcfinance_priviliges(resource.id)
-        if status 
+        if status
             redirect_to admin_users_path, notice: "User revoked from TDC Finance user"
         else
             redirect_to admin_users_path, notice: "There was some error while revoking this user"
         end
     end
 
-    member_action :revoke_bhph_priviliges_method, method: :get do 
+    member_action :revoke_bhph_priviliges_method, method: :get do
         status = revoke_bhph_priviliges(resource.id)
-        if status 
+        if status
             redirect_to admin_users_path, notice: "User revoked from BHPH"
         else
             redirect_to admin_users_path, notice: "There was some error while revoking this user"
@@ -263,9 +261,9 @@ ActiveAdmin.register User do
 		column :id
 		column "Email", :email
         column "Name", :name
-		column "Role", :role 
+		column "Role", :role
 
-		
+
 	    column "Number of Listings" do |resource|
 	    	resource.number_of_listings
 	    end
@@ -283,8 +281,8 @@ ActiveAdmin.register User do
 	    end
 
         column :verified
-        column :leads2dealscustomer        
-        column :tdcfinance 
+        column :leads2dealscustomer
+        column :tdcfinance
 
         column :bhphcustomer
 
@@ -320,18 +318,18 @@ ActiveAdmin.register User do
             link_to "Yes revoke",  revoke_bhph_priviliges_method_admin_user_path(user)
         end
 
-    
-	
-		column "Website", :website 
+
+
+		column "Website", :website
 		column "Zipcode", :zipcode
 		column "City", :city
 		column "State", :state
 		column "Street address", :street_address
 		column "Phone", :phone_number
 
-        column "Lead Email 1", :leademail1
-        column "Lead Email 2", :leademail2   
-       
+        column "Lead Email 1 (Selly Format)", :leademail1
+        column "Lead Email 2 (Autoraptor Format)", :leademail2
+
 
 	    column "" do |resource|
 	      links = ''.html_safe
@@ -339,10 +337,10 @@ ActiveAdmin.register User do
 	      links += link_to I18n.t('active_admin.view'), resource_path(resource), :class => "member_link view_link"
 	      links += link_to I18n.t('active_admin.delete'), resource_path(resource), :method => :delete, :confirm => I18n.t('active_admin.delete_confirmation'), :class => "member_link delete_link"
 	      links
-	      
+
 	    end
 
-	end	
+	end
 
 
 
@@ -350,4 +348,3 @@ end
 
 
 
-    

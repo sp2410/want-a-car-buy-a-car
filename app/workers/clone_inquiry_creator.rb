@@ -26,19 +26,22 @@ class CloneInquiryCreator
 	def send_email(inquiry, dealers)
 		from = ((inquiry.from_email.empty?) or (inquiry.from_email.nil?)) ? "none@tdcdigitalmedia.com" : inquiry.from_email
 		dealers	= [inquiry.to_email]
-		leadsemails = []
+
+		leadsemailsTextXML = []
+		leadsemailsApplicationXML = []
 
 		if inquiry.to_email.present?
 			user = User.find_by_email(inquiry.to_email)
 			if user.leademail1.present?
-				leadsemails << user.leademail1
+				leadsemailsTextXML << user.leademail1
 			end
 			if user.leademail2.present?
-				leadsemails << user.leademail2
+				leadsemailsApplicationXML << user.leademail2
 			end
 		end
 
-		leadsemails.uniq!
+		leadsemailsTextXML.uniq!
+		leadsemailsApplicationXML.uniq!
 
 		subject = "New Lead From Want A Car Buy A Car"
 		#inquiry.subject
@@ -49,11 +52,11 @@ class CloneInquiryCreator
 		@notifier = EmailNotifier.new(from, [inquiry.to_email], subject, contentPlainEmail)
 		@notifier.send
 
-		@notifier2 = XMLEmailNotifier.new(from, leadsemails, subject, contentXMLEmail)
+		@notifier2 = XMLEmailNotifier.new(from, leadsemailsTextXML, subject, contentXMLEmail)
 		@notifier2.send
 
-		# @notifier3 = XMLApplicationEmailNotifier.new(from, leadsemails, subject, contentXMLEmail)
-		# @notifier3.send
+		@notifier3 = XMLApplicationEmailNotifier.new(from, leadsemailsApplicationXML, subject, contentXMLEmail)
+		@notifier3.send
 	end
 
 end
