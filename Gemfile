@@ -62,7 +62,7 @@ gem 'mini_magick', '~> 4.3'
 #beautiful alerts
 gem 'slide-down-alerts-rails'
 #gem 'sprockets-rails', :require => 'sprockets/railtie'
-gem "fog"
+gem 'fog', '~> 1.38'
 
 gem 'figaro'
 
@@ -96,7 +96,7 @@ gem 'recaptcha', require: 'recaptcha/rails'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
-  gem 'rspec-rails', '~> 3.6'	
+  gem 'rspec-rails', '~> 3.6'
   gem "factory_bot_rails", "~> 4.0"
   gem 'database_cleaner'
   gem 'seed_dump'
@@ -123,19 +123,19 @@ gem 'forty_facets'
 
 
 
-group :development do  
+group :development do
 	# Use sqlite3 as the database for Active Record
-	# gem 'sqlite3'	
+	# gem 'sqlite3'
 	 gem 'mysql2', '0.3.21'
 end
 
-# group :test do 
+# group :test do
 # 	# Use sqlite3 as the database for Active Record
-# 	# gem 'sqlite3'	
-# 	gem 'sqlite3'	
+# 	# gem 'sqlite3'
+# 	gem 'sqlite3'
 # end
 
-group :production do 	
+group :production do
 	gem 'pg', '~> 0.20'
 	gem 'rails_12factor'
 	#new relic monitoring
