@@ -1,5 +1,5 @@
-source 'http://rubygems.org'
-ruby '2.3.3'
+source 'https://rubygems.org'
+ruby '2.7.0'
 
 #lolakutti
 
@@ -91,6 +91,7 @@ gem 'recaptcha', require: 'recaptcha/rails'
 
 # gem 'bootstrap-will_paginate', '~> 0.0.10'
 
+gem 'aws-sdk-s3'
 
 
 group :development, :test do
