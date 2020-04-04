@@ -4,7 +4,7 @@ ruby '2.3.3'
 #lolakutti
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.5.1'
+gem 'rails'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
@@ -26,7 +26,7 @@ gem 'jquery-rails'
 
 # gem 'jquery-turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 2.0'
+gem 'jbuilder'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'bootstrap-sass'
 gem 'geocoder'
@@ -41,7 +41,7 @@ gem "sidekiq"
 gem 'friendly_id', '~> 5.1.0'
 
 
-gem 'sdoc', '~> 0.4.0'
+gem 'sdoc'
 
 gem 'ckeditor', '~> 4.1'
 
@@ -62,7 +62,7 @@ gem 'mini_magick', '~> 4.3'
 #beautiful alerts
 gem 'slide-down-alerts-rails'
 #gem 'sprockets-rails', :require => 'sprockets/railtie'
-gem 'fog', '~> 1.38'
+gem 'fog'
 
 gem 'figaro'
 
@@ -111,7 +111,7 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 
-gem 'activeadmin', '1.2'
+gem 'activeadmin'
 
 gem 'active_admin_importable'
 
@@ -127,6 +127,7 @@ group :development do
 	# Use sqlite3 as the database for Active Record
 	# gem 'sqlite3'
 	 gem 'mysql2', '0.3.21'
+	 gem 'pg'
 end
 
 # group :test do
@@ -136,7 +137,7 @@ end
 # end
 
 group :production do
-	gem 'pg', '~> 0.20'
+	gem 'pg'
 	gem 'rails_12factor'
 	#new relic monitoring
 	# gem 'newrelic_rpm'
