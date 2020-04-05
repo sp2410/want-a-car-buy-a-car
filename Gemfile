@@ -1,8 +1,6 @@
 source 'https://rubygems.org'
 ruby '2.7.0'
 
-#lolakutti
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails'
 
@@ -128,7 +126,6 @@ group :development do
 	# Use sqlite3 as the database for Active Record
 	# gem 'sqlite3'
 	 gem 'mysql2', '0.3.21'
-	 gem 'pg'
 end
 
 # group :test do
