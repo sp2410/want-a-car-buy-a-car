@@ -984,7 +984,7 @@ class Listing < ActiveRecord::Base
 		if Listing.where(vin: hash[:vin]).count > 0
 			Listing.find_by_vin(hash[:vin]).update(hash)
 		else
-			LIsting.create(hash)
+			Listing.create(hash)
 		end
 	end
 end
