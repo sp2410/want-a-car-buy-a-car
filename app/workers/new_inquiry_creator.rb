@@ -5,7 +5,7 @@ class NewInquiryCreator
 	def perform(dealer_params, inquiry_params)
 		if dealer_params.include? "allleads2deals"
 			(User.leads2deals.emails).each do |dealer|
-				inquiry = Inquiry.new(inquiry_params.merge(:to_email => dealer))
+				inquiry = Inquiry.new(JSON.load(inquiry_params).merge("to_email" => dealer))
 				inquiry.senttoall = true
 				inquiry.save
 				begin
@@ -17,7 +17,7 @@ class NewInquiryCreator
 
 		else
 			dealer_params.each do |dealer|
-				inquiry = Inquiry.new(inquiry_params.merge(:to_email => dealer))
+				inquiry = Inquiry.new(JSON.load(inquiry_params).merge("to_email" => dealer))
 				inquiry.save
 				begin
 					send_email(inquiry, [dealer])
