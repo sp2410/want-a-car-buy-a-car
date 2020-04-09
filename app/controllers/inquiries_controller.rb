@@ -18,7 +18,7 @@ class InquiriesController < InheritedResources::Base
 				if  ( verify_recaptcha(model: Inquiry.new) and inquiry_params[:first_name].present? and inquiry_params[:phone].present?)
 
 					begin
-						NewInquiryCreator.perform_async(params[:dealers], JSON.dump(inquiry_params))
+						NewInquiryCreator.perform_async(params[:dealers], inquiry_params.to_json)
 						format.html {redirect_to @parent, notice: 'Thanks! This lead has been sent.'}
 
 					rescue
