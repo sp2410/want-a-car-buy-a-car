@@ -1,4 +1,4 @@
-require 'csv_uploading' 
+require 'csv_uploading'
 require 'csv'
 require 'active_record'
 require 'activerecord-import'
@@ -13,7 +13,7 @@ class Listing < ActiveRecord::Base
 	belongs_to :subcategory
 	belongs_to :user
 	validates_uniqueness_of :vin
-	validates_presence_of :title	
+	validates_presence_of :title
 
 
 	mount_uploader :image, ImageUploader
@@ -46,14 +46,14 @@ class Listing < ActiveRecord::Base
 	scope :used_listings, -> {joins(:user).where('users.role = ?', 6).where(approved: true).where(newused: "U")}
 
 	scope :new_listings, -> {joins(:user).where('users.role = ?', 6).where(approved: true).where(newused: "N")}
-	
+
 
 	scope :wholesale_listings, -> {joins(:user).where(wholesale: true)}
 
 	scope :expired_listings, -> {where('expiration_date <= ?', DateTime.now)}
 
 	scope :not_approved, -> {where('approved = ?', false)}
-	
+
 
 	scope :diamond_dealer_listings, -> {joins(:user).where('users.role = ?', 6)}
 	scope :basic_dealer_listings, -> {joins(:user).where('users.role = ?', 1)}
@@ -291,11 +291,11 @@ class Listing < ActiveRecord::Base
 				csv << l.attributes.values_at(*column_names)
 			end
 		end
-	end	
+	end
 
 
-	def self.import_listings(file)	
-		start = Time.now	
+	def self.import_listings(file)
+		start = Time.now
 		count = 0
 		valid_listings = Array.new
 		data = {}
@@ -308,7 +308,7 @@ class Listing < ActiveRecord::Base
 
 		map = {
 
-	  		"user_id" => :user_id,      
+	  		"user_id" => :user_id,
 	  		"NewUsed" => :newused,
 	  		"VIN"	=> :vin,
 	  		"StockNumber" => :stocknumber,
@@ -321,7 +321,7 @@ class Listing < ActiveRecord::Base
 	  		"EnginerDescription" => :enginedescription,
 	  		"cylinder"	=> :cylinder,
 	  		"fuel"	=> :fuel,
-	  		"transmission" => :transmission,	
+	  		"transmission" => :transmission,
 	  		"price" => :price,
 	  		"color"	 => :color,
 	      "InteriorColor" => :interiorcolor,
@@ -339,21 +339,21 @@ class Listing < ActiveRecord::Base
 
 			unless data[:vin] == nil
 
-				# p "problem is here 4"				
+				# p "problem is here 4"
 				listing =  Listing.new
 
-				#listing.attributes = (row.to_hash).merge(image: URI.parse(row['image'])) #			
+				#listing.attributes = (row.to_hash).merge(image: URI.parse(row['image'])) #
 				listing.title = "#{data[:year] if data[:year]} #{data[:make] if data[:make]} #{data[:model] if data[:model]}"
 				user = user_hash[data[:user_id].to_i]
 				if user != nil
 					listing.city = user["city"]
 					listing.state = user["state"]
-					listing.zipcode = user["zipcode"] 
+					listing.zipcode = user["zipcode"]
 					listing.latitude = user["latitude"].to_f
 					listing.longitude = user["longitude"].to_f
 				end
 				data[:approved] = true
-				
+
 				begin
 					# p data.except(:all_images)
 					# p data
@@ -365,8 +365,8 @@ class Listing < ActiveRecord::Base
 
 						listing_images = data[:all_images].split((/[|,]+/))
 						# i = 0
-					
-						# [:image, :imagefront, :imageback, :imageleft, :imageright, :frontinterior, :rearinterior].each do |image|				
+
+						# [:image, :imagefront, :imageback, :imageleft, :imageright, :frontinterior, :rearinterior].each do |image|
 							unless listing_images.size < 1
 								# p listing_images[i]
 
@@ -376,14 +376,14 @@ class Listing < ActiveRecord::Base
 								listing.external_imageleft = listing_images[3] if listing_images[3]
 								listing.external_imageright = listing_images[4] if listing_images[4]
 								listing.external_frontinterior = listing_images[5] if listing_images[5]
-								listing.external_rearinterior = listing_images[6] if listing_images[6]							
+								listing.external_rearinterior = listing_images[6] if listing_images[6]
 								# p data[image]
 								# i += 1
 							end
 							# p "hello"
 						# end
 
-						# [:image, :imagefront, :imageback, :imageleft, :imageright, :frontinterior, :rearinterior].each do |image|				
+						# [:image, :imagefront, :imageback, :imageleft, :imageright, :frontinterior, :rearinterior].each do |image|
 						# 		#unless listing_images.size < 1
 						# 			listing[image] = CsvUploading::picture_from_url(listing_images[i])
 						# 			i += 1
@@ -409,40 +409,40 @@ class Listing < ActiveRecord::Base
 
 					# if listing.valid?
 						#Listing.create!((row.to_hash).merge(user_id: current_user.id))
-					valid_listings << listing				
+					valid_listings << listing
 						# p "here"
 						# if listing.save!
-						
+
 						# 	# p listing
-						# end									
+						# end
 					# end
 
 					data.clear
 
 				rescue Exception => e
-					
+
 				end
-				
 
 
-				
+
+
 				# p "*******************************"
 				# p "*******************************"
 
-				
+
 
 				#listing = Listing.where(:vin => row["Vin"]).first_or_create(row.to_hash).merge(user_id: current_user.id)
 			 	#Otherwise use new as shown below
 
-			 	# listing = find_by_id(row["vin"]) || new			 	
+			 	# listing = find_by_id(row["vin"]) || new
 			 	# listing.attributes = row.to_hash.slice()
 			 	# listing.user = current_user
-			 	# listing.save		 
+			 	# listing.save
 			end
 		end
 
 		# p "problem is here 2"p valid_listings
-		# 
+		#
 
 		count = valid_listings.size
 
@@ -459,12 +459,12 @@ class Listing < ActiveRecord::Base
 
 		finish = Time.now
 		puts diff = finish - start
-		count == 0 ? false : count		
+		count == 0 ? false : count
 		# p self.last
 	end
 
-	# def self.import_listings(file)	
-	# 	start = Time.now	
+	# def self.import_listings(file)
+	# 	start = Time.now
 	# 	count = 0
 	# 	valid_listings = Array.new
 	# 	current_listings = Listing.all.pluck(:vin).map{|x| [x, 1]}.to_h
@@ -473,16 +473,16 @@ class Listing < ActiveRecord::Base
 	# 	old_listings = Array.new
 	# 	new_listings = Array.new
 
-	# 	n = SmarterCSV.process(file, options) do |chunk|			
+	# 	n = SmarterCSV.process(file, options) do |chunk|
 
-	# 		chunk.each do |i|	
+	# 		chunk.each do |i|
 	# 			if current_listings.key?(i[:vin])
-	# 				old_listings << i 
+	# 				old_listings << i
 	# 			else
 	# 				new_listings << i
 	# 			end
 	# 		end
-	# 		# Listing.collection.insert(chunk) 
+	# 		# Listing.collection.insert(chunk)
 	# 		# p chunk
 	# 		Listing.create(new_listings)
 	# 		# Listing.update(old_listings)
@@ -507,7 +507,7 @@ class Listing < ActiveRecord::Base
 
 	# 	# 		listing =  Listing.new
 
-	# 	# 		#listing.attributes = (row.to_hash).merge(image: URI.parse(row['image'])) #			
+	# 	# 		#listing.attributes = (row.to_hash).merge(image: URI.parse(row['image'])) #
 	# 	# 		listing.title = "#{data[:year]} #{data[:make]} #{data[:model]}"
 	# 	# 		user = User.find_by_id(data[:user_id])
 
@@ -516,9 +516,9 @@ class Listing < ActiveRecord::Base
 
 	# 	# 		# p user
 	# 	# 		if user != nil
-	# 	# 			listing.city = user.city 
-	# 	# 			listing.state = user.state 
-	# 	# 			listing.zipcode = user.zipcode 
+	# 	# 			listing.city = user.city
+	# 	# 			listing.state = user.state
+	# 	# 			listing.zipcode = user.zipcode
 	# 	# 		end
 
 	# 	# 		listing.approved = true
@@ -527,7 +527,7 @@ class Listing < ActiveRecord::Base
 	# 	# 		# p "*******************************"
 	# 	# 		# p "*******************************"
 
-				
+
 
 	# 	# 		unless data[:all_images] == nil
 
@@ -535,8 +535,8 @@ class Listing < ActiveRecord::Base
 
 	# 	# 			listing_images = data[:all_images].split(",")
 	# 	# 			i = 0
-				
-	# 	# 			[:image, :imagefront, :imageback, :imageleft, :imageright, :frontinterior, :rearinterior].each do |image|				
+
+	# 	# 			[:image, :imagefront, :imageback, :imageleft, :imageright, :frontinterior, :rearinterior].each do |image|
 	# 	# 				unless listing_images.size < 1
 	# 	# 					data[image] = CsvUploading::picture_from_url(listing_images[i])
 	# 	# 					i += 1
@@ -562,23 +562,23 @@ class Listing < ActiveRecord::Base
 	# 	# 			# if listing.save!
 	# 	# 			count = count+1
 	# 	# 				# p listing
-	# 	# 			# end									
+	# 	# 			# end
 	# 	# 		end
 
-				
+
 
 	# 	# 		# p "*******************************"
 	# 	# 		# p "*******************************"
 
-				
+
 
 	# 	# 		#listing = Listing.where(:vin => row["Vin"]).first_or_create(row.to_hash).merge(user_id: current_user.id)
 	# 	# 	 	#Otherwise use new as shown below
 
-	# 	# 	 	# listing = find_by_id(row["vin"]) || new			 	
+	# 	# 	 	# listing = find_by_id(row["vin"]) || new
 	# 	# 	 	# listing.attributes = row.to_hash.slice()
 	# 	# 	 	# listing.user = current_user
-	# 	# 	 	# listing.save		 
+	# 	# 	 	# listing.save
 	# 	# 	 end
 	# 	# end
 
@@ -589,7 +589,7 @@ class Listing < ActiveRecord::Base
 
 	# 	# finish = Time.now
 	# 	# puts diff = finish - start
-	# 	# count == 0 ? false : count		
+	# 	# count == 0 ? false : count
 	# end
 
 	def self.incrementcount(count)
@@ -610,7 +610,7 @@ class Listing < ActiveRecord::Base
 	    [state, zipcode].join(', ')
 	 end
 
-	def minprice(price)		
+	def minprice(price)
 		price.to_i - 10000
 	end
 
@@ -620,14 +620,14 @@ class Listing < ActiveRecord::Base
 
 
 	def self.search(params)
-		
+
 		if params
-			listings = Listing.where(approved: true).where('expiration_date > ?', DateTime.now)	
-			
+			listings = Listing.where(approved: true).where('expiration_date > ?', DateTime.now)
+
 
 			if params[:category].present?
 				if params[:category] != "All"
-					listings = listings.where('LOWER(listings.make) like ?', "%#{params[:category].downcase}%") 
+					listings = listings.where('LOWER(listings.make) like ?', "%#{params[:category].downcase}%")
 				end
 			end
 
@@ -637,10 +637,10 @@ class Listing < ActiveRecord::Base
 				end
 			end
 
-			
+
 			listings = listings.where("listings.newused = '#{params[:NewUsed][0].upcase}'") if params[:NewUsed].present?
-			listings = listings.where("price >= ?", "#{params[:minprice]}") if params[:minprice].present?			
-			listings = listings.where("price <= ?", "#{params[:maxprice]}") if params[:maxprice].present?			
+			listings = listings.where("price >= ?", "#{params[:minprice]}") if params[:minprice].present?
+			listings = listings.where("price <= ?", "#{params[:maxprice]}") if params[:maxprice].present?
 
 
 			listing2 = listings
@@ -649,40 +649,40 @@ class Listing < ActiveRecord::Base
 			if params[:radius].present?
 				#sleep 0.2
 				if params[:location].present?
-					ids = listings.near(params[:location].upcase,params[:radius], order: 'distance').map{|i| i.id} 
+					ids = listings.near(params[:location].upcase,params[:radius], order: 'distance').map{|i| i.id}
 					listings = Listing.where(id: ids).order("position(id::text in '#{ids.join(',')}')")
 					ids.clear
-				end							
+				end
 			else
-				#sleep 0.2				
+				#sleep 0.2
 				if params[:location].present?
-					ids = listings.near(params[:location].upcase,20, order: 'distance').map{|i| i.id} 
+					ids = listings.near(params[:location].upcase,20, order: 'distance').map{|i| i.id}
 					listings = Listing.where(id: ids).order("position(id::text in '#{ids.join(',')}')")
 					ids.clear
-				end	
-				
-				#listings = Listing.where(id: listings.near(params[:location].upcase,20, order: 'distance').map{|i| i.id}) if params[:location].present?				
+				end
+
+				#listings = Listing.where(id: listings.near(params[:location].upcase,20, order: 'distance').map{|i| i.id}) if params[:location].present?
 			end
 
 
 
 			if listings.empty?
-				#sleep 0.2		
-				if params[:location].present?		
+				#sleep 0.2
+				if params[:location].present?
 					ids = listing2.near(params[:location].upcase,100, order: 'distance').map{|i| i.id}
-					listings = Listing.where(id: ids).order("position(id::text in '#{ids.join(',')}')")	
+					listings = Listing.where(id: ids).order("position(id::text in '#{ids.join(',')}')")
 					ids.clear
-				end 
-						
+				end
+
 			end
 
 
 
 
 			# listings = listings.where('LOWER(listings.bodytype) like ?', "%#{params[:bodytype].downcase}%") if params[:bodytype].present?
-					
-			
-			# Listing.where(id: repairshop.near(params[:location], params[:radius]).map{|i| i.id})			
+
+
+			# Listing.where(id: repairshop.near(params[:location], params[:radius]).map{|i| i.id})
 
 			# listings.uniq
 			listings
@@ -691,34 +691,34 @@ class Listing < ActiveRecord::Base
 
 		else
 
-			
+
 			all
 		end
 
 	end
 
 
-	# def self.search(params) 
-	# 	__elasticsearch__.search( 
-	# 	{ 
-	# 		query: { 
-	# 			multi_match: { 
-	# 				query: "#{params[:category].downcase if params[:category].present}", 
-	# 				fields: ['make'] 
-	# 				} 
-	# 			}, 
-	# 			multi_match: { 
-	# 				query: "#{params[:subcategory].downcase}", 
-	# 				fields: ['model'] 
-	# 				} 
+	# def self.search(params)
+	# 	__elasticsearch__.search(
+	# 	{
+	# 		query: {
+	# 			multi_match: {
+	# 				query: "#{params[:category].downcase if params[:category].present}",
+	# 				fields: ['make']
+	# 				}
 	# 			},
-	# 			multi_match: { 
-	# 				query: "#{params[:NewUsed.downcase}", 
-	# 				fields: ['model'] 
-	# 				} 
+	# 			multi_match: {
+	# 				query: "#{params[:subcategory].downcase}",
+	# 				fields: ['model']
+	# 				}
 	# 			},
-	# 	} 
-	# 	end 
+	# 			multi_match: {
+	# 				query: "#{params[:NewUsed.downcase}",
+	# 				fields: ['model']
+	# 				}
+	# 			},
+	# 	}
+	# 	end
 	# end
 
 
@@ -726,17 +726,17 @@ class Listing < ActiveRecord::Base
 	def self.bodysearch(params)
 
 		if params
-			listings = Listing.where(approved: true).where('expiration_date > ?', DateTime.now)	
+			listings = Listing.where(approved: true).where('expiration_date > ?', DateTime.now)
 
 			if params[:bodytype].present?
 				if params[:bodytype] != "All"
-					listings = listings.where('LOWER(bodytype) like ?' ,"%#{params[:bodytype].downcase}%") if params[:bodytype].present?			
+					listings = listings.where('LOWER(bodytype) like ?' ,"%#{params[:bodytype].downcase}%") if params[:bodytype].present?
 				end
 			end
-			
+
 			listings = listings.where("listings.newused = '#{params[:NewUsed][0].upcase}'") if params[:NewUsed].present?
-			listings = listings.where("price >= ?", "#{params[:minprice]}") if params[:minprice].present?			
-			listings = listings.where("price <= ?", "#{params[:maxprice]}") if params[:maxprice].present?			
+			listings = listings.where("price >= ?", "#{params[:minprice]}") if params[:minprice].present?
+			listings = listings.where("price <= ?", "#{params[:maxprice]}") if params[:maxprice].present?
 
 
 			listing2 = listings
@@ -745,32 +745,32 @@ class Listing < ActiveRecord::Base
 			if params[:radius].present?
 				#sleep 0.2
 				if params[:location].present?
-					ids = listings.near(params[:location].upcase,params[:radius], order: 'distance').map{|i| i.id} 
+					ids = listings.near(params[:location].upcase,params[:radius], order: 'distance').map{|i| i.id}
 					listings = Listing.where(id: ids).order("position(id::text in '#{ids.join(',')}')")
 					ids.clear
-				end							
+				end
 			else
-				#sleep 0.2				
+				#sleep 0.2
 				if params[:location].present?
-					ids = listings.near(params[:location].upcase,20, order: 'distance').map{|i| i.id} 
+					ids = listings.near(params[:location].upcase,20, order: 'distance').map{|i| i.id}
 					listings = Listing.where(id: ids).order("position(id::text in '#{ids.join(',')}')")
 					ids.clear
-				end	
-				
-				#listings = Listing.where(id: listings.near(params[:location].upcase,20, order: 'distance').map{|i| i.id}) if params[:location].present?				
+				end
+
+				#listings = Listing.where(id: listings.near(params[:location].upcase,20, order: 'distance').map{|i| i.id}) if params[:location].present?
 			end
 
 
 			if listings.empty?
-				#sleep 0.2		
-				if params[:location].present?		
+				#sleep 0.2
+				if params[:location].present?
 					ids = listing2.near(params[:location].upcase,100, order: 'distance').map{|i| i.id}
-					listings = Listing.where(id: ids).order("position(id::text in '#{ids.join(',')}')")	
+					listings = Listing.where(id: ids).order("position(id::text in '#{ids.join(',')}')")
 					ids.clear
-				end 
-						
+				end
+
 			end
-										
+
 
 			listings
 
@@ -780,14 +780,14 @@ class Listing < ActiveRecord::Base
 
 	end
 
-	
-	def self.import_all_users(file) 
-	    start = Time.now  
+
+	def self.import_all_users(file)
+	    start = Time.now
 	    count = 0
 	    valid_users = Array.new
-	    data = {}   
+	    data = {}
 	    user_emails = User.all.pluck(:email)
-	    # last_user_id = User.last.id   
+	    # last_user_id = User.last.id
 	    # users = User.all.as_json
 	    # user_hash = Hash.new
 
@@ -797,7 +797,7 @@ class Listing < ActiveRecord::Base
 
 	    map = {
 
-	        "DLR_TYPE" => :type,      
+	        "DLR_TYPE" => :type,
 	        "BUSINESS NAME" => :name,
 	        "STREET ADDRESS"  => :street_address,
 	        "DBA(S)" => :dba,
@@ -817,8 +817,8 @@ class Listing < ActiveRecord::Base
 	    # p Listing.delete_all
 	    # p "problem is here 1"
 	    CSV.foreach(file, headers: true, encoding:'iso-8859-1:utf-8') do |row|
-	      #Use create when you dont need customization with the listing 
-	      
+	      #Use create when you dont need customization with the listing
+
 	        row.to_hash.each do |k, v|
 	          key = map[k]
 	          data[key] = v
@@ -826,11 +826,11 @@ class Listing < ActiveRecord::Base
 
 	        user = User.new
 
-	        if  data[:type] == "AR" 
-	          user.role = 2       
+	        if  data[:type] == "AR"
+	          user.role = 2
 	        else
 	          user.role = 1
-	        end 
+	        end
 
 	        if data[:dba] and data[:dba] != ""
 	          user.name = data[:dba]
@@ -840,18 +840,18 @@ class Listing < ActiveRecord::Base
 
 	        #user.name = data[:name]  if data[:name]
 	        user.city = data[:city] if data[:city]
-	        user.zipcode = data[:zipcode] if data[:zipcode] 
-	        user.state = data[:state] if data[:state] 
-	        user.phone_number = data[:phone_number] if data[:phone_number]  
+	        user.zipcode = data[:zipcode] if data[:zipcode]
+	        user.state = data[:state] if data[:state]
+	        user.phone_number = data[:phone_number] if data[:phone_number]
 	        user.street_address = data[:street_address] if data[:street_address]
 
 
-	        
+
 	        # the_email = Listing.email_generator
 
 	        # while !(user_emails.include?(the_email))
-	        #   the_email = Listing.email_generator   
-	        #   p "llop"     
+	        #   the_email = Listing.email_generator
+	        #   p "llop"
 	        # end
 
 	        # user.email = the_email
@@ -865,33 +865,33 @@ class Listing < ActiveRecord::Base
 	        user.password = "123abc"
 	        user.password_confirmation = "123abc"
 
-	        if User.find_by_email(user.email) == nil 
+	        if User.find_by_email(user.email) == nil
 	        	user.save!
 	        end
-	        
+
 	        #begin
 
-	        p "llop2"  
-	  
-	        valid_users << user       
-	          
+	        p "llop2"
+
+	        valid_users << user
+
 	        data.clear
 
 	        # rescue Exception => e
-	          
+
 	        # end
-	        
+
 	    end
 
 	    # p "problem is here 2"p valid_listings
-	    # 
+	    #
 
 	      count = valid_users.size
 
 	    # begin
 	      # p valid_listings
 	      #Listing.import valid_listings, on_duplicate_key_update: { conflict_target: [:vin], columns: [:user_id, :newused, :stocknumber, :model, :year, :trim, :miles, :enginedescription,:cylinder,:fuel,:transmission,  :price, :color, :interiorcolor, :options, :description,:city, :state, :zipcode, :approved]}
-	      p "llop3"  
+	      p "llop3"
 	      #User.import valid_users, on_duplicate_key_update: [:email, :password, :password_confirmation, :name, :role, :city, :zipcode, :state]
 	      # }
 	      # p Listing.count
@@ -902,11 +902,11 @@ class Listing < ActiveRecord::Base
 
 	    finish = Time.now
 	    puts diff = finish - start
-	    #count == 0 ? false : count    
+	    #count == 0 ? false : count
 	    # p self.last
 	end
 
-	def self.email_generator  
+	def self.email_generator
 	  sample = (2..99).to_a
 	  return "newuser#{sample.sample}#{sample.sample}#{sample.sample}@#{sample.sample}gmail.com"
 	end
@@ -922,7 +922,7 @@ class Listing < ActiveRecord::Base
 
 		to_create_for.each do |i|
 			repairshop = Repairshop.new
-			repairshop.user_id = i 
+			repairshop.user_id = i
 			user = User.find_by_id(i)
 			repairshop.title = user.name
 			repairshop.city = user.city
@@ -960,7 +960,7 @@ class Listing < ActiveRecord::Base
 
 	def self.export_oodle(type)
 		oddle_attributes = %w{category description	id	title	url	address	city	country	neighborhood	state	zip_code	body_type	color	condition	create_time	currency	dealer_phone	expire_time	features	fee	image_url	interior_color	ip_address	make	mileage	mileage_units	model	price	registration	seller_email	seller_name	seller_phone	seller_type	seller_url	transmission	trim	vin	year}
-		
+
 
 		CSV.generate(headers: true) do |csv|
 			if type == "oodle"
@@ -972,7 +972,7 @@ class Listing < ActiveRecord::Base
 			end
 		end
 
-	end 
+	end
 
 
 	def self.remove_unwanted_listings
@@ -980,6 +980,13 @@ class Listing < ActiveRecord::Base
 	end
 
 
+	def self.create_or_update(hash)
+		if Listing.where(vin: hash[:vin]).count > 0
+			Listing.find_by_vin(hash[:vin]).update(hash)
+		else
+			LIsting.create(hash)
+		end
+	end
 end
 
 
