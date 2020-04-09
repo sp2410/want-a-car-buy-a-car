@@ -6,74 +6,74 @@
   </div>
 
   <div class= "col-xs-12 col-sm-12 col-lg-12 col-md-12" style = "background: #fff; color: white; box-shadow: 0 3px 7px rgba(0,0,0,0.15), 0 2px 2px rgba(0,0,0,0.22); padding: 2px;">
-      
+
   </div>
 
 
   <div id = "container2">
 
-    <div class= "col-xs-12 col-sm-12 col-md-6 col-lg-4" id = "leftdiv" style = "background: white; padding: 20px; overflow-y: scroll; overflow-x: hidden;" > 
+    <div class= "col-xs-12 col-sm-12 col-md-6 col-lg-4" id = "leftdiv" style = "background: white; padding: 20px; overflow-y: scroll; overflow-x: hidden;" >
 
       <h3 style = "color:#7C064D; text-align: center;"><strong>FILTERS</strong></h3>
 
       <div class = "col-xs-12 col-sm-12 col-md-12 col-lg-12" id = "searchboxcontainer"  style = "-webkit-box-shadow: 1px 1px 2px 2px #ccc; -moz-box-shadow: 1px 1px 2px 2px #ccc; box-shadow: 1px 1px 2px 2px #ccc;  padding: 5px;">
-        <%= render "categories/dealershipsearch_forsearchpage" %>       
-        <hr> 
+        <%= render "categories/dealershipsearch_forsearchpage" %>
+        <hr>
       </div>
 
-      <div class = "col-xs-12 col-sm-12 col-md-12 col-lg-12" id = "searchboxcontainer2" style = " margin-top: 2em; -webkit-box-shadow: 1px 1px 2px 2px #ccc; -moz-box-shadow: 1px 1px 2px 2px #ccc; box-shadow: 1px 1px 2px 2px #ccc;  padding: 5px;">   
+      <div class = "col-xs-12 col-sm-12 col-md-12 col-lg-12" id = "searchboxcontainer2" style = " margin-top: 2em; -webkit-box-shadow: 1px 1px 2px 2px #ccc; -moz-box-shadow: 1px 1px 2px 2px #ccc; box-shadow: 1px 1px 2px 2px #ccc;  padding: 5px;">
 
           <h3 style = "color:#7C064D; text-align: center;"><strong>RATINGS</strong></h3>
 
-          
+
             <%- @dealers_ratings.reverse_each.to_h.each do |key, value| -%>
-              <%= link_to dealer_search_listings_path(params.merge(filters: @current_filters.merge(:ratings => "#{key}"))), {:class => "btn btn-basic"} do %>
+              <%= link_to dealer_search_listings_path(params.permit.merge(filters: @current_filters.merge(:ratings => "#{key}"))), {:class => "btn btn-basic"} do %>
                 <%= get_rating_in_star(key) %>(<%= value %>)
               <% end %>
             <% end %>
-          
-          
-                          
+
+
+
       </div>
-        
-       <div class = "col-xs-12 col-sm-12 col-md-12 col-lg-12" id = "searchboxcontainer2" style = " margin-top: 2em; -webkit-box-shadow: 1px 1px 2px 2px #ccc; -moz-box-shadow: 1px 1px 2px 2px #ccc; box-shadow: 1px 1px 2px 2px #ccc;  padding: 5px;">   
+
+       <div class = "col-xs-12 col-sm-12 col-md-12 col-lg-12" id = "searchboxcontainer2" style = " margin-top: 2em; -webkit-box-shadow: 1px 1px 2px 2px #ccc; -moz-box-shadow: 1px 1px 2px 2px #ccc; box-shadow: 1px 1px 2px 2px #ccc;  padding: 5px;">
 
           <h3 style = "color:#7C064D; text-align: center;"><strong>CITIES</strong></h3>
 
-          
+
             <%- @dealers_cities.each do |key, value| -%>
-              <%= link_to "#{key if key} (#{value})" ,dealer_search_listings_path(params.merge(filters: @current_filters.merge(:city => "#{key}"))), {:class => "btn btn-danger another"} %>
+              <%= link_to "#{key if key} (#{value})" ,dealer_search_listings_path(params.permit.merge(filters: @current_filters.merge(:city => "#{key}"))), {:class => "btn btn-danger another"} %>
             <% end %>
-          
-          
-                          
+
+
+
       </div>
 
-       <div class = "col-xs-12 col-sm-12 col-md-12 col-lg-12" id = "searchboxcontainer2" style = " margin-top: 2em; -webkit-box-shadow: 1px 1px 2px 2px #ccc; -moz-box-shadow: 1px 1px 2px 2px #ccc; box-shadow: 1px 1px 2px 2px #ccc;  padding: 5px;">   
+       <div class = "col-xs-12 col-sm-12 col-md-12 col-lg-12" id = "searchboxcontainer2" style = " margin-top: 2em; -webkit-box-shadow: 1px 1px 2px 2px #ccc; -moz-box-shadow: 1px 1px 2px 2px #ccc; box-shadow: 1px 1px 2px 2px #ccc;  padding: 5px;">
 
           <h3 style = "color:#7C064D; text-align: center;"><strong>STATE</strong></h3>
 
           <%-@dealers_states.each do |key, value| -%>
-            <%= link_to "#{key if key} (#{value})" , dealer_search_listings_path(params.merge(filters: @current_filters.merge(:state => "#{key}"))), {:class => "btn btn-danger another"} %>
+            <%= link_to "#{key if key} (#{value})" , dealer_search_listings_path(params.permit.merge(filters: @current_filters.merge(:state => "#{key}"))), {:class => "btn btn-danger another"} %>
           <% end %>
-          
-                          
-      </div> 
-    </div>  
+
+
+      </div>
+    </div>
 
     <div class= "col-xs-12 col-sm-12 col-md-6 col-lg-8" id = "rightdiv" style = "background: white; padding: 20px 0px;" >
 
       <h3 style = "color:#7C064D; text-align: center;"><strong>SEARCH RESULTS</strong></h3>
 
 
-        <div class= "col-xs-12 col-sm-12 col-lg-12 col-md-12">        
+        <div class= "col-xs-12 col-sm-12 col-lg-12 col-md-12">
 
           <h5 style = "color:#E00000; text-align: left;"><strong>APPLIED FILTERS</strong></h5>
 
-              <% @current_filters.each do |key, value| %>  
+              <% @current_filters.each do |key, value| %>
 
                 <% if value != ""  %>
-                   <%= link_to dealer_search_listings_path(params.merge(filters: @current_filters.except(key))), {:class => "btn btn-danger applied"}  do %>
+                   <%= link_to dealer_search_listings_path(params.permit.merge(filters: @current_filters.except(key))), {:class => "btn btn-danger applied"}  do %>
                    <%= value.upcase if value %> <span class="badge">X</span>
                    <% end %>
                 <% end %>
@@ -82,7 +82,7 @@
 
         </div>
 
-      <div id = "boatlist">           
+      <div id = "boatlist">
 
           <div class = "col-xs-12 col-sm-12 col-md-12 col-lg-12" style = "padding-right: 0px;">
 
@@ -94,7 +94,7 @@
 
             <div class = "col-xs-12 col-sm-12 col-md-12 col-lg-6" ">
              <div class = "col-xs-12 col-sm-12 col-md-12 col-lg-12" style = "max-height: 170vh; overflow-y: scroll; overflow-x: hidden; ">
-                <%- @dealers.each do |i| -%>  
+                <%- @dealers.each do |i| -%>
                    <% if i.role ==  "BASIC DEALER" %>
                     <%= render :partial => 'listings/basic_dealer_info', :locals => { :i => i } %>
                   <% elsif i.role ==  "SILVER DEALER" %>
@@ -102,12 +102,12 @@
                   <% elsif i.role ==  "GOLD DEALER" %>
                     <%= render :partial => 'listings/gold_dealer_info', :locals => { :i => i } %>
                   <% elsif i.role ==  "DIAMOND DEALER" %>
-                    <%= render :partial => 'listings/diamond_dealer_info', :locals => { :i => i } %>                    
+                    <%= render :partial => 'listings/diamond_dealer_info', :locals => { :i => i } %>
                   <% else %>
                     <%= render :partial => 'listings/basic_dealer_info', :locals => { :i => i }%>
-                  <% end %>                  
-                <% end %> 
-              </div>                
+                  <% end %>
+                <% end %>
+              </div>
             </div>
 
             <div class = "col-xs-6 col-sm-6 col-md-6 col-lg-6 hidden-xs hidden-sm hidden-md" style = "padding: 0px;">
@@ -131,23 +131,23 @@
 $(function() {
 
 
-  
+
   init(); //on page load - call the function show first slide, hide the rest
 
   function init() {
 
     document.getElementById("defaultOpen1").click(); //this is for divs in tab to show boats first
-    
+
 
     parents = document.getElementsByClassName('slideshow-container'); //get all the div slideshowcontainer and store as parent array
-    
+
 //    console.log(parents.length); //total number of slideshow containers
 
-    for (j = 0; j < parents.length; j++) { //Go in a loop for all the divs slideshow-container      
+    for (j = 0; j < parents.length; j++) { //Go in a loop for all the divs slideshow-container
       var slides = parents[j].getElementsByClassName("mySlides"); //
       //console.log(slides);
 
-      var dots = parents[j].getElementsByClassName("dot");      
+      var dots = parents[j].getElementsByClassName("dot");
       slides[0].classList.add('active-slide');
       dots[0].classList.add('active');
       // console.log(slides[0]);
@@ -235,7 +235,7 @@ $(function() {
 
   slider.oninput = function() {
     output.innerHTML = this.value;
-  }  
+  }
 
 });
 
