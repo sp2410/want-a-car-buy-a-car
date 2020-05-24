@@ -1,2 +1,2 @@
-uri = ENV["REDISCLOUD_URL"] || "redis://localhost:6379/"
-REDIS = Redis.new(:url => uri)
+uri = ENV["REDISCLOUD_URL"] || "redis://localhost:6379"
+REDIS = Redis.new(:url => "#{uri}/0")
