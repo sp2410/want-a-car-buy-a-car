@@ -1,3 +1,5 @@
+require 'update_data'
+
 class UpdateDataWorker < ActiveJob::Base
   queue_as :default
   def perform
