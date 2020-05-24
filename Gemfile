@@ -90,6 +90,7 @@ gem 'recaptcha', require: 'recaptcha/rails'
 # gem 'bootstrap-will_paginate', '~> 0.0.10'
 
 gem 'aws-sdk-s3'
+gem "sidekiq-cron", "~> 1.1"
 
 
 group :development, :test do
@@ -99,6 +100,7 @@ group :development, :test do
   gem "factory_bot_rails", "~> 4.0"
   gem 'database_cleaner'
   gem 'seed_dump'
+	gem 'pry'
 end
 
 group :development do
