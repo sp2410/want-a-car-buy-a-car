@@ -1,4 +1,4 @@
 update_data_worker:
-  cron: "52 4 * * *"
+  cron: "0 9 * * *"
   class: "UpdateDataWorker"
   queue: default
