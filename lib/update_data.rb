@@ -11,7 +11,7 @@ class UpdateData
 				"condition" => :newused,
 				"vin"	=> :vin,
 				"body_type" => :bodytype,
-				"photos" => :make,
+				"make" => :make,
 				"model"	=> :model,
 				"year"	=> :year,
 				"mileage"	=> :miles,
